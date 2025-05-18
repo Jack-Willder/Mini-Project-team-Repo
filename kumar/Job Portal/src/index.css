@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+body
+{
+    background-image: linear-gradient(120deg,#d4fc79 0%,#96e6a1 100%);
+}
+.header>h1{
+    background-image: linear-gradient(-225deg,#231557 0%,#44107A 29%,#FF1361 67%,#FFF800 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.navbar{
+    display: flex;
+}
+.navbar>ul{
+    display: flex;
+}
+.navbar>ul>li>a
+{
+    padding: 20px;
+}
+.navbar>ul>li>a:hover{
+    color: brown;
+}
+.footer>.footer1{
+    display: flex;
+}
+.footer>.footer1>.part1,.part2,.part3{
+    width: 500px;
+}
+.footer>.footer2{
+    background-color: black;
+    color: wheat;
+}
