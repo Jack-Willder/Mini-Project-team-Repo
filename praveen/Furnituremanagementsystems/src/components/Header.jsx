@@ -1,8 +1,8 @@
 import React from "react";
 function Header(){
-    return(
+return(
 <div className="header">
-<h1>Online Furniture Management System</h1>
+    <h1>Online Furniture Management System</h1>
 </div>
 );
 }
