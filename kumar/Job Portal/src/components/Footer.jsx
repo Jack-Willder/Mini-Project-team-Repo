@@ -1,7 +1,7 @@
 function Footer()
 {
     return(
-        <footer className="footer mt-18">
+        <footer className="footer mt-40">
             <div className="footer1 bg-green-300 py-3">
                 <div className="part-1 mr-3">
                     <h3 className="font-bold mb-4 text-center">About Us</h3>
@@ -9,8 +9,8 @@ function Footer()
                 </div>
                 <div className="part2">
                     <h3 className="font-bold mb-4 text-center">Contact Us</h3>
-                    <b>Ph.No : 1234567890</b>
-                    <b>Email : xyz@gmail.com</b>
+                    <b>Ph.No : 1234567890</b><br/>
+                    <b>Email : xyz@gmail.com</b><br/>
                 </div>
                 <div className="part2">
                     <h3 className="font-bold mb-4 text-center">Links</h3>
