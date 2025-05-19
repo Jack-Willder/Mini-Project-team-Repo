@@ -1,0 +1,163 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f6f1; /* soft wood-like beige */
+  color: #333; /* dark grey for readability */
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* New wrapper for header and nav */
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+}
+
+.header {
+  font-family: 'Lobster', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: #4E342E;
+  margin-left: 0; /* Reset margin to align better */
+}
+
+.funky-text {
+  font-family: 'Lobster', cursive;
+  /* font-size: 25px; */
+  font-style: italic;
+}
+
+.circle-bg {
+  position: relative;
+  font-size: 50px;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.circle-bg::before {
+  content: "";
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.navigation {
+  display: flex;
+  justify-content: flex-end; /* pushes items to the right */
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.navigation > li {
+  font-weight: bold;
+}
+
+.foot {
+  font-weight: bold;
+  font-size: medium;
+  color: #6D6D6D;
+  text-align: center;
+  padding: 1rem;
+}
+
+.loginbtn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginbtn:hover {
+  background-color: #ff3e30;
+}
+
+.front-img {
+  display: flex;
+  justify-content: flex-end; /* pushes content (image) to the right */
+  padding: 1rem; /* optional spacing */
+}
+
+.body-center {
+  display: flex;
+  max-width: 100%;
+  margin: 10px auto; /* center horizontally, vertical spacing */
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #ffe6f0;
+  box-sizing: border-box;
+  min-height: 70vh; /* container tall enough */
+  gap: 20px;
+}
+
+
+/* Style for image inside .body-center */
+.body-center img {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover without distortion */
+  border-radius: 10px; /* optional */
+}
+.frcontent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;  /* stack text and button vertically */
+  justify-content: center; /* vertical center entire block */
+  align-items: flex-start; /* align left */
+  font-family: "Segoe UI", "Verdana", "Tahoma", "Trebuchet MS", sans-serif;
+  font-style: italic;
+  color: #333333;
+  font-size: 30px;
+  font-weight: 900;
+  padding-left: 50px;
+  gap: 20px; /* space between text and button */
+}
+
+.explore-btn {
+  background-color: #d6336c; 
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center; /* button aligned left inside container */
+}
+
+.explore-btn:hover {
+  background-color: #a5274d
+}
+.quote {
+
+  text-align: center;  /* This centers the text */
+}
