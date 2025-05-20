@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="bg-gray-200 text-center p-4 mt-4">
-        <p>© 2025 Jobzy | Designed By RK</p>
+        <p>&copy; 2025 Jobzy | Designed By RK</p>
     </footer>
   );
 }
