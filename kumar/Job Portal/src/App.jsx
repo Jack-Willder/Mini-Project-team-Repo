@@ -1,18 +1,22 @@
-import './App.css'
-import Header from './components/PageHeader'
-import NavBar from './components/NavBar'
-import SearchBar from './components/SearchBar'
-import Footer from './components/Footer'
+import Categories from "./components/Categories";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import JobPost from "./components/JobPost";
+import PageHeader from "./components/PageHeader";
+
 
 function App() {
   return (
     <>
-      <Header/>
-      <NavBar/>
-      <SearchBar/>
+      <PageHeader/>
+      <Home/>
+      <Categories/>
+      <JobPost/>
       <Footer/>
     </>
-  )
+  );
 }
 
-export default App
+
+
+export default App;
