@@ -39,3 +39,9 @@ body{
 label{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+button{
+    padding: 7px;
+    border-radius: 75px;
+}
+
+
