@@ -1,0 +1,53 @@
+body{
+background-color:rgb(184, 255, 246);
+}
+@font-face {
+    font-family:'MemphisRiver';
+    src: url(Memphis-River/Memphis\ River.otf);
+}
+.title{
+    display: inline;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family:'MemphisRiver';
+}
+#art{
+    color:  rgb(0, 0, 0);
+    display: inline;
+    margin-right: 10px;
+}
+#gallery{
+    color: rgb(0, 0, 0);
+    display: inline;
+}
+.header{    
+    background-color:black;
+    display: flex;
+    margin-top: 50px;
+}
+.header ul{
+    float: right;
+}
+.form tr td {
+    padding-left:200px;
+    display: inline;
+    float: right;
+}
+.header ul li{
+    display: inline;
+    list-style:none;
+    padding-left:220px;
+}
+.header ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family:'MemphisRiver';
+}
+.header ul li a:hover{
+    background-color: rgb(184, 255, 246);
+    color: black;
+    padding-left: 10px;
+    padding-right: 3px;
+    border-radius:20px;
+}
