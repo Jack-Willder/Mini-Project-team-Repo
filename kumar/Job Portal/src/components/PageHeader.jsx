@@ -1,21 +1,21 @@
+import { Link } from 'react-router-dom';
 
-function PageHeader() {
+function Header() {
   return (
     <>
-    <header className="bg-blue-600 text-white py-5">
-        <h1 className="text-6xl cursor-pointer text-center font-bold">Jobzy</h1>
-    </header>
-    <nav className="text-blue-600 shadow-md p-4 flex justify-between items-center">
-      <ul className="flex gap-6 text-sm font-medium">
-        <li className="hover:text-green-500 transition-colors duration-200 cursor-pointer">Home</li>
-        <li className="hover:text-green-500 transition-colors duration-200 cursor-pointer">Jobs</li>
-        <li className="hover:text-green-500 transition-colors duration-200 cursor-pointer">Companies</li>
-        <li className="hover:text-green-500 transition-colors duration-200 cursor-pointer">About</li>
-        <li className="hover:text-green-500 transition-colors duration-200 cursor-pointer">Contact</li>
-      </ul>
-    </nav>
+      <div className="header bg-blue-600 py-5 text-center">
+        <h1 className="text-6xl font-bold text-white">Jobzy</h1>
+      </div>
+      <nav className="bg-white shadow-md p-4 flex justify-between items-center">
+        <ul className="flex gap-6 text-blue-500">
+          <li><Link to="/" className="hover:text-green-500">Home</Link></li>
+          <li><Link to="/jobs" className="hover:text-green-500">Jobs</Link></li>
+          <li><Link to="/companies" className="hover:text-green-500">Companies</Link></li>
+          <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
+        </ul>
+      </nav>
     </>
   );
 }
 
-export default PageHeader;
+export default Header;
