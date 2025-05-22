@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.navbar>ul>li
+{
+    position: relative;
+}
+.navbar>ul>li:before
+{
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    width: 100%;
+    height: 4px;
+    border-radius: 20px;
+    transform: scaleX(0);
+    background: greenyellow;
+    transition: all 0.3s ease-in-out ;
+}
+.navbar>ul>li:hover:before
+{
+    transform: scaleX(1);
+    transform-origin: right;
+}

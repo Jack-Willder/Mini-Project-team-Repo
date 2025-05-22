@@ -12,6 +12,8 @@ import Contact from './pages/Contact';
 import PostingJobs from './pages/JobSeeker/PostingJobs';
 import AboutCompany from './pages/AboutCompany';
 
+import Adminlogin from './pages/admin/Adminlogin';
+
 function App() {
   return (
     <div className="font-sans text-gray-800">
@@ -31,6 +33,7 @@ function App() {
         <Route path="/about/:name" element={<AboutCompany />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/PostingJobs" element={<PostingJobs />} />
+        <Route path="/adminlogin" element={<Adminlogin />} />
       </Routes>
       <Footer />
     </div>
