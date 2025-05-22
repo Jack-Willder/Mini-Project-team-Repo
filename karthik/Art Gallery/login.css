@@ -35,6 +35,7 @@ body{
     margin-bottom:20px;
     margin-top:25px;
     align-items: center;
+    padding: 10px;
 }
 label{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -42,6 +43,12 @@ label{
 button{
     padding: 7px;
     border-radius: 75px;
+    background-color: black;
+    color: white;
+}
+button:hover{
+    background-color: black;
+    color: white;
 }
 
 

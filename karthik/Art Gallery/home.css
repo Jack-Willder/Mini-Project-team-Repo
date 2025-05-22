@@ -36,18 +36,17 @@ background-color:rgb(184, 255, 246);
 .header ul li{
     display: inline;
     list-style:none;
-    padding-left:220px;
+    padding-left:150px;
 }
 .header ul li a{
     text-decoration: none;
     color: white;
     font-size: 20px;
     font-family:'MemphisRiver';
+    padding: 5px;
 }
 .header ul li a:hover{
     background-color: rgb(184, 255, 246);
     color: black;
-    padding-left: 10px;
-    padding-right: 3px;
     border-radius:20px;
 }
