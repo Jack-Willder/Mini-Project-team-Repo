@@ -21,3 +21,12 @@
     transform: scaleX(1);
     transform-origin: right;
 }
+.companies>marquee>img{
+    width: 150px;
+    display: inline;
+    height: 150px;
+    opacity: 0.5;
+}
+.companies>marquee>img:hover{
+    opacity:1;
+}

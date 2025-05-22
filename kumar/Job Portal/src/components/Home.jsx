@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-
 function Home() {
   return (
     <>
@@ -24,6 +22,16 @@ function Home() {
               </div>
             ))}
           </div>
+      </section>
+      <section className="companies mb-5 p-5">
+        <h1 className="text-2xl font-semibold mb-6 text-center">Top Companies</h1>
+        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+          <img src="/img/company/zoho.jpg" alt="zoho" />
+          <img src="/img/company/apple.jpg" alt="apple" />
+          <img src="/img/company/tcs.jpg" alt="TCS" />
+          <img src="/img/company/Microsoft-Logo-HD.jpg" alt="Microsoft" />
+          <img src="/img/company/infosys.jpg" alt="infosys" />
+        </marquee>
       </section>
     </>
   );
