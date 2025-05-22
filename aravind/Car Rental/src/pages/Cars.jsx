@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom';
-
-function Home() {
+function Cars() {
 
     return (
         <section className="home text-center mt-5">
             
-            <h1 className="text-center text-6xl font-bold text-green-800 mb-5">Famous Models</h1>
+            <h1 className="text-center text-6xl font-bold text-green-800 mb-5">Available Cars</h1>
             
             <section className="p-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -17,14 +15,8 @@ function Home() {
                     ))}
                 </div>            
             </section>
-
-            <Link to="/cars">
-                <button className="text-white bg-blue-500 p-3 rounded hover:bg-blue-600 transition mt-4">
-                    Explore More
-                </button>
-            </Link>
         </section>
     );
 }
 
-export default Home;
+export default Cars;

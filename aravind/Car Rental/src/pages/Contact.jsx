@@ -1,0 +1,9 @@
+function Contact(){
+    return(
+        <section className="contact">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quod impedit ipsa iure blanditiis error quasi, facere illo labore eum natus numquam aperiam cum assumenda vitae excepturi soluta ipsum fuga fugiat quos! Vero sequi libero ex quisquam id, aperiam eius reprehenderit veniam recusandae tenetur placeat ut repellat cupiditate ducimus deleniti, tempora voluptatem molestiae itaque. Veritatis laudantium vel tempore est nam quae, cupiditate officiis, hic, dolore deserunt placeat? Non, error aperiam! Sequi, omnis ipsa? Aperiam officiis eaque unde vero sit eum magnam quidem atque laudantium, nesciunt vel dolores numquam, praesentium ipsum reiciendis animi iusto necessitatibus consequatur nobis corrupti? Rerum quod voluptate magnam ad ullam commodi, vel, facere numquam labore maiores, tenetur excepturi dolores? Eligendi, quae quisquam laudantium, commodi officia cum doloribus tempore eos sit tempora eveniet illum similique totam deleniti facere, repudiandae perferendis temporibus id nemo minus reiciendis distinctio dolore magni repellat. Qui facere non debitis consequatur, architecto, maiores, quo suscipit unde omnis dignissimos rerum nulla ducimus similique? Non consequatur, sunt est quis ad voluptatibus modi fuga voluptatum numquam maiores dolorem hic, qui iste? Et autem incidunt aspernatur accusantium deserunt animi, eius dolor dignissimos reiciendis nobis, voluptatem excepturi, nam ratione? Sit provident voluptates consectetur rem iste saepe quam, facere corrupti adipisci.
+        </section>
+    )
+}
+
+export default Contact
