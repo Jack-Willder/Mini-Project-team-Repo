@@ -1,5 +1,60 @@
 @import "tailwindcss";
 
+.headers{
+    display: flex;
+    padding: 20px 0;
+}
+.headers>.widgets{
+    margin-left: 600px;
+}
+.headers>.widgets1{
+    margin-left: 150px;
+}
+.headers>.widgets>p{
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: brown;
+}
+.headers>.widgets1>p{
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: brown;
+}
+.banner{
+    background-image: url('/images/banner-image-1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 160px 0;
+    margin-top: -20px;
+    height: 500px;
+}
+.stats{
+    background-image: url('/images/fun-facts-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 160px 0;
+    margin-top: 20px;
+    height: 500px;
+    opacity: 0.5;
+}
+.abtbanner{
+    background-image: url('/images/aboutus-page-header-img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+}
+.abtheader
+{
+    position: relative;
+    top: 70px;
+    color: white;
+}
 .about
 {
     background-color: bisque;
