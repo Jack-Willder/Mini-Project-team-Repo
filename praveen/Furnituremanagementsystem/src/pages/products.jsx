@@ -1,8 +1,8 @@
-function products(){
+function Products(){
     return(
 <div>
-    <p>the products of our shop should be displayed here</p>
+    <p className="text-3xl text-amber-950">the products of our shop should be displayed here</p>
 </div>
     )
 }
-export default products;
+export default Products;
