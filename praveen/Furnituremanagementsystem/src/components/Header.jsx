@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Header(){
     return(
   <div class="header-wrapper">
@@ -5,12 +7,10 @@ function Header(){
     <span class="circle-bg">&nbsp;Furniture</span>One
   </h1>
   <ul class="navigation">
-    <li><a href="#">Home &#127968;</a></li>
-    <li><a href="#">Shop 🛒
-</a></li>
-    <li><a href="#">Contact Us 📞
-</a></li>
-    <li><a href="#">About</a></li>
+    <li><Link to="/" >&#127968; Home</Link></li>
+    <li><Link to="/products" className="hover:text-green-500">Shop 🛒</Link>/</li>
+    <li><Link to="/contact" className="hover:text-green-500">Contact Us 📞</Link></li>
+    <li><Link to="/" className="hover:text-green-500">About</Link></li>
     <li><button class="loginbtn">Login</button></li>
   </ul>
 </div>
@@ -18,3 +18,7 @@ function Header(){
 }
 
 export default Header
+
+
+
+          
