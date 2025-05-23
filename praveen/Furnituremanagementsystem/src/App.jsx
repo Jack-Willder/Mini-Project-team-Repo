@@ -3,10 +3,10 @@ import './App.css';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Body from './components/Body';
+import Body from './components/body';
 
-import Contact from './pages/Contact';
-import Products from './pages/Products';
+import Contact from './pages/contact';
+import Products from './pages/products';
 import About from './pages/about'; // Capitalized for consistency
 
 function App() {

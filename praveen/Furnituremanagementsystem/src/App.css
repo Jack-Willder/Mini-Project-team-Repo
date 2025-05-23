@@ -161,3 +161,14 @@ body {
 
   text-align: center;  /* This centers the text */
 }
+.gallery{
+  color:grey;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+.gallery>span{
+  color:red;
+  font-size:2.5rem;
+  font-weight: bolder;
+}

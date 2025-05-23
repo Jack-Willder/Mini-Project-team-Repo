@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import image1 from '../assets/images/image1.jpg';
 import image2 from '../assets/images/image2.jpg';
 
@@ -16,7 +18,7 @@ function Body() {
         <div className="quote">
           Transform your space with timeless elegance
         </div>
-        <button className="explore-btn">Explore</button>
+        <button className="explore-btn"><Link to="/products" >Explore</Link></button>
       </div>
       <img
         src={images[currentIndex]}

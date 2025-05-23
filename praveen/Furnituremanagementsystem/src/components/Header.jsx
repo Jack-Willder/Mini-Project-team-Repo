@@ -7,7 +7,7 @@ function Header() {
         <span className="circle-bg">&nbsp;Furniture</span>One
       </h1>
       <ul className="navigation">
-        <li><Link to="/" className="hover:text-green-500">🏠 Home</Link></li>
+        <li><Link to="/" className="hover:text-green-500"> Home 🏠</Link></li>
         <li><Link to="/products" className="hover:text-green-500">Shop 🛒</Link></li>
         <li><Link to="/contact" className="hover:text-green-500">Contact Us 📞</Link></li>
         <li><Link to="/about" className="hover:text-green-500">About</Link></li>
