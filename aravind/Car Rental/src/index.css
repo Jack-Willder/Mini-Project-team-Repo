@@ -5,10 +5,10 @@
     padding: 20px 0;
 }
 .headers>.widgets{
-    margin-left: 600px;
+    margin-left: 550px;
 }
 .headers>.widgets1{
-    margin-left: 150px;
+    margin-left: 100px;
 }
 .headers>.widgets>p{
     font-size: 16px;
@@ -86,7 +86,7 @@
 }
 .info-section {
   flex: 1 1 40%;
-  background-color: #6366f1;
+  background-color: darkgreen;
   color: white;
   padding: 40px;
 }
@@ -125,7 +125,7 @@ textarea {
 }
 .contact-card>.form-section>form>button{
   padding: 12px;
-  background-color: #4f46e5;
+  background-color: darkgreen;
   color: white;
   border: none;
   border-radius: 8px;
@@ -133,5 +133,40 @@ textarea {
   cursor: pointer;
 }
 .contact-card>.form-section>form>button:hover {
-  background-color: #4338ca;
+  background-color: darkgreen;
+}
+.about-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+}
+.content-box {
+  max-width: 900px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  font-size: 1.5rem;
+  color: darkgreen;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 1.3rem;
+  margin-top: 30px;
+  color: #111827;
+}
+p {
+  margin: 10px 0;
+}
+.about-container>ul {
+  margin: 10px 0 20px 20px;
+  list-style: disc;
+}
+li {
+  margin-bottom: 8px;
+}
+strong {
+  font-weight: 600;
 }

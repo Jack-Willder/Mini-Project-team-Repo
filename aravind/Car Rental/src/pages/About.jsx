@@ -1,12 +1,50 @@
 function About(){
     return(
         <>
-        <section className="abtbanner">
-            <h1 className="abtheader text-center font-bold text-4xl">About Us</h1>
-        </section>
-        <section className="about">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quo itaque maiores dignissimos architecto dolorem nemo atque deserunt labore ipsum consectetur eveniet quisquam quasi quas veritatis iusto deleniti libero neque quis officiis iste vel, maxime laborum. Explicabo quidem necessitatibus, voluptas error illo atque ducimus similique facilis ex beatae eos, sunt porro libero nihil, natus blanditiis. Accusantium praesentium nobis aperiam assumenda, corrupti sit rerum molestias necessitatibus officiis dolorem numquam facilis accusamus neque omnis iste veritatis? Excepturi at tenetur eaque ipsum nulla quaerat, nesciunt ullam alias non numquam facilis provident eius dolores eligendi, atque sed repellendus aspernatur quia. Consequuntur fugit sed doloribus atque quidem similique rem placeat nemo? Dolorem beatae sed dolores nisi, explicabo rerum esse consectetur eveniet omnis placeat! Suscipit perferendis itaque cumque ipsa libero beatae blanditiis autem atque molestiae voluptate ea ipsum sit vitae pariatur, ducimus cum iusto qui neque illum quas nihil dolorem culpa! Dolores, quisquam accusantium error recusandae sit dicta, autem at suscipit necessitatibus aperiam, corrupti minima harum odio fuga quo consequuntur doloremque maxime voluptatibus. Ea, assumenda explicabo sunt in iste rem? Nulla, libero accusamus suscipit alias eius quo doloribus natus quod fuga consectetur. Officiis nulla eum, magni numquam quis, quam ipsa nesciunt dignissimos ratione distinctio quas, doloribus id error hic? Quas, aliquam, amet id rerum nihil temporibus blanditiis voluptate qui dignissimos aspernatur molestiae et ipsum vel sapiente maiores veniam porro ab ipsa rem sequi. Assumenda esse facilis amet labore? Magnam, explicabo aperiam repellat accusantium qui reiciendis illum, obcaecati quo sunt eos aliquid, ex officiis et fuga non quos. Quaerat dolor voluptatum quam dolores voluptate, iusto perspiciatis maiores sed explicabo! Adipisci maxime, sed explicabo voluptate vitae fugit odio, excepturi deserunt veritatis unde quam tenetur inventore temporibus distinctio! Sint laborum nihil harum repudiandae tenetur veritatis quod, nulla optio quas, ipsa iusto tempore in exercitationem quisquam natus ipsum eos ratione odio ex. Quibusdam doloremque autem ducimus dolor sint similique quam quisquam aliquam libero eius quos repudiandae dicta, praesentium ipsam veniam! Tenetur dolor expedita natus quidem quis impedit? Laudantium ratione cupiditate quae quos! Ipsam corporis deserunt maiores dignissimos distinctio commodi accusantium corrupti quibusdam mollitia earum reiciendis quae vitae assumenda perspiciatis eius blanditiis, in possimus autem omnis laboriosam odit sunt quasi quod tempora! Ea nemo totam, suscipit qui hic doloribus dolorem architecto, iure tempora quo cupiditate. Veritatis cumque minima voluptates, ut sunt pariatur ipsam excepturi eum vel quam facilis natus! Ex quasi veniam, delectus soluta ullam magni eos iusto nam ad inventore voluptate natus error cupiditate esse adipisci laborum corporis eius quae minima mollitia? Sequi voluptatum tempore qui laudantium quaerat, corrupti suscipit soluta expedita ex minus. Eum natus nisi eos eligendi, est sint velit? Fugiat eveniet blanditiis ab vero quisquam praesentium, repellendus ut maxime tenetur nihil soluta similique illum cupiditate accusantium? Delectus laboriosam amet eius eos sed consequatur, repellendus itaque aperiam quis assumenda dolorum illo, praesentium iusto odit sit. Vel iusto error quibusdam saepe, libero a repellendus, cupiditate veniam corrupti ex sit possimus, incidunt optio? Facere distinctio possimus beatae tempora delectus culpa, porro pariatur accusamus doloremque ab saepe, deserunt, aspernatur quam animi alias voluptatibus? Sequi consequuntur vel, ipsa a assumenda nisi dolores cum, modi exercitationem et maiores perferendis quia officiis illum expedita beatae dolorum, repellendus voluptatum explicabo! Harum dignissimos excepturi est porro sit aspernatur temporibus asperiores laborum sed dolores iure laboriosam fuga, distinctio doloribus facilis totam, pariatur eius nisi quam illum alias consectetur molestiae tenetur? Corrupti perferendis quos magni id labore temporibus vero molestias error blanditiis, facilis laboriosam odit suscipit unde! Perspiciatis cum aliquid assumenda vitae quos numquam et repellat, reprehenderit quaerat eaque, nulla odit voluptatibus maiores quia magni fugit mollitia ut odio libero modi nobis molestias. Asperiores quas at quis ad temporibus voluptatibus tenetur officiis veritatis rerum modi in quod architecto magni corrupti, molestias error ea illo aut debitis ab possimus nisi unde eveniet. Dignissimos qui quidem recusandae voluptates voluptatem sint sapiente distinctio ipsum commodi aliquid molestiae quod illum, sequi laborum. Sit doloremque voluptatibus
-        </section>
+            <section className="abtbanner">
+                <h1 className="abtheader text-center font-bold text-4xl">About Us</h1>
+            </section>
+            <section class="about-container">
+                <div class="content-box">
+                    <h2><b>Your Journey, Our Wheels</b></h2>
+                    <p>
+                        Welcome to <strong>Car Rentals</strong>, your trusted partner for convenient, affordable, and reliable car rentals. Whether you're heading out for a weekend getaway, a business trip, or simply need a ride across town — we've got the right vehicle to get you there.
+                    </p>
+
+                    <h3><b>Who We Are</b></h3>
+                    <p>
+                        Founded in 2025, Car Rentals was built on a simple idea: to make car rental easy, transparent, and accessible for everyone. With a fleet of well-maintained vehicles and a team dedicated to service excellence, we aim to provide a seamless experience from booking to return.
+                    </p>
+
+                    <h3><b>What We Offer</b></h3>
+                    <ul>
+                        <li>Wide Range of Vehicles – From compact cars and sedans to SUVs and luxury models.</li>
+                        <li>Affordable Pricing – Transparent pricing with no hidden fees.</li>
+                        <li>Flexible Plans – Daily, weekly, and monthly rental options to fit your needs.</li>
+                        <li>24/7 Customer Support – We're here to assist you anytime, anywhere.</li>
+                        <li>Free Delivery & Pickup – Available within city limits for your convenience.</li>
+                    </ul>
+
+                    <h3><b>Our Mission</b></h3>
+                    <p>
+                        To provide safe, comfortable, and dependable transportation that empowers people to travel freely — with confidence and peace of mind.
+                    </p>
+
+                    <h3><b>Why Choose Car Rentals?</b></h3>
+                    <ul>
+                        <li>✔️ Trusted by thousands of happy customers</li>
+                        <li>✔️ Easy online booking and cancellation</li>
+                        <li>✔️ Clean, sanitized, and fuel-efficient cars</li>
+                        <li>✔️ Insurance options for extra peace of mind</li>
+                    </ul>
+
+                    <h3><b>Join the Ride</b></h3>
+                    <p>
+                        Whether you're exploring a new city, replacing a car in the shop, or planning a family vacation — let SwiftDrive be your ride. We’re more than just a rental service; we’re your travel companion.
+                    </p>
+                    <p><strong>Start your journey with us today.</strong></p>
+                </div>
+            </section>
         </>
     )
 }
