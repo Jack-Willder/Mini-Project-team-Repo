@@ -24,13 +24,15 @@ function Home() {
           </div>
       </section>
       <section className="companies mb-5 p-5">
-        <h1 className="text-2xl font-semibold mb-6 text-center">Top Companies</h1>
-        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-          <img src="/img/company/zoho.jpg" alt="zoho" />
-          <img src="/img/company/apple.jpg" alt="apple" />
-          <img src="/img/company/tcs.jpg" alt="TCS" />
-          <img src="/img/company/Microsoft-Logo-HD.jpg" alt="Microsoft" />
-          <img src="/img/company/infosys.jpg" alt="infosys" />
+        <h2 className="text-2xl font-semibold mb-6 text-center">Top Companies</h2>
+        <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
+          <div class="company-logos">
+            <img src="img/company/zoho.jpg" alt="Zoho" />
+            <img src="img/company/apple.jpg" alt="Apple" />
+            <img src="img/company/tcs.jpg" alt="TCS" />
+            <img src="img/company/Microsoft-Logo-HD.jpg" alt="Microsoft" />
+            <img src="img/company/infosys.jpg" alt="Infosys" />
+          </div>
         </marquee>
       </section>
     </>

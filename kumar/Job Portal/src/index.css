@@ -21,12 +21,90 @@
     transform: scaleX(1);
     transform-origin: right;
 }
-.companies>marquee>img{
-    width: 150px;
-    display: inline;
-    height: 150px;
+.company-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 20px;
+}
+.company-logos img {
+    height: 100px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
     opacity: 0.5;
 }
-.companies>marquee>img:hover{
-    opacity:1;
+.company-logos img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+                                                        /* JOBSEEKERS */
+.jobpost-container {
+  background: #fff;
+  padding: 30px 40px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-left: 450px;
+}
+
+.jobpost-container>h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.jobpost-container>form>label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #555;
+}
+.jobpost-container>form>
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.jobpost-container>form>
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+.jobpost-container>form>textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.jobpost-container>form>button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+.jobpost-container>form>button:hover {
+  background-color: #357abd;
+}
+.jobpost-container>form>.note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: -15px;
+  margin-bottom: 20px;
 }
