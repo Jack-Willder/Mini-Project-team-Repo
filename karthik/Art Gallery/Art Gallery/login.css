@@ -1,0 +1,64 @@
+body{
+    background-color: rgb(132, 255, 101);
+}
+@font-face {
+    font-family:'MemphisRiver';
+    src: url(Memphis-River/Memphis\ River.otf);
+}
+.container{
+    text-align: center;
+    margin-left: 500px;
+    margin-top:0px;
+    justify-content: center;
+    padding-left: 100px;
+    padding-bottom: 225px;
+    background-color:rgb(0, 105, 18);
+    height:30%;
+    width: 20%;
+    border-radius: 28px;
+    box-shadow: 6px 5px 20px 0px;
+}
+
+.loginform h2{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    justify-content:center;
+    margin-bottom:40px;
+    font-size: 30px;
+}
+.loginform{
+    margin-top: 150px;
+    align-items: center;
+    padding-top: 30px;
+    margin-right: 100px;
+    border-color: rgb(0, 105, 18);
+    color: white;
+}
+.loginform input{
+    border-radius:15px;
+    text-align: center;
+    border-color: white;
+    margin-bottom:20px;
+    margin-right: 30px;
+    margin-top:25px;
+    padding:10px;
+}
+label{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+button{
+    padding: 10px;
+    border-radius: 75px;
+    background-color:  rgb(132, 255, 101);
+    color: black;
+}
+label button{
+    padding-top:100px;
+}
+button:hover{
+    background-color:rgb(150, 253, 124);
+    color: black;
+}
+
+
