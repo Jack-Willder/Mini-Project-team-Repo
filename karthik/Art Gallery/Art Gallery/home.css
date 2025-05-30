@@ -1,5 +1,5 @@
 body{
-background-color:rgb(22, 173, 47);
+background-color:rgb(217, 219, 95);
 }
 @font-face {
     font-family:'MemphisRiver';
@@ -9,9 +9,9 @@ background-color:rgb(22, 173, 47);
     margin:0px;
 }
 .title{
-   
     margin-top: 10px;
-    font-size: 20px;
+    margin-left: 540px;
+    font-size: 30px;
     font-family:'MemphisRiver';
 }
 #art{
@@ -24,7 +24,7 @@ background-color:rgb(22, 173, 47);
     display: inline;
 }
 .header{    
-    background-color:rgb(0, 105, 18);
+    background-color:rgb(180, 0, 0);
     display: flex;
     margin-top: 50px;
     padding: 20px;
@@ -40,24 +40,44 @@ background-color:rgb(22, 173, 47);
 .header ul li{
     display: inline;
     list-style:none;
-    padding-left:150px;
+    padding-left:145px;
 }
 .header ul li a{
     text-decoration: none;
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 25px;
     font-family:'MemphisRiver';
     padding: 5px;
 }
 .header ul li a:hover{
-    background-color: rgb(132, 255, 101);
+    background-color: rgb(219, 221, 109);
     color: rgb(0, 0, 0);
     border-radius:20px;
 }
+.header input{
+    border-radius: 20px;
+    border: none;
+    border-color: white;
+    margin-left: 160px;
+    width: 160px;
+    height: 30px;
+    text-align: center;
+    margin-right: 5px;
+}
+.header button{
+    height: 30px;
+    width: 60px;
+    border-radius:15px;
+    background-color:black;
+    color: white;
+}
+button:hover{
+    background-color: rgb(217, 219, 95);
+    color: rgb(0, 0, 0);
+}
 .content{
-    background-color: rgb(132, 255, 101);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    
+    background-color:rgb(217, 219, 95);
+    font-family: Georgia, 'Times New Roman', Times, serif;   
 }
 .row1{
     padding-top: 100px;
@@ -95,6 +115,26 @@ background-color:rgb(22, 173, 47);
     font-size: 35px;
     font-family:'MemphisRiver';
 }
+.visit01{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 250px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.visit02{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 480px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: rgb(255, 255, 255);
+}
 .img2{
     height: 350px;
     width: 300px;
@@ -124,6 +164,26 @@ background-color:rgb(22, 173, 47);
     text-align: center;
     font-size: 35px;
     font-family:'MemphisRiver';
+}
+.visit03{
+    display: inline-block;  
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 250px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: white;
+}
+.visit04{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 480px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: white;
 }
 .img4{
     height: 350px;
@@ -156,6 +216,27 @@ background-color:rgb(22, 173, 47);
     font-size: 35px;
     font-family:'MemphisRiver';
 }
+.visit05{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 250px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: white;
+}
+.visit06{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 480px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    text-size-adjust: 10px;
+    color: white;
+}
 .img6{
     height: 350px;
     width: 300px;
@@ -186,6 +267,26 @@ background-color:rgb(22, 173, 47);
     font-size: 35px;
     font-family:'MemphisRiver';
 }
+.visit07{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 250px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: white;
+}
+.visit08{
+    display: inline-block;
+    padding: 15px;
+    background-color:rgb(180, 0, 0);
+    margin-top:  50px;
+    margin-left: 480px;
+    border-radius: 75px;
+    border-color: rgb(180, 0, 0);
+    color: white;
+}
 .img8{
     height: 350px;
     width: 300px;
@@ -201,6 +302,14 @@ background-color:rgb(22, 173, 47);
     font-size: 35px;
     font-family:'MemphisRiver';
 }       
+.footer{
+    margin-top: 200px;
+    background-color: rgb(180, 0, 0);;
+    color: white;
+    padding: 10px;
+    text-align: center;
+
+}
 
 
 
