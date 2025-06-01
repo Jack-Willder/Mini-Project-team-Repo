@@ -40,7 +40,7 @@ function About(){
 
                     <h3><b>Join the Ride</b></h3>
                     <p>
-                        Whether you're exploring a new city, replacing a car in the shop, or planning a family vacation — let SwiftDrive be your ride. We’re more than just a rental service; we’re your travel companion.
+                        Whether you're exploring a new city, replacing a car in the shop, or planning a family vacation — let Car Rentals be your ride. We’re more than just a rental service; we’re your travel companion.
                     </p>
                     <p><strong>Start your journey with us today.</strong></p>
                 </div>

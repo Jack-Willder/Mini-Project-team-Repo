@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+                                                /* HEADER */
 .headers{
     display: flex;
     padding: 20px 0;
@@ -24,6 +25,7 @@
     margin-bottom: 15px;
     color: brown;
 }
+                                                  /* BANNER IMAGE */
 .banner{
     background-image: url('/images/banner-image-1.jpg');
     background-position: center center;
@@ -33,6 +35,7 @@
     margin-top: -20px;
     height: 500px;
 }
+                                                    /* STATS */
 .stats{
     background-image: url('/images/fun-facts-bg.jpg');
     background-position: center center;
@@ -43,6 +46,25 @@
     height: 500px;
     opacity: 0.5;
 }
+.stats>.stats1{
+    margin-left: 200px;
+    background-color: chocolate;
+    padding: 35px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    color: white;
+}
+.stats>.stats2,.stats3,.stats4{
+  background-color: chocolate;
+  padding: 35px;
+  border-radius: 90px;
+  margin-left: 100px;
+  width: 200px;
+  height: 200px;
+  color: white;
+}
+                                                    /* ABOUT PAGE */
 .abtbanner{
     background-image: url('/images/aboutus-page-header-img.jpg');
     background-repeat: no-repeat;
@@ -61,6 +83,7 @@
     margin: 10px;
     padding: 20px;
 }
+                                                    /* CONTACT PAGE */
 .contactbanner{
     background-image: url('/images/contact-page-header-img.jpg');
     background-repeat: no-repeat;
