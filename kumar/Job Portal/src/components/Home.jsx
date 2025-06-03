@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
+
 function Home() {
   return (
     <>
-      <section className="bg-blue-50 p-10 text-center">
+                                                    {/* SEARCH BAR */}
+      <section className=" p-10 text-center">
         <h2 className="text-4xl font-bold mb-4">Find Your Dream Job</h2>
         <p className="text-lg text-gray-600 mb-6">
           Explore thousands of job listings and connect with top companies.
@@ -12,6 +15,8 @@ function Home() {
         </div>
         <p className="text-red-500">No jobs found matching your search.</p>
       </section>
+
+                                                    {/* CATEGORIES */}
       <section className="p-10">
           <h3 className="text-2xl font-semibold mb-6 text-center">Explore Categories</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -23,18 +28,28 @@ function Home() {
             ))}
           </div>
       </section>
+
+                                                    {/* TOP COMPANIES */}
       <section className="companies mb-5 p-5">
         <h2 className="text-2xl font-semibold mb-6 text-center">Top Companies</h2>
-        <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
+        <marquee behavior="scroll" direction="left">
           <div class="company-logos">
             <img src="img/company/zoho.jpg" alt="Zoho" />
             <img src="img/company/apple.jpg" alt="Apple" />
             <img src="img/company/tcs.jpg" alt="TCS" />
-            <img src="img/company/Microsoft-Logo-HD.jpg" alt="Microsoft" />
+            <img src="img/company/Microsoft.jpg" alt="Microsoft" />
             <img src="img/company/infosys.jpg" alt="Infosys" />
           </div>
         </marquee>
       </section>
+                                                    {/* JOB POST */}
+      <section className="bg-blue-600 text-white p-10 text-center">
+      <h3 className="text-2xl font-semibold mb-2">Are you hiring?</h3>
+      <p className="mb-4">Post a job and reach thousands of job seekers today.</p>
+      <Link to="/PostingJobs">
+        <button className="bg-white text-blue-600 font-semibold px-6 py-2 rounded hover:bg-gray-100">Post a Job</button>
+      </Link>
+    </section>
     </>
   );
 }

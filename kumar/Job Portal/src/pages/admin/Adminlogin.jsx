@@ -1,5 +1,5 @@
 
-function Adminlogin(){
+function AdminLogin(){
     return(
         <>
         <h1>Admin Login</h1>
@@ -7,4 +7,4 @@ function Adminlogin(){
     )
 }
 
-export default Adminlogin
+export default AdminLogin
