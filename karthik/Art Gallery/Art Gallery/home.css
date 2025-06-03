@@ -1,5 +1,5 @@
 body{
-background-color:rgb(217, 219, 95);
+background-color:rgb(237, 240, 94);
 }
 @font-face {
     font-family:'MemphisRiver';
@@ -50,7 +50,7 @@ background-color:rgb(217, 219, 95);
     padding: 5px;
 }
 .header ul li a:hover{
-    background-color: rgb(219, 221, 109);
+    background-color: rgb(237, 240, 94);
     color: rgb(0, 0, 0);
     border-radius:20px;
 }
@@ -70,13 +70,14 @@ background-color:rgb(217, 219, 95);
     border-radius:15px;
     background-color:black;
     color: white;
+    cursor: pointer;
 }
-button:hover{
-    background-color: rgb(217, 219, 95);
+button :hover{
+    background-color:rgb(237, 240, 94);
     color: rgb(0, 0, 0);
 }
 .content{
-    background-color:rgb(217, 219, 95);
+    background-color:rgb(237, 240, 94);
     font-family: Georgia, 'Times New Roman', Times, serif;   
 }
 .row1{
@@ -124,6 +125,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 .visit02{
     display: inline-block;
@@ -134,6 +136,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 .img2{
     height: 350px;
@@ -174,6 +177,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: white;
+    cursor: pointer;
 }
 .visit04{
     display: inline-block;
@@ -184,6 +188,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: white;
+    cursor: pointer;
 }
 .img4{
     height: 350px;
@@ -236,6 +241,7 @@ button:hover{
     border-color: rgb(180, 0, 0);
     text-size-adjust: 10px;
     color: white;
+    cursor: pointer;
 }
 .img6{
     height: 350px;
@@ -276,6 +282,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: white;
+    cursor: pointer;
 }
 .visit08{
     display: inline-block;
@@ -286,6 +293,7 @@ button:hover{
     border-radius: 75px;
     border-color: rgb(180, 0, 0);
     color: white;
+    cursor: pointer;
 }
 .img8{
     height: 350px;
@@ -304,12 +312,16 @@ button:hover{
 }       
 .footer{
     margin-top: 200px;
-    background-color: rgb(180, 0, 0);;
+    background-color: rgb(180, 0, 0);
+    height: 150px;
     color: white;
     padding: 10px;
     text-align: center;
-
 }
-
+.footer #c
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   margin-top: 120px;
+}
 
 
