@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Header() {
+function PageHeader() {
   return (
     <>
       <div className="header bg-blue-600 py-5 text-center">
@@ -19,4 +19,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default PageHeader;

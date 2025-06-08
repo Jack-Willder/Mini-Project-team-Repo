@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 export default function LoginModal({ closeModal }) {
-  const [isLogin, setIsLogin] = useState(true); // toggles between Login/Register
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
-        {/* Close Button */}
         <button
           onClick={closeModal}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold"
@@ -14,7 +13,6 @@ export default function LoginModal({ closeModal }) {
           &times;
         </button>
 
-        {/* Toggle Tabs */}
         <div className="flex justify-center mb-6">
           <button
             className={`px-4 py-2 text-sm font-medium ${
@@ -34,7 +32,7 @@ export default function LoginModal({ closeModal }) {
           </button>
         </div>
 
-        {/* Login Form */}
+                                          {/* Login Form  */}
         {isLogin ? (
           <form className="space-y-4">
             <div>
@@ -68,7 +66,7 @@ export default function LoginModal({ closeModal }) {
             </button>
           </form>
         ) : (
-            // Register Form
+                                                    // Register Form
           <form className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Full Name</label>
