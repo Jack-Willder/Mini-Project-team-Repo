@@ -12,7 +12,7 @@ function Header() {
         <li><Link to="/contact" className="hover:text-green-500">Contact Us 📞</Link></li>
         <li><Link to="/about" className="hover:text-green-500">About</Link></li>
         <li>
-          <button className="loginbtn hover:text-green-500">Login</button>
+          <Link to="/login"> <button className="loginbtn hover:text-green-500">Login</button></Link>
           {/* Or use this if login has a separate page: */}
           {/* <Link to="/login" className="loginbtn hover:text-green-500">Login</Link> */}
         </li>

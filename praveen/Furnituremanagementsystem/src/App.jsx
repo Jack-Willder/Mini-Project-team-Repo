@@ -1,28 +1,23 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Body from './components/body';
-
-import Contact from './pages/contact';
-import Products from './pages/products';
-import About from './pages/about'; // Capitalized for consistency
+import Body from './components/Body'; // <- This is your homepage
+import Contact from './pages/Contact';
+import Products from './pages/Products';
+import About from './pages/About'; 
+import Login from './pages/Login';
 
 function App() {
   return (
-    <>
-      <Header />
-      
+    <Router>
       <Routes>
         <Route path="/" element={<Body />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
-      
-      <Footer />
-    </>
+    </Router>
   );
 }
 
