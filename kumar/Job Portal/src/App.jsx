@@ -1,38 +1,28 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Jobs from "./Pages/Jobs";
+import Companies from "./Pages/Companies";
+import AboutUs from "./Pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import AdminLogin from "./pages/admin/AdminLogin";
+import JobseekerLogin from "./Pages/JobSeeker/JobseekerLogin";
+import Login from "./pages/Login";
+import Dashboard from "./pages/admin/Dashboard";
 
-import PageHeader from './components/PageHeader';
-import Home from './components/Home';
-import Footer from './components/Footer';
-
-import AboutCompany from './pages/AboutCompany';
-import AboutUs from './pages/AboutUs';
-import Companies from './pages/Companies';
-import Contact from './pages/Contact';
-import Jobs from './pages/Jobs';
-
-import AdminLogin from './pages/Admin/AdminLogin';
-import PostingJobs from './pages/JobSeeker/PostingJobs';
-import Dashboard from './pages/Admin/Dashboard';
-
-function App() {
+export default function App() {
   return (
-    <div className="font-sans text-gray-800">
-      <PageHeader />
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/companies" element={<Companies />} />
-        <Route path="/about/:name" element={<AboutCompany />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/postingjobs" element={<PostingJobs />} />
-        <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/adminlogin" element={<AdminLogin/>}/>
+        <Route path="/JobSeeker/login" element={<JobseekerLogin/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
-      <Footer />
-    </div>
+    </Router>
   );
 }
-
-export default App;
