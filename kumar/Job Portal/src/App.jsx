@@ -7,6 +7,7 @@ import ContactUs from "./pages/ContactUs";
 import AdminLogin from "./pages/admin/AdminLogin";
 import JobseekerLogin from "./Pages/JobSeeker/JobseekerLogin";
 import Login from "./pages/Login";
+import Dashboard from "./pages/admin/Dashboard";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/adminlogin" element={<AdminLogin/>}/>
         <Route path="/JobSeeker/login" element={<JobseekerLogin/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </Router>
   );

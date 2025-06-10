@@ -1,7 +1,15 @@
-import React from 'react'
+import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function AdminLogin() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <>
       {/* HEADER */}
@@ -20,15 +28,16 @@ function AdminLogin() {
       </div>
 
       {/* Login Page */}
-      <div class="adminloginform">
+      <div className="adminloginform">
         <h2><b>Welcome To Admin Login</b></h2>
         <form action="/login" method="POST">
-          <label for="adminemail"><b>Email: </b></label><br />
-          <input type="email" id="email" name="email" required /><br />
-          <label for="adminpassword"><b>Password: </b></label><br />
-          <input type="password" id="password" name="password" required /><br />
-          <input type="checkbox" name="showpwd" id="showpwd" />&nbsp;Show Password<br/>
-          <Link><button>Login</button></Link>
+            <label htmlFor="adminemail"><b>Email: </b></label><br />
+            <input type="email" id="email" name="email" required /><br />
+            <label htmlFor="adminpassword"><b>Password: </b></label><br />
+            <input type={showPassword ? "text" : "password"} id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}required/>
+            <span className="eye-icon" onClick={togglePasswordVisibility}>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+            <input type="checkbox" name="" id="" />showPassword
+            <button type="submit">Login</button>
         </form>
       </div>
 
@@ -37,7 +46,7 @@ function AdminLogin() {
         <p>© 2025 Jobzy | Designed By <Link to="/adminlogin" className="footer-link">RK</Link></p>
       </footer>
     </>
-  )
+  );
 }
 
-export default AdminLogin
+export default AdminLogin;
