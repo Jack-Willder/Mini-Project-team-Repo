@@ -10,8 +10,7 @@ import AboutUs from './pages/AboutUs';
 import Companies from './pages/Companies';
 import Contact from './pages/Contact';
 import Jobs from './pages/Jobs';
-
-import AdminLogin from './pages/Admin/AdminLogin';
+import AdminLogin from './pages/admin/AdminLogin';
 import PostingJobs from './pages/JobSeeker/PostingJobs';
 import Dashboard from './pages/Admin/Dashboard';
 

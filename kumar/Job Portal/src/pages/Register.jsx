@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 
-function AdminLogin() {
+function Register() {
   return (
     <>
       {/* HEADER */}
@@ -19,17 +18,11 @@ function AdminLogin() {
         </nav>
       </div>
 
-      {/* Login Page */}
-      <div class="adminloginform">
-        <h2><b>Welcome To Admin Login</b></h2>
-        <form action="/login" method="POST">
-          <label for="adminemail"><b>Email: </b></label><br />
-          <input type="email" id="email" name="email" required /><br />
-          <label for="adminpassword"><b>Password: </b></label><br />
-          <input type="password" id="password" name="password" required /><br />
-          <input type="checkbox" name="showpwd" id="showpwd" />&nbsp;Show Password<br/>
-          <Link><button>Login</button></Link>
-        </form>
+      {/* Register Page */}
+      <div className="register-form">
+          <form action="#">
+              <h3 className="text-center text-2xl">Welcome To Register Page</h3>
+          </form>
       </div>
 
       {/* FOOTER */}
@@ -40,4 +33,4 @@ function AdminLogin() {
   )
 }
 
-export default AdminLogin
+export default Register

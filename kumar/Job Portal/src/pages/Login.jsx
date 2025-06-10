@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-function AdminLogin() {
+function Login() {
   return (
     <>
       {/* HEADER */}
@@ -20,16 +20,17 @@ function AdminLogin() {
       </div>
 
       {/* Login Page */}
-      <div class="adminloginform">
-        <h2><b>Welcome To Admin Login</b></h2>
+      <div class="loginform">
+        <h2>Welcome To Login Page</h2>
         <form action="/login" method="POST">
-          <label for="adminemail"><b>Email: </b></label><br />
+          <label for="email"><b>Email: </b></label><br />
           <input type="email" id="email" name="email" required /><br />
-          <label for="adminpassword"><b>Password: </b></label><br />
+          <label for="password"><b>Password: </b></label><br />
           <input type="password" id="password" name="password" required /><br />
           <input type="checkbox" name="showpwd" id="showpwd" />&nbsp;Show Password<br/>
-          <Link><button>Login</button></Link>
+          <button type="submit">Login</button>
         </form>
+        <p class="registerlink">Don't have an account? <a href="register.html">Register here</a></p>
       </div>
 
       {/* FOOTER */}
@@ -40,4 +41,4 @@ function AdminLogin() {
   )
 }
 
-export default AdminLogin
+export default Login
