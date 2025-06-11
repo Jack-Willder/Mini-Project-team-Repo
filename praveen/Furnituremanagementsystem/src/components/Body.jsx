@@ -53,7 +53,7 @@ function Body() {
 
       {/* Footer */}
       <div className="footer">
-        <p className="foot">Copyright © {year} | Designed by Praveen</p>
+        <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
       </div>
     </div>
   );
