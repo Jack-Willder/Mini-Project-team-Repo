@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-function adminlogin() {
+function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
 
@@ -39,16 +39,15 @@ function adminlogin() {
                 <label htmlFor="adminpassword"><b>Password: </b></label><br />
                 <input type={showPassword ? "text" : "password"} id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}required/>
                 <span className="eye-icon" onClick={togglePasswordVisibility}>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
-                <input type="checkbox" name="" id="" />showPassword
                 <button type="submit">Login</button>
             </form>
     </div>
      {/* Footer */}
     <div className="footer">
-    <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
+    <p className="foot">Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
     </div>
     </>
   );
 }
 
-export default adminlogin;
+export default AdminLogin;

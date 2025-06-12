@@ -4,7 +4,7 @@ import './App.css';
 import Body from './components/Body'; // <- This is your homepage
 import Contact from './pages/Contact';
 import Products from './pages/Products';
-import About from './pages/About'; 
+import About from './pages/about'; 
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminLogin from './pages/Admin/adminlogin';
@@ -19,7 +19,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/adminlogin" element={<adminlogin />}/>
+        <Route path="/adminlogin" element={<AdminLogin />}/>
       </Routes>
     </Router>
   );
