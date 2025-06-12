@@ -346,3 +346,98 @@ input:focus {
 .login-link a:hover {
   text-decoration: underline;
 }
+
+.adminloginform {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.adminloginform h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.adminloginform label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #444;
+}
+
+.adminloginform input[type="email"],
+.adminloginform input[type="password"],
+.adminloginform input[type="text"] {
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* extra right padding for eye icon */
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.adminloginform input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+/* Password wrapper to position the eye icon */
+.password-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+}
+
+/* Login Button */
+.adminloginform button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.adminloginform button:hover {
+  background-color: #218838;
+}
+.password-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-row input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.password-row .eye-icon {
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+}
