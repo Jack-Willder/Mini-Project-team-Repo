@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 function About() {
   const year = new Date().getFullYear();  // define current year here
-
-  return (
+   return (
     <div className="aboutpage">
       {/* Header */}
       <div className="header-wrapper">
@@ -68,7 +67,7 @@ function About() {
 
       {/* Footer */}
       <div className="footer">
-        <p className="foot">Copyright © {year} | Designed by Praveen</p>
+        <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
       </div>
     </div>
   );

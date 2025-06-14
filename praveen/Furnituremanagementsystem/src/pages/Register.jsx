@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Register() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="loginpage">
+    <div className="registerpage">
       <div className="aboutpage">
         {/* Header */}
         <div className="header-wrapper">
@@ -25,26 +25,34 @@ function Login() {
           </ul>
         </div>
 
-        {/* Login Form */}
-        <div className="login-container">
-          <form action="/login" method="post">
+        {/* Register Form */}
+        <div className="register-container">
+          <form action="/register" method="post">
             <div className="form-group">
-              <label htmlFor="Email">Email</label>
-              <input type="text" id="Email" name="Email" required />
+              <label htmlFor="name">Full Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" name="email" required />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password" id="password" name="password" required />
             </div>
-            <button type="submit" className="login-button">Login</button>
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required />
+            </div>
+            <button type="submit" className="register-button">Register</button>
           </form>
-          <div className="register-link">
-            Don't have an account? <Link to="/Register">Register here</Link>
+          <div className="login-link">
+            Already have an account? <Link to="/Login">Login here</Link>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="footer-loginpage">
+        <div className="footer">
         <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
         </div>
       </div>
@@ -52,4 +60,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

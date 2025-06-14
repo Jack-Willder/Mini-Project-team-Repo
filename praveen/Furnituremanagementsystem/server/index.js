@@ -7,7 +7,7 @@ app.use(cors())
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // Replace the placeholder with your Atlas connection string
-const uri = "mongodb://localhost:27017/";
+const uri = "mongodb://localhost:22227/";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri,  {
