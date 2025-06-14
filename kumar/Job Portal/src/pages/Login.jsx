@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 function Login() {
   return (
@@ -22,7 +22,7 @@ function Login() {
       {/* Login Page */}
       <div class="loginform">
         <h2>Welcome To Login Page</h2>
-        <form action="/login" method="POST">
+        <form>
           <label for="email"><b>Email: </b></label><br />
           <input type="email" id="email" name="email" required /><br />
           <label for="password"><b>Password: </b></label><br />

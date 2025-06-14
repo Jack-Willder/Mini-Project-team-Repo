@@ -21,7 +21,12 @@ export default function App() {
         <Route path="/adminlogin" element={<AdminLogin/>}/>
         <Route path="/JobSeeker/login" element={<JobseekerLogin/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route
+          path="/dashboard"
+          element={
+              <Dashboard />
+          }
+        />
       </Routes>
     </Router>
   );

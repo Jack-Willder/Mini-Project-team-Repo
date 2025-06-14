@@ -220,7 +220,7 @@
 
                                                 /* ----------- ADMIN LOGIN ---------- */
 .adminloginform {
-  background-color: burlywood;
+  background-color:white;
   width: 100%;
   max-width: 420px;
   padding: 35px;
@@ -237,7 +237,8 @@
   font-weight: 600;
 }
 .adminloginform input[type="email"],
-.adminloginform input[type="password"] {
+.adminloginform input[type="password"],
+.adminloginform input[type="text"] {
   width: 100%;
   border: 1.5px solid gray;
   padding: 10px 12px;
