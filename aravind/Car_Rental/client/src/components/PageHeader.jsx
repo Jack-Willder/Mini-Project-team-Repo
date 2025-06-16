@@ -1,6 +1,13 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LoginModal from '../pages/Login';
 
-function PageHeader({ openLoginModal }) {
+function PageHeader() {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const openLoginModal = () => setShowLoginModal(true);
+  const closeLoginModal = () => setShowLoginModal(false);
+
   return (
     <>
       <div className="headers flex justify-between items-center p-4 bg-white shadow">
@@ -33,6 +40,8 @@ function PageHeader({ openLoginModal }) {
           <li><Link to="/contact" className="hover:text-yellow-500 transition-colors duration-200">Contact</Link></li>
         </ul>
       </nav>
+
+      {showLoginModal && <LoginModal closeModal={closeLoginModal} />}
     </>
   );
 }

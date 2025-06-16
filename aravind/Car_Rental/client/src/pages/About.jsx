@@ -1,6 +1,10 @@
+import Footer from "../components/Footer"
+import PageHeader from "../components/PageHeader"
+
 function About(){
     return(
         <>
+        <PageHeader/>
             <section className="abtbanner">
                 <h1 className="abtheader text-center font-bold text-4xl">About Us</h1>
             </section>
@@ -45,6 +49,8 @@ function About(){
                     <p><strong>Start your journey with us today.</strong></p>
                 </div>
             </section>
+
+            <Footer/>
         </>
     )
 }

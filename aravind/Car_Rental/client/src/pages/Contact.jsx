@@ -1,6 +1,10 @@
+import Footer from "../components/Footer"
+import PageHeader from "../components/PageHeader"
+
 function Contact(){
     return(
         <>
+        <PageHeader/>
         <section className="contactbanner">
             <h1 className="contactheader text-center font-bold text-4xl">Contact Us</h1>
         </section>
@@ -29,6 +33,9 @@ function Contact(){
                 </form>
             </div>
         </section>
+
+
+        <Footer/>
 
         </>
     )

@@ -1,34 +1,25 @@
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import PageHeader from "./components/PageHeader";
+import Home from './pages/Home';
 import Cars from './pages/Cars';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import LoginModal from './pages/Login'; // import modal component
+import AdminLogin from './pages/Admin/AdminLogin';
+import Dashboard from './pages/Admin/Dashboard';
+import LoginModal from './pages/Login';
 
 function App() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
   return (
     <>
-      <PageHeader openLoginModal={() => setShowLoginModal(true)} />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cars" element={<Cars />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-
-      {showLoginModal && (
-        <LoginModal closeModal={() => setShowLoginModal(false)} />
-      )}
-
-      <Footer />
     </>
   );
 }
