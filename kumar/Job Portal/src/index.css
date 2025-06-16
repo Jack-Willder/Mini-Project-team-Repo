@@ -678,3 +678,62 @@
   color: #3b82f6;
   cursor: pointer;
 }
+
+                                                    /* DASHBOARD */
+.dashboard{
+  margin: 10px;
+  border-radius: 20px;
+  display: flex;
+  background-image: url('img/company/Avengers-Age-of-Ultron-Tony-Stark-Iron-Man-Ultra-HD-4K-Wallpaper-3840x2160.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.dashboard .leftpanel{
+  background-color: red;
+  width: 20%;
+  padding: 15px;
+}
+.dashboard .leftpanel img{
+  border-radius: 90px;
+  height: 150px;
+  width: 150px;
+  margin-left: 50px;
+}
+.dashboard .leftpanel h2{
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.dashboard .leftpanel .navs ul{
+  list-style: none;
+  color: white;
+  font-style: bold;
+  font-weight: 500;
+  margin-left: 70px;
+}
+.dashboard .leftpanel .navs ul li{
+  padding: 10px;
+}
+.dashboard .leftpanel .navs .logout{
+  margin-top: 20px;
+}
+.dashboard .rightpanel{
+  width: 80%;
+}
+.dashboard .rightpanel .cardspanel{
+  display: flex;
+  padding: 10px;
+  font-size:3rem;
+  gap: 10px;
+}
+.dashboard .rightpanel .cardspanel .card-users{
+  padding: 25px;
+  color: white;
+  background: linear-gradient(120deg,#f6d365 0%,#fda085 100%);
+  border-radius: 20px;
+  margin-left: 10px;
+  width: 350px;
+}
