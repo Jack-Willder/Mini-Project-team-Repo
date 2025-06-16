@@ -346,7 +346,6 @@ input:focus {
 .login-link a:hover {
   text-decoration: underline;
 }
-
 .adminloginform {
   max-width: 400px;
   margin: 60px auto;
@@ -374,7 +373,7 @@ input:focus {
 .adminloginform input[type="password"],
 .adminloginform input[type="text"] {
   width: 100%;
-  padding: 10px 40px 10px 12px; /* extra right padding for eye icon */
+  padding: 10px 40px 10px 12px;
   margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -388,7 +387,6 @@ input:focus {
   outline: none;
 }
 
-/* Password wrapper to position the eye icon */
 .password-wrapper {
   position: relative;
   margin-bottom: 15px;
@@ -404,7 +402,6 @@ input:focus {
   font-size: 18px;
 }
 
-/* Login Button */
 .adminloginform button {
   width: 100%;
   margin-top: 10px;
@@ -422,22 +419,43 @@ input:focus {
 .adminloginform button:hover {
   background-color: #218838;
 }
-.password-row {
+
+/* Optional text error class from Tailwind if you use it */
+.text-red-500 {
+  color: #e3342f;
+}
+
+/* Basic footer and header styles */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #28a745;
+}
+
+.navigation {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+  padding: 20px;
 }
 
-.password-row input {
-  flex: 1;
-  padding: 10px 12px;
+.navigation li a,
+.loginbtn {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
   font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
 }
 
-.password-row .eye-icon {
-  font-size: 18px;
+.loginbtn {
+  background: none;
+  border: none;
   cursor: pointer;
-  color: #555;
 }
