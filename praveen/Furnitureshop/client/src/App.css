@@ -1,51 +1,47 @@
+/* Reset and Base Styling */
+* {
+  box-sizing: border-box;
+}
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 body {
-  margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f6f1; /* soft wood-like beige */
-  color: #333; /* dark grey for readability */
+  background-color: #f9f6f1;
+  color: #333;
   line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  height: 100%;
 }
 
-/* New wrapper for header and nav */
+/* Header Section */
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
-
 .header {
   font-family: 'Lobster', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   color: #4E342E;
-  margin-left: 0; /* Reset margin to align better */
 }
-
 .funky-text {
   font-family: 'Lobster', cursive;
-  /* font-size: 25px; */
   font-style: italic;
 }
-
 .circle-bg {
   position: relative;
   font-size: 50px;
-  z-index: 1;
   padding: 0.5rem 1rem;
   display: inline-block;
+  z-index: 1;
 }
-
 .circle-bg::before {
   content: "";
   position: absolute;
@@ -59,28 +55,25 @@ body {
   z-index: -1;
 }
 
+/* Navigation */
 .navigation {
   display: flex;
-  justify-content: flex-end; /* pushes items to the right */
+  justify-content: flex-end;
   align-items: center;
-  padding: 0;
-  margin: 0;
   list-style-type: none;
   gap: 20px;
+  padding: 0;
+  margin: 0;
 }
-
-.navigation > li {
+.navigation li {
   font-weight: bold;
 }
-
-.foot {
-  font-weight: bold;
-  font-size: medium;
-  color: #6D6D6D;
-  text-align: center;
-  padding: 1rem;
+.navigation li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
 }
-
 .loginbtn {
   background-color: #ff6f61;
   color: white;
@@ -91,138 +84,105 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .loginbtn:hover {
   background-color: #ff3e30;
 }
 
+/* Home Page Content */
 .front-img {
   display: flex;
-  justify-content: flex-end; /* pushes content (image) to the right */
-  padding: 1rem; /* optional spacing */
+  justify-content: flex-end;
+  padding: 1rem;
 }
-
 .body-center {
   display: flex;
+  flex-wrap: wrap;
   max-width: 100%;
-  margin: 10px auto; /* center horizontally, vertical spacing */
+  margin: 10px auto;
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   background-color: #ffe6f0;
-  box-sizing: border-box;
-  min-height: 70vh; /* container tall enough */
+  min-height: 70vh;
   gap: 20px;
 }
-
-
-/* Style for image inside .body-center */
 .body-center img {
   flex: 1;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* cover without distortion */
-  border-radius: 10px; /* optional */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .frcontent {
   flex: 1;
   display: flex;
-  flex-direction: column;  /* stack text and button vertically */
-  justify-content: center; /* vertical center entire block */
-  align-items: flex-start; /* align left */
-  font-family: "Segoe UI", "Verdana", "Tahoma", "Trebuchet MS", sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   font-style: italic;
   color: #333333;
   font-size: 30px;
   font-weight: 900;
   padding-left: 50px;
-  gap: 20px; /* space between text and button */
+  gap: 20px;
 }
-
 .explore-btn {
-  background-color: #d6336c; 
+  background-color: #d6336c;
   color: white;
   border: none;
   padding: 10px 25px;
   font-weight: bold;
   font-size: 16px;
   border-radius: 5px;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: center; /* button aligned left inside container */
 }
-
 .explore-btn:hover {
-  background-color: #a5274d
+  background-color: #a5274d;
 }
-.quote {
 
-  text-align: center;  /* This centers the text */
+/* Quote & Gallery */
+.quote {
+  text-align: center;
 }
-.gallery{
-  color:grey;
+.gallery {
+  color: grey;
   font-size: 24px;
   font-weight: bold;
-
 }
-.gallery>span{
-  color:red;
-  font-size:2.5rem;
+.gallery > span {
+  color: red;
+  font-size: 2.5rem;
   font-weight: bolder;
 }
 
-
-
-body>login-container {
-  font-family: Arial, sans-serif;
-  background: #f0f2f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-/* Login container box */
+/* Login Container */
 .login-container {
-background: #ffffff;
-    padding: 76px;
-    align-items: center;
-    justify-content: center;
-    margin-left: 33em;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-
+  background: #ffffff;
+  padding: 4rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 3rem auto;
 }
-
-/* Header style */
 .login-container h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
-/* Form fields */
 .form-group {
   margin-bottom: 15px;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
-
 .form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
-/* Login button */
 .login-button {
   width: 100%;
   padding: 10px;
@@ -233,47 +193,23 @@ background: #ffffff;
   border-radius: 5px;
   cursor: pointer;
 }
-
 .login-button:hover {
   background-color: #45a049;
 }
-.footer-loginpage{
-  background-color: #f0f0f0;
-  text-align: center;
-  width:100dvw;
-  margin-left: 5px;
-  padding: 0px 0px;
-  position:absolute;
-  bottom:0px;
-  font-size: 14px;
-  color: #555;
-
-}
-
-/* 
- font-weight: bold;
-  font-size: medium;
-  color: #6D6D6D;
-  text-align: center;
-  padding: 1rem; */
-
-/* Register link below button */
 .register-link {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
 }
-
 .register-link a {
   color: #007bff;
   text-decoration: none;
 }
-
 .register-link a:hover {
   text-decoration: underline;
 }
 
-/* Register Form Container */
+/* Register Container */
 .register-container {
   max-width: 500px;
   margin: 0 auto;
@@ -282,21 +218,6 @@ background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
-
-/* Form Groups */
-.form-group {
-  margin-bottom: 20px;
-}
-
-/* Labels */
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #333;
-}
-
-/* Input Fields */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -307,13 +228,10 @@ input[type="password"] {
   font-size: 14px;
   transition: border-color 0.3s;
 }
-
 input:focus {
   border-color: #2e7d32;
   outline: none;
 }
-
-/* Register Button */
 .register-button {
   width: 100%;
   padding: 12px;
@@ -325,27 +243,24 @@ input:focus {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .register-button:hover {
   background-color: #1b5e20;
 }
-
-/* Already have an account link */
 .login-link {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
 }
-
 .login-link a {
   color: #2e7d32;
   text-decoration: none;
   font-weight: 500;
 }
-
 .login-link a:hover {
   text-decoration: underline;
 }
+
+/* Admin Login */
 .adminloginform {
   max-width: 400px;
   margin: 60px auto;
@@ -353,22 +268,18 @@ input:focus {
   background-color: #f8f8f8;
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .adminloginform h2 {
   text-align: center;
   color: #333;
   margin-bottom: 25px;
 }
-
 .adminloginform label {
   display: block;
   margin-top: 15px;
   font-weight: bold;
   color: #444;
 }
-
 .adminloginform input[type="email"],
 .adminloginform input[type="password"],
 .adminloginform input[type="text"] {
@@ -378,20 +289,14 @@ input:focus {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
 }
-
 .adminloginform input:focus {
   border-color: #28a745;
-  outline: none;
 }
-
 .password-wrapper {
   position: relative;
   margin-bottom: 15px;
 }
-
 .eye-icon {
   position: absolute;
   top: 50%;
@@ -401,7 +306,6 @@ input:focus {
   color: #666;
   font-size: 18px;
 }
-
 .adminloginform button {
   width: 100%;
   margin-top: 10px;
@@ -413,49 +317,45 @@ input:focus {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
-
 .adminloginform button:hover {
   background-color: #218838;
 }
 
-/* Optional text error class from Tailwind if you use it */
-.text-red-500 {
-  color: #e3342f;
-}
-
-/* Basic footer and header styles */
-.footer {
+/* Footer */
+.footer, .footer-loginpage {
   text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  background: #f1f1f1;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  color: #555;
+  font-size: 14px;
 }
 
-.footer-link {
-  text-decoration: none;
-  color: #28a745;
-}
-
-.navigation {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  list-style-type: none;
-  padding: 20px;
-}
-
-.navigation li a,
-.loginbtn {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.loginbtn {
-  background: none;
-  border: none;
-  cursor: pointer;
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .header-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .body-center {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .frcontent {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+  .front-img {
+    justify-content: center;
+  }
+  .login-container, .register-container, .adminloginform {
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+  }
 }
