@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-
 function Body() {
- 
-
   return (
     <div className="Home">
       {/* Header */}

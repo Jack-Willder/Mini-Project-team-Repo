@@ -72,7 +72,7 @@ body {
 }
 .navigation li a:hover,
 .navigation li a:active {
-  color: lightgreen;
+  color: palevioletred;
 }
 .loginbtn {
   background-color: #ff6f61;

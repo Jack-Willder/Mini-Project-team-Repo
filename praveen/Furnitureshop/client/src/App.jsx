@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Body from './components/Body'; // <- This is your homepage
-import Contact from './pages/Contact';
-import Products from './pages/Products';
+import Contact from './pages/contact';
+import Products from './pages/products';
 import About from './pages/about'; 
 import Login from './pages/Login';
 import Register from './pages/Register';
