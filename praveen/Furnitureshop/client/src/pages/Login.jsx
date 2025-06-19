@@ -43,12 +43,13 @@ function Login() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="footer-loginpage">
-        <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
-        </div>
-      </div>
-    </div>
+     {/* Footer */}
+           <div className="footer">
+             <p className="foot">Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
+           </div>
+         </div>
+     </div>
+     
   );
 }
 

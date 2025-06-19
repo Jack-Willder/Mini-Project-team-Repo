@@ -35,8 +35,6 @@ function Products() {
     </div>
   </section>
 </section>
-
-
             {/* Footer */}
         <div className="footer">
         <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
