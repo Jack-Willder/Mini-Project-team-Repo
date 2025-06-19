@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const year = new Date().getFullYear();
-
-  useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    if (token) {
-      navigate("/dashboard");
-    }
-  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      // ✅ Use full backend URL (change if hosted elsewhere)
       const res = await fetch("http://localhost:5000/api/admin/login", {
         method: "POST",
         headers: {
@@ -37,77 +27,57 @@ function AdminLogin() {
         return;
       }
 
+      // Save token
       localStorage.setItem("adminToken", data.token);
+
+      // Redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Fetch error:", err);
       setError("Server error. Please try again later.");
     }
   };
 
   return (
-    <>
-      {/* Header */}
-      <div className="header-wrapper">
-        <h1 className="header funky-text">
-          <span className="circle-bg">&nbsp;Furniture</span>One
-        </h1>
-        <ul className="navigation">
-          <li><Link to="/">Home 🏠</Link></li>
-          <li><Link to="/products">Shop 🛒</Link></li>
-          <li><Link to="/contact">Contact Us 📞</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/login"><button className="loginbtn">Login</button></Link></li>
-        </ul>
-      </div>
-
-      {/* Admin Login Form */}
-      <div className="adminloginform">
-        <h2>Admin Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded shadow-md w-96 space-y-4"
+      >
+        <h2 className="text-2xl font-bold text-center">Admin Login</h2>
 
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-        <form onSubmit={handleLogin}>
-          <label htmlFor="username">Username</label>
+        <div>
+          <label className="block mb-1 font-medium">Username</label>
           <input
-            id="username"
             type="text"
+            className="w-full border p-2 rounded"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            autoComplete="username"
           />
+        </div>
 
-          <label htmlFor="password">Password</label>
-          <div className="password-wrapper">
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-            />
-            <span
-              className="eye-icon"
-              onClick={() => setShowPassword(!showPassword)}
-              style={{ cursor: "pointer" }}
-            >
-              {showPassword ? "🙈" : "👁️"}
-            </span>
-          </div>
+        <div>
+          <label className="block mb-1 font-medium">Password</label>
+          <input
+            type="password"
+            className="w-full border p-2 rounded"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-          <button type="submit">Login</button>
-        </form>
-      </div>
-
-      {/* Footer */}
-      <div className="footer">
-        <p className="foot">
-          Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link>
-        </p>
-      </div>
-    </>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+        >
+          Login
+        </button>
+      </form>
+    </div>
   );
 }
 
