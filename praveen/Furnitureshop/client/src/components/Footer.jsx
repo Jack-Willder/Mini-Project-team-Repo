@@ -3,9 +3,9 @@ function Footer() {
     const date=new Date();
     const year=date.getFullYear();
   return (
-<div className="footer" >
+<div className="footer">
         <p className="foot">Copyright © {year} | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
-</div>
+      </div>
   );
 }
 

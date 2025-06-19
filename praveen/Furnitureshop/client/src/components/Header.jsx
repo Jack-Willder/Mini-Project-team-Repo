@@ -2,22 +2,24 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <div className="header-wrapper">
-      <h1 className="header funky-text">
-        <span className="circle-bg">&nbsp;Furniture</span>One
-      </h1>
-      <ul className="navigation">
-        <li><Link to="/" className="hover:text-green-500"> Home 🏠</Link></li>
-        <li><Link to="/products" className="hover:text-green-500">Shop 🛒</Link></li>
-        <li><Link to="/contact" className="hover:text-green-500">Contact Us 📞</Link></li>
-        <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-        <li>
-          <Link to="/login"> <button className="loginbtn hover:text-green-500">Login</button></Link>
-          {/* Or use this if login has a separate page: */}
-          {/* <Link to="/login" className="loginbtn hover:text-green-500">Login</Link> */}
-        </li>
-      </ul>
-    </div>
+      <div className="header-wrapper">
+     {/* Header */}
+        <h1 className="header funky-text">
+          <span className="circle-bg">&nbsp;Furniture</span>One
+        </h1>
+        <ul className="navigation">
+          <li><b><Link to="/" >Home </Link></b></li>
+          <li><b><Link to="/products" >Shop </Link></b></li>
+          <li><b><Link to="/contact">Contact Us </Link></b></li>
+           
+          <li><b><Link to="/about">About Us</Link></b></li>
+          <li>
+            <Link className='loginbtn' to="/login">
+              <button>Login</button>
+            </Link>
+          </li>
+        </ul>
+      </div>
   );
 }
 
