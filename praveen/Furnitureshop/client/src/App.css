@@ -2,7 +2,10 @@
  html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
+  height: 100dvh;
+  overflow-x: hidden;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,7 +13,6 @@ body {
   color: #333;
   line-height: 1.6;
   font-size: 16px;
- 
   scroll-behavior: smooth;
 }
 
@@ -104,25 +106,30 @@ body {
 }
 .sale-specification{
   color: white;  
-  font-size: 5em;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
+  width: 100%;
+  font-size: 7vw;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-weight: bolder;
   font-style: normal;
   z-index: 2;
   text-align: center;
   position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 5%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 .sale-specification>p{
   color:white;
-  font-size:xx-large;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
+  font-size:3vw;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 .sale-specification>p>span{
   color:red;
-  font-size:2em;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
+  font-size:7vw;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 .information {
   background-color: #fff;
@@ -251,24 +258,30 @@ body {
 
 .final-image p {
   position: absolute;
-  top: 4em; /* adjust as needed */
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
+  top: 5%; /* adjust as needed */
   width: 100%;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   color: white;
   font-weight: bold;
-  font-size: 5em;
+  font-size: 10vw;
   text-align: center;
   z-index: 1;
 }
 
 .final-image button {
   position: absolute;
-  bottom: 15em; /* adjust as needed */
+  bottom: 15%; /* adjust as needed */
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
   border: 2px solid white;
   color: white;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   padding: 10px 20px;
+  padding: 2vw 4vw;
+  font-size: 2vw;
+  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-weight: bold;
   cursor: pointer;
   z-index: 1;
