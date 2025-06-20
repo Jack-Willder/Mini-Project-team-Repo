@@ -7,7 +7,7 @@ const SECRET = "adminSecretKey";
 exports.adminLogin = async (req, res) => {
   const { username, password } = req.body;
 
-  console.log("Login attempt:", username, password); // Add this
+  console.log("Login attempt:", username, password);
 
   try {
     const admin = await Admin.findOne({ username });

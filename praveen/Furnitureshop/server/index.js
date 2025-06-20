@@ -13,7 +13,7 @@ app.use(express.json());
 // MongoDB connection string (replace with your actual URI if using Atlas)
 const MONGO_URL = "mongodb://127.0.0.1:27017/furnitureshop";
 
-// ✅ Connect to MongoDB (updated without deprecated options)
+//Connect to MongoDB (updated without deprecated options)
 mongoose.connect(MONGO_URL)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));

@@ -64,7 +64,7 @@ function AdminLogin() {
         {error && <p className="admin-login-error">{error}</p>}
 
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input
             type="text"
             value={username}
