@@ -12,7 +12,6 @@ function Body() {
           <li><b><Link to="/" >Home </Link></b></li>
           <li><b><Link to="/products" >Shop </Link></b></li>
           <li><b><Link to="/contact">Contact Us </Link></b></li>
-           
           <li><b><Link to="/about">About Us</Link></b></li>
           <li>
             <Link className='loginbtn' to="/login">
