@@ -256,7 +256,7 @@ body {
   width: 100%;
   color: white;
   font-weight: bold;
-  font-size: 10vw;
+  font-size: 5vw;
   text-align: center;
   z-index: 1;
 }
@@ -271,7 +271,7 @@ body {
   color: white;
   padding: 10px 20px;
   padding: 2vw 4vw;
-  font-size: 2vw;
+  font-size: 1vw;
   font-weight: bold;
   cursor: pointer;
   z-index: 1;
@@ -606,7 +606,7 @@ input:focus {
 
 .home-gallery {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   background-color: #ffffff;
   padding: 2rem 1rem;
 }
