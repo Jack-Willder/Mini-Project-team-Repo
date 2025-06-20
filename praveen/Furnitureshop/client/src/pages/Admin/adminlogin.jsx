@@ -27,10 +27,7 @@ function AdminLogin() {
         return;
       }
 
-      // Save token
       localStorage.setItem("adminToken", data.token);
-
-      // Redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
       console.error("Fetch error:", err);
@@ -39,44 +36,62 @@ function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white p-8 rounded shadow-md w-96 space-y-4"
-      >
-        <h2 className="text-2xl font-bold text-center">Admin Login</h2>
+    <div className="adminloginpage">
+      <div className="header-wrapper">
+     {/* Header */}
+        <h1 className="header funky-text">
+          <span className="circle-bg">&nbsp;Furniture</span>One
+        </h1>
+        <ul className="navigation">
+          <li><b><Link to="/" >Home </Link></b></li>
+          <li><b><Link to="/products" >Shop </Link></b></li>
+          <li><b><Link to="/contact">Contact Us </Link></b></li>
+           
+          <li><b><Link to="/about">About Us</Link></b></li>
+          <li>
+            <Link className='loginbtn' to="/login">
+              <button>Login</button>
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+    <div className="admin-login-container">
+      <form onSubmit={handleLogin} className="admin-login-form">
+        <h2 className="admin-login-title">Admin Login</h2>
 
-        <div>
-          <label className="block mb-1 font-medium">Username</label>
+        {error && <p className="admin-login-error">{error}</p>}
+
+        <div className="form-group">
+          <label>Username</label>
           <input
             type="text"
-            className="w-full border p-2 rounded"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label className="block mb-1 font-medium">Password</label>
+        <div className="form-group">
+          <label>Password</label>
           <input
             type="password"
-            className="w-full border p-2 rounded"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
-        >
+        <button type="submit" className="login-button">
           Login
         </button>
       </form>
+    </div>
+
+      {/* Footer */}
+      <div className="footer">
+        <p className="foot">Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
+      </div>
     </div>
   );
 }

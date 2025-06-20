@@ -2,10 +2,8 @@
  html {
   margin: 0;
   padding: 0;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   height: 100dvh;
   overflow-x: hidden;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -89,6 +87,9 @@ body {
 .loginbtn:hover {
   background-color: #ff3e30;
 }
+.loginbtn button{
+  color:white;
+}
 
 .actual-content-index {
   position: relative;
@@ -106,10 +107,8 @@ body {
 }
 .sale-specification{
   color: white;  
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   width: 100%;
   font-size: 7vw;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-weight: bolder;
   font-style: normal;
   z-index: 2;
@@ -121,15 +120,11 @@ body {
 }
 .sale-specification>p{
   color:white;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-size:3vw;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 .sale-specification>p>span{
   color:red;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-size:7vw;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
 }
 .information {
   background-color: #fff;
@@ -162,19 +157,18 @@ body {
 }
 .home-container {
   display: flex;
-  justify-content: space-between; /* or 'space-around' or 'center' as needed */
-  gap: 1rem; /* spacing between images */
+  justify-content: space-between;
+  gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
   padding:1em;
 }
 
 .home-container img {
-  flex: 1; /* All images will take equal width */
-  height: 300px; /* or any fixed height */
-  object-fit: cover; /* ensures image fills the box without distortion */
+  flex: 1; 
+  height: 300px; 
+  object-fit: cover; 
   border-radius: 8px; 
-  /* optional */
 }
 .new-arrivals{
   font-size: large;
@@ -213,8 +207,8 @@ body {
 }
 
 .image-box {
-  width: 350px; /* Set fixed width */
-  height: 350px; /* Set fixed height */
+  width: 350px; 
+  height: 350px; 
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -232,7 +226,7 @@ body {
 .image-box img {
   height: 80%;
   width: 100%;
-  object-fit: cover; /* Fills the box and crops excess */
+  object-fit: cover; 
   border-radius: 10px 10px 0 0;
 }
 
@@ -258,10 +252,8 @@ body {
 
 .final-image p {
   position: absolute;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
-  top: 5%; /* adjust as needed */
+  top: 5%; 
   width: 100%;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   color: white;
   font-weight: bold;
   font-size: 10vw;
@@ -271,17 +263,15 @@ body {
 
 .final-image button {
   position: absolute;
-  bottom: 15%; /* adjust as needed */
+  bottom: 15%; 
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
   border: 2px solid white;
   color: white;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   padding: 10px 20px;
   padding: 2vw 4vw;
   font-size: 2vw;
-  /*************************************************************** SURIYA MODIFIED CODE ***************************************************************/
   font-weight: bold;
   cursor: pointer;
   z-index: 1;
@@ -294,7 +284,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4); /* optional: adds overlay for better text contrast */
+  background: rgba(0,0,0,0.4); 
   z-index: 0;
 }
 .footer {
@@ -313,19 +303,15 @@ body {
 }
 
 .footer-link {
-  color: #00bfff;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #ffffff;
+  color: #00bfff;
   text-decoration: underline;
 }
-
-
-
 /* Login Container */
 .login-container {
   background: #ffffff;
@@ -378,7 +364,6 @@ body {
 .register-link a:hover {
   text-decoration: underline;
 }
-
 /* Register Container */
 .register-container {
   max-width: 500px;
@@ -430,67 +415,7 @@ input:focus {
   text-decoration: underline;
 }
 
-/* Admin Login */
-.adminloginform {
-  max-width: 400px;
-  margin: 60px auto;
-  padding: 30px;
-  background-color: #f8f8f8;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-.adminloginform h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 25px;
-}
-.adminloginform label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  color: #444;
-}
-.adminloginform input[type="email"],
-.adminloginform input[type="password"],
-.adminloginform input[type="text"] {
-  width: 100%;
-  padding: 10px 40px 10px 12px;
-  margin-top: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.adminloginform input:focus {
-  border-color: #28a745;
-}
-.password-wrapper {
-  position: relative;
-  margin-bottom: 15px;
-}
-.eye-icon {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #666;
-  font-size: 18px;
-}
-.adminloginform button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.adminloginform button:hover {
-  background-color: #218838;
-}
+
 
 /* Footer */
 .footer, .footer-loginpage {
@@ -603,7 +528,7 @@ input:focus {
 
 .mission-box,
 .vision-box {
-  background-color: #dcfce7; /* Tailwind's green-100 */
+  background-color: #dcfce7; 
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -678,7 +603,7 @@ input:focus {
 }
 
 /* product page*/
-/* Main Section */
+
 .home-gallery {
   text-align: center;
   margin-top: 3rem;
@@ -686,7 +611,7 @@ input:focus {
   padding: 2rem 1rem;
 }
 
-/* Heading */
+
 .gallery-heading {
   font-size: 2.5rem;
   font-weight: bold;
@@ -698,21 +623,21 @@ input:focus {
   color: red;
 }
 
-/* Grid Wrapper */
+
 .gallery-wrapper {
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Grid Layout */
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
-/* Each Item */
+
 .gallery-item {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -739,5 +664,65 @@ input:focus {
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
+}
+
+.admin-login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+  font-family: Arial, sans-serif;
+}
+
+.admin-login-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.admin-login-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-login-error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
 }
 

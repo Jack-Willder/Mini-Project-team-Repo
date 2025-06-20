@@ -1,6 +1,6 @@
 function Dashboard(){
     return(
-<p>hello dashboard</p>
+<p>hello admin dashboard panel</p>
     );
 }
 export default Dashboard;
