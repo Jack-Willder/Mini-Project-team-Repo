@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function About() {
-  const year = new Date().getFullYear();  // define current year here
    return (
     <div className="aboutpage">
       {/* Header */}
@@ -22,7 +21,6 @@ function About() {
           </li>
         </ul>
       </div>
-
       <section className="about-section">
   <div className="about-container">
     <h1 className="about-title">
@@ -46,7 +44,6 @@ function About() {
         <li><strong>Customer Satisfaction:</strong> Fast delivery, transparent support, and friendly service.</li>
       </ul>
     </div>
-
     <div className="about-grid">
       <div className="mission-box">
         <h3>Our Mission</h3>

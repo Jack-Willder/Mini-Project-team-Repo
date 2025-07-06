@@ -23,7 +23,6 @@ function Products() {
             
      <section className="home-gallery">
   <h1 className="gallery-heading"><span>OUR</span> GALLERY</h1>
-
   <section className="gallery-wrapper">
     <div className="gallery-grid">
       {['Wooden Sofa Set', 'Queen Bed Frame', 'Dining Table 6-Seater', 'Coffee Table','Garden Chair Set'].map((category, idx) => (
@@ -35,12 +34,12 @@ function Products() {
     </div>
   </section>
 </section>
-            {/* Footer */}
-                  <div className="footer">
-                    <p className="foot">Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
-                  </div>
-            </div>
-    );
+{/* Footer */}
+<div className="footer">
+  <p className="foot">Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link></p>
+  </div>
+</div>
+);
 }
 
 export default Products;

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 function Register() {
-  const year = new Date().getFullYear();
 
   return (
     <div className="registerpage">
@@ -40,10 +38,7 @@ function Register() {
               <label htmlFor="password">Password</label>
               <input type="password" id="password" name="password" required />
             </div>
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" name="confirmPassword" required />
-            </div>
+           
             <button type="submit" className="register-button">Register</button>
           </form>
           <div className="login-link">
