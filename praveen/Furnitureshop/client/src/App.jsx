@@ -9,6 +9,9 @@ import Register from './pages/user/Register';
 import AdminLogin from './pages/Admin/adminlogin'
 import Dashboard from './pages/Admin/dashboard';
 import UserProfile from './pages/user/userprofile';
+import ManageOrder from './pages/Admin/manageorder';
+import ManageProduct from './pages/Admin/manageproduct';
+import ManageUser from './pages/Admin/manageuser';
 function App() {
   return (
     <Router>
@@ -22,6 +25,9 @@ function App() {
         <Route path="/adminlogin" element={<AdminLogin/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/userprofile" element={<UserProfile/>}/>
+        <Route path="/manageorder" element={<ManageOrder/>}/>
+        <Route path="/manageproduct" element={<ManageProduct/>}/>
+        <Route path="/manageuser" element={<ManageUser/>}/>
       </Routes>
     </Router>
   );

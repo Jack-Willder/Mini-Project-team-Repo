@@ -709,5 +709,122 @@ input:focus {
   border-radius: 5px;
 }
 
+.dashboard-content > h2 {
+  font-size: 2rem;
+  color: 	#333333;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1.5rem;
+}
 
 
+.sales-orders-users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.sales-orders-users h3 {
+  background-color: #e0f7fa;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
+  color: #2C5F2D;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.dashboard-container > div {
+  flex: 1 1 200px;
+  text-align: center;
+}
+
+
+.dashboard-container button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  margin-left:4rem;
+  margin-bottom: 20px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-container button::after {
+  content: attr(data-label); /* Button text will come from JSX */
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* dark transparent overlay */
+  color: white;
+  text-align: center;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dashboard-container button:hover {
+  transform: translateY(-4px);
+  opacity: 0.95;
+}
+
+.btn-products {
+  background-image: url('/productimages/manageproducts.png'); /* Place image in public/productimages/ */
+}
+
+.btn-users {
+  background-image: url('/productimages/manageusers.png');
+}
+
+.btn-orders {
+  background-image: url('/productimages/manageorders.png');
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sales-orders-users {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .dashboard-container button {
+    max-width: 90%;
+    height: 250px;
+  }
+}
