@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+
+}
+.header {
+    background-color:#B2B5E0;
+    height: 100px;
+    color: rgb(36, 0, 78);
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+body{
+    background-color: rgb(36, 0, 78);
+    height: 100%;
+    color: rgb(255, 255, 255);
+}
+#welcome {
+    padding-left: 50px;
+    padding-top: 120px;
+    margin-right: 250px;
+    word-spacing: 10px;
+    font-size: 25px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.content{
+    padding-top: 100px;
+    display: inline-flex;
+}
+h2{
+    padding-top: 100px;
+    color:rgb(255, 152, 255) ;
+    margin-left: 50px;
+    display: inline-block;
+    width: 155px;
+    font-size: 23px;
+}
+.text{
+    padding-top: 50px;
+    font-size: 18px;
+    font-family:Arial, Helvetica, sans-serif;
+    display: inline-flex;
+}
+.text p{
+    margin-left:480px;
+    display: inline-block;
+    width: 550px;
+    height: 200px;
+}
+
+
+   
