@@ -1,5 +1,5 @@
 body{
-background-color:rgb(237, 240, 94);
+background-color: #B2B5E0;
 }
 @font-face {
     font-family:'MemphisRiver';
@@ -9,22 +9,23 @@ background-color:rgb(237, 240, 94);
     margin:0px;
 }
 .title{
-    margin-top: 10px;
-    margin-left: 540px;
-    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 40px;
+    font-size: 20px;
     font-family:'MemphisRiver';
 }
 #art{
-    color:  rgb(255, 255, 255);
+    color: rgb(36, 0, 78);
     display: inline;
     margin-right: 10px;
 }
 #gallery{
-    color: rgb(0, 0, 0);
+    color: rgb(36, 0, 78);
     display: inline;
 }
 .header{    
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(36, 0, 78);
     display: flex;
     margin-top: 50px;
     padding: 20px;
@@ -40,44 +41,42 @@ background-color:rgb(237, 240, 94);
 .header ul li{
     display: inline;
     list-style:none;
-    padding-left:145px;
+    padding-left:100px;
 }
 .header ul li a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 25px;
-    font-family:'MemphisRiver';
-    padding: 5px;
+    text-decoration:none;
+    color: #C5ADC5;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding:5px;
 }
 .header ul li a:hover{
-    background-color: rgb(237, 240, 94);
-    color: rgb(0, 0, 0);
-    border-radius:20px;
+    color: rgb(255, 255, 255);
 }
 .header input{
     border-radius: 20px;
     border: none;
     border-color: white;
-    margin-left: 160px;
-    width: 160px;
-    height: 30px;
+    margin-left: 380px;
+    width: 130px;
+    height: 25px;
     text-align: center;
     margin-right: 5px;
 }
 .header button{
-    height: 30px;
+    height: 25px;
     width: 60px;
     border-radius:15px;
-    background-color:black;
-    color: white;
+    background-color:#C5ADC5;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 button :hover{
-    background-color:rgb(237, 240, 94);
-    color: rgb(0, 0, 0);
+    background-color:rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 .content{
-    background-color:rgb(237, 240, 94);
+    background-color: #f3e1f3;
     font-family: Georgia, 'Times New Roman', Times, serif;   
 }
 .row1{
@@ -119,22 +118,22 @@ button :hover{
 .visit01{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 250px;
+    margin-left: 265px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
 .visit02{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 480px;
+    margin-left: 495px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
@@ -171,22 +170,22 @@ button :hover{
 .visit03{
     display: inline-block;  
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 250px;
+    margin-left: 265px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: white;
     cursor: pointer;
 }
 .visit04{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 480px;
+    margin-left: 495px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: white;
     cursor: pointer;
 }
@@ -224,21 +223,21 @@ button :hover{
 .visit05{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 250px;
+    margin-left: 265px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: white;
 }
 .visit06{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 480px;
+    margin-left: 495px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     text-size-adjust: 10px;
     color: white;
     cursor: pointer;
@@ -276,22 +275,22 @@ button :hover{
 .visit07{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 250px;
+    margin-left: 265px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: white;
     cursor: pointer;
 }
 .visit08{
     display: inline-block;
     padding: 15px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     margin-top:  50px;
-    margin-left: 480px;
+    margin-left: 495px;
     border-radius: 75px;
-    border-color: rgb(180, 0, 0);
+    border-color: rgb(1, 0, 78);
     color: white;
     cursor: pointer;
 }
@@ -312,16 +311,35 @@ button :hover{
 }       
 .footer{
     margin-top: 200px;
-    background-color: rgb(180, 0, 0);
-    height: 150px;
-    color: white;
-    padding: 10px;
-    text-align: center;
+    background-color:rgb(36, 0, 78);
+    height: 270px;
+    color: rgb(255, 255, 255);
 }
-.footer #c
-{
+.footer .call {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-   margin-top: 120px;
+    display:flex;
+    margin-top: 15px;
+    padding-top: 50px;
+    background-color:rgb(36, 0, 78);
+    margin-left: 30px;
 }
-
+#call-img
+{
+    margin-right: 10px;
+}
+#contact
+{
+    margin-right: 10px;
+}
+.footer .copyright {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display:flex;
+    margin-top: 125px;
+    margin-left:525px;
+    background-color:rgb(36, 0, 78);
+}
+#cp-img
+{
+    margin-right: 10px;
+}
 

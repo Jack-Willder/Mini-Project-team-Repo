@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(217, 219, 95);
+    background-color: rgb(175, 239, 255);
 }
 @font-face {
     font-family:'MemphisRiver';
@@ -12,7 +12,7 @@ body{
     justify-content: center;
     padding-left: 100px;
     padding-bottom: 225px;
-    background-color:rgb(180, 0, 0);
+    background-color:rgb(1, 0, 78);
     height:30%;
     width: 20%;
     border-radius: 28px;
@@ -30,8 +30,8 @@ body{
     align-items: center;
     padding-top: 30px;
     margin-right: 100px;
-    border-color: rgb(217, 219, 95);
-    color: white;
+    border-color: rgb(95, 219, 213);
+    color: rgb(255, 255, 255);
 }
 .loginform input{
     border-radius:18px;
@@ -50,15 +50,14 @@ label{
 button{
     padding: 10px;
     border-radius: 75px;
-    background-color:  rgb(217, 219, 95);
+    background-color:  rgb(101, 230, 240);
     color: black;
 }
 label button{
     padding-top:100px;
 }
 button:hover{
-    background-color:rgb(229, 231, 76);
+    background-color:rgb(12, 174, 202);
     color: black;
 }
-
 
