@@ -2,36 +2,48 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [message, setMessage] = useState('');
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/login", {
-        method: "POST",
+      const res = await fetch('http://localhost:5000/api/user/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(formData)
       });
 
       const data = await res.json();
 
-      if (!res.ok) {
-        setError(data.message || "Login failed");
-        return;
-      }
+      if (res.status === 200) {
+        // Store the token (you can also store user info if needed)
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.client));
 
-      localStorage.setItem("adminToken", data.token);
-      navigate("/dashboard");
+        alert('✅ Login successful!');
+        navigate('/products'); // Redirect to homepage or dashboard
+      } else {
+        setMessage(`❌ ${data.message}`);
+      }
     } catch (err) {
-      console.error("Fetch error:", err);
-      setError("Server error. Please try again later.");
+      console.error('Login Error:', err);
+      setMessage('❌ Server error, try again later.');
     }
   };
 
@@ -44,13 +56,13 @@ function Login() {
             <span className="circle-bg">&nbsp;Furniture</span>One
           </h1>
           <ul className="navigation">
-            <li><Link to="/" className="hover:text-green-500">Home</Link></li>
-            <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
-            <li><Link to="/contact" className="hover:text-green-500">Contact Us</Link></li>
+            <li><Link to="/" className="hover:text-green-500">Home </Link></li>
+            <li><Link to="/products" className="hover:text-green-500">Shop </Link></li>
+            <li><Link to="/contact" className="hover:text-green-500">Contact Us </Link></li>
             <li><Link to="/about" className="hover:text-green-500">About</Link></li>
             <li>
-              <Link to="/login">
-                <button className="loginbtn hover:text-green-500">Login</button>
+              <Link to="/register">
+                <button className="loginbtn hover:text-green-500">Register</button>
               </Link>
             </li>
           </ul>
@@ -58,34 +70,38 @@ function Login() {
 
         {/* Login Form */}
         <div className="login-container">
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="Email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
-                type="text"
-                id="Email"
-                name="Email"
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
                 name="password"
+                value={formData.password}
+                onChange={handleChange}
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {error && <p className="error">{error}</p>}
+
             <button type="submit" className="login-button">Login</button>
           </form>
+
+          {message && <p className="error-message">{message}</p>}
+
           <div className="register-link">
-            Don't have an account? <Link to="/Register">Register here</Link>
+            Don't have an account? <Link to="/register">Register here</Link>
           </div>
         </div>
 

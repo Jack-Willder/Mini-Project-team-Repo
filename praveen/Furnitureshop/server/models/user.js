@@ -1,11 +1,26 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-});
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  { collection: "user", timestamps: true }
+);
 
-//  This forces mongoose to use 'Admin' collection name exactly (not 'admins')
-const user = mongoose.model("user", userSchema, "user");
-
-module.exports = user;
+// ✅ Corrected export
+module.exports = mongoose.model("user", userSchema);
