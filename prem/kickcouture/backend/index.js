@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const adminRoutes = require("./routes/adminRoutes");
+const userRoutes=require("./routes/userRoutes");
 
 const app = express();
 const PORT = 5000;
@@ -20,6 +21,7 @@ mongoose.connect(MONGO_URL)
 
 // Routes
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userRoutes);
 
 // Start server
 app.listen(PORT, () => {
