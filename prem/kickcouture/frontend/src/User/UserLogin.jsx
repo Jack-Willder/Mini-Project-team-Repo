@@ -20,11 +20,11 @@ const UserLogin = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/user/signup", {
-        name,
-        email: signupEmail,
-        password: signupPassword,
-      });
+     const res = await axios.post("http://127.0.0.1:5000/api/user/signup", {
+            name,
+           email: signupEmail,
+          password: signupPassword,
+    });
       alert(res.data.message);
       setIsSignUp(false); // Switch to login view
     } catch (err) {
@@ -36,9 +36,9 @@ const UserLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/user/login", {
-        email,
-        password,
+      const res = await axios.post("http://127.0.0.1:5000/api/user/login", {
+          email,
+          password,
       });
       alert(res.data.message);
       navigate("/UserProfile");
