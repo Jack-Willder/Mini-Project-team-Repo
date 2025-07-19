@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
+import axios from 'axios';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -8,14 +9,23 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Example: Replace with actual API call for admin login
-    if (email === 'admin@gmail.com' && password === '12345') {
-      navigate('/Dashboard'); // Redirect to Dashboard
-    } else {
-      alert('Invalid login credentials');
+    try {
+      const res = await axios.post('http://localhost:5000/api/admin/login', {
+        email,
+        password,
+      });
+
+      alert(res.data.message);
+
+      localStorage.setItem('adminToken', res.data.token);
+      localStorage.setItem('adminInfo', JSON.stringify(res.data.admin));
+
+      navigate('/Dashboard'); // Redirect to dashboard
+    } catch (err) {
+      alert(err.response?.data?.message || 'Login failed');
     }
   };
 
@@ -23,19 +33,21 @@ const AdminLogin = () => {
     <div className="admin-login-container">
       <form className="admin-login-form" onSubmit={handleSubmit}>
         <h2>Admin Login</h2>
+
         <div className="form-group">
           <label htmlFor="adminEmail">Email:</label>
           <input
-            type="text"
+            type="email"
             id="adminEmail"
-            placeholder="Email"
+            placeholder="Admin email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="adminPassword">Password</label>
+          <label htmlFor="adminPassword">Password:</label>
           <input
             type="password"
             id="adminPassword"
@@ -45,6 +57,7 @@ const AdminLogin = () => {
             required
           />
         </div>
+
         <button type="submit">Login</button>
       </form>
     </div>

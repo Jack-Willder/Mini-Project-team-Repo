@@ -6,7 +6,7 @@ import { Hero } from './Hero/Hero';
 import { Collection } from './Collection/collection';
 import Dashboard from './Admin/Dashboard';
 import UserLogin  from './User/UserLogin';
-// import UserProfile from "./UserProfile";
+import UserProfile from './User/UserProfile'
 const App = () => {
   return (
     <Router>
@@ -17,6 +17,7 @@ const App = () => {
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/UserLogin" element={<UserLogin/>}/>
+        <Route path="UserProfile" element={<UserProfile/>}/>
         
       </Routes>
     </Router>
