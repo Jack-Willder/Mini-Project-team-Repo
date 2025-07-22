@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown(prev => !prev);
+  };
+
   return (
     <div className='navbar'>
       <p className="logo">Kick<span>Couture</span></p>
@@ -13,15 +19,16 @@ const Navbar = () => {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/review">Review</Link></li>
         <li className="login-item">
-          <span className="login-link">Login</span>
-          <div className="dropdown">
-            <Link to="/AdminLogin">Admin Login</Link>
-            <Link to="/user-login">User Login</Link>
-          </div>
+          <span className="login-link" onClick={toggleDropdown}>Login</span>
+          {showDropdown && (
+            <div className="dropdown">
+              <Link to="/AdminLogin">Admin Login</Link>
+              <Link to="/UserLogin">User Login</Link>
+            </div>
+          )}
         </li>
       </ul>
-   </div>
-  
+    </div>
   );
 };
 
