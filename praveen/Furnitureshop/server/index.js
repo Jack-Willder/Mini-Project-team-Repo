@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const adminRoutes=require("./routes/adminRoutes");
 const userRoutes=require("./routes/userRoutes");
+const itemRoutes=require("./routes/itemRoutes");
 const app=express();
 const PORT=5000;
 
@@ -17,6 +18,7 @@ mongoose.connect(MONGO_URL)
 
 app.use("/api/admin",adminRoutes);
 app.use("/api/user",userRoutes);
+app.use("/api",itemRoutes);
 
 app.listen(PORT,() =>{
   console.log(`Server running on port ${PORT}`);
