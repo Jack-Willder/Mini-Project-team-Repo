@@ -1,97 +1,120 @@
-const Item = require("../models/items");
+const Item = require('../models/items');
 
-// CREATE Item
-exports.createItem = async (req, res) => {
-  const { name, desc, stock, price, category } = req.body;
-
+// Create a new item
+const createItem = async (req, res) => {
   try {
+    console.log("Received body:", req.body);
+    console.log("Received file:", req.file);
+
+    const { name, category, size, desc, variants } = req.body;
+
+    // Validate and parse variants
+    let parsedVariants = [];
+    try {
+      parsedVariants = JSON.parse(variants);
+    } catch (err) {
+      return res.status(400).json({ error: "Invalid variants format", details: err.message });
+    }
+
+    if (!name || !category || !desc || !size || parsedVariants.length === 0) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const image = req.file ? {
+      data: req.file.buffer,
+      contentType: req.file.mimetype
+    } : null;
+
     const newItem = new Item({
       name,
-      desc,
-      stock,
-      price,
       category,
-      image: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      },
+      size,
+      desc,
+      variants: parsedVariants,
+      image
     });
 
     await newItem.save();
-    res.status(201).json({ message: "Item created", id: newItem._id });
+    res.status(201).json(newItem);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Error in createItem:", err.message);
+    res.status(500).json({ error: "Internal server error", details: err.message });
   }
 };
 
-// GET All Items
-exports.getItems = async (req, res) => {
+// Get all items
+const getItems = async (req, res) => {
   try {
-    const items = await Item.find({}, { image: 0 });
+    const items = await Item.find({}, '-image'); // exclude binary image
     res.json(items);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// GET Image
-exports.getImage = async (req, res) => {
+// Get image by item ID
+const getImage = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
-    if (!item || !item.image) return res.status(404).send("Image not found");
-
-    res.set("Content-Type", item.image.contentType);
+    if (!item || !item.image || !item.image.data) {
+      return res.status(404).send('Image not found');
+    }
+    res.contentType(item.image.contentType);
     res.send(item.image.data);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({ error: err.message });
   }
 };
 
-// ✅ UPDATE Item
-exports.updateItem = async (req, res) => {
-  const { name, desc, stock, price, category } = req.body;
-
+// Update item
+const updateItem = async (req, res) => {
   try {
-    const updatedData = {
+    const { name, category, size, desc, variants } = req.body;
+
+    let parsedVariants = [];
+    try {
+      parsedVariants = JSON.parse(variants);
+    } catch (err) {
+      return res.status(400).json({ error: "Invalid variants format", details: err.message });
+    }
+
+    const updateData = {
       name,
-      desc,
-      stock,
-      price,
       category,
+      size,
+      desc,
+      variants: parsedVariants
     };
 
     if (req.file) {
-      updatedData.image = {
+      updateData.image = {
         data: req.file.buffer,
-        contentType: req.file.mimetype,
+        contentType: req.file.mimetype
       };
     }
 
-    const updatedItem = await Item.findByIdAndUpdate(
-      req.params.id,
-      updatedData,
-      { new: true }
-    );
+    const updated = await Item.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    res.json(updated);
+  } catch (err) {
+    console.error("Error in updateItem:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+};
 
-    if (!updatedItem) {
-      return res.status(404).json({ error: "Item not found" });
-    }
-
-    res.json({ message: "Item updated successfully", item: updatedItem });
+// Delete item
+const deleteItem = async (req, res) => {
+  try {
+    await Item.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Item deleted' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// ✅ DELETE Item
-exports.deleteItem = async (req, res) => {
-  try {
-    const deletedItem = await Item.findByIdAndDelete(req.params.id);
-    if (!deletedItem) {
-      return res.status(404).json({ error: "Item not found" });
-    }
-    res.json({ message: "Item deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+module.exports = {
+  createItem,
+  getItems,
+  getImage,
+  updateItem,
+  deleteItem
 };

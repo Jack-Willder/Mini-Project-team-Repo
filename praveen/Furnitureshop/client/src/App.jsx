@@ -12,6 +12,7 @@ import UserProfile from './pages/user/userprofile';
 import ManageOrder from './pages/Admin/manageorder';
 import ManageProduct from './pages/Admin/manageproduct';
 import ManageUser from './pages/Admin/manageuser';
+import ProductDetail from './pages/ProductDetail';
 function App() {
   return (
     <Router>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/adminlogin" element={<AdminLogin/>} />

@@ -24,7 +24,7 @@ function Body() {
       {/* Center Content */}
       <div className="actual-content-index">
         <div className="background-picsofa">
-          <img src="/productimages/background1final.jpg" />
+          <img src="\productimages\frontpagelargeimage.jpeg" />
           <div className="sale-specification">
             <h1>SUMMER SALE</h1>
             <p>GET<span className="word"> ATTRACTIVE </span>OFFERS</p>
