@@ -7,6 +7,8 @@ function Register() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    address: '',
     password: ''
   });
 
@@ -19,7 +21,7 @@ function Register() {
 
   // Handle form submit
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
     try {
       const res = await fetch('http://localhost:5000/api/user/register', {
@@ -53,9 +55,9 @@ function Register() {
             <span className="circle-bg">&nbsp;Furniture</span>One
           </h1>
           <ul className="navigation">
-            <li><Link to="/" className="hover:text-green-500">Home </Link></li>
-            <li><Link to="/products" className="hover:text-green-500">Shop </Link></li>
-            <li><Link to="/contact" className="hover:text-green-500">Contact Us </Link></li>
+            <li><Link to="/" className="hover:text-green-500">Home</Link></li>
+            <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
+            <li><Link to="/contact" className="hover:text-green-500">Contact Us</Link></li>
             <li><Link to="/about" className="hover:text-green-500">About</Link></li>
             <li>
               <Link to="/login">
@@ -79,6 +81,7 @@ function Register() {
                 required
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
@@ -90,6 +93,30 @@ function Register() {
                 required
               />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <textarea
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
@@ -101,6 +128,7 @@ function Register() {
                 required
               />
             </div>
+
             <button type="submit" className="register-button">Register</button>
           </form>
 

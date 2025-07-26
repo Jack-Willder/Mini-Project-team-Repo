@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
+  productId: {
+    type: String,
+    required: true,
+    unique: true  // ensures no duplicate productId values
+  },
   name: String,
   category: String,
   size: String,

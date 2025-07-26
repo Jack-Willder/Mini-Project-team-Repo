@@ -10,8 +10,9 @@ function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/items/${id}`);
-        setProduct(res.data);
+        const res = await axios.get(`http://localhost:5000/api/items`);
+        const foundProduct = res.data.find((p) => p._id === id);
+        setProduct(foundProduct);
       } catch (err) {
         console.error('Error fetching product:', err);
       }
@@ -26,7 +27,11 @@ function ProductDetail() {
   return (
     <div className="product-detail">
       <h1>{product.name}</h1>
-      <img src={imageUrl} alt={product.name} />
+      <img
+        src={imageUrl}
+        alt={product.name}
+        style={{ maxWidth: '300px', borderRadius: '10px' }}
+      />
       <p><strong>Description:</strong> {product.desc}</p>
       <p><strong>Size:</strong> {product.size}</p>
 

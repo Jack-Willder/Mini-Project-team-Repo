@@ -19,7 +19,7 @@ mongoose.connect(MONGO_URL)
 app.use("/api/admin",adminRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api",itemRoutes);
-
+  
 app.listen(PORT,() =>{
   console.log(`Server running on port ${PORT}`);
 });

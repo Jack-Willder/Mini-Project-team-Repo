@@ -6,7 +6,7 @@ const createItem = async (req, res) => {
     console.log("Received body:", req.body);
     console.log("Received file:", req.file);
 
-    const { name, category, size, desc, variants } = req.body;
+    const { productId, name, category, size, desc, variants } = req.body;
 
     // Validate and parse variants
     let parsedVariants = [];
@@ -16,7 +16,7 @@ const createItem = async (req, res) => {
       return res.status(400).json({ error: "Invalid variants format", details: err.message });
     }
 
-    if (!name || !category || !desc || !size || parsedVariants.length === 0) {
+    if (!productId || !name || !category || !desc || !size || parsedVariants.length === 0) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -26,6 +26,7 @@ const createItem = async (req, res) => {
     } : null;
 
     const newItem = new Item({
+      productId,
       name,
       category,
       size,
@@ -69,7 +70,7 @@ const getImage = async (req, res) => {
 // Update item
 const updateItem = async (req, res) => {
   try {
-    const { name, category, size, desc, variants } = req.body;
+    const { productId, name, category, size, desc, variants } = req.body;
 
     let parsedVariants = [];
     try {
@@ -79,6 +80,7 @@ const updateItem = async (req, res) => {
     }
 
     const updateData = {
+      productId,
       name,
       category,
       size,

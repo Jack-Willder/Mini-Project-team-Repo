@@ -49,7 +49,7 @@ function Body() {
       <img src="/productimages/sofa2.jpg" alt="Image 2"/>
     </div>
     <div className="image-box">
-      <img src="/productimages/sofa3.jpg" alt="Image 3"/>
+      <img src="/productimages/frontpagechair.png" alt="Image 3"/>
     </div>
   </div>
   </div>
@@ -67,7 +67,7 @@ function Body() {
   <div className="row">
     <div className="image-box">
       <figure>
-        <img src="/productimages/background.jpg" alt="Royal Sofas" />
+        <img src="/productimages/frontpageproduct1.jpg" alt="Royal Sofas" />
         <figcaption>ROYAL SOFAS</figcaption>
       </figure>
     </div>
@@ -79,8 +79,8 @@ function Body() {
     </div>
     <div className="image-box">
       <figure>
-        <img src="/productimages/plasticfurniture.jpg" alt="Plastic Furniture" />
-        <figcaption>PLASTIC FURNITURE</figcaption>
+        <img src="/productimages/frontpageproduct5.jpg" alt="Plastic Furniture" />
+        <figcaption>ARMREST LOUNGE CHAIR</figcaption>
       </figure>
     </div>
   </div>
@@ -89,19 +89,19 @@ function Body() {
     <div className="image-box">
       <figure>
         <img src="/productimages/p1.jpg" alt="Cot & Mattress" />
-        <figcaption>COT & MATTRESS</figcaption>
+        <figcaption>COT</figcaption>
       </figure>
     </div>
     <div className="image-box">
       <figure>
-        <img src="/productimages/living.jpg" alt="Loveseat" />
+        <img src="/productimages/frontpageproduct6-Pica.png" alt="Loveseat" />
         <figcaption>LOVESEAT</figcaption>
       </figure>
     </div>
   </div>
 </div>
 <div className="final-image">
-  <img src="/productimages/FINALPIC.jpg" alt="final image to explore products"/>
+  <img src="/productimages/backgroundfullpic-Pica.png" alt="final image to explore products"/>
   <p>COMPLETE HOME FURNITURE</p>
   <Link to="/products">  <button>Explore</button>
 </Link>

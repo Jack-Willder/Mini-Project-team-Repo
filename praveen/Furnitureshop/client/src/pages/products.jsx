@@ -46,6 +46,7 @@ function Products() {
         </ul>
       </div>
 
+      {/* Products */}
       <section className="home-gallery">
         <h1 className="gallery-heading"><span>OUR</span> PRODUCTS</h1>
         <section className="gallery-wrapper">
@@ -57,18 +58,14 @@ function Products() {
 
               return (
                 <div key={item._id} className="gallery-item">
-                  <Link to={`/product/${item._id}`}>
-                    <button className="view-details-btn">View Details</button>
-                  </Link>
-                  
                   {/* Image */}
                   <img className="gallery-image" src={imageUrl} alt={item.name} />
-                  
+
                   {/* Product Name */}
                   <h3 style={{ fontSize: '18px', marginTop: '10px', textAlign: 'center' }}>
                     {item.name}
                   </h3>
-                  
+
                   {/* Tree Variant Dropdown */}
                   {item.variants?.length > 0 && (
                     <select
@@ -94,6 +91,11 @@ function Products() {
                   {selectedVariant && (
                     <p className="gallery-price">Price: ₹{selectedVariant.price}</p>
                   )}
+
+                  {/* View Details */}
+                  <Link to={`/product/${item._id}`}>
+                    <button className="view-details-btn">View Details</button>
+                  </Link>
                 </div>
               );
             })}
