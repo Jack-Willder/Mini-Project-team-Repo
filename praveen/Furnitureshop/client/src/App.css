@@ -1172,3 +1172,180 @@ table tr:hover {
   background-color: #2b7a78;
 }
 
+/*MANAGE PRODUCTS CSS*/
+.manage-product-container {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.manage-product-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.manage-product-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.manage-product-container th,
+.manage-product-container td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.manage-product-container th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.manage-product-container td img {
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Form Modal */
+.product-form {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #444;
+}
+
+.product-form input,
+.product-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-form input[type="file"] {
+  padding: 4px;
+}
+
+.product-form button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.product-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .manage-product-container table,
+  .manage-product-container thead,
+  .manage-product-container tbody,
+  .manage-product-container th,
+  .manage-product-container td,
+  .manage-product-container tr {
+    display: block;
+  }
+
+  .manage-product-container thead {
+    display: none;
+  }
+
+  .manage-product-container td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .manage-product-container td::before {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .manage-product-container td:nth-of-type(1)::before { content: "Image"; }
+  .manage-product-container td:nth-of-type(2)::before { content: "Product ID"; }
+  .manage-product-container td:nth-of-type(3)::before { content: "Name"; }
+  .manage-product-container td:nth-of-type(4)::before { content: "Category"; }
+  .manage-product-container td:nth-of-type(5)::before { content: "Size"; }
+  .manage-product-container td:nth-of-type(6)::before { content: "Variants"; }
+  .manage-product-container td:nth-of-type(7)::before { content: "Stock"; }
+  .manage-product-container td:nth-of-type(8)::before { content: "Description"; }
+  .manage-product-container td:nth-of-type(9)::before { content: "Actions"; }
+}
