@@ -1,4 +1,3 @@
-// server/controllers/adminController.js
 const Admin = require("../models/Admin");
 const jwt = require("jsonwebtoken");
 

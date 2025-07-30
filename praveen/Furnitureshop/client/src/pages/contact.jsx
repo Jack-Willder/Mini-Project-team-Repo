@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Contact() {
-  const year = new Date().getFullYear(); // Fix: define year here
+  const year = new Date().getFullYear(); 
 
   return (
     <div className='contactpage'>

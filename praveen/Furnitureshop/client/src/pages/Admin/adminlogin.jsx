@@ -26,7 +26,7 @@ function AdminLogin() {
         return;
       }
 
-      localStorage.setItem("adminToken", data.token);
+      localStorage.setItem("adminToken", data.token); 
       navigate("/dashboard");
     } catch (err) {
       console.error("Fetch error:", err);

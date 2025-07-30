@@ -112,8 +112,8 @@ function ManageProduct() {
            
           <li><b><Link to="/about">About Us</Link></b></li>
           <li>
-            <Link className='loginbtn' to="/login">
-              <button>Login</button>
+            <Link className='loginbtn' to="/">
+              <button>Logout</button>
             </Link>
           </li>
         </ul>

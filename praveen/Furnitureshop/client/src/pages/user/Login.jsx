@@ -11,7 +11,6 @@ function Login() {
 
   const [message, setMessage] = useState('');
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -37,8 +36,7 @@ function Login() {
         localStorage.setItem('user', JSON.stringify(data.client));
 
         alert('✅ Login successful!');
-        navigate('/products'); // Redirect to homepage or dashboard
-      } else {
+        navigate('/products'); 
         setMessage(`❌ ${data.message}`);
       }
     } catch (err) {
