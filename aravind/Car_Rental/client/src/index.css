@@ -193,3 +193,31 @@ li {
 strong {
   font-weight: 600;
 }
+/* EMPLOYEE LOGIN , CUSTOMER LOGIN PAGES , EMPLOYEE REGISTER , CUSTOMER REGISTER PAGES*/
+.login-form-container{
+  width: 530px;
+  margin-left: 500px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1);
+}
+.login-form-container h3{
+  background-color: blue;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  margin:0;
+}
+.login-form-container form{
+  width: 500px;
+  border: 1px solid gray;
+  padding: 10px;
+}
+.login-form-container button{
+  background-color: blue;
+  margin-top: 10px;
+  outline: none;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  padding: 10px 32px;
+}
