@@ -1,115 +1,73 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useLocation,Link } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation(); 
+  const [error, setError] = useState("");
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-
-  const [message, setMessage] = useState('');
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch('http://localhost:5000/api/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const response = await axios.post("http://localhost:5000/api/user/login", {
+        email,
+        password,
       });
 
-      const data = await res.json();
+      const { token, user } = response.data;
 
-      if (res.status === 200) {
-        // Store the token (you can also store user info if needed)
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.client));
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
-        alert('✅ Login successful!');
-        navigate('/products'); 
-        setMessage(`❌ ${data.message}`);
-      }
+      login(user);
+
+      const from = location.state?.from || "/products";
+      navigate(from);
+
     } catch (err) {
-      console.error('Login Error:', err);
-      setMessage('❌ Server error, try again later.');
+      console.error("Login error:", err);
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <div className="loginpage">
-      <div className="aboutpage">
-        {/* Header */}
-        <div className="header-wrapper">
-          <h1 className="header funky-text">
-            <span className="circle-bg">&nbsp;Furniture</span>One
-          </h1>
-          <ul className="navigation">
-            <li><Link to="/" className="hover:text-green-500">Home </Link></li>
-            <li><Link to="/products" className="hover:text-green-500">Shop </Link></li>
-            <li><Link to="/contact" className="hover:text-green-500">Contact Us </Link></li>
-            <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-            <li>
-              <Link to="/register">
-                <button className="loginbtn hover:text-green-500">Register</button>
-              </Link>
-            </li>
-          </ul>
+    <div className="login-container">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            className="form-group-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
-        {/* Login Form */}
-        <div className="login-container">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <button type="submit" className="login-button">Login</button>
-          </form>
-
-          {message && <p className="error-message">{message}</p>}
-
-          <div className="register-link">
-            Don't have an account? <Link to="/register">Register here</Link>
-          </div>
+        <div className="form-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            className="form-group-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
 
-        {/* Footer */}
-        <div className="footer">
-          <p className="foot">
-            Copyright © 2025 |
-            Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link>
-          </p>
-        </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <button type="submit" className="login-button">Login</button>
+      </form>
+
+      <div className="register-link">
+        Don't have an account? <Link to="/register">Register here</Link>
       </div>
     </div>
   );

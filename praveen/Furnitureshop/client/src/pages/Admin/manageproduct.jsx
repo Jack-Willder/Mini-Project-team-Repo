@@ -194,14 +194,14 @@ function ManageProduct() {
                 onChange={e => handleVariantChange(index, 'stock', e.target.value)}
                 required
               />
-              <button type="button" onClick={() => removeVariant(index)}>❌</button>
+              <button type="button" onClick={() => removeVariant(index)}>Remove Variant</button>
             </div>
           ))}
           <button type="button" onClick={addVariant}>➕ Add Variant</button>
 
           <div className="form-buttons">
             <button type="submit">{isEditing ? 'Update Product' : 'Submit Product'}</button>
-            <button type="button" onClick={resetForm}>❌ Cancel</button>
+            <button type="button" onClick={resetForm}> Cancel</button>
           </div>
         </form>
       )}
@@ -250,7 +250,6 @@ function ManageProduct() {
         </tbody>
       </table>
 
-      {/* ✅ Insert Button BELOW the Table */}
       <button
         className="add-btn"
         onClick={() => {

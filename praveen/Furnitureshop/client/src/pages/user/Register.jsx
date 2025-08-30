@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Register() {
   const navigate = useNavigate();
@@ -14,35 +15,35 @@ function Register() {
 
   const [message, setMessage] = useState('');
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { name, email, phone, address, password } = formData;
+
     try {
-      const res = await fetch('http://localhost:5000/api/user/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const res = await axios.post("http://localhost:5000/api/user/register", {
+        name,
+        email,
+        phone,
+        address,
+        password,
       });
 
-      const data = await res.json();
+      const data = res.data;
 
       if (res.status === 201) {
         alert('✅ Registration successful!');
         navigate('/login');
       } else {
-        setMessage(`❌ ${data.message}`);
+        setMessage(` ${data.message}`);
       }
     } catch (err) {
       console.error('Error:', err);
-      setMessage('❌ Server error, try again later.');
+      setMessage(' Server error, try again later.');
     }
   };
 
@@ -99,6 +100,7 @@ function Register() {
               <input
                 type="text"
                 id="phone"
+                maxLength={10}
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}

@@ -4,7 +4,7 @@ const itemSchema = new mongoose.Schema({
   productId: {
     type: String,
     required: true,
-    unique: true  // ensures no duplicate productId values
+    unique: true  
   },
   name: String,
   category: String,
