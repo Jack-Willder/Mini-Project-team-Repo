@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -8,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    // Load user and token from localStorage on refresh
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
 
@@ -19,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
-    // ✅ Assign role based on email
+    //  Assign role based on email
     let role = "user";
     if (userData.email === "abc@gmail.com") {
       role = "admin";
@@ -30,7 +28,6 @@ export const AuthProvider = ({ children }) => {
     setUser(updatedUser);
     setToken(token);
 
-    // Save user with role to localStorage
     localStorage.setItem("user", JSON.stringify(updatedUser));
     localStorage.setItem("token", token);
   };
