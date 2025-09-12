@@ -1,4 +1,16 @@
 const mongoose = require("mongoose");
+
+const addressSchema = new mongoose.Schema({
+  doorNo: { type: String, required: true, trim: true },
+  street: { type: String, trim: true },
+  city: { type: String, required: true, trim: true },
+  state: { type: String, trim: true },
+  postalCode: { type: String, required: true, trim: true },
+  country: { type: String, required: true, trim: true },
+  landmark: { type: String, trim: true },
+  type: { type: String, enum: ["Home", "Work", "Other"], default: "Home" }
+});
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -23,10 +35,9 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     address: {
-      type: String,
+      type: addressSchema, // ✅ now using object schema
       required: true,
-      trim: true,
-    }
+    },
   },
   { collection: "user", timestamps: true }
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-
+import {User} from 'lucide-react';
 function contact() {
   const year = new Date().getFullYear();
   const { user, logout } = useAuth();
@@ -30,14 +30,26 @@ function contact() {
             <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
             <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
             <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-            <li>
-              {user ? (
-                <button className="loginbtn hover:text-green-500" onClick={handleLogout}>Logout</button>
-              ) : (
-                <button className="loginbtn hover:text-green-500" onClick={handleLoginRedirect}>Login</button>
-              )}
-            </li>
-          </ul>
+            <li style={{ display: "flex", alignItems: "center" }}>
+                       {user ? (
+                         <>
+                           <button className="loginbtn" onClick={handleLogout}>
+                             Logout
+                           </button>
+                           <div className="usericon">
+                             <Link to="/userdashboard">
+                   <User size={25} />
+                 </Link>
+                           </div>
+                         
+                         </>
+                       ) : (
+                         <button className="loginbtn" onClick={handleLoginRedirect}>
+                           Login
+                         </button>
+                       )}
+                     </li>
+            </ul>
         </div>
 
         {/* Contact Section */}

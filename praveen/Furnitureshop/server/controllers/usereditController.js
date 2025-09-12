@@ -11,6 +11,23 @@ const getUsers = async (req, res) => {
   }
 };
 
+// ✅ Get Single User by ID
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id).select("-password"); // hide password
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error("Error in getUserById:", err.message);
+    res.status(500).json({ error: "Failed to fetch user", details: err.message });
+  }
+};
+
 // Update User
 const updateUser = async (req, res) => {
   try {
@@ -25,7 +42,7 @@ const updateUser = async (req, res) => {
       id,
       { name, email, phone, address },
       { new: true }
-    );
+    ).select("-password");
 
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
@@ -58,6 +75,7 @@ const deleteUser = async (req, res) => {
 // Export All
 module.exports = {
   getUsers,
+  getUserById,   // ✅ added
   updateUser,
   deleteUser
 };

@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {User} from 'lucide-react';
 import { useAuth } from '../context/AuthContext'; 
 function ProductDetail() {
   const { id } = useParams();
@@ -62,13 +63,25 @@ function ProductDetail() {
           <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
           <li><Link to="/contact" className="hover:text-green-500">Contact Us</Link></li>
           <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-          <li>
-            {user ? (
-              <button className="loginbtn hover:text-green-500" onClick={handleLogout}>Logout</button>
-            ) : (
-              <button className="loginbtn hover:text-green-500" onClick={handleLoginRedirect}>Login</button>
-            )}
-          </li>
+          <li style={{ display: "flex", alignItems: "center" }}>
+                                {user ? (
+                                  <>
+                                    <button className="loginbtn" onClick={handleLogout}>
+                                      Logout
+                                    </button>
+                                    <div className="usericon">
+                                      <Link to="/userdashboard">
+                            <User size={25} />
+                          </Link>
+                                    </div>
+                                  
+                                  </>
+                                ) : (
+                                  <button className="loginbtn" onClick={handleLoginRedirect}>
+                                    Login
+                                  </button>
+                                )}
+                              </li>
         </ul>
       </div>
 

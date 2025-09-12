@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import {User} from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 function products() {
@@ -15,7 +16,7 @@ function products() {
     navigate("/"); 
   };
 
-  const handleLoginClick = () => {
+  const handleLoginRedirect = () => {
     localStorage.setItem("redirectAfterLogin", "/products");
     navigate("/login");
   };
@@ -51,17 +52,25 @@ function products() {
           <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
           <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
           <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-          <li>
-            {user ? (
-              <button className="loginbtn hover:text-green-500" onClick={handleLogout}>
-                Logout
-              </button>
-            ) : (
-              <button className="loginbtn hover:text-green-500" onClick={handleLoginClick}>
-                Login
-              </button>
-            )}
-          </li>
+          <li style={{ display: "flex", alignItems: "center" }}>
+                                {user ? (
+                                  <>
+                                    <button className="loginbtn" onClick={handleLogout}>
+                                      Logout
+                                    </button>
+                                    <div className="usericon">
+                                      <Link to="/userdashboard">
+                            <User size={25} />
+                          </Link>
+                                    </div>
+                                  
+                                  </>
+                                ) : (
+                                  <button className="loginbtn" onClick={handleLoginRedirect}>
+                                    Login
+                                  </button>
+                                )}
+                              </li>
         </ul>
       </div>
 

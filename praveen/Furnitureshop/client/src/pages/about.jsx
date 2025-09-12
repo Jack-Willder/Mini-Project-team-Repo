@@ -1,16 +1,17 @@
-import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import React from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { User } from "lucide-react";
 
-function about() {
+function About() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
+
   const handleLoginRedirect = () => {
     navigate("/login", { state: { from: location.pathname } });
   };
@@ -18,28 +19,36 @@ function about() {
   return (
     <div className="aboutpage">
       {/* Header */}
-      <div className="header-wrapper">
-        <h1 className="header funky-text">
-          <span className="circle-bg">&nbsp;Furniture</span>One
-        </h1>
-        <ul className="navigation">
-          <li><Link to="/" className="hover:text-green-500">Home</Link></li>
-          <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
-          <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
-          <li><b><Link to="/about">About</Link></b></li>
-          <li>
-            {user ? (
-              <button className="loginbtn hover:text-green-500" onClick={handleLogout}>Logout</button>
-            ) : (
-              <button
-                className="loginbtn hover:text-green-500"
-                onClick={handleLoginRedirect}>
-                Login
-              </button>
-            )}
-          </li>
-        </ul>
-      </div>
+     <div className="header-wrapper">
+               <h1 className="header funky-text">
+                 <span className="circle-bg">&nbsp;Furniture</span>One
+               </h1>
+               <ul className="navigation">
+                 <li><Link to="/" className="hover:text-green-500">Home</Link></li>
+                 <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
+                 <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
+                 <li><Link to="/about" className="hover:text-green-500">About</Link></li>
+                 <li style={{ display: "flex", alignItems: "center" }}>
+                            {user ? (
+                              <>
+                                <button className="loginbtn" onClick={handleLogout}>
+                                  Logout
+                                </button>
+                                <div className="usericon">
+                                  <Link to="/userdashboard">
+                        <User size={25} />
+                      </Link>
+                                </div>
+                              
+                              </>
+                            ) : (
+                              <button className="loginbtn" onClick={handleLoginRedirect}>
+                                Login
+                              </button>
+                            )}
+                          </li>
+                 </ul>
+             </div>
 
       {/* About Section */}
       <section className="about-section">
@@ -69,7 +78,6 @@ function about() {
               <h3>Our Mission</h3>
               <p>To redefine how people shop for furniture by offering quality, style, and value — all from the comfort of home.</p>
             </div>
-
             <div className="vision-box">
               <h3>Our Vision</h3>
               <p>To become a trusted name in online furniture retail by continuously innovating and listening to our customers.</p>
@@ -79,13 +87,13 @@ function about() {
       </section>
 
       {/* Footer */}
-      <div className="footer">
+      <footer className="footer">
         <p className="foot">
           Copyright © 2025 | Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link>
         </p>
-      </div>
+      </footer>
     </div>
   );
 }
 
-export default about;
+export default About;

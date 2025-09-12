@@ -76,10 +76,6 @@ function ManageUser() {
             <span className="circle-bg">&nbsp;Furniture</span>One
           </h1>
           <ul className="navigation">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/products">Shop</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/about">About</Link></li>
             <li><Link to="/login"><button className="loginbtn">Login</button></Link></li>
           </ul>
         </div>

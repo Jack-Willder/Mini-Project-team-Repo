@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom'; 
+import {User} from 'lucide-react';
 import { useAuth } from "../context/AuthContext";
 
 function Body() {
@@ -12,7 +13,7 @@ function Body() {
     navigate("/");
   };
 
-  const handleLoginClick = () => {
+  const handleLoginRedirect = () => {
     localStorage.setItem("redirectAfterLogin", location.pathname);
     navigate("/login",{ state: { from: location.pathname } });
   };
@@ -29,17 +30,25 @@ function Body() {
           <li><b><Link to="/products">Shop</Link></b></li>
           <li><b><Link to="/contact">Contact</Link></b></li>
           <li><b><Link to="/about">About Us</Link></b></li>
-          <li>
-            {user ? (
-              <button className="loginbtn hover:text-green-500" onClick={handleLogout}>
-                Logout
-              </button>
-            ) : (
-              <button className="loginbtn hover:text-green-500" onClick={handleLoginClick}>
-                Login
-              </button>
-            )}
-          </li>
+           <li style={{ display: "flex", alignItems: "center" }}>
+                                 {user ? (
+                                   <>
+                                     <button className="loginbtn" onClick={handleLogout}>
+                                       Logout
+                                     </button>
+                                     <div className="usericon">
+                                       <Link to="/userdashboard">
+                             <User size={25} />
+                           </Link>
+                                     </div>
+                                   
+                                   </>
+                                 ) : (
+                                   <button className="loginbtn" onClick={handleLoginRedirect}>
+                                     Login
+                                   </button>
+                                 )}
+                               </li>
         </ul>
       </div>
 
@@ -75,7 +84,7 @@ function Body() {
           <h2><span>NEW </span>ARRIVALS</h2>
           <p>Celebrate being together in the room that is the heart of what home is about.</p>
           <p>Create a space that welcomes you and your guest and makes each moment a special occasion.
-</p>
+          </p>
         </div>
 
         <div className="newfurniture">
@@ -126,12 +135,12 @@ function Body() {
         </div>
 
         {/* Footer */}
-        <div className="footer">
-          <p className="foot">
-            Copyright © 2025 |
-            Designed by <Link to="/adminlogin">Praveen</Link>
-          </p>
-        </div>
+         <div className="footer">
+        <p className="foot">
+          Copyright © 2025 | Designed by
+          <Link to="/adminlogin" className="footer-link"> Praveen</Link>
+        </p>
+      </div>
       </div>
     </div>
   );

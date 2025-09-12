@@ -1199,7 +1199,7 @@ table tr:hover {
   border-radius: 4px;
 }
 
-/* Buttons */
+
 .edit-btn,
 .delete-btn {
   padding: 6px 12px;
@@ -1318,5 +1318,353 @@ table tr:hover {
   .manage-product-container td:nth-of-type(7)::before { content: "Stock"; }
   .manage-product-container td:nth-of-type(8)::before { content: "Description"; }
   .manage-product-container td:nth-of-type(9)::before { content: "Actions"; }
+}
+
+.cart-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+}
+
+.cart-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.cart-table th {
+  background-color: #f2f2f2;
+}
+
+.cart-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity-controls button:hover {
+  background: #bbb;
+}
+
+.remove-btn {
+  background: #e63946;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #c1121f;
+}
+
+.cart-summary {
+  text-align: right;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.cart-summary p {
+  margin: 5px 0;
+}
+
+.cart-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.next-btn {
+  background: #2a9d8f;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.next-btn:hover {
+  background: #21867a;
+}
+
+.usericon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-between;
+  gap:5px;
+  margin-left:10px;
+  border: 2px solid pink; 
+  padding: 4px;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.usericon:hover {
+  color: #2e7d32;
+  border-color: #2e7d32; 
+}
+
+/* Page wrapper */
+.userdashboard-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9fafb; /* very light gray background */
+}
+
+/* Card box */
+.userdashboard-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  width: 360px;
+  text-align: center;
+}
+
+/* Welcome message */
+.userdashboard-welcome {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Button container */
+.userdashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Common button style */
+.userdashboard-btn {
+  padding: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #333;
+  background: #fdfdfd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Profile button */
+.userdashboard-profile-btn {
+  background: linear-gradient(to right, #ffffff, #dbeafe); /* white + light blue */
+}
+.userdashboard-profile-btn:hover {
+  background: linear-gradient(to right, #dbeafe, #bfdbfe);
+}
+
+/* Orders button */
+.userdashboard-orders-btn {
+  background: linear-gradient(to right, #ffffff, #dcfce7); /* white + light green */
+}
+.userdashboard-orders-btn:hover {
+  background: linear-gradient(to right, #bbf7d0, #86efac);
+}
+
+/* Container */
+.userprofile-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.userprofile-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form */
+.userprofile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Labels */
+.userprofile-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Input fields */
+.userprofile-form input[type="text"],
+.userprofile-form input[type="email"] {
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.userprofile-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Address section title */
+.userprofile-form h3 {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* Update button */
+.userprofile-update-btn {
+  background: #007bff;
+  color: #fff;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.userprofile-update-btn:hover {
+  background: #0056b3;
+}
+
+/* Message */
+.userprofile-message {
+  margin-top: 15px;
+  margin-bottom:10px;
+  text-align: center;
+  font-size: 14px;
+  color: green;
+  font-weight: bold;
+}
+
+/* AdminLogin.css */
+
+/* Center the login card */
+.admin-login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* soft background */
+  font-family: 'Arial', sans-serif;
+}
+
+/* The login card */
+.admin-login-form {
+  background-color: #ffffff; /* white card */
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.2s;
+}
+
+.admin-login-form:hover {
+  transform: translateY(-3px);
+}
+
+/* Title */
+.admin-login-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Inputs */
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+}
+.back-home {
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  border:none;
+  width:100%;
+  border-radius: 10px;
+  background-color: transparent;
+  color:#ff6f61;
+
+}
+.back-home>link{
+  padding:10px;
 }
 

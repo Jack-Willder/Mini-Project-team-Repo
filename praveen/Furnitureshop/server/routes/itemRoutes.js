@@ -14,18 +14,18 @@ const {
 } = require("../controllers/itemController");
 
 // Create item with image + fields like productId, name, price, stock
-router.post("/items", upload.single("image"), createItem);
+router.post("/", upload.single("image"), createItem);
 
 // Get all items
-router.get("/items", getItems);
+router.get("/", getItems);
 
 // Get image for a specific item
-router.get("/items/image/:id", getImage);
+router.get("/image/:id", getImage);
 
 // Update an item (including image and productId)
-router.put("/items/:id", upload.single("image"), updateItem);
+router.put("/:id", upload.single("image"), updateItem);
 
 // Delete an item
-router.delete("/items/:id", deleteItem);
+router.delete("/:id", deleteItem);
 
 module.exports = router;

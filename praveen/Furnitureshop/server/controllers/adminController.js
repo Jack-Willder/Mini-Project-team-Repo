@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const SECRET = "adminSecretKey";
 
 exports.adminLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  console.log("Login attempt:", username, password);
+  console.log("Login attempt:", email, password);
 
   try {
-    const admin = await Admin.findOne({ username });
+    const admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(400).json({ message: "Admin not found" });
