@@ -1,3 +1,4 @@
+// AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -17,14 +18,12 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
-    //  Assign role based on email
     let role = "user";
     if (userData.email === "abc@gmail.com") {
       role = "admin";
     }
 
     const updatedUser = { ...userData, role };
-
     setUser(updatedUser);
     setToken(token);
 
@@ -39,8 +38,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  // helper to quickly check if admin
+  const isAdmin = user?.role === "admin";
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,8 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";  
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../context/AuthContext";
+
 
 function ManageProduct() {
+  const { logout } = useAuth();
+    const navigate = useNavigate();
+  
+    const handleLogout = () => {
+      logout();
+      navigate("/"); // redirect to admin login page after logout
+    };
   const [productId, setProductId] = useState('');
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
@@ -105,13 +115,15 @@ function ManageProduct() {
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
-        <ul className="navigation">
-        
-          <li>
-            <Link className='loginbtn' to="/">
-              <button>Logout</button>
-            </Link>
-          </li>
+         <ul><li>
+          <button
+              onClick={handleLogout}
+              className="loginbtn hover:text-green-500"
+            >
+              Logout
+            </button>
+        </li>
+          
         </ul>
       </div>
       <br></br>

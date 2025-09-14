@@ -9,7 +9,7 @@ const UserDashboard = ({ user }) => {
   };
 
   const handleMyOrders = () => {
-    navigate("/orders");
+    navigate("/userorders");
   };
 
   return (

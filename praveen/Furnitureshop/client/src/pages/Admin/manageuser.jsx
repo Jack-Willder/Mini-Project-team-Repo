@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";  // ✅ THIS IS MISSING
+
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+
 
 function ManageUser() {
+  const { logout } = useAuth();
+    const navigate = useNavigate();
+  
+    const handleLogout = () => {
+      logout();
+      navigate("/"); // redirect to admin login page after logout
+    };
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -107,12 +118,15 @@ function ManageUser() {
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
-        <ul className="navigation">
-          <li>
-            <Link className='loginbtn' to="/">
-              <button>Logout</button>
-            </Link>
-          </li>
+         <ul><li>
+          <button
+              onClick={handleLogout}
+              className="loginbtn hover:text-green-500"
+            >
+              Logout
+            </button>
+        </li>
+          
         </ul>
       </div>
 

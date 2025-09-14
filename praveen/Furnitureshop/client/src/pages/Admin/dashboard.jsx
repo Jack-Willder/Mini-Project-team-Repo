@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";  // ✅ import context
+import { useAuth } from "../../context/AuthContext";
 
 function Dashboard() {
-  const { user, logout } = useAuth();  // ✅ get user + logout
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // clears user from context + localStorage
-    navigate("/"); // redirect to admin login page
+    logout();
+    navigate("/"); // redirect to admin login page after logout
   };
 
   return (
@@ -17,27 +17,18 @@ function Dashboard() {
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
-        <ul >
-          {user && user.role === "admin" ? ( // ✅ show logout only if logged in as admin
-            <li>
-              <button
-                onClick={handleLogout}
-                className="loginbtn hover:text-green-500"
-              >
-                Logout
-              </button>
-            </li>
-          ) : (
-            <li>
-              <Link to="/adminlogin">
-                <button className="loginbtn">Admin Login</button>
-              </Link>
-            </li>
-          )}
+        <ul><li>
+          <button
+              onClick={handleLogout}
+              className="loginbtn hover:text-green-500"
+            >
+              Logout
+            </button>
+        </li>
+          
         </ul>
       </div>
 
-      {/* content of dashboard*/}
       <div className="dashboard-content">
         <h2>Welcome Admin...!</h2>
         <div className="sales-orders-users">
@@ -64,11 +55,10 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="footer">
         <p className="foot">
           Copyright © 2025 | Designed by{" "}
-          <Link to="/adminlogin" className="footer-link">
+          <Link  className="footer-link">
             Praveen
           </Link>
         </p>

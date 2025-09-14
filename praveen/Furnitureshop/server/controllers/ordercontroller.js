@@ -27,7 +27,7 @@ export const placeOrder = async (req, res) => {
       totalAmount,
       paymentStatus: paymentMethod === "Online" ? "Paid" : "Pending",
       orderStatus: "Processing",
-      shippingStatus: "Pending", // optional field if you want to track shipping
+      shippingStatus: "Pending",
       shippingAddress,
       orderDate: new Date(),
     });
@@ -101,7 +101,7 @@ export const getUserOrders = async (req, res) => {
   }
 };
 
-// -------------------- Cancel Order (Admin) --------------------
+// -------------------- Cancel Order (Admin/User) --------------------
 export const cancelOrder = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -109,6 +109,24 @@ export const cancelOrder = async (req, res) => {
     const order = await Order.findById(orderId);
     if (!order) return res.status(404).json({ message: "Order not found" });
 
+    // Prevent cancelling shipped/delivered orders
+    if (order.shippingStatus !== "Pending") {
+      return res.status(400).json({ message: "Cannot cancel order once shipped/delivered" });
+    }
+
+    // Restore stock for cancelled items
+    for (const cartItem of order.items) {
+      const item = await Item.findById(cartItem.productId);
+      if (item) {
+        const variant = item.variants.find(v => v.woodType === cartItem.variant);
+        if (variant) {
+          variant.stock += cartItem.quantity;
+          await item.save();
+        }
+      }
+    }
+
+    // Update order status
     order.orderStatus = "Cancelled";
     await order.save();
 

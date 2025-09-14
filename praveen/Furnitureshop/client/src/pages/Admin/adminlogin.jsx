@@ -37,6 +37,21 @@ function AdminLogin() {
   };
 
   return (
+    <div className="admin-loginpage">
+      <div className="header-wrapper">
+           {/* Header */}
+              <h1 className="header funky-text">
+                <span className="circle-bg">&nbsp;Furniture</span>One
+              </h1>
+              <ul className="navigation">
+                <li><b><Link to="/" >Home </Link></b></li>
+                <li><b><Link to="/products" >Shop </Link></b></li>
+                <li><b><Link to="/contact">Contact Us </Link></b></li>
+                 
+                <li><b><Link to="/about">About Us</Link></b></li>
+               
+              </ul>
+            </div>
     <div className="login-container">
       <h2 >Admin Login</h2>
       <form  onSubmit={handleLogin}>
@@ -53,19 +68,29 @@ function AdminLogin() {
         </div>
         <div className="form-group">
           <label className="form-group">Password</label>
-          <input 
-            type="password"
-            className="form-group-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <input 
+              type="password"
+              className="form-group-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={8}
+              maxLength={16}
+            />
+
         </div>
         <button type="submit" className="login-button">Login</button>
       </form>
       <button className="back-home" >
         <Link to="/"  >Back to Home</Link>
       </button>
+    </div>
+     <div className="footer">
+            <p className="foot">
+              Copyright © 2025 | Designed by
+              <Link to="/adminlogin" className="footer-link"> Praveen</Link>
+            </p>
+          </div>
     </div>
   );
 }

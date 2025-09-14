@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";  // ✅ THIS IS MISSING
+import { useAuth } from "../../context/AuthContext";
+
 
 function ManageOrder() {
+    const { logout } = useAuth();
+      const navigate = useNavigate();
+    
+      const handleLogout = () => {
+        logout();
+        navigate("/"); // redirect to admin login page after logout
+      };
   const [orders, setOrders] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -9,6 +19,7 @@ function ManageOrder() {
     fetchOrders();
   }, []);
 
+  // 🔹 Fetch all orders (Admin View)
   const fetchOrders = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/orders");
@@ -18,6 +29,7 @@ function ManageOrder() {
     }
   };
 
+  // 🔹 Update a specific order field (paymentStatus, shippingStatus, orderStatus)
   const handleStatusChange = async (orderId, field, value) => {
     try {
       await axios.put(`http://localhost:5000/api/orders/${orderId}`, {
@@ -31,13 +43,14 @@ function ManageOrder() {
     }
   };
 
+  // 🔹 Cancel order (restores stock via backend controller)
   const handleCancelOrder = async (orderId) => {
     if (window.confirm("Are you sure you want to cancel this order?")) {
       try {
         await axios.put(`http://localhost:5000/api/orders/${orderId}`, {
           orderStatus: "Cancelled"
         });
-        setMessage("Order cancelled successfully ✅");
+        setMessage("Order cancelled successfully ✅ (Stock Restored)");
         fetchOrders();
       } catch (err) {
         console.error("Error cancelling order:", err);
@@ -47,12 +60,22 @@ function ManageOrder() {
   };
 
   return (
-    <div className="products-management">
+    <div className="orders-management">
       <h1 className="header funky-text">
         <span className="circle-bg">&nbsp;Furniture</span>One Orders
       </h1>
+       <ul><li>
+          <button
+              onClick={handleLogout}
+              className="loginbtn hover:text-green-500"
+            >
+              Logout
+            </button>
+        </li>
+          
+        </ul>
 
-      <table>
+      <table className="orders-table">
         <thead>
           <tr>
             <th>Order ID</th>
@@ -72,7 +95,9 @@ function ManageOrder() {
               <td>{order.userId?.name || "Unknown"}</td>
               <td>
                 {order.items?.map((item, i) => (
-                  <div key={i}>{item.name} ({item.variant}) x {item.quantity}</div>
+                  <div key={i}>
+                    {item.name} ({item.variant}) x {item.quantity}
+                  </div>
                 ))}
               </td>
               <td>₹{order.totalAmount}</td>
@@ -81,10 +106,12 @@ function ManageOrder() {
               <td>
                 <select
                   value={order.paymentStatus || "Pending"}
-                  onChange={(e) => handleStatusChange(order._id, "paymentStatus", e.target.value)}
+                  onChange={(e) =>
+                    handleStatusChange(order._id, "paymentStatus", e.target.value)
+                  }
                 >
                   <option value="Pending">Pending</option>
-                  <option value="Completed">Completed</option>
+                  <option value="Paid">Paid</option>
                   <option value="Failed">Failed</option>
                 </select>
               </td>
@@ -93,7 +120,9 @@ function ManageOrder() {
               <td>
                 <select
                   value={order.shippingStatus || "Pending"}
-                  onChange={(e) => handleStatusChange(order._id, "shippingStatus", e.target.value)}
+                  onChange={(e) =>
+                    handleStatusChange(order._id, "shippingStatus", e.target.value)
+                  }
                 >
                   <option value="Pending">Pending</option>
                   <option value="Shipped">Shipped</option>
@@ -105,7 +134,9 @@ function ManageOrder() {
               <td>
                 <select
                   value={order.orderStatus || "Processing"}
-                  onChange={(e) => handleStatusChange(order._id, "orderStatus", e.target.value)}
+                  onChange={(e) =>
+                    handleStatusChange(order._id, "orderStatus", e.target.value)
+                  }
                 >
                   <option value="Processing">Processing</option>
                   <option value="Confirmed">Confirmed</option>
@@ -116,7 +147,12 @@ function ManageOrder() {
 
               {/* Actions */}
               <td>
-                <button onClick={() => handleCancelOrder(order._id)}>Cancel Order</button>
+                <button
+                  onClick={() => handleCancelOrder(order._id)}
+                  disabled={order.orderStatus === "Cancelled"} // disable if already cancelled
+                >
+                  Cancel Order
+                </button>
               </td>
             </tr>
           ))}
