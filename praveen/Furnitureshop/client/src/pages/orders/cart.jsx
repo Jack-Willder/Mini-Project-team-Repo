@@ -1,115 +1,138 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-function cart() {
-  const [cart, setCart] = useState(null);
+function Cart() {
+  const { user } = useAuth();
+  const [cart, setCart] = useState({ items: [], totalAmount: 0, status: "empty" });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch cart when page loads
+  // Fetch cart from backend
+  const fetchCart = async () => {
+    if (!user) return;
+    setLoading(true);
+    try {
+      const res = await axios.get(`http://localhost:5000/api/cart/${user.id}`);
+      setCart(res.data);
+    } catch (err) {
+      console.error(err);
+      setCart({ items: [], totalAmount: 0, status: "empty" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/cart", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setCart(res.data.cart);
-      } catch (err) {
-        console.error("Error fetching cart:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchCart();
-  }, []);
+  }, [user]);
 
-  // Update quantity
-  const updateQuantity = async (itemId, action) => {
+  // Update quantity (+1 / -1)
+  const handleUpdateQuantity = async (item, change) => {
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.put(
-        `http://localhost:5000/api/cart/update`,
-        { itemId, action },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setCart(res.data.cart);
+      const res = await axios.put("http://localhost:5000/api/cart/update", {
+        userId: user.id,
+        productId: item.productId,
+        woodType: item.woodType,
+        quantity: change,
+      });
+      setCart(res.data);
     } catch (err) {
-      console.error("Error updating quantity:", err);
+      alert(err.response?.data?.message || "Failed to update quantity");
     }
   };
 
-  // Remove item
-  const removeItem = async (itemId) => {
+  // Remove item from cart
+  const handleRemoveItem = async (item) => {
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.delete(
-        `http://localhost:5000/api/cart/remove/${itemId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setCart(res.data.cart);
+      const res = await axios.delete("http://localhost:5000/api/cart/remove", {
+        data: {
+          userId: user.id,
+          productId: item.productId,
+          woodType: item.woodType,
+        },
+      });
+      setCart(res.data);
     } catch (err) {
-      console.error("Error removing item:", err);
+      alert(err.response?.data?.message || "Failed to remove item");
     }
   };
 
-  if (loading) return <p>Loading cart...</p>;
-  if (!cart || cart.items.length === 0) return <p>Your cart is empty 🛒</p>;
+  // Navigate to address checking page
+  const handleNext = () => {
+    navigate("/Deliveryaddress"); // Update this route to your address page
+  };
+
+  if (!user) {
+    return (
+      <div className="cart-wrapper-unique">
+        <h2 className="cart-empty-msg-unique">Please login to view your cart</h2>
+        <Link to="/login">
+          <button className="cart-login-btn-unique">Login</button>
+        </Link>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <h2 className="cart-loading-msg-unique">Loading cart...</h2>;
+  }
+
+  if (!cart.items.length || cart.status === "empty") {
+    return (
+      <div className="cart-wrapper-unique">
+        <h2 className="cart-empty-msg-unique">Your cart is empty</h2>
+        <Link to="/products">
+          <button className="cart-add-more-btn-unique">Add Products</button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="cart-container">
-      <h1 className="cart-title">Your Cart</h1>
-
-      <table className="cart-table">
+    <div className="cart-wrapper-unique">
+      <h1 className="cart-title-unique">Your Cart</h1>
+      <table className="cart-table-unique">
         <thead>
           <tr>
-            <th>Image</th>
             <th>Product</th>
             <th>Variant</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Total</th>
-            <th>Actions</th>
+            <th>Subtotal</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {cart.items.map((item) => (
-            <tr key={item._id}>
-              <td>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="cart-item-image"
-                />
-              </td>
+            <tr key={item.productId + item.woodType}>
               <td>{item.name}</td>
               <td>{item.woodType}</td>
               <td>₹{item.price}</td>
               <td>
-                <div className="quantity-controls">
-                  <button
-                    onClick={() => updateQuantity(item._id, "decrease")}
-                    disabled={item.quantity === 1}
-                  >
-                    ➖
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(item._id, "increase")}
-                  >
-                    ➕
-                  </button>
-                </div>
+                <button
+                  className="cart-qty-btn-unique"
+                  onClick={() => handleUpdateQuantity(item, -1)}
+                  disabled={item.quantity <= 1}
+                >
+                  −
+                </button>
+                <span className="cart-qty-display-unique">{item.quantity}</span>
+                <button
+                  className="cart-qty-btn-unique"
+                  onClick={() => handleUpdateQuantity(item, 1)}
+                >
+                  +
+                </button>
               </td>
               <td>₹{item.price * item.quantity}</td>
               <td>
                 <button
-                  className="remove-btn"
-                  onClick={() => removeItem(item._id)}
+                  className="cart-remove-btn-unique"
+                  onClick={() => handleRemoveItem(item)}
                 >
-                  🗑 Remove
+                  Remove
                 </button>
               </td>
             </tr>
@@ -117,23 +140,19 @@ function cart() {
         </tbody>
       </table>
 
-      {/* Totals */}
-      <div className="cart-summary">
-        <p>Total Items: {cart.totalQuantity}</p>
-        <p>Total Price: ₹{cart.totalPrice}</p>
-      </div>
+      <h2 className="cart-total-unique">Total: ₹{cart.totalAmount}</h2>
 
-      {/* Next Button */}
-      <div className="cart-actions">
-        <button
-          onClick={() => navigate("/checkout")}
-          className="next-btn"
-        >
-          Next →
+      {cart.status === "active" && (
+        <button className="cart-next-btn-unique" onClick={handleNext}>
+          Next
         </button>
-      </div>
+      )}
+
+      <Link to="/products">
+        <button className="cart-add-more-btn-unique">Add More Items</button>
+      </Link>
     </div>
   );
 }
 
-export default cart;
+export default Cart;

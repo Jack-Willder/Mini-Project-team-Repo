@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+// models/user.js
+import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
   doorNo: { type: String, required: true, trim: true },
@@ -35,11 +36,13 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     address: {
-      type: addressSchema, // ✅ now using object schema
+      type: addressSchema, // ✅ embedded object schema
       required: true,
     },
   },
   { collection: "user", timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+// ✅ ES Modules export
+const User = mongoose.model("User", userSchema);
+export default User;

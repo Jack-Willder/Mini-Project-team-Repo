@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
   productId: {
     type: String,
     required: true,
-    unique: true  
+    unique: true
   },
   name: String,
   category: String,
@@ -23,4 +23,6 @@ const itemSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('items', itemSchema);
+
+export default Item; 

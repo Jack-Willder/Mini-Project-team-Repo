@@ -1,7 +1,8 @@
-const User = require("../models/useredit");
+// controllers/usereditController.js
+import User from "../models/useredit.js";
 
 // Get All Users
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -11,8 +12,8 @@ const getUsers = async (req, res) => {
   }
 };
 
-// ✅ Get Single User by ID
-const getUserById = async (req, res) => {
+// Get Single User by ID
+export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id).select("-password"); // hide password
@@ -28,27 +29,27 @@ const getUserById = async (req, res) => {
   }
 };
 
-// Update User
-const updateUser = async (req, res) => {
+// Update User (allow partial updates, including only address)
+export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, phone, address } = req.body;
+    const updates = req.body; // could be { address } or other fields
 
-    if (!name || !email || !phone || !address) {
-      return res.status(400).json({ error: "Missing required fields" });
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // Merge updates into existing user
+    for (const key in updates) {
+      if (key === "address") {
+        // Merge nested address
+        user.address = { ...user.address.toObject(), ...updates.address };
+      } else {
+        user[key] = updates[key];
+      }
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      id,
-      { name, email, phone, address },
-      { new: true }
-    ).select("-password");
-
-    if (!updatedUser) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    res.json(updatedUser);
+    await user.save();
+    res.json(user);
   } catch (err) {
     console.error("Error in updateUser:", err.message);
     res.status(500).json({ error: "Failed to update user", details: err.message });
@@ -56,7 +57,7 @@ const updateUser = async (req, res) => {
 };
 
 // Delete User
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedUser = await User.findByIdAndDelete(id);
@@ -70,12 +71,4 @@ const deleteUser = async (req, res) => {
     console.error("Error in deleteUser:", err.message);
     res.status(500).json({ error: "Failed to delete user", details: err.message });
   }
-};
-
-// Export All
-module.exports = {
-  getUsers,
-  getUserById,   // ✅ added
-  updateUser,
-  deleteUser
 };

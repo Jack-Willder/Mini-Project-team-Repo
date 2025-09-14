@@ -125,7 +125,7 @@ const UserProfile = () => {
 
           {/* Nested address fields */}
           <h3>Address</h3>
-          {["doornumber","street","city","state","postalcode","country","landmark"].map(field => (
+          {["doorNo","street","city","state","postalCode","country","landmark"].map(field => (
             <label key={field}>
               {field.charAt(0).toUpperCase() + field.slice(1)}:
               <input

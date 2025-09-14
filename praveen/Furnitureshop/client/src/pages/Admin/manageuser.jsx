@@ -1,19 +1,27 @@
-
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ManageUser() {
   const [users, setUsers] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
+    name: "",
+    email: "",
+    phone: "",
+    address: {
+      doorNo: "",
+      street: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+      landmark: ""
+    }
   });
-
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetchUsers();
@@ -21,31 +29,27 @@ function ManageUser() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/userman/users');
+      const res = await axios.get("http://localhost:5000/api/userman/users");
       setUsers(res.data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
+    } catch (err) {
+      console.error("Error fetching users:", err);
     }
   };
 
-  const handleEdit = (user) => {
+  const handleEditClick = (user) => {
+    setFormData(user);
     setEditId(user._id);
-    setFormData({
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      address: user.address
-    });
-    setMessage('');
+    setIsEditing(true);
+    setShowForm(true);
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
+    if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await axios.delete(`http://localhost:5000/api/userman/users/${id}`);
         fetchUsers();
-      } catch (error) {
-        console.error('Error deleting user:', error);
+      } catch (err) {
+        console.error("Error deleting user:", err);
       }
     }
   };
@@ -54,122 +58,158 @@ function ManageUser() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleUpdate = async (e) => {
+  const handleAddressChange = (e) => {
+    setFormData({
+      ...formData,
+      address: { ...formData.address, [e.target.name]: e.target.value }
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/api/userman/users/${editId}`, formData);
-      setMessage('✅ User updated successfully');
+      setMessage("User updated successfully ✅");
+      setShowForm(false);
+      setIsEditing(false);
       setEditId(null);
-      setFormData({ name: '', email: '', phone: '', address: '' });
       fetchUsers();
-    } catch (error) {
-      console.error('Error updating user:', error);
-      setMessage(' Failed to update user');
+    } catch (err) {
+      console.error("Error updating user:", err);
+      setMessage("Failed to update user ❌");
     }
   };
 
+  const handleCancel = () => {
+    setShowForm(false);
+    setIsEditing(false);
+    setEditId(null);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      address: {
+        doorNo: "",
+        street: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
+        landmark: ""
+      }
+    });
+    setMessage("");
+  };
+
   return (
-    <div className="registerpage">
-      <div className="aboutpage">
-        <div className="header-wrapper">
-          <h1 className="header funky-text">
-            <span className="circle-bg">&nbsp;Furniture</span>One
-          </h1>
-          <ul className="navigation">
-            <li><Link to="/login"><button className="loginbtn">Login</button></Link></li>
-          </ul>
-        </div>
+    <div className="products-management">
+      <div className="header-wrapper">
+        <h1 className="header funky-text">
+          <span className="circle-bg">&nbsp;Furniture</span>One
+        </h1>
+        <ul className="navigation">
+          <li>
+            <Link className='loginbtn' to="/">
+              <button>Logout</button>
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-        {/* Update Form */}
-        <div className="register-container">
-          {editId && (
-            <form onSubmit={handleUpdate}>
-              <h2>Edit User</h2>
-              <div className="form-group">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Address</label>
-                <textarea
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button type="submit" className="register-button">Update User</button>
-            </form>
-          )}
+      <div className="manage-container">
+        {showForm && (
+          <form onSubmit={handleSubmit} className="product-form">
+            <h2>{isEditing ? "Update User" : "Add New User"}</h2>
 
-          {message && <p className="error-message">{message}</p>}
-        </div>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Name"
+              required
+            />
 
-        {/* User Table */}
-        <div className="register-container">
-          <h2>Registered Users</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Actions</th>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+
+            <input
+              type="text"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+              required
+            />
+
+            <h4>Address</h4>
+            {["doorNo","street","city","state","postalCode","country","landmark"].map(field => (
+              <input
+                key={field}
+                type="text"
+                name={field}
+                value={formData.address?.[field] || ""}
+                onChange={handleAddressChange}
+                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                required
+              />
+            ))}
+
+            <div className="form-buttons">
+              <button type="submit">{isEditing ? "Update User" : "Add User"}</button>
+              <button type="button" onClick={handleCancel}>Cancel</button>
+            </div>
+          </form>
+        )}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>
+                  {user.address && (
+                    <>
+                      {`${user.address.doorNo}, ${user.address.street}, ${user.address.city}, ${user.address.state}, ${user.address.postalCode}, ${user.address.country}`}
+                      {user.address.landmark ? ` (Landmark: ${user.address.landmark})` : ""}
+                    </>
+                  )}
+                </td>
+                <td>
+                  <button className="edit-btn" onClick={() => handleEditClick(user)}>Edit</button>
+                  <button className="delete-btn" onClick={() => handleDelete(user._id)}>Delete</button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {users.map((user, i) => (
-                <tr key={user._id}>
-                  <td>{i + 1}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.address}</td>
-                  <td>
-                    <button onClick={() => handleEdit(user)}>Edit</button>
-                    &nbsp;
-                    <button onClick={() => handleDelete(user._id)}>Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
 
-        <div className="footer">
-          <p className="foot">
-            Copyright © 2025 |
-            Designed by <Link to="/adminlogin" className="footer-link">Praveen</Link>
-          </p>
-        </div>
+        <button
+          className="add-btn"
+          onClick={() => setShowForm(true)}
+          style={{ marginTop: "20px" }}
+        >
+          ➕ Add User
+        </button>
+
+        {message && <p className="delivery-message">{message}</p>}
       </div>
     </div>
   );

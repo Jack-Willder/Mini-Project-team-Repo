@@ -1,12 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);       // Normal or admin user object
+  const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  // Load user and token from localStorage on page refresh
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
@@ -17,24 +16,20 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Login function (works for admin and normal user)
-  const login = (userData, tokenValue) => {
-    if (!userData || !tokenValue) return false;
+  const login = (userData, token) => {
+    //  Assign role based on email
+    let role = "user";
+    if (userData.email === "abc@gmail.com") {
+      role = "admin";
+    }
 
-    const fullUser = {
-      id: userData.id || userData._id || null,       // admin may not have id
-      name: userData.name || (userData.role === "admin" ? "Admin" : ""),
-      email: userData.email,
-      role: userData.role || "user",
-    };
+    const updatedUser = { ...userData, role };
 
-    setUser(fullUser);
-    setToken(tokenValue);
+    setUser(updatedUser);
+    setToken(token);
 
-    localStorage.setItem("user", JSON.stringify(fullUser));
-    localStorage.setItem("token", tokenValue);
-
-    return true;
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    localStorage.setItem("token", token);
   };
 
   const logout = () => {

@@ -1,122 +1,155 @@
-const Cart = require("../models/Cart");
-const Item = require("../models/items"); // Product schema
+import Cart from "../models/Cart.js";
+import Item from "../models/items.js"; // your products collection
 
-// Helper: Recalculate totals
-const calculateTotals = (cart) => {
-  cart.totalQuantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
-  cart.totalPrice = cart.items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-  return cart;
+// Helper to calculate total
+const calculateTotal = (items) => {
+  return items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 };
 
-// ✅ Get Cart
-exports.getCart = async (req, res) => {
+// Add item to cart
+export const addToCart = async (req, res) => {
   try {
-    const userId = req.query.userId || req.body.userId; // ✅ Get userId from request
-    if (!userId) return res.status(400).json({ message: "UserId required" });
+    const { userId, productId, name, woodType, price, quantity } = req.body;
 
-    const cart = await Cart.findOne({ userId }).populate("items.productId");
-    if (!cart) {
-      return res.json({ cart: { items: [], totalQuantity: 0, totalPrice: 0 } });
-    }
-
-    res.json({ cart });
-  } catch (err) {
-    console.error("Get Cart Error:", err);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-// ✅ Add Item to Cart
-exports.addToCart = async (req, res) => {
-  try {
-    const { userId, productId, woodType, quantity } = req.body;
-    if (!userId) return res.status(400).json({ message: "UserId required" });
-
-    const product = await Item.findById(productId);
-    if (!product) return res.status(404).json({ message: "Product not found" });
-
-    const variant = product.variants.find((v) => v.woodType === woodType);
-    if (!variant) return res.status(400).json({ message: "Invalid wood type" });
-
-    let cart = await Cart.findOne({ userId });
+    let cart = await Cart.findOne({ userId, status: "active" });
     if (!cart) {
       cart = new Cart({ userId, items: [] });
     }
 
-    const existingItem = cart.items.find(
-      (i) => i.productId.toString() === productId && i.woodType === woodType
+    const itemIndex = cart.items.findIndex(
+      item => item.productId.toString() === productId && item.woodType === woodType
     );
 
-    if (existingItem) {
-      existingItem.quantity += quantity || 1;
+    if (itemIndex > -1) {
+      cart.items[itemIndex].quantity += quantity;
     } else {
-      cart.items.push({
-        productId,
-        woodType,
-        price: variant.price,
-        quantity: quantity || 1,
-      });
+      cart.items.push({ productId, name, woodType, price, quantity });
     }
 
-    calculateTotals(cart);
+    cart.totalAmount = calculateTotal(cart.items);
     await cart.save();
+    res.status(200).json(cart);
 
-    res.json({ message: "Item added to cart", cart });
-  } catch (err) {
-    console.error("Add to Cart Error:", err);
-    res.status(500).json({ message: "Server error" });
+  } catch (error) {
+    res.status(500).json({ message: "Error adding to cart", error: error.message });
   }
 };
 
-// ✅ Update Quantity
-exports.updateQuantity = async (req, res) => {
-  try {
-    const { userId, itemId, action } = req.body;
-    if (!userId) return res.status(400).json({ message: "UserId required" });
+// Remove item from cart
+export const removeFromCart = async (req, res) => {
+  const { userId, productId, woodType } = req.body;
 
-    const cart = await Cart.findOne({ userId });
+  try {
+    const cart = await Cart.findOne({ userId, status: "active" });
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
-    const item = cart.items.id(itemId);
-    if (!item) return res.status(404).json({ message: "Item not found" });
+    cart.items = cart.items.filter(
+      item => !(item.productId.toString() === productId && item.woodType === woodType)
+    );
 
-    if (action === "increase") {
-      item.quantity += 1;
-    } else if (action === "decrease" && item.quantity > 1) {
-      item.quantity -= 1;
-    }
-
-    calculateTotals(cart);
+    cart.totalAmount = calculateTotal(cart.items);
     await cart.save();
+    res.status(200).json(cart);
 
-    res.json({ message: "Quantity updated", cart });
   } catch (err) {
-    console.error("Update Quantity Error:", err);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ error: err.message });
   }
 };
 
-// ✅ Remove Item
-exports.removeItem = async (req, res) => {
-  try {
-    const { userId } = req.body; // ✅ Expect userId from frontend
-    const { itemId } = req.params;
-    if (!userId) return res.status(400).json({ message: "UserId required" });
+// Update quantity (+/-) with stock check
+export const updateQuantity = async (req, res) => {
+  const { userId, productId, woodType, quantity } = req.body;
 
-    const cart = await Cart.findOne({ userId });
+  try {
+    const cart = await Cart.findOne({ userId, status: "active" });
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
-    cart.items = cart.items.filter((i) => i._id.toString() !== itemId);
+    const index = cart.items.findIndex(
+      item => item.productId.toString() === productId && item.woodType === woodType
+    );
+    if (index === -1) return res.status(404).json({ message: "Item not found" });
 
-    calculateTotals(cart);
+    const product = await Item.findById(productId);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    const variant = product.variants.find(v => v.woodType === woodType);
+    if (!variant) return res.status(404).json({ message: "Variant not found" });
+
+    const newQuantity = cart.items[index].quantity + quantity;
+
+    if (newQuantity > variant.stock)
+      return res.status(400).json({ message: `Cannot exceed stock of ${variant.stock}` });
+
+    if (newQuantity <= 0) {
+      cart.items.splice(index, 1);
+    } else {
+      cart.items[index].quantity = newQuantity;
+    }
+
+    cart.totalAmount = calculateTotal(cart.items);
+    await cart.save();
+    res.status(200).json(cart);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get cart
+export const getCart = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const cart = await Cart.findOne({ userId, status: "active" });
+    if (!cart)
+      return res.status(200).json({ items: [], totalAmount: 0, status: "empty" });
+
+    cart.totalAmount = calculateTotal(cart.items);
+    res.status(200).json({
+      items: cart.items,
+      totalAmount: cart.totalAmount,
+      status: cart.status
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Checkout cart
+export const checkoutCart = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const cart = await Cart.findOne({ userId, status: "active" });
+    if (!cart) return res.status(404).json({ message: "Active cart not found" });
+
+    cart.status = "ordered";
     await cart.save();
 
-    res.json({ message: "Item removed", cart });
-  } catch (err) {
-    console.error("Remove Item Error:", err);
-    res.status(500).json({ message: "Server error" });
+    res.json({ message: "Cart checked out successfully", cart });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Clear cart
+export const clearCart = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const cart = await Cart.findOne({ userId, status: "active" });
+    if (!cart) return res.status(404).json({ message: "Active cart not found" });
+
+    cart.status = "cleared";
+    cart.items = [];
+    cart.totalAmount = 0;
+    await cart.save();
+
+    res.json({ message: "Cart cleared successfully", cart });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };

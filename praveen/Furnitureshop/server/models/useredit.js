@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
   doornumber: { type: String, default: "" },
@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
   address: { type: addressSchema, default: {} },
 }, { timestamps: true });
 
-// ✅ Fix OverwriteModelError
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
-module.exports = User;
+export default User;

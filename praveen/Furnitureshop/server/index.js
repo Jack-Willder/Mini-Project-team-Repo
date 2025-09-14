@@ -1,15 +1,15 @@
 // index.js
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
 
-// Import route files
-const adminRoutes = require("./routes/adminRoutes");
-const userRoutes = require("./routes/userRoutes");           
-const itemRoutes = require("./routes/itemRoutes");
-const usereditRoutes = require("./routes/usereditroutes");   
-const cartRoutes = require("./routes/cartRoutes");           
-// const orderRoutes = require("./routes/orderroutes");   // enable later
+// Import route files (use ES import)
+import adminRoutes from "./routes/adminRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
+import usereditRoutes from "./routes/usereditroutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderroutes.js"; 
 
 const app = express();
 const PORT = 5000;
@@ -26,11 +26,11 @@ mongoose.connect(MONGO_URL)
 
 // Routes
 app.use("/api/admin", adminRoutes);
-app.use("/api/user", userRoutes);               
-app.use("/api/items", itemRoutes);             
+app.use("/api/user", userRoutes);
+app.use("/api/items", itemRoutes);
 app.use("/api/userman", usereditRoutes);
 app.use("/api/cart", cartRoutes);
-// app.use("/api/orders", orderRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Default route (for testing)
 app.get("/", (req, res) => {
