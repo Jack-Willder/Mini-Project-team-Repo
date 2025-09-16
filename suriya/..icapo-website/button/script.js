@@ -3,15 +3,8 @@
   };
 
   document.getElementById("pressBtn").addEventListener("click", function () {
-    const screenText = document.getElementById("screen");
-    screenText.classList.add("animate");
+    const screenText1 = document.getElementById("screen");
+    const screenText2 = document.getElementById("screen2");
+    screenText1.classList.add("animate");
+    screenText2.classList.add("animate");
   });
-
-function goGet() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {
-    document.getElementById("screen").innerHTML = this.responseText;
-  };
-  xhttp.open("GET", "https://api.raykooyenga.com/ip");
-+  xhttp.send();
-}
