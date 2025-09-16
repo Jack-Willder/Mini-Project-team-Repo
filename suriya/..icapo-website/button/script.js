@@ -13,5 +13,5 @@ function goGet() {
     document.getElementById("screen").innerHTML = this.responseText;
   };
   xhttp.open("GET", "https://api.raykooyenga.com/ip");
-  xhttp.send();
++  xhttp.send();
 }
