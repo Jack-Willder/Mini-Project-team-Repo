@@ -1,15 +1,16 @@
-const Admin = require("../models/Admin");
-const jwt = require("jsonwebtoken");
+import Admin from "../models/Admin.js";  // ✅ ES module import
+import jwt from "jsonwebtoken";         // ✅ ES module import
 
 const SECRET = "adminSecretKey";
 
-exports.adminLogin = async (req, res) => {
-  const { username, password } = req.body;
+// Admin Login
+export const adminLogin = async (req, res) => {
+  const { email, password } = req.body;
 
-  console.log("Login attempt:", username, password);
+  console.log("Login attempt:", email, password);
 
   try {
-    const admin = await Admin.findOne({ username });
+    const admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(400).json({ message: "Admin not found" });
@@ -19,7 +20,7 @@ exports.adminLogin = async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ id: admin._id }, "adminSecretKey", { expiresIn: "1h" });
+    const token = jwt.sign({ id: admin._id }, SECRET, { expiresIn: "1h" });
 
     res.json({ token });
   } catch (err) {

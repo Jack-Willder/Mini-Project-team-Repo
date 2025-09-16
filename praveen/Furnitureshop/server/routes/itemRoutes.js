@@ -1,31 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const multer = require("multer");
+import express from "express";
+import multer from "multer";
+import { createItem, getItems, getImage, updateItem, deleteItem } from "../controllers/itemController.js";
 
-// Use memory storage for image uploads
+const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-const {
-  createItem,
-  getItems,
-  getImage,
-  updateItem,
-  deleteItem
-} = require("../controllers/itemController");
+router.post("/", upload.single("image"), createItem);
+router.get("/", getItems);
+router.get("/image/:id", getImage);
+router.put("/:id", upload.single("image"), updateItem);
+router.delete("/:id", deleteItem);
 
-// Create item with image + fields like productId, name, price, stock
-router.post("/items", upload.single("image"), createItem);
-
-// Get all items
-router.get("/items", getItems);
-
-// Get image for a specific item
-router.get("/items/image/:id", getImage);
-
-// Update an item (including image and productId)
-router.put("/items/:id", upload.single("image"), updateItem);
-
-// Delete an item
-router.delete("/items/:id", deleteItem);
-
-module.exports = router;
+export default router;

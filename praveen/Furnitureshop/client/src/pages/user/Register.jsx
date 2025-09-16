@@ -1,54 +1,84 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {User} from 'lucide-react';
+
 
 function Register() {
   const navigate = useNavigate();
 
+  // ✅ Initialize address as object
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    address: '',
-    password: ''
+    password: '',
+    address: {
+      doorNo: '',
+      street: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      country: '',
+      landmark: ''
+    }
   });
 
   const [message, setMessage] = useState('');
 
-  // Handle input changes
+  // ✅ handleChange to support nested address fields
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name.startsWith("address.")) {
+      const field = name.split(".")[1]; // e.g. "city"
+      setFormData((prev) => ({
+        ...prev,
+        address: {
+          ...prev.address,
+          [field]: value
+        }
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { name, email, phone, address, password } = formData;
+
     try {
-      const res = await fetch('http://localhost:5000/api/user/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const res = await axios.post("http://localhost:5000/api/user/register", {
+        name,
+        email,
+        phone,
+        address,   // ✅ sends nested object
+        password,
       });
 
-      const data = await res.json();
+      const data = res.data;
 
       if (res.status === 201) {
         alert('✅ Registration successful!');
         navigate('/login');
       } else {
-        setMessage(`❌ ${data.message}`);
+        setMessage(data.message || "Something went wrong");
       }
     } catch (err) {
       console.error('Error:', err);
-      setMessage('❌ Server error, try again later.');
+      setMessage(' Server error, try again later.');
     }
   };
 
   return (
     <div className="registerpage">
       <div className="aboutpage">
+
         {/* Header */}
         <div className="header-wrapper">
           <h1 className="header funky-text">
@@ -70,6 +100,7 @@ function Register() {
         {/* Register Form */}
         <div className="register-container">
           <form onSubmit={handleSubmit}>
+            {/* Name */}
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
               <input
@@ -82,6 +113,7 @@ function Register() {
               />
             </div>
 
+            {/* Email */}
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
@@ -94,11 +126,13 @@ function Register() {
               />
             </div>
 
+            {/* Phone */}
             <div className="form-group">
               <label htmlFor="phone">Phone Number</label>
               <input
                 type="text"
                 id="phone"
+                maxLength={10}
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
@@ -106,17 +140,91 @@ function Register() {
               />
             </div>
 
+            {/* Address Fields */}
             <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <textarea
-                id="address"
-                name="address"
-                value={formData.address}
+              <label htmlFor="doorNo">Door No</label>
+              <input
+                type="text"
+                id="doorNo"
+                name="address.doorNo"
+                value={formData.address.doorNo}
                 onChange={handleChange}
                 required
               />
             </div>
 
+            <div className="form-group">
+              <label htmlFor="street">Street</label>
+              <input
+                type="text"
+                id="street"
+                name="address.street"
+                value={formData.address.street}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                id="city"
+                name="address.city"
+                value={formData.address.city}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="state">State</label>
+              <input
+                type="text"
+                id="state"
+                name="address.state"
+                value={formData.address.state}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="postalCode">Postal Code</label>
+              <input
+                type="text"
+                id="postalCode"
+                name="address.postalCode"
+                value={formData.address.postalCode}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="country">Country</label>
+              <input
+                type="text"
+                id="country"
+                name="address.country"
+                value={formData.address.country}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="landmark">Landmark</label>
+              <input
+                type="text"
+                id="landmark"
+                name="address.landmark"
+                value={formData.address.landmark}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Password */}
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input

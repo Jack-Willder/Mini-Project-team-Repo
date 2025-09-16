@@ -1,11 +1,25 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {User} from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
-function Products() {
+function products() {
   const [products, setProducts] = useState([]);
   const [selectedVariants, setSelectedVariants] = useState({});
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); 
+  };
+
+  const handleLoginRedirect = () => {
+    localStorage.setItem("redirectAfterLogin", "/products");
+    navigate("/login");
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,17 +50,31 @@ function Products() {
         <ul className="navigation">
           <li><Link to="/" className="hover:text-green-500">Home</Link></li>
           <li><Link to="/products" className="hover:text-green-500">Shop</Link></li>
-          <li><Link to="/contact" className="hover:text-green-500">Contact Us</Link></li>
+          <li><Link to="/contact" className="hover:text-green-500">Contact</Link></li>
           <li><Link to="/about" className="hover:text-green-500">About</Link></li>
-          <li>
-            <Link to="/login">
-              <button className="loginbtn hover:text-green-500">Login</button>
-            </Link>
-          </li>
+          <li style={{ display: "flex", alignItems: "center" }}>
+                                {user ? (
+                                  <>
+                                    <button className="loginbtn" onClick={handleLogout}>
+                                      Logout
+                                    </button>
+                                    <div className="usericon">
+                                      <Link to="/userdashboard">
+                            <User size={25} />
+                          </Link>
+                                    </div>
+                                  
+                                  </>
+                                ) : (
+                                  <button className="loginbtn" onClick={handleLoginRedirect}>
+                                    Login
+                                  </button>
+                                )}
+                              </li>
         </ul>
       </div>
 
-      {/* Products */}
+      {/* Products Section */}
       <section className="home-gallery">
         <h1 className="gallery-heading"><span>OUR</span> PRODUCTS</h1>
         <section className="gallery-wrapper">
@@ -58,15 +86,9 @@ function Products() {
 
               return (
                 <div key={item._id} className="gallery-item">
-                  {/* Image */}
                   <img className="gallery-image" src={imageUrl} alt={item.name} />
+                  <h3 style={{ fontSize: '18px', marginTop: '10px', textAlign: 'center' }}>{item.name}</h3>
 
-                  {/* Product Name */}
-                  <h3 style={{ fontSize: '18px', marginTop: '10px', textAlign: 'center' }}>
-                    {item.name}
-                  </h3>
-
-                  {/* Tree Variant Dropdown */}
                   {item.variants?.length > 0 && (
                     <select
                       onChange={(e) => handleVariantChange(item._id, e.target.value)}
@@ -87,12 +109,10 @@ function Products() {
                     </select>
                   )}
 
-                  {/* Price Display */}
                   {selectedVariant && (
                     <p className="gallery-price">Price: ₹{selectedVariant.price}</p>
                   )}
 
-                  {/* View Details */}
                   <Link to={`/product/${item._id}`}>
                     <button className="view-details-btn">View Details</button>
                   </Link>
@@ -114,4 +134,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default products; 

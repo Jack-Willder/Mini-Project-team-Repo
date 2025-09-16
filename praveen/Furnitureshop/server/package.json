@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+   "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
@@ -17,6 +18,7 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide": "^0.542.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.2",
     "multer": "^2.0.2",

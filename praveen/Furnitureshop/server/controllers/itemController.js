@@ -1,14 +1,13 @@
-const Item = require('../models/items');
+// controllers/itemController.js
+import Item from '../models/items.js';  // ES module import
 
-// Create a new item
-const createItem = async (req, res) => {
+export const createItem = async (req, res) => {
   try {
     console.log("Received body:", req.body);
     console.log("Received file:", req.file);
 
     const { productId, name, category, size, desc, variants } = req.body;
 
-    // Validate and parse variants
     let parsedVariants = [];
     try {
       parsedVariants = JSON.parse(variants);
@@ -43,18 +42,16 @@ const createItem = async (req, res) => {
   }
 };
 
-// Get all items
-const getItems = async (req, res) => {
+export const getItems = async (req, res) => {
   try {
-    const items = await Item.find({}, '-image'); // exclude binary image
+    const items = await Item.find({}, '-image');
     res.json(items);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// Get image by item ID
-const getImage = async (req, res) => {
+export const getImage = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item || !item.image || !item.image.data) {
@@ -67,8 +64,7 @@ const getImage = async (req, res) => {
   }
 };
 
-// Update item
-const updateItem = async (req, res) => {
+export const updateItem = async (req, res) => {
   try {
     const { productId, name, category, size, desc, variants } = req.body;
 
@@ -103,20 +99,11 @@ const updateItem = async (req, res) => {
   }
 };
 
-// Delete item
-const deleteItem = async (req, res) => {
+export const deleteItem = async (req, res) => {
   try {
     await Item.findByIdAndDelete(req.params.id);
     res.json({ message: 'Item deleted' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
-
-module.exports = {
-  createItem,
-  getItems,
-  getImage,
-  updateItem,
-  deleteItem
 };

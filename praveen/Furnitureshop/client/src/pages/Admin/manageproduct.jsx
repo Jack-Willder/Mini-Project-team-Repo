@@ -1,8 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";  
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../context/AuthContext";
+
 
 function ManageProduct() {
+  const { logout } = useAuth();
+    const navigate = useNavigate();
+  
+    const handleLogout = () => {
+      logout();
+      navigate("/"); // redirect to admin login page after logout
+    };
   const [productId, setProductId] = useState('');
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
@@ -105,17 +115,15 @@ function ManageProduct() {
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
-        <ul className="navigation">
-          <li><b><Link to="/" >Home </Link></b></li>
-          <li><b><Link to="/products" >Shop </Link></b></li>
-          <li><b><Link to="/contact">Contact Us </Link></b></li>
-           
-          <li><b><Link to="/about">About Us</Link></b></li>
-          <li>
-            <Link className='loginbtn' to="/">
-              <button>Logout</button>
-            </Link>
-          </li>
+         <ul><li>
+          <button
+              onClick={handleLogout}
+              className="loginbtn hover:text-green-500"
+            >
+              Logout
+            </button>
+        </li>
+          
         </ul>
       </div>
       <br></br>
@@ -194,14 +202,14 @@ function ManageProduct() {
                 onChange={e => handleVariantChange(index, 'stock', e.target.value)}
                 required
               />
-              <button type="button" onClick={() => removeVariant(index)}>❌</button>
+              <button type="button" onClick={() => removeVariant(index)}>Remove Variant</button>
             </div>
           ))}
           <button type="button" onClick={addVariant}>➕ Add Variant</button>
 
           <div className="form-buttons">
             <button type="submit">{isEditing ? 'Update Product' : 'Submit Product'}</button>
-            <button type="button" onClick={resetForm}>❌ Cancel</button>
+            <button type="button" onClick={resetForm}> Cancel</button>
           </div>
         </form>
       )}
@@ -250,7 +258,6 @@ function ManageProduct() {
         </tbody>
       </table>
 
-      {/* ✅ Insert Button BELOW the Table */}
       <button
         className="add-btn"
         onClick={() => {
