@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +31,7 @@
       font-family: "Poppins", sans-serif;
       gap: 10px;
     }
+
     body::before {
       height: 100dvh;
       width: 100dvw;
@@ -44,35 +46,35 @@
     }
 
     #pressBtn {
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #5e60ce;
-    border: 2px solid #5e60ce;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    outline: none;
-    box-shadow: 0px 0px 10px white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #5e60ce;
+      border: 2px solid #5e60ce;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      outline: none;
+      box-shadow: 0px 0px 10px white;
     }
 
     #pressBtn:hover {
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #111111;
-    border: 2px solid #111111;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    outline: none;
-    box-shadow: 0px 0px 10px white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #111111;
+      border: 2px solid #111111;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      outline: none;
+      box-shadow: 0px 0px 10px white;
     }
 
     #pressBtn:active {
@@ -85,7 +87,8 @@
       src: url("../Quicksand-VariableFont_wght.ttf");
     }
 
-    #screen, #screen2 {
+    #screen,
+    #screen2 {
       font-size: 2rem;
       color: #fff;
       font-weight: bold;
@@ -98,18 +101,20 @@
     }
 
     #screen2 {
-      width: 140px;
-      text-align-last: center;
-      letter-spacing: 12px;
+      width: 200px;
+      display: flex;
+      justify-content: space-between;
     }
 
     @keyframes expandContract {
       0% {
         letter-spacing: normal;
       }
+
       50% {
         letter-spacing: 2vw;
       }
+
       100% {
         letter-spacing: normal;
       }
@@ -124,19 +129,23 @@
       0% {
         background-position: 0% 50%;
       }
+
       50% {
         background-position: 100% 50%;
       }
+
       100% {
         background-position: 0% 50%;
       }
     }
   </style>
 </head>
+
 <body>
-<div id="screen">Hereby I</div>
-<button id="pressBtn" type="submit" onClick=''>Declare</button>
-<div id="screen2">ICAPO</div>
-<script src="script.js"></script>
+  <div id="screen">Hereby I</div>
+  <button id="pressBtn" type="submit" onClick=''>Declare</button>
+  <div id="screen2"><span>I</span><span>C</span><span>A</span><span>P</span><span>O</span></div>
+  <script src="script.js"></script>
 </body>
+
 </html>
