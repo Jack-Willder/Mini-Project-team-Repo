@@ -90,7 +90,7 @@ function energizeEverything() {
   
   // Add original animation
   if (screenText1 && screenText2) {
-    screenText1.classList.add('animate');
+    // screenText1.classList.add('animate');
     screenText2.classList.add('animate');
   }
 }

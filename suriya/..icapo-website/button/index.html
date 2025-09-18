@@ -14,10 +14,7 @@
     }
 
     body {
-      display: flex;
-      align-items: center;
       align-content: center;
-      justify-content: center;
       height: 100dvh;
       width: 100dvw;
       margin: 0;
@@ -31,6 +28,7 @@
       color: #fff;
       font-family: "Poppins", sans-serif;
       gap: 10px;
+      overflow: hidden;
     }
 
     body::before {
@@ -41,19 +39,46 @@
       background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
       /* background: linear-gradient(-45deg, #e84030, #f0b040); */
       background-size: 400% 400%;
-      animation: gradient 2s ease infinite;
+      animation: gradient 3s ease infinite;
       height: 100vh;
-      z-index: -1;
+      z-index: -2;
     }
 
+    body::after {
+      height: 200dvw;
+      width: 200dvh;
+      content: "";
+      transform: rotate(-90deg);
+      position: absolute;
+      filter: brightness(0.9) grayscale(1);
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      z-index: -1;
+      flex-direction: column;
+      background-color: transparent !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%233498db' fill-opacity='0.45'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      font-family: "Montserrat", sans-serif;
+      text-align: center;
+      animation: marquee 30s infinite linear;
+    }
+
+    @keyframes marquee {
+      0% {
+        background-position: 0;
+      }
+
+      100% {
+        background-position: -1190px;
+      }
+    }
 
     #pressBtn {
       padding: 12px 24px;
       font-size: 1rem;
       font-weight: bold;
       color: #fff;
-      background-color: #5e60ce;
-      border: 2px solid #5e60ce;
+      background-color: #242424;
+      border: 2px solid #242424;
       border-radius: 50px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
@@ -68,8 +93,8 @@
       font-size: 1rem;
       font-weight: bold;
       color: #fff;
-      background-color: #111111;
-      border: 2px solid #111111;
+      background-color: #5d8dba;
+      border: 2px solid #588dba;
       border-radius: 50px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
