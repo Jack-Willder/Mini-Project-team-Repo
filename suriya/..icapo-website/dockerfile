@@ -1,0 +1,30 @@
+# Use Alpine Linux as the base image for minimal size
+FROM alpine:3.20
+
+# Install dependencies: Node.js, npm, curl, and supervisord
+RUN apk add --no-cache nodejs npm curl supervisor
+
+# Download and install cloudflared binary
+RUN curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o /usr/local/bin/cloudflared && \
+    chmod +x /usr/local/bin/cloudflared
+
+# Verify cloudflared installation
+RUN cloudflared --version
+
+# Set working directory for Node.js app
+WORKDIR /app
+
+# Copy Node.js app files (adjust if your app has a different structure)
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+# Create supervisord configuration to manage both processes
+RUN mkdir -p /etc/supervisor/conf.d
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose port for Node.js app (adjust if your app uses a different port)
+EXPOSE 3000
+
+# Start supervisord to manage cloudflared and Node.js
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

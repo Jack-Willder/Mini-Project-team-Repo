@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "tunnel": "cloudflared tunnel --url ws://localhost:3000/server "
   },
   "dependencies": {
     "cloudflared": "^0.7.1",
