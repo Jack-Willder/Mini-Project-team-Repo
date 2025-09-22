@@ -11,6 +11,7 @@ import AdminLogin from './pages/Admin/AdminLogin';
 import Dashboard from './pages/Admin/Dashboard';
 import EmpRegister from './pages/Employee/EmpRegister';
 import CustRegister from './pages/Customer/CustRegister';
+import BoookingCars from './pages/Customer/BoookingCars';
 function App() {
   return (
     <>
@@ -25,6 +26,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/empregister" element={<EmpRegister/>}/>
         <Route path="/custregister" element={<CustRegister/>}/>
+        <Route path='/bookingcars' element={<BoookingCars/>}/>
+        <Route path='/mybookings' element=}/>
       </Routes>
     </>
   );
