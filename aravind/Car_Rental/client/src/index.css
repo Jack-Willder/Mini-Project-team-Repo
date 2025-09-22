@@ -221,3 +221,110 @@ strong {
   color: white;
   padding: 10px 32px;
 }
+
+                            /* Booking Page */
+code {
+  font-family: Consolas, Monaco, monospace;
+  color: #e62929;
+  font-size: 14px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* Page Container */
+.booking-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.booking-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+/* Form Styling */
+.booking-form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border: 1px solid #007bff;
+}
+
+/* Radio buttons */
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.radio-group label {
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* Submit Button */
+.form-actions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .booking-container {
+    padding: 20px;
+  }
+
+  .booking-title {
+    font-size: 22px;
+  }
+}

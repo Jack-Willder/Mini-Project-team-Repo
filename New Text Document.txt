@@ -1,0 +1,1 @@
+docker run --hostname=fcb093868379 --user=65532:65532 --env=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt --network=bridge --workdir=/home/nonroot --restart=no --label='org.opencontainers.image.source=https://github.com/cloudflare/cloudflared' --runtime=runc -d cloudflare/cloudflared:latest
