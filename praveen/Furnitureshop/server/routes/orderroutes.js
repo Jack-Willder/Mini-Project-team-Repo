@@ -1,19 +1,25 @@
 import express from "express";
 import { 
-  placeOrder,       // user places an order
-  getAllOrders,     // admin: fetch all orders
-  updateOrderStatus,// admin: update order/payment/shipping status
-  getUserOrders     // user: fetch their orders
+  placeOrder,
+  getAllOrders,
+  updateOrderStatus,
+  getUserOrders,
+  getOrdersCount,
+  getOrderById,   
+
+  getCompletedOrdersCount 
 } from "../controllers/ordercontroller.js";
 
 const router = express.Router();
 
-// 🔹 User routes
-router.post("/place-order", placeOrder);     // POST /api/orders/place-order
-router.get("/user/:userId", getUserOrders);  // GET  /api/orders/user/:userId
+router.post("/place-order", placeOrder);
+router.get("/user/:userId", getUserOrders);
+router.get("/:orderId", getOrderById); 
 
-// 🔹 Admin routes
-router.get("/", getAllOrders);               // GET  /api/orders
-router.put("/:orderId", updateOrderStatus);  // PUT  /api/orders/:orderId
+router.get("/", getAllOrders);
+router.put("/:orderId", updateOrderStatus);
+router.get("/count", getOrdersCount); 
+
+router.get("/completed/count", getCompletedOrdersCount); 
 
 export default router;

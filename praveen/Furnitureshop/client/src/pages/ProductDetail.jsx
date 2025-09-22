@@ -2,28 +2,26 @@ import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; 
+import { useAuth } from '../context/AuthContext';
 
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(0);
+  const [reviews, setReviews] = useState([]);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle logout
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
-  // Redirect to login
   const handleLoginRedirect = () => {
     navigate('/login', { state: { from: location.pathname } });
   };
 
-  // Fetch product details
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -37,7 +35,18 @@ function ProductDetail() {
     fetchProduct();
   }, [id]);
 
-  // Add to cart
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/reviews/product/${id}`);
+        setReviews(res.data);
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+      }
+    };
+    fetchReviews();
+  }, [id]);
+
   const handleAddToCart = async () => {
     const variant = product.variants?.[selectedVariant];
 
@@ -49,7 +58,6 @@ function ProductDetail() {
 
     if (variant) {
       try {
-        // Send cart item to backend
         await axios.post("http://localhost:5000/api/cart/add", {
           userId: user.id,
           productId: product._id,
@@ -58,7 +66,6 @@ function ProductDetail() {
           price: variant.price,
           name: product.name,
         });
-
         alert(`${product.name} (${variant.woodType}) added to your cart!`);
         navigate("/cart");
       } catch (err) {
@@ -128,6 +135,27 @@ function ProductDetail() {
             Add to Cart
           </button>
         </div>
+      </div>
+
+      {/* Reviews Section */}
+      <div className="reviews-section">
+        <h2>Customer Reviews</h2>
+        {reviews.length === 0 ? (
+          <p>No reviews found for this product.</p>
+        ) : (
+          reviews.map((review) => (
+            <div key={review._id} className="review-card">
+              <p className="stars">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={i}>{i < review.rating ? '★' : '☆'}</span>
+                ))}
+              </p>
+              <p><strong>User:</strong> {review.userId?.name || "Anonymous"}</p>
+              <p className="comment">{review.comment}</p>
+              <p><small>Reviewed on: {new Date(review.reviewDate).toLocaleString()}</small></p>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Footer */}

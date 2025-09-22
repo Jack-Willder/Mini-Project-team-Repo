@@ -28,7 +28,6 @@ function Cart() {
     fetchCart();
   }, [user]);
 
-  // Update quantity (+1 / -1)
   const handleUpdateQuantity = async (item, change) => {
     try {
       const res = await axios.put("http://localhost:5000/api/cart/update", {
@@ -43,7 +42,6 @@ function Cart() {
     }
   };
 
-  // Remove item from cart
   const handleRemoveItem = async (item) => {
     try {
       const res = await axios.delete("http://localhost:5000/api/cart/remove", {

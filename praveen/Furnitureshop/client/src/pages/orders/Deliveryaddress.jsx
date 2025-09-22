@@ -56,14 +56,13 @@ function DeliveryAddress() {
       await axios.put(`http://localhost:5000/api/userman/users/${userId}`, {
         address,
       });
-      setMessage("Address updated successfully ✅");
+      setMessage("Address updated successfully ");
     } catch (err) {
       console.error("Error updating address:", err);
-      setMessage("Failed to update address ❌");
+      setMessage("Failed to update address ");
     }
   };
 
-  // Proceed to payment
   const handleProceedToPayment = () => {
     navigate("/payment");
   };

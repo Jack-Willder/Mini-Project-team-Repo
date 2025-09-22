@@ -36,13 +36,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     address: {
-      type: addressSchema, // ✅ embedded object schema
+      type: addressSchema, 
       required: true,
     },
   },
   { collection: "user", timestamps: true }
 );
 
-// ✅ ES Modules export
 const User = mongoose.model("User", userSchema);
 export default User;

@@ -1,7 +1,5 @@
-// controllers/usereditController.js
 import User from "../models/useredit.js";
 
-// Get All Users
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -12,7 +10,6 @@ export const getUsers = async (req, res) => {
   }
 };
 
-// Get Single User by ID
 export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -29,19 +26,16 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// Update User (allow partial updates, including only address)
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const updates = req.body; // could be { address } or other fields
+    const updates = req.body; 
 
     const user = await User.findById(id);
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    // Merge updates into existing user
     for (const key in updates) {
       if (key === "address") {
-        // Merge nested address
         user.address = { ...user.address.toObject(), ...updates.address };
       } else {
         user[key] = updates[key];
@@ -56,7 +50,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// Delete User
 export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;

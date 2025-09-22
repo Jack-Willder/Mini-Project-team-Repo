@@ -1135,6 +1135,9 @@ table tr:hover {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  width:100%;
+  align-items: center;
+  justify-content: center;
   transition: background 0.3s ease;
 }
 
@@ -1170,6 +1173,63 @@ table tr:hover {
 
 .add-btn:hover {
   background-color: #218838;
+}
+
+
+.variant-group {
+  margin-bottom: 15px;
+}
+
+/* Flex container for buttons */
+.variant-actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;   /* space between buttons */
+  margin-top: 8px;
+}
+
+.remove-variant {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-variant:hover {
+  background-color: #e60000;
+}
+
+.add-variant {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-variant:hover {
+  background-color: #3e8e41;
+}
+.update-product-button{
+  width:100%;
+}
+
+.cancel-updation{
+    background-color: #ff4d4d;
+   color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.form-button {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
 }
 
 .manage-product-container table {
@@ -2016,6 +2076,47 @@ table tr:hover {
 .payment-loading {
   text-align: center;
   color: #555;
+}
+
+/* Reviews Section Container */
+.reviews-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Individual Review Card */
+.review-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Stars for rating */
+.review-card .stars {
+  color: #ffc107; /* gold color */
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* User name styling */
+.review-card p strong {
+  color: #333;
+}
+
+/* Comment styling */
+.review-card .comment {
+  font-style: italic;
+  margin: 8px 0;
+}
+
+/* Review date styling */
+.review-card small {
+  color: #777;
 }
 
 

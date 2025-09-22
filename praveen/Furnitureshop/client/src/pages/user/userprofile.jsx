@@ -9,15 +9,12 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
-  // Auth + navigation
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Get logged-in user from localStorage as fallback
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id || storedUser?._id || storedUser?.id;
 
-  // Fetch user profile
   useEffect(() => {
     if (!userId) {
       console.error("No logged-in user found");
@@ -39,12 +36,10 @@ const UserProfile = () => {
     fetchUser();
   }, [userId]);
 
-  // Handle top-level fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle nested address fields
   const handleAddressChange = (e) => {
     setFormData({
       ...formData,
@@ -52,27 +47,24 @@ const UserProfile = () => {
     });
   };
 
-  // Logout
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
-  // Redirect to login
   const handleLoginRedirect = () => {
     localStorage.setItem("redirectAfterLogin", "/userprofile");
     navigate("/login");
   };
 
-  // Update profile
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/api/userman/users/${userId}`, formData);
-      setMessage("Profile updated successfully ✅");
+      setMessage("Profile updated successfully ");
     } catch (err) {
       console.error("Error updating profile:", err);
-      setMessage("Failed to update profile ❌");
+      setMessage("Failed to update profile ");
     }
   };
 
@@ -138,6 +130,16 @@ const UserProfile = () => {
           ))}
 
           <button type="submit" className="userprofile-update-btn">Update Profile</button>
+          <button><Link to="/userdashboard" style={{ color: "white",
+    background: "red",
+    borderRadius: "7px",
+    marginTop: "30px",
+    padding: "10px 20px",  
+    height: "50px",
+    alignItems: "center",
+    justifyContent: "center",
+    textDecoration: "none"}}>Cancel</Link></button>
+
         </form>
         {message && <p className="userprofile-message">{message}</p>}
       </div>
@@ -145,8 +147,7 @@ const UserProfile = () => {
       {/* Footer */}
       <div className="footer">
         <p className="foot">
-          Copyright © 2025 | Designed by
-          <Link to="/adminlogin" className="footer-link"> Praveen</Link>
+          Copyright © 2025 | Designed by Praveen
         </p>
       </div>
     </div>

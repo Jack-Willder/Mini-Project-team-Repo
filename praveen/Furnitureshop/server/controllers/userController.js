@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 
 const SECRET_KEY = "userSecretKey";
 
-// User Register
 export const userRegister = async (req, res) => {
   const { name, email, password, phone, address } = req.body;
 
@@ -46,7 +45,6 @@ export const userRegister = async (req, res) => {
   }
 };
 
-// User Login
 export const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -79,5 +77,14 @@ export const userLogin = async (req, res) => {
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ message: "Server error during login" });
+  }
+};
+
+export const getUsersCount = async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json({ count });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch users count", error: err });
   }
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../context/AuthContext"; // ✅ fixed path
+import { useAuth } from "../../context/AuthContext"; 
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,13 +21,11 @@ function Login() {
 
       const { token, user } = response.data;
 
-      // ✅ Store full user details in context + localStorage
       login(
         user,
         token
       );
 
-      // ✅ Redirect to last attempted page OR /products
       const from = location.state?.from || "/products";
       navigate(from);
 

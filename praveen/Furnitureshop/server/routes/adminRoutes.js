@@ -5,4 +5,4 @@ const router = express.Router();
 
 router.post("/login", adminLogin);
 
-export default router; // default export for ES module
+export default router; 

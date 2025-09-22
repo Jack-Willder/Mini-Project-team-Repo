@@ -1,4 +1,3 @@
-// AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -38,7 +37,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-  // helper to quickly check if admin
   const isAdmin = user?.role === "admin";
 
   return (

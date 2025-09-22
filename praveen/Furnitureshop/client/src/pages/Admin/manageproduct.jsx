@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";  
-import { Link } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
-
 
 function ManageProduct() {
   const { logout } = useAuth();
-    const navigate = useNavigate();
-  
-    const handleLogout = () => {
-      logout();
-      navigate("/"); // redirect to admin login page after logout
-    };
+  const navigate = useNavigate();
+
+  const editSectionRef = useRef(null);   
+  const nameInputRef = useRef(null);     
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); 
+  };
+
   const [productId, setProductId] = useState('');
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
@@ -99,6 +101,11 @@ function ManageProduct() {
     setIsEditing(true);
     setShowForm(true);
     setImage(null);
+
+    setTimeout(() => {
+      editSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      nameInputRef.current?.focus();
+    }, 300);
   };
 
   const handleDelete = async (id) => {
@@ -111,164 +118,195 @@ function ManageProduct() {
   return (
     <div className="products-management">
       <div className="header-wrapper">
-     {/* Header */}
+        {/* Header */}
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
-         <ul><li>
-          <button
+        <ul>
+          <li>
+            <button
               onClick={handleLogout}
               className="loginbtn hover:text-green-500"
             >
               Logout
             </button>
-        </li>
-          
+          </li>
         </ul>
       </div>
-      <br></br>
-    <div className="manage-container">
-      
+      <br />
 
-      {showForm && (
-        <form onSubmit={handleSubmit} className="product-form">
-          <h2>{isEditing ? "Update Product" : "Insert New Product"}</h2>
-
-          <input
-            type="text"
-            value={productId}
-            onChange={e => setProductId(e.target.value)}
-            placeholder="Product ID (optional)"
-          />
-
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder="Product Name"
-            required
-          />
-
-          <input
-            type="file"
-            onChange={e => setImage(e.target.files[0])}
-            required={!isEditing}
-          />
-
-          <input
-            type="text"
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            placeholder="Category"
-            required
-          />
-
-          <input
-            type="text"
-            value={size}
-            onChange={e => setSize(e.target.value)}
-            placeholder="Size (e.g., 6x6 ft)"
-            required
-          />
-
-          <textarea
-            value={desc}
-            onChange={e => setDesc(e.target.value)}
-            placeholder="Description"
-            required
-          />
-
-          <h4>Wood Variants</h4>
-          {variants.map((variant, index) => (
-            <div key={index} className="variant-group">
-              <input
-                type="text"
-                value={variant.woodType}
-                placeholder="Wood Type"
-                onChange={e => handleVariantChange(index, 'woodType', e.target.value)}
-                required
-              />
-              <input
-                type="number"
-                value={variant.price}
-                placeholder="Price"
-                onChange={e => handleVariantChange(index, 'price', e.target.value)}
-                required
-              />
-              <input
-                type="number"
-                value={variant.stock}
-                placeholder="Stock"
-                onChange={e => handleVariantChange(index, 'stock', e.target.value)}
-                required
-              />
-              <button type="button" onClick={() => removeVariant(index)}>Remove Variant</button>
-            </div>
-          ))}
-          <button type="button" onClick={addVariant}>➕ Add Variant</button>
-
-          <div className="form-buttons">
-            <button type="submit">{isEditing ? 'Update Product' : 'Submit Product'}</button>
-            <button type="button" onClick={resetForm}> Cancel</button>
-          </div>
-        </form>
-      )}
-
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Size</th>
-            <th>Variants (Wood - ₹Price)</th>
-            <th>Stock by Wood</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map(item => (
-            <tr key={item._id}>
-              <td>
-                <img src={`http://localhost:5000/api/items/image/${item._id}`} alt={item.name} height="50" />
-              </td>
-              <td>{item.productId}</td>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-              <td>{item.size}</td>
-              <td>
-                {item.variants?.map((v, i) => (
-                  <div key={i}>{v.woodType}: ₹{v.price}</div>
-                ))}
-              </td>
-              <td>
-                {item.variants?.map((v, i) => (
-                  <div key={i}>{v.woodType}: {v.stock}</div>
-                ))}
-              </td>
-              <td>{item.desc}</td>
-              <td>
-                <button className="edit-btn" onClick={() => handleEdit(item)}>Edit</button>
-                <button className="delete-btn" onClick={() => handleDelete(item._id)}>Delete</button>
-              </td>
+      <div className="manage-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Size</th>
+              <th>Variants (Wood - ₹Price)</th>
+              <th>Stock by Wood</th>
+              <th>Description</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map(item => (
+              <tr key={item._id}>
+                <td>
+                  <img
+                    src={`http://localhost:5000/api/items/image/${item._id}`}
+                    alt={item.name}
+                    height="50"
+                  />
+                </td>
+                <td>{item.productId}</td>
+                <td>{item.name}</td>
+                <td>{item.category}</td>
+                <td>{item.size}</td>
+                <td>
+                  {item.variants?.map((v, i) => (
+                    <div key={i}>{v.woodType}: ₹{v.price}</div>
+                  ))}
+                </td>
+                <td>
+                  {item.variants?.map((v, i) => (
+                    <div key={i}>{v.woodType}: {v.stock}</div>
+                  ))}
+                </td>
+                <td>{item.desc}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => handleEdit(item)}>Edit</button>
+                  <button className="delete-btn" onClick={() => handleDelete(item._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <button
-        className="add-btn"
-        onClick={() => {
-          resetForm();
-          setShowForm(true);
-        }}
-        style={{ marginTop: "20px" }}
-      >
-        ➕ Insert Product
-      </button>
-    </div>
+        {showForm && (
+          <form ref={editSectionRef} onSubmit={handleSubmit} className="product-form">
+            <h2>{isEditing ? "Update Product" : "Insert New Product"}</h2>
+
+            <input
+              type="text"
+              value={productId}
+              onChange={e => setProductId(e.target.value)}
+              placeholder="Product ID (optional)"
+            />
+
+            <input
+              ref={nameInputRef}
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Product Name"
+              required
+            />
+
+            <input
+              type="file"
+              onChange={e => setImage(e.target.files[0])}
+              required={!isEditing}
+            />
+
+            <input
+              type="text"
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+              placeholder="Category"
+              required
+            />
+
+            <input
+              type="text"
+              value={size}
+              onChange={e => setSize(e.target.value)}
+              placeholder="Size (e.g., 6x6 ft)"
+              required
+            />
+
+            <textarea
+              value={desc}
+              onChange={e => setDesc(e.target.value)}
+              placeholder="Description"
+              required
+            />
+
+            <h4>Wood Variants</h4>
+            {variants.map((variant, index) => (
+              <div key={index} className="variant-group">
+                <input
+                  type="text"
+                  value={variant.woodType}
+                  placeholder="Wood Type"
+                  onChange={e => handleVariantChange(index, 'woodType', e.target.value)}
+                  required
+                />
+                <input
+                  type="number"
+                  value={variant.price}
+                  placeholder="Price"
+                  onChange={e => handleVariantChange(index, 'price', e.target.value)}
+                  required
+                />
+                <input
+                  type="number"
+                  value={variant.stock}
+                  placeholder="Stock"
+                  onChange={e => handleVariantChange(index, 'stock', e.target.value)}
+                  required
+                />
+
+                {/* Buttons in same line */}
+                <div className="variant-actions">
+                  <button
+                    type="button"
+                    className="remove-variant"
+                    onClick={() => removeVariant(index)}
+                  >
+                    Remove Variant
+                  </button>
+
+                  <button
+                    type="button"
+                    className="add-variant"
+                    onClick={addVariant}
+                  >
+                    Add Variant
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            <div className="form-buttons">
+              <button type="submit" className='update-product-button'>{isEditing ? 'Update Product' : 'Submit Product'}</button>
+              <br></br>
+              <button type="button" className="cancel-updation" onClick={resetForm}> Cancel</button>
+            </div>
+          </form>
+        )}
+
+        <button
+          className="add-btn"
+          onClick={() => {
+            resetForm();
+            setShowForm(true);
+            setTimeout(() => {
+              editSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+              nameInputRef.current?.focus();
+            }, 300);
+          }}
+          style={{ marginTop: "20px" }}
+        >
+           Insert Product
+        </button>
+      </div>
+      <div className="footer">
+        <p className="foot">
+                Copyright © 2025 | Designed by Praveen
+              </p>
+      </div>
     </div>
   );
 }

@@ -7,7 +7,6 @@ import {User} from 'lucide-react';
 function Register() {
   const navigate = useNavigate();
 
-  // ✅ Initialize address as object
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,12 +25,11 @@ function Register() {
 
   const [message, setMessage] = useState('');
 
-  // ✅ handleChange to support nested address fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name.startsWith("address.")) {
-      const field = name.split(".")[1]; // e.g. "city"
+      const field = name.split(".")[1]; 
       setFormData((prev) => ({
         ...prev,
         address: {
@@ -57,14 +55,14 @@ function Register() {
         name,
         email,
         phone,
-        address,   // ✅ sends nested object
+        address,   
         password,
       });
 
       const data = res.data;
 
       if (res.status === 201) {
-        alert('✅ Registration successful!');
+        alert(' Registration successful!');
         navigate('/login');
       } else {
         setMessage(data.message || "Something went wrong");
@@ -166,7 +164,7 @@ function Register() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">Village/City</label>
               <input
                 type="text"
                 id="city"
@@ -197,6 +195,9 @@ function Register() {
                 name="address.postalCode"
                 value={formData.address.postalCode}
                 onChange={handleChange}
+                maxLength={6}
+                minLength={6}
+
                 required
               />
             </div>
@@ -233,6 +234,8 @@ function Register() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                min={8}
+                max={16}
                 required
               />
             </div>

@@ -1,79 +1,88 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";  // ✅ THIS IS MISSING
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-
 function ManageOrder() {
-    const { logout } = useAuth();
-      const navigate = useNavigate();
-    
-      const handleLogout = () => {
-        logout();
-        navigate("/"); // redirect to admin login page after logout
-      };
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); 
+  };
+
   const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState({}); 
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetchOrders();
+    fetchOrdersAndUsers();
   }, []);
 
-  // 🔹 Fetch all orders (Admin View)
-  const fetchOrders = async () => {
+  
+  const fetchOrdersAndUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/orders");
-      setOrders(res.data);
+      const ordersRes = await axios.get("http://localhost:5000/api/orders");
+      const usersRes = await axios.get("http://localhost:5000/api/userman/users");
+
+      
+      const usersMap = {};
+      usersRes.data.forEach((user) => {
+        usersMap[user._id] = user;
+      });
+
+      setUsers(usersMap);
+      setOrders(ordersRes.data);
     } catch (err) {
-      console.error("Error fetching orders:", err);
+      console.error("Error fetching orders or users:", err);
     }
   };
 
-  // 🔹 Update a specific order field (paymentStatus, shippingStatus, orderStatus)
+  
   const handleStatusChange = async (orderId, field, value) => {
     try {
       await axios.put(`http://localhost:5000/api/orders/${orderId}`, {
         [field]: value
       });
-      setMessage(`Order ${field} updated successfully ✅`);
-      fetchOrders(); // refresh table
+      setMessage(`Order ${field} updated successfully `);
+      fetchOrdersAndUsers(); 
     } catch (err) {
       console.error("Error updating order:", err);
-      setMessage(`Failed to update ${field} ❌`);
+      setMessage(`Failed to update ${field} `);
     }
   };
 
-  // 🔹 Cancel order (restores stock via backend controller)
+  
   const handleCancelOrder = async (orderId) => {
     if (window.confirm("Are you sure you want to cancel this order?")) {
       try {
         await axios.put(`http://localhost:5000/api/orders/${orderId}`, {
           orderStatus: "Cancelled"
         });
-        setMessage("Order cancelled successfully ✅ (Stock Restored)");
-        fetchOrders();
+        setMessage("Order cancelled successfully  (Stock Restored)");
+        fetchOrdersAndUsers();
       } catch (err) {
         console.error("Error cancelling order:", err);
-        setMessage("Failed to cancel order ❌");
+        setMessage("Failed to cancel order ");
       }
     }
   };
 
   return (
     <div className="orders-management">
-      <h1 className="header funky-text">
-        <span className="circle-bg">&nbsp;Furniture</span>One Orders
-      </h1>
-       <ul><li>
-          <button
-              onClick={handleLogout}
-              className="loginbtn hover:text-green-500"
-            >
+      <div className="header-wrapper">
+        <h1 className="header funky-text">
+          <span className="circle-bg">&nbsp;Furniture</span>One
+        </h1>
+        <ul>
+          <li>
+            <button onClick={handleLogout} className="loginbtn hover:text-green-500">
               Logout
             </button>
-        </li>
-          
+          </li>
         </ul>
+      </div>
 
       <table className="orders-table">
         <thead>
@@ -83,16 +92,15 @@ function ManageOrder() {
             <th>Items</th>
             <th>Total Amount</th>
             <th>Payment Status</th>
-            <th>Shipping Status</th>
             <th>Order Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {orders.map(order => (
+          {orders.map((order) => (
             <tr key={order._id}>
               <td>{order._id}</td>
-              <td>{order.userId?.name || "Unknown"}</td>
+              <td>{users[order.userId]?.name || "Unknown"}</td>
               <td>
                 {order.items?.map((item, i) => (
                   <div key={i}>
@@ -116,20 +124,6 @@ function ManageOrder() {
                 </select>
               </td>
 
-              {/* Shipping Status Dropdown */}
-              <td>
-                <select
-                  value={order.shippingStatus || "Pending"}
-                  onChange={(e) =>
-                    handleStatusChange(order._id, "shippingStatus", e.target.value)
-                  }
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Shipped">Shipped</option>
-                  <option value="Delivered">Delivered</option>
-                </select>
-              </td>
-
               {/* Order Status Dropdown */}
               <td>
                 <select
@@ -139,8 +133,8 @@ function ManageOrder() {
                   }
                 >
                   <option value="Processing">Processing</option>
-                  <option value="Confirmed">Confirmed</option>
-                  <option value="Completed">Completed</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </td>
@@ -149,7 +143,14 @@ function ManageOrder() {
               <td>
                 <button
                   onClick={() => handleCancelOrder(order._id)}
-                  disabled={order.orderStatus === "Cancelled"} // disable if already cancelled
+                  disabled={order.orderStatus === "Cancelled"}
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                    fontWeight: "700",
+                    borderRadius: "6px",
+                    padding: "8px"
+                  }}
                 >
                   Cancel Order
                 </button>
@@ -160,6 +161,19 @@ function ManageOrder() {
       </table>
 
       {message && <p className="delivery-message">{message}</p>}
+     <div >
+        <p className="foot"  style={{ 
+        position: "fixed", 
+        bottom: "0", 
+        left: "0", 
+        width: "100%", 
+        background: "#f1f1f1", 
+        textAlign: "center", 
+        padding: "10px" 
+        }}>
+                Copyright © 2025 | Designed by Praveen
+              </p>
+      </div>
     </div>
   );
 }

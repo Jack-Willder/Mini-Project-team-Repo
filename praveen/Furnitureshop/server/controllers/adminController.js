@@ -1,9 +1,7 @@
-import Admin from "../models/Admin.js";  // ✅ ES module import
-import jwt from "jsonwebtoken";         // ✅ ES module import
-
+import Admin from "../models/Admin.js"; 
+import jwt from "jsonwebtoken";         
 const SECRET = "adminSecretKey";
 
-// Admin Login
 export const adminLogin = async (req, res) => {
   const { email, password } = req.body;
 

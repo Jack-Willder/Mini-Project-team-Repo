@@ -23,8 +23,9 @@ import Cart from './pages/orders/Cart';
 import UserOrders from './pages/user/userorders';
 import DeliveryAddress from './pages/orders/Deliveryaddress';
 import UserDashboard from './pages/user/userdashboard';
+import Review from './pages/user/Review';
+import ManageReview from './pages/Admin/managereview'
 
-// ✅ Small wrapper to handle logout on home
 function AppContent() {
   const { user, logout } = useAuth();
   const location = useLocation();
@@ -51,6 +52,8 @@ function AppContent() {
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/userorders" element={<UserOrders />} />
+      <Route path="/review/:orderId" element={<Review />} />
+      <Route path="/managereview" element={<ManageReview />}/>
       
       {/* Admin Protected Routes */}
       <Route path="/dashboard" element={
@@ -80,6 +83,7 @@ function AppContent() {
           <UserProfile />
         </ProtectedRoute>
       }/>
+   
       <Route path="/cart" element={
         <ProtectedRoute role="user">
           <Cart />

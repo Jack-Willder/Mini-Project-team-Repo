@@ -17,9 +17,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
-    //  Assign role based on email
     let role = "user";
-    if (userData.email === "abc@gmail.com") {
+    if (userData.email === "furnitureone@gmail.com") {
       role = "admin";
     }
 

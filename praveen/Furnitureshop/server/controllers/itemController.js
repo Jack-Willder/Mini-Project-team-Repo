@@ -1,5 +1,4 @@
-// controllers/itemController.js
-import Item from '../models/items.js';  // ES module import
+import Item from '../models/items.js';  
 
 export const createItem = async (req, res) => {
   try {

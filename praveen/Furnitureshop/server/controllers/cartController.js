@@ -1,12 +1,10 @@
 import Cart from "../models/Cart.js";
-import Item from "../models/items.js"; // your products collection
+import Item from "../models/items.js"; 
 
-// Helper to calculate total
 const calculateTotal = (items) => {
   return items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 };
 
-// Add item to cart
 export const addToCart = async (req, res) => {
   try {
     const { userId, productId, name, woodType, price, quantity } = req.body;
@@ -35,7 +33,6 @@ export const addToCart = async (req, res) => {
   }
 };
 
-// Remove item from cart
 export const removeFromCart = async (req, res) => {
   const { userId, productId, woodType } = req.body;
 
@@ -56,7 +53,6 @@ export const removeFromCart = async (req, res) => {
   }
 };
 
-// Update quantity (+/-) with stock check
 export const updateQuantity = async (req, res) => {
   const { userId, productId, woodType, quantity } = req.body;
 
@@ -95,7 +91,6 @@ export const updateQuantity = async (req, res) => {
   }
 };
 
-// Get cart
 export const getCart = async (req, res) => {
   const { userId } = req.params;
 
@@ -116,7 +111,6 @@ export const getCart = async (req, res) => {
   }
 };
 
-// Checkout cart
 export const checkoutCart = async (req, res) => {
   const { userId } = req.body;
 
@@ -134,7 +128,6 @@ export const checkoutCart = async (req, res) => {
   }
 };
 
-// Clear cart
 export const clearCart = async (req, res) => {
   const { userId } = req.body;
 
