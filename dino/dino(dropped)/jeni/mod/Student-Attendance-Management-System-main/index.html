@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AMS - Login</title>
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/ruang-admin.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-login">
+  <div class="container-login">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card shadow-sm my-4">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="login-form">
+                  <h5 align="center">STUDENT ATTENDANCE SYSTEM</h5>
+                  <div class="text-center">
+                    <img src="img/logo/attnlg.jpg" style="width:100px;height:100px">
+                    <br><br>
+                    <h1 class="h4 text-gray-900 mb-4">Login Panel</h1>
+                  </div>
+                  <form id="loginForm" class="user">
+                    <div class="form-group">
+                      <select required name="userType" id="userType" class="form-control mb-3">
+                        <option value="">--Select User Roles--</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="ClassTeacher">Class Teacher</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" required id="username" placeholder="Enter Email Address">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" required class="form-control" id="password" placeholder="Enter Password">
+                    </div>
+                    <div id="errorMsg" class="alert alert-danger d-none"></div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-success btn-block">Login</button>
+                    </div>
+                  </form>
+                  <div class="text-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // DEMO USERS (replace or load from JSON if needed)
+  const users = [
+    { userType: "Administrator", username: "admin@example.com", password: "admin123" },
+    { userType: "ClassTeacher", username: "teacher@example.com", password: "teacher123" }
+  ];
+
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const userType = document.getElementById("userType").value;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorMsg = document.getElementById("errorMsg");
+
+    // Validate user
+    const found = users.find(u => u.userType === userType && u.username === username && u.password === password);
+
+    if(found) {
+      // Save to localStorage for session tracking
+      localStorage.setItem("loggedInUser", JSON.stringify(found));
+      if(found.userType === "Administrator") {
+        window.location.href = "Admin/index.php"; // mock redirect
+      } else {
+        window.location.href = "ClassTeacher/index.php"; // mock redirect
+      }
+    } else {
+      errorMsg.textContent = "Invalid Username/Password!";
+      errorMsg.classList.remove("d-none");
+    }
+  });
+</script>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/ruang-admin.min.js"></script>
+</body>
+</html>

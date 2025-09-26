@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="img/logo/attnlg.jpg" rel="icon">
+  <title>Dashboard</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/ruang-admin.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <!-- Static placeholder for sidebar -->
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-school"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Teacher Panel</div>
+        </a>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown">
+                <span class="ml-2 d-none d-lg-inline text-white small" id="teacherName">Loading...</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- End TopBar -->
+
+        <!-- Main Container -->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          </div>
+
+          <!-- Example card -->
+          <div class="row mb-3">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Name</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="className">Loading...</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-chalkboard fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Arm</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="classArmName">Loading...</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-success"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- End Container -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/ruang-admin.min.js"></script>
+
+  <script>
+    // Example: Replace this with real API call
+    const mockApiResponse = {
+      teacherName: "John Doe",
+      className: "Mathematics",
+      classArmName: "A"
+    };
+
+    // Simulate fetching data
+    document.addEventListener("DOMContentLoaded", () => {
+      // Replace this with `fetch('/api/data')` in real usage
+      document.getElementById("teacherName").innerText = mockApiResponse.teacherName;
+      document.getElementById("className").innerText = mockApiResponse.className;
+      document.getElementById("classArmName").innerText = mockApiResponse.classArmName;
+    });
+  </script>
+
+</body>
+</html>
