@@ -31,12 +31,13 @@ body {
 
 .art-display {
   perspective: 600px;
+  max-width: 100%;
   flex: 1 1 300px;
   text-align: center;
 }
 
 .art-display img {
-    width:550px;
+  width:550px;
   height: 500px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -82,7 +83,7 @@ body {
 }
 
 .art-name {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .art-name h2,
@@ -92,7 +93,7 @@ body {
 }
 
 .Art-info {
-  margin-top: 10px;
+  margin-top: 40px;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -159,4 +160,6 @@ p {
   background:rgb(60, 0, 128);
   transform: scale(1.05);
 }
+
+
 

@@ -1,4 +1,4 @@
-  body {
+ body {
       background: linear-gradient(to right, #e56fe9, #9753be, #c269e6);
       height: 100%;
   }
@@ -140,136 +140,58 @@
       background-color: #a963d1;
   }
 
-  .content {
-      background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      height: 100%;
-  }
 
-  .row1,
-  .row2,
-  .row3,
-  .row4,
-  .row5,
-  .row6,
-  .row7 {
-      padding-top: 150px;
-      padding-left: 48px;
-      margin-left: 150px;
-  }
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 70px;
+  padding: 60px 150px;
+}
 
-  .img1,
-  .img2,
-  .img3,
-  .img4,
-  .img5,
-  .img6,
-  .img7,
-  .img8,
-  .img9,
-  .img10,
-  .img11,
-  .img12,
-  .img13,
-  .img14 {
-      height: 350px;
-      width: 300px;
-      background-color: rgb(255, 255, 255);
-      margin-right: 200px;
-      box-shadow: 6px 5px 20px 0px;
-      display: inline-block;
-      padding: 30px;
-      border-radius: 30px;
-  }
+.art-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 6px 5px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 10px;
+  width:350px;
+  height:400px;
+  transition: transform 0.3s ease;
+}
 
-  .img1 h3,
-  .img2 h3,
-  .img3 h3,
-  .img4 h3,
-  .img5 h3,
-  .img6 h3,
-  .img7 h3,
-  .img8 h3,
-  .img9 h3,
-  .img10 h3,
-  .img11 h3,
-  .img12 h3,
-  .img13 h3,
-  .img14 h3 {
-      padding-top: 15px;
-      text-align: center;
-      font-size: 25px;
-      font-family: 'Segoe UI', sans-serif;
-  }
+.art-card:hover {
+  transform: translateY(-8px);
+}
+
+.art-card img {
+  width: 300px;
+  height: 350px;
+  border-radius: 15px;
+}
+
+.art-card h3 {
+  margin: 15px 0;
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: rgb(36, 0, 78);
+}
+
+.view-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgb(36, 0, 78);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s;
+}
+
+.view-btn:hover {
+  background: rgb(27, 0, 56);
+}
+
   
-
-  .view01,
-  .view03,
-  .view05,
-  .view07,
-  .view09,
-  .view11,
-  .view13 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      margin-left: 200px;
-      margin-right: 195px;
-      border-radius: 18px;
-      border: none;
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .view02,
-  .view04,
-  .view06,
-  .view08,
-  .view10,
-  .view12 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      border-radius: 18px;
-      border-color: rgb(1, 0, 78);
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .view14 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      border-radius: 18px;
-      border-color: rgb(1, 0, 78);
-      color: rgb(255, 255, 255);
-      cursor: pointer;
-      margin-bottom: 200px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .view14 :hover {
-      background-color: rgb(27, 0, 56);
-  }
-
   .footer {
       background: linear-gradient(to right, rgb(36, 0, 78), rgb(1, 0, 41));
       height: 130px;

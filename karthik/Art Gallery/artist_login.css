@@ -6,12 +6,50 @@
 }
 
 body {
- 
     background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;              
+    justify-content: center;    
+    align-items: center;        
     height: 100vh;
+}              
+.title {
+    background-color: rgb(36, 0, 78);
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;   
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;           
+    justify-content: center; 
+    align-items: center;
+}
+
+.title h1 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;      
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 25px;
+    background-color: #903ecb;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #6f2c9c;
 }
 
 .login-box {
@@ -21,8 +59,8 @@ body {
     box-shadow: 6px 5px 20px 0px;
     width: 400px;
     height: 450px;
+    margin-top: 120px;
 }
-
 .login-box h2 {
     text-align: center;
     margin-bottom: 80px;

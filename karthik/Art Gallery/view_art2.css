@@ -30,22 +30,22 @@ body {
 }
 
 .art-display {
-  perspective: 600px;
+  perspective: 500px;
   flex: 1 1 300px;
   text-align: center;
 }
 
 .art-display img {
-    width:550px;
-  height: 500px;
+  max-width: 500px;
+  height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s;
+  transition: all 0.4s ease;
   transform-style: preserve-3d;
 }
 
 .art-display img:hover {
-  transform: rotateY(20deg) rotateX(10deg);
+ transform: rotateY(15deg) rotateX(10deg) scale(1.05);
 }
 
 .art-details {
@@ -82,7 +82,7 @@ body {
 }
 
 .art-name {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .art-name h2,
@@ -92,7 +92,7 @@ body {
 }
 
 .Art-info {
-  margin-top: 10px;
+  margin-top: 40px;
   font-family: 'Courier New', Courier, monospace;
 }
 
