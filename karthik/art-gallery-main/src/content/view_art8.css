@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
+  color: rgb(36, 0, 78);
+}
+
+.back-btn {
+  display: inline-block;
+  margin: 10px 0 0 20px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(36, 0, 78);
+  padding: 10px 20px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: rgb(60, 0, 128);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.art-display {
+  perspective: 600px;
+  max-width: 100%;
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.art-display img {
+  width:550px;
+  height: 500px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.art-display img:hover {
+  transform: rotateY(20deg) rotateX(10deg);
+}
+
+.art-details {
+  background-color: rgb(36, 0, 78);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  flex: 1 1 300px;
+}
+
+.profile {
+  border-radius: 8px;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile h1 {
+  margin-top: 5px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.profile:hover {
+  transform: scale(1.02);
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-left: 100px;
+}
+
+.art-name {
+  margin-top: 40px;
+}
+
+.art-name h2,
+.Art-info h2 {
+  font-family: 'Courier New', Courier, monospace;
+  display: inline-block;
+}
+
+.Art-info {
+  margin-top: 40px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.desc {
+  color: #c269e6;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ✅ Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .art-display img {
+    max-width: 90vw;
+  }
+
+  .art-details {
+    width: 90vw;
+  }
+
+  .art-name h2,
+  .Art-info h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Purchase Section */
+.art-purchase {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.price {
+  font-size: 22px;
+  color: #c269e6;
+  margin-bottom: 15px;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #c269e6;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.buy-btn:hover {
+  background: #a963d1;
+  transform: scale(1.05);
+}
+
