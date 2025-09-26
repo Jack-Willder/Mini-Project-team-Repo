@@ -18,9 +18,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.2"
   },
+  "description": "",
   "devDependencies": {
     "concurrently": "^9.2.0",
     "nodemon": "^3.1.10"
-  },
-  "description": ""
+  }
 }

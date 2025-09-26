@@ -1,6 +1,14 @@
-function UserProfile(){
+import React from 'react'
+import UserNavbar from '../Navbar/UserNavbar'
+
+const UserProfile = () => {
   return (
-    <div>UserProfile</div>
+    <>
+       <div>
+      <h1>User</h1>
+      
+    </div>
+    </>
   )
 }
 

@@ -15,9 +15,8 @@ const Navbar = () => {
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/collection">Collection</Link></li>
-        <li><Link to="/features">Features</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/review">Review</Link></li>
+        <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/AboutUs">About</Link></li>
         <li className="login-item">
           <span className="login-link" onClick={toggleDropdown}>Login</span>
           {showDropdown && (

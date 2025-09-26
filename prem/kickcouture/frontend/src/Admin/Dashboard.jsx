@@ -1,20 +1,35 @@
-import React from 'react';
-import './Dashboard.css';
-import { Link } from 'react-router-dom';  
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Dashboard.css";   // ✅ Import CSS
 
-const Dashboard = () => {
+function Dashboard() {
   return (
-    <div className="admin-dashboard">
-      <h1>Admin Dashboard</h1>
-      
-      <div className="dashboard-buttons">
-        <Link to="/admin/add-product">Add Product</Link>
-        <Link to="/admin/orders">View Orders</Link>
-        <Link to="/admin/edit-product/1">Edit Product</Link>
+    <div className="admindashboard">
+      {/* Dashboard Welcome */}
+      <div className="dashboard-header">
+        <h2>Welcome Admin</h2>
       </div>
-      
+
+      {/* Dashboard Stats */}
+      <div className="dashboard-stats">
+        <div className="stat-card">📦 Total Orders</div>
+        <div className="stat-card">👤 Total Users</div>
+      </div>
+
+      {/* Admin Controls */}
+      <div className="dashboard-controls">
+        <div className="control-card">
+          <Link to="/manage-users">👤 Manage Users</Link>
+        </div>
+        <div className="control-card">
+          <Link to="/manage-products">👟 Manage Products</Link>
+        </div>
+        <div className="control-card">
+          <Link to="/manage-orders">🛒 Manage Orders</Link>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Dashboard;

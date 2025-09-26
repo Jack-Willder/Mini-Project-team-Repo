@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import heroImg from '../assets/img1.jpeg'; // Your uploaded image
 import BestSelling from '../BestSelling/BestSelling';
 
+
 export const Hero = () => {
   return (
     <>
@@ -24,7 +25,10 @@ export const Hero = () => {
       <div className="hero-right">
         <img src={heroImg} alt="Product" className="product-image" />
       </div>
+
+      
     </section>
+    <div className="best-selling"> <h1> BEST SELLING</h1></div>
   <BestSelling/>
   </>
   );

@@ -68,6 +68,7 @@
   width: 500px;
   transform: rotate(-15deg);
   border-radius: 10px;
+  padding-bottom: 20px;
 }
 
 /* Responsive Design */
@@ -92,4 +93,12 @@
   .product-image {
     width: 80%;
   }
+}
+
+.best-selling h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: #000;
 }

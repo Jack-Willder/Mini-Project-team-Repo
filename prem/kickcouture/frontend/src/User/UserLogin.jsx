@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './UserLogin.css';
 import axios from 'axios';
 
-const UserLogin = () => {
+const UserLogin = ({ onLogin }) => {
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -20,13 +20,13 @@ const UserLogin = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-     const res = await axios.post("http://localhost:5000/api/user/signup", {
-            name,
-           email: signupEmail,
-          password: signupPassword,
-    });
+      const res = await axios.post("http://localhost:5000/api/user/signup", {
+        name,
+        email: signupEmail,
+        password: signupPassword,
+      });
       alert(res.data.message);
-      setIsSignUp(false); // Switch to login view
+      setIsSignUp(false); // Switch to login form
     } catch (err) {
       alert(err.response?.data?.message || "Signup error");
     }
@@ -37,10 +37,11 @@ const UserLogin = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:5000/api/user/login", {
-          email,
-          password,
+        email,
+        password,
       });
       alert(res.data.message);
+      onLogin(); // ⬅️ Inform App that user is logged in
       navigate("/UserProfile");
     } catch (err) {
       alert(err.response?.data?.message || "Login error");

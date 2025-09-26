@@ -1,5 +1,5 @@
 /* General Navbar container */
-.navbar {
+/* .navbar {
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,6 +7,23 @@
   background-color: #fff;
   padding: 15px 6%;
   position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+} */
+
+body {
+  padding-top: 70px; /* Adjust to navbar height */
+}
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px 6%;
+  position: fixed; /* Stay fixed on scroll */
+  top: 0; /* Stick to top */
+  left: 0;
+  z-index: 1000; /* Stay above other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
