@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^9.2.0",
+    "express": "^5.1.0",
     "react-router-dom": "^7.6.3"
   }
 }
