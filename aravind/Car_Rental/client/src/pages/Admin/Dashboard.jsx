@@ -1,16 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   const navigate = useNavigate();
-  const username = localStorage.getItem("adminUsername");
-  const token = localStorage.getItem("adminToken");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem("adminToken");
+    const storedUsername = localStorage.getItem("adminUsername");
+
     if (!token) {
       navigate("/adminlogin");
+    } else {
+      setUsername(storedUsername || "Admin");
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
@@ -19,26 +23,72 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-500 p-6">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded shadow">
-        <h2 className="text-2xl font-bold mb-4">Welcome, {username}!</h2>
-        <p className="mb-6">This is your admin dashboard.</p>
+    <div className="dashboard-page">
+      <div className="dashboard-container">
+        {/* Header */}
+        <header className="dashboard-header">
+          <h2>Welcome, {username}!</h2>
+          <p>Here is the summary of your admin activities.</p>
+        </header>
 
-      <section className="upperpanel bg-amber-100">
-        <ul className="links flex gap-13 p-5">
-          <Link className="hover:text-emerald-500">Home</Link>
-          <Link className="hover:text-emerald-500">Charts</Link>
-          <Link className="hover:text-emerald-500">Contact Us</Link>
-          <Link className="hover:text-emerald-500">About Us</Link>
-          <Link className="hover:text-emerald-500">Manage Cars</Link>
-          <Link className="hover:text-emerald-500">Feedbacks</Link>
-          
-        <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
-        </ul>
-      </section>
-      <section className="mainpanel">
+        {/* Navigation */}
+        <nav className="dashboard-nav">
+          <ul>
+            <li><Link to="#">Home</Link></li>
+            <li><Link to="#">Charts</Link></li>
+            <li><Link to="#">Contact Us</Link></li>
+            <li><Link to="#">About Us</Link></li>
+            <li><Link to="#">Manage Cars</Link></li>
+            <li><Link to="#">Feedbacks</Link></li>
+          </ul>
+          <button onClick={handleLogout} className="logout-button">
+            Logout
+          </button>
+        </nav>
 
-      </section>
+        {/* Main Dashboard */}
+        <main className="dashboard-main">
+          {/* Cards */}
+          <div className="cards-container">
+            <div className="card">
+              <h3>Total Users</h3>
+              <p>150</p>
+            </div>
+            <div className="card">
+              <h3>Total Cars</h3>
+              <p>320</p>
+            </div>
+            <div className="card">
+              <h3>Feedbacks</h3>
+              <p>45</p>
+            </div>
+            <div className="card">
+              <h3>Revenue</h3>
+              <p>$12,450</p>
+            </div>
+          </div>
+
+          {/* Recent Activities */}
+          <section className="recent-activity">
+            <h3>Recent Activities</h3>
+            <ul>
+              <li>User John Doe registered a new account.</li>
+              <li>Car "Tesla Model 3" was added by Admin.</li>
+              <li>Feedback received from user Jane Smith.</li>
+              <li>Revenue report updated for September.</li>
+            </ul>
+          </section>
+
+          {/* Notifications */}
+          <section className="notifications">
+            <h3>Notifications</h3>
+            <ul>
+              <li>System maintenance scheduled for 28th Sep.</li>
+              <li>New feedback needs your review.</li>
+              <li>Weekly report is ready to download.</li>
+            </ul>
+          </section>
+        </main>
       </div>
     </div>
   );

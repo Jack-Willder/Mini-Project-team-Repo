@@ -193,8 +193,204 @@ li {
 strong {
   font-weight: 600;
 }
+
+/* ADMIN LOGIN */
+.login-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+}
+.login-form {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 384px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.login-error {
+  color: #f87171;
+  font-size: 14px;
+  text-align: center;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.form-group input {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.login-button {
+  width: 100%;
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.login-button:hover {
+  background-color: #1d4ed8;
+}
+ /* Admin Dashboard */
+.dashboard-page {
+  min-height: 100vh;
+  background-color: #e5e7eb;
+  padding: 20px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.dashboard-header p {
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.dashboard-nav {
+  background-color: #fef3c7;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.dashboard-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-nav ul li a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.dashboard-nav ul li a:hover {
+  color: #10b981;
+}
+
+.logout-button {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #dc2626;
+}
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #f3f4f6;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  color: #1f2937;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.recent-activity, .notifications {
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.recent-activity h3, .notifications h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.recent-activity ul, .notifications ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: #374151;
+}
+
+.recent-activity ul li, .notifications ul li {
+  margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-nav ul {
+    gap: 12px;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
 /* EMPLOYEE LOGIN , CUSTOMER LOGIN PAGES , EMPLOYEE REGISTER , CUSTOMER REGISTER PAGES*/
-.login-form-container{
+/* .login-form-container{
   width: 530px;
   margin-left: 500px;
   padding: 15px;
@@ -220,7 +416,7 @@ strong {
   padding: 10px;
   color: white;
   padding: 10px 32px;
-}
+} */
 
                             /* Booking Page */
 code {
@@ -327,4 +523,100 @@ code {
   .booking-title {
     font-size: 22px;
   }
+}
+
+/* Driver Login */
+.loginpanel {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header-panel {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: #4b5563;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.header-panel h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.header-panel p {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.login-form-container {
+  width: 400px;
+  background-color: #ffffff;
+  padding: 30px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form-container h3 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.login-form-container label {
+  font-weight: 500;
+}
+
+.login-form-container input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.login-form-container button {
+  padding: 10px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-form-container button:hover {
+  background-color: #1d4ed8;
+}
+
+.login-form-container a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.login-form-container a:hover {
+  text-decoration: underline;
+}
+
+.login-error {
+  color: #ef4444; /* red */
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
 }

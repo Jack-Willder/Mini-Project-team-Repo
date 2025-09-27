@@ -1,0 +1,121 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
+}
+
+/* Title Bar */
+.title {
+  height: 85px;
+  background-color: rgb(36, 0, 78);
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.title h1 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* Back Button */
+.back-btn {
+   position: absolute;
+   left: 20px;
+   top: 20px;
+   padding: 8px 15px;
+   font-size: 18px;
+   color: white;
+   text-decoration: none;
+   background-color: #903ecb;
+   border-radius: 15px;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover {
+  background-color: #6f2c9c;
+  transform: scale(1.05);
+}
+
+/* Category Container */
+.category-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 40px 10%;
+}
+
+/* Category Cards */
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+}
+
+/* Dark overlay for readability */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(67, 66, 66, 0.4);
+  transition: background 0.3s ease;
+}
+
+.category-card:hover .overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Text */
+.text h2 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  z-index: 2;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
+
+/* Background Images */
+.painting {
+  background-image: url("images/Painting02.jpg");
+}
+.sculpture {
+  background-image: url("images/Sculpture02.jpg");
+}
+.photograph {
+  background-image: url("images/fishing-photo.jpg");
+}
+.digital {
+  background-image: url("images/Digital art01.jpg");
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .category-container {
+    grid-template-columns: 1fr;
+  }
+}

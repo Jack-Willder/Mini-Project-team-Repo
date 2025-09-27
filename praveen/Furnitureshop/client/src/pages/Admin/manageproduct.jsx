@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";  
@@ -312,3 +313,6 @@ function ManageProduct() {
 }
 
 export default ManageProduct;
+=======
+ 
+>>>>>>> Stashed changes

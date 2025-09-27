@@ -1,0 +1,20 @@
+{
+  "name": "kickcouture",
+  "version": "1.0.0",
+  "description": "Monorepo for KickCouture: Vite + React frontend and Node + Express backend",
+  "main": "eslint.config.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react-router-dom": "^7.6.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
