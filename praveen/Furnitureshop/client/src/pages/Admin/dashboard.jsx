@@ -86,7 +86,7 @@ function Dashboard() {
             </button>
           </div>
            <div className="manage-orders">
-            <button className="btn-orders">
+            <button className="btn-review">
               <Link to="/managereview">Manage Reviews</Link>
             </button>
           </div>

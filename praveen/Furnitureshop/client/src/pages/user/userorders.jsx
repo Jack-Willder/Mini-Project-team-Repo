@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import { User } from "lucide-react"; // User icon
+import { User } from "lucide-react"; 
 
 function UserOrders() {
-  const { user, logout } = useAuth(); // ✅ Added logout here
+  const { user, logout } = useAuth(); 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [reviewStatus, setReviewStatus] = useState({});

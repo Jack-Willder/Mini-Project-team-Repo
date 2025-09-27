@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
-
 import './App.css';
 import Body from './components/Body'; 
 import Footer from './components/Footer';
