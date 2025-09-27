@@ -12,10 +12,9 @@ const open = require('open');
 // ################ dont change anything above this line ################
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/users', usersRouter);
 app.use('/routes', routesRouter);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
@@ -45,7 +44,7 @@ app.listen(PORT, () => {
   console.log(color.bold.redBright(`Server running on port ${PORT}`));
   console.log(color.bold.yellow(`Static files served from ${projectRoot}`));
   console.log(color.bold.blue(`http://localhost:${PORT}/home`));
-  open.default(`http://localhost:${PORT}/home`);
+  // open.default(`http://localhost:${PORT}/home`);
   
   // Basic route to check server status
   
