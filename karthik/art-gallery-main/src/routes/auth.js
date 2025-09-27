@@ -1,24 +1,25 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../config/db');  // adjust path if needed
+const express = require("express");
+const db = require("./db"); // import connection
+const app = express();
 
-router.post('/register', (req, res) => {
-  const { username, email, password, confirmPassword } = req.body;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  if (password !== confirmPassword) {
-    return res.status(400).json({ message: "Passwords do not match" });
+app.post("/api/register", (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: "Username and password required" });
   }
 
-  res.send("Registration endpoint hit" + " " + JSON.stringify(req.body));
-
-  const sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-  db.query(sql, [username, email, password], (err, result) => {
+  const sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+  db.query(sql, [username, password], (err, result) => {
     if (err) {
       console.error("Error inserting user:", err);
-      return res.status(500).json({ message: "Database error" });
+      return res.status(500).json({ error: "Database error" });
     }
-    res.status(201).json({ message: "User registered successfully!" });
+    res.json({ message: "User registered successfully!", userId: result.insertId });
   });
 });
 
-module.exports = router;
+app.listen(5000, () => console.log("Server running on http://localhost:5000"));
