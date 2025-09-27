@@ -4,10 +4,10 @@ const jwt = require("jsonwebtoken");
 const SECRET = "adminSecretKey";
 
 exports.adminLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const admin = await Admin.findOne({ username });
+    const admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
@@ -18,7 +18,7 @@ exports.adminLogin = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: admin._id, username: admin.username },
+      { id: admin._id, email: admin.email },
       SECRET,
       { expiresIn: "1h" }
     );
@@ -28,7 +28,7 @@ exports.adminLogin = async (req, res) => {
       token,
       admin: {
         id: admin._id,
-        username: admin.username
+        email: admin.email
       }
     });
   } catch (err) {

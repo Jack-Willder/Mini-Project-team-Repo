@@ -4,7 +4,7 @@ import PageHeader from "../../components/PageHeader";
 import Footer from "../../components/Footer";
 
 function AdminLogin() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function AdminLogin() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -30,9 +30,9 @@ function AdminLogin() {
       }
 
       localStorage.setItem("adminToken", data.token);
-      localStorage.setItem("adminUsername", data.admin?.username || "");
+      localStorage.setItem("adminEmail", data.admin?.email || "");
 
-      navigate("/dashboard");
+      navigate("/Admindashboard");
     } catch (err) {
       console.error(err);
       setError("Server error. Please try again later.");
@@ -42,41 +42,33 @@ function AdminLogin() {
   return (
     <>
       <PageHeader />
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <form
-          onSubmit={handleLogin}
-          className="bg-white p-8 rounded shadow-md w-96 space-y-4"
-        >
-          <h2 className="text-2xl font-bold text-center">Admin Login</h2>
+      <div className="login-page">
+        <form onSubmit={handleLogin} className="login-form">
+          <h2 className="login-title">Admin Login</h2>
 
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+          {error && <p className="login-error">{error}</p>}
 
-          <div>
-            <label className="block mb-1 font-medium">Username</label>
+          <div className="form-group">
+            <label>Email</label>
             <input
-              type="text"
-              className="w-full border p-2 rounded"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
-          <div>
-            <label className="block mb-1 font-medium">Password</label>
+          <div className="form-group">
+            <label>Password</label>
             <input
               type="password"
-              className="w-full border p-2 rounded"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
-          >
+          <button type="submit" className="login-button">
             Login
           </button>
         </form>

@@ -3,7 +3,7 @@ import PageHeader from '../../components/PageHeader'
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 
-function EmpRegister() {
+function DriverRegister() {
   return (
     <>
     <PageHeader/>
@@ -11,7 +11,7 @@ function EmpRegister() {
     <section className="loginpanel">
         <div className="header-panel bg-gray-400 p-5 text-center">
             <h1 className='text-6xl font-semibold text-white'>Car Rentals  -  Registration</h1><br />
-            <p className='text-white text-3xl'>Get Started By Creating Employee Account</p> 
+            <p className='text-white text-3xl'>Get Started By Creating Driver Account</p> 
         </div>
         <div className="login-form-container">
             <h3>Create Account</h3>
@@ -31,7 +31,7 @@ function EmpRegister() {
                 <button>Register</button>
             <br />
             <p>OR</p>
-            <Link to="/custregister">Have An Account? Login</Link>
+            <Link to="/driverlogin">Have An Account? Login</Link>
             </form>
         </div>
     </section>
@@ -41,4 +41,4 @@ function EmpRegister() {
   )
 }
 
-export default EmpRegister
+export default DriverRegister
