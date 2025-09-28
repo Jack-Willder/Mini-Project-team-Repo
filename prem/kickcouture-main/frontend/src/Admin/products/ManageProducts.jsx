@@ -12,6 +12,7 @@ function ManageProduct() {
   const [size, setSize] = useState("");
   const [brand, setBrand] = useState("");
   const [gender, setGender] = useState("");
+  const [price, setPrice] = useState(99999);
   const [desc, setDesc] = useState("");
 
   const [products, setProducts] = useState([]);
@@ -25,8 +26,8 @@ function ManageProduct() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
-      setProducts(res.data);
+      const res = await axios.get("http://localhost:5000/api/product/get");
+      setProducts(res.data.data);
     } catch (err) {
       console.error("Error fetching products", err);
     }
@@ -40,15 +41,16 @@ function ManageProduct() {
     formData.append("size", size);
     formData.append("brand", brand);
     formData.append("gender", gender);
+    formData.append("price", Number(price));
     formData.append("desc", desc);
     if (image) formData.append("image", image);
 
     try {
-      if (isEditing) {
-        await axios.put(`http://localhost:5000/api/products/${editId}`, formData);
-      } else {
-        await axios.post("http://localhost:5000/api/products/add", formData);
-      }
+      // if (isEditing) {
+      //   await axios.put(`http://localhost:5000/api/product/${editId}`, formData);
+      // } else {
+        await axios.post("http://localhost:5000/api/product/add", formData);
+      // }
       resetForm();
       fetchProducts();
     } catch (error) {
@@ -63,6 +65,7 @@ function ManageProduct() {
     setSize("");
     setBrand("");
     setGender("");
+    setPrice(0.00);
     setDesc("");
     setShowForm(false);
     setIsEditing(false);
@@ -75,6 +78,7 @@ function ManageProduct() {
     setSize(product.size);
     setBrand(product.brand);
     setGender(product.gender);
+    setPrice(product.price || 99999);
     setDesc(product.desc || "");
     setEditId(product._id);
     setIsEditing(true);
@@ -84,13 +88,13 @@ function ManageProduct() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`http://localhost:5000/api/product/${id}`);
       fetchProducts();
     }
   };
 
-  const handleLogout = () => {
-    navigate("/");
+  const handleDashboard = () => {
+    navigate("/Dashboard");
   };
 
   return (
@@ -99,8 +103,8 @@ function ManageProduct() {
         <h1 className="logo">
           <span>Kick</span>Couture
         </h1>
-        <button onClick={handleLogout} className="logout-button">
-          Logout
+        <button onClick={handleDashboard} className="logout-button">
+          DashBoard
         </button>
       </div>
 
@@ -182,6 +186,16 @@ function ManageProduct() {
             </div>
 
             <div className="md:col-span-2">
+              <label className="input-label">Price</label>
+              <textarea
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="form-textarea"
+                required
+              />
+            </div>
+
+            <div className="md:col-span-2">
               <label className="input-label">Description</label>
               <textarea
                 value={desc}
@@ -201,6 +215,39 @@ function ManageProduct() {
             </div>
           </form>
         )}
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div className="card">
+        <div className="card-header">
+          <h2>Product List</h2>
+        </div>
+          <section className="best-selling">
+            {products.map((product) => (
+              <div className="product-card" key={product._id}>
+                <img src={"http://localhost:5000/" + product.image} alt={product.title} />
+                <div className="product-info">
+                  <h1>{product.name}</h1>
+                  <h2>size {product.size}</h2>
+                  <h3>₹ {product.price}</h3>
+                  <p>brand {product.brand}</p>
+                  <p>{product.description}</p>
+                  {/* <button onClick={() => handleAddToCart(product)}>Add to Cart 🛒</button> */}
+                  <button onClick={() => handleDelete(product._id)}>Delete</button>
+                </div>
+              </div>
+            ))}
+          </section>
       </div>
     </div>
   );
