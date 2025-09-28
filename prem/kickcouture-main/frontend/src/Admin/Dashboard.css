@@ -30,6 +30,12 @@
   transition: 0.3s;
 }
 
+.stat-card span {
+  font-weight: bold;
+  margin-left: 8px;
+  color: #e63946;
+}
+
 .stat-card:hover {
   background: #f0f8ff;
 }

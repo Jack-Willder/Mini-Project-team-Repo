@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
 import axios from 'axios';
 
-const AdminLogin = () => {
+const AdminLogin = ({ onAdminLogin }) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -19,9 +19,7 @@ const AdminLogin = () => {
       });
 
       alert(res.data.message);
-
-      localStorage.setItem('adminToken', res.data.token);
-      localStorage.setItem('adminInfo', JSON.stringify(res.data.admin));
+      onAdminLogin(); // Notify App of admin login
 
       navigate('/Dashboard'); // Redirect to dashboard
     } catch (err) {

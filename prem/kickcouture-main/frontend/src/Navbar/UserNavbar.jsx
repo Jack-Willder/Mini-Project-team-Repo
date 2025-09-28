@@ -18,9 +18,10 @@ const UserNavbar = ({ onLogout }) => {
       <p className="logo">Kick<span>Couture</span></p>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/userProfile">Profile</Link></li>
         <li><Link to="/collection">Collection</Link></li>
+        <li><Link to="/cart">Cart</Link></li>
         <li><Link to="/AboutUs">About</Link></li>
-        <li><Link to="/cart">Add to Cart</Link></li>
         <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
       </ul>
     </div>

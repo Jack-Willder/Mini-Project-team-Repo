@@ -41,7 +41,7 @@ const UserLogin = ({ onLogin }) => {
         password,
       });
       alert(res.data.message);
-      onLogin(); // ⬅️ Inform App that user is logged in
+      onLogin(email); // ⬅️ Inform App that user is logged in
       navigate("/UserProfile");
     } catch (err) {
       alert(err.response?.data?.message || "Login error");

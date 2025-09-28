@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import './Hero.css';
 import { Link } from 'react-router-dom';
 import heroImg from '../assets/img1.jpeg'; // Your uploaded image
@@ -19,7 +20,7 @@ export const Hero = () => {
         </p>
         <div className="cta-buttons">
           <Link to="/shop" className="btn primary">Shop Collection</Link>
-          <Link to="/features" className="btn secondary">Explore Features</Link>
+          <Link to="/UserProfile" className="btn secondary">Explore Features</Link>
         </div>
       </div>
       <div className="hero-right">
