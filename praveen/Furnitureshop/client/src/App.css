@@ -932,14 +932,14 @@ input:focus {
   text-align: center;
 }
 
-
 .dashboard-container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 1rem;
+  gap: 0.5rem;       
+  flex-wrap: nowrap;  
+  padding: 0.5rem;
 }
+
 
 .dashboard-container > div {
   flex: 1 1 200px;
@@ -953,25 +953,24 @@ input:focus {
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
-  margin-left:4rem;
-  margin-bottom: 20px;
+  margin: 0.5rem;  
   background-size: cover;
   background-position: center;
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   transition: transform 0.2s ease;
-  width: 100%;
-  max-width: 300px;
-  height: 300px;
+  width: 250px;                   
+  height: 250px;                   
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   position: relative;
   overflow: hidden;
 }
+
 
 .dashboard-container button::after {
   content: attr(data-label); 
@@ -1004,9 +1003,12 @@ input:focus {
 .btn-orders {
   background-image: url('/productimages/manageorders.png');
 }
-.btn-review{
-  background-color: url('/productimages/REVIEW.JPEG');
+.btn-review {
+  background-image: url('/productimages/reviewpng.png');
+  background-size: cover;
+  background-position: center;
 }
+
 
 @media (max-width: 600px) {
   .dashboard-container {
@@ -2122,5 +2124,46 @@ table tr:hover {
   color: #777;
 }
 
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+/* Default (Review button = green) */
+.review-btn {
+  background-color: #4CAF50;
+}
+.review-btn:hover {
+  background-color: #45a049;
+}
+
+/* Cancel button = red */
+.cancel-btn {
+  background-color: #f44336;
+}
+.cancel-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Repurchase button = blue */
+.repurchase-btn {
+  background-color: #2196F3;
+}
+.repurchase-btn:hover {
+  background-color: #1976d2;
+}
+
+/* Flex container for multiple buttons */
+.action-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
 

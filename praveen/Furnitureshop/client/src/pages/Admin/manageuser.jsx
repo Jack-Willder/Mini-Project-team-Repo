@@ -132,6 +132,7 @@ function ManageUser() {
           </li>
         </ul>
       </div>
+      <br/>
 
       <div className="manage-container">
         <table>
@@ -192,6 +193,8 @@ function ManageUser() {
             <input
               type="text"
               name="phone"
+              minLength={10}
+              maxLength={10}
               value={formData.phone}
               onChange={handleChange}
               placeholder="Phone"
@@ -233,19 +236,28 @@ function ManageUser() {
 
         {message && <p className="delivery-message">{message}</p>}
       </div>
-     <div >
-        <p className="foot"  style={{ 
-        position: "fixed", 
-        bottom: "0", 
-        left: "0", 
-        width: "100%", 
-        background: "#f1f1f1", 
-        textAlign: "center", 
-        padding: "10px" 
-        }}>
-                Copyright © 2025 | Designed by Praveen
-              </p>
-      </div>
+   <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh"  // ensures container fills viewport
+  }}
+>
+  
+  {/* Footer */}
+  <footer
+    style={{
+      background: "#f1f1f1",
+      textAlign: "center",
+      padding: "10px 0",
+      marginTop: "auto"  // pushes footer to bottom only if content is short
+    }}
+  >
+    Copyright © 2025 | Designed by Praveen
+  </footer>
+</div>
+
+
     </div>
   );
 }

@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";  
@@ -303,16 +303,36 @@ function ManageProduct() {
            Insert Product
         </button>
       </div>
-      <div className="footer">
-        <p className="foot">
-                Copyright © 2025 | Designed by Praveen
-              </p>
-      </div>
+    <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh" // full height of viewport
+  }}
+>
+  {/* Main page content */}
+  <div style={{ flex: 1 }}>
+    {/* All your page content goes here */}
+  </div>
+
+  {/* Footer */}
+  <footer
+    style={{
+      background: "#f1f1f1",
+      textAlign: "center",
+      padding: "10px 0",
+      marginTop: "auto" // pushes footer to bottom if content is short
+    }}
+  >
+    Copyright © 2025 | Designed by Praveen
+  </footer>
+</div>
+
     </div>
   );
 }
 
 export default ManageProduct;
-=======
+
  
->>>>>>> Stashed changes
+
