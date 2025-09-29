@@ -16,6 +16,7 @@
     "react-router-dom": "^7.6.3"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
     "concurrently": "^9.2.1"
   }
 }
