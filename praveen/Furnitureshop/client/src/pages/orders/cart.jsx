@@ -9,7 +9,6 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch cart from backend
   const fetchCart = async () => {
     if (!user) return;
     setLoading(true);
@@ -57,9 +56,8 @@ function Cart() {
     }
   };
 
-  // Navigate to address checking page
   const handleNext = () => {
-    navigate("/Deliveryaddress"); // Update this route to your address page
+    navigate("/Deliveryaddress"); 
   };
 
   if (!user) {
@@ -141,9 +139,25 @@ function Cart() {
       <h2 className="cart-total-unique">Total: ₹{cart.totalAmount}</h2>
 
       {cart.status === "active" && (
-        <button className="cart-next-btn-unique" onClick={handleNext}>
-          Next
-        </button>
+        <button
+  onClick={handleNext}
+  style={{
+    backgroundColor: "#4CAF50",   
+    color: "white",               
+    padding: "10px 20px",        
+    border: "none", 
+    justifyContent:"space-between",
+    gap:"10px",              
+    borderRadius: "5px",          
+    cursor: "pointer",            
+    fontSize: "16px",             
+    fontWeight: "bold",           
+    margin: "20px"             
+  }}
+>
+  Next
+</button>
+
       )}
 
       <Link to="/products">

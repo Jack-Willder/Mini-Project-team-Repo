@@ -83,6 +83,7 @@ function ManageOrder() {
           </li>
         </ul>
       </div>
+      <br/>
 
       <table className="orders-table">
         <thead>
@@ -142,18 +143,20 @@ function ManageOrder() {
               {/* Actions */}
               <td>
                 <button
-                  onClick={() => handleCancelOrder(order._id)}
-                  disabled={order.orderStatus === "Cancelled"}
-                  style={{
-                    backgroundColor: "red",
-                    color: "white",
-                    fontWeight: "700",
-                    borderRadius: "6px",
-                    padding: "8px"
-                  }}
-                >
-                  Cancel Order
-                </button>
+  onClick={() => handleCancelOrder(order._id)}
+  disabled={order.orderStatus === "Cancelled" || order.orderStatus === "Delivered"}
+  style={{
+    backgroundColor: order.orderStatus === "Cancelled" || order.orderStatus === "Delivered" ? "#ccc" : "red",
+    color: "white",
+    fontWeight: "700",
+    borderRadius: "6px",
+    padding: "8px",
+    cursor: order.orderStatus === "Cancelled" || order.orderStatus === "Delivered" ? "not-allowed" : "pointer"
+  }}
+>
+  Cancel Order
+</button>
+
               </td>
             </tr>
           ))}
@@ -161,19 +164,31 @@ function ManageOrder() {
       </table>
 
       {message && <p className="delivery-message">{message}</p>}
-     <div >
-        <p className="foot"  style={{ 
-        position: "fixed", 
-        bottom: "0", 
-        left: "0", 
-        width: "100%", 
-        background: "#f1f1f1", 
-        textAlign: "center", 
-        padding: "10px" 
-        }}>
-                Copyright © 2025 | Designed by Praveen
-              </p>
-      </div>
+     <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh" // full height of viewport
+  }}
+>
+  {/* Main page content */}
+  <div style={{ flex: 1 }}>
+    {/* All your page content goes here */}
+  </div>
+
+  {/* Footer */}
+  <footer
+    style={{
+      background: "#f1f1f1",
+      textAlign: "center",
+      padding: "10px 0",
+      marginTop: "auto" // pushes footer to bottom if content is short
+    }}
+  >
+    Copyright © 2025 | Designed by Praveen
+  </footer>
+</div>
+
     </div>
   );
 }

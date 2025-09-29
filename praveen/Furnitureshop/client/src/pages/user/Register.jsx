@@ -130,6 +130,7 @@ function Register() {
               <input
                 type="text"
                 id="phone"
+                minLength={10}
                 maxLength={10}
                 name="phone"
                 value={formData.phone}

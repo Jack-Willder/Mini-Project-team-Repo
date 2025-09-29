@@ -6,37 +6,51 @@ import { Link } from 'react-router-dom';
 function CustRegister() {
   return (
     <>
-    <PageHeader/>
+      <PageHeader />
 
-    <section className="loginpanel">
-        <div className="header-panel bg-gray-400 p-5 text-center">
-            <h1 className='text-6xl font-semibold text-white'>Car Rentals  -  Registration</h1><br />
-            <p className='text-white text-3xl'>Get Started By Creating Customer Account</p> 
+      <section className="loginpanel">
+        <div className="header-panel">
+          <h1>Car Rentals  -  Registration</h1>
+          <p>Get Started By Creating Customer Account</p>
         </div>
-        <div className="login-form-container">
-            <h3>Create Account</h3>
-            <form>
-                <label htmlFor="Fullname"><span className='text-red-600'>*</span>&nbsp;Full Name</label>
-                <input type="text" name="fname" id="fname" />
-                <label htmlFor="username"><span className='text-red-600'>*</span>&nbsp;Username</label>
-                <input type="text" name="uname" id="uname" />
-                <label htmlFor="email"><span className='text-red-600'>*</span>&nbsp;Email</label>
-                <input type="email" name="email" id="email" />
-                <label htmlFor="phno"><span className='text-red-600'>*</span>&nbsp;Phone</label>
-                <input type="number" name="phno" id="phno" />
-                <label htmlFor="address"><span className='text-red-600'>*</span>&nbsp;Address</label>
-                <input type="text" name="address" id="address" />
-                <label htmlFor="pwd"><span className='text-red-600'>*</span>&nbsp;Password</label>
-                <input type="password" name="pwd" id="pwd" />
-                <button>Register</button>
-            <br />
-            <p>OR</p>
-            <Link to="/custregister">Have An Account? Login</Link>
+
+        <div className="login-form-wrap">
+          <div className="login-card">
+            <div className="login-card-header">Create Account</div>
+
+            <form className="login-card-body" onSubmit={(e)=>e.preventDefault()}>
+              <label htmlFor="fname"><span className="required">*</span>Full Name:</label>
+              <input type="text" id="fname" name="fname" placeholder="Your Full Name" />
+
+              <label htmlFor="uname"><span className="required">*</span>Username:</label>
+              <input type="text" id="uname" name="uname" placeholder="Your Username" />
+
+              <label htmlFor="email"><span className="required">*</span>Email:</label>
+              <input type="email" id="email" name="email" placeholder="Email" />
+
+              <label htmlFor="phno"><span className="required">*</span>Phone:</label>
+              <input type="tel" id="phno" name="phno" placeholder="Phone" />
+
+              <label htmlFor="address"><span className="required">*</span>Address:</label>
+              <input type="text" id="address" name="address" placeholder="Address" />
+
+              <label htmlFor="pwd"><span className="required">*</span>Password:</label>
+              <input type="password" id="pwd" name="pwd" placeholder="Password" />
+
+              <div className="actions-row">
+                <button type="submit" className="submit-btn">SUBMIT</button>
+              </div>
+
+              <p className="alt">
+                or<br />
+                Have an account? <Link to="/custlogin">Login</Link>.
+              </p>
             </form>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <Footer/>
+      <Footer />
     </>
   )
 }

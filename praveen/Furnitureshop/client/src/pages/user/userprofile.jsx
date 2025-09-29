@@ -112,7 +112,8 @@ const UserProfile = () => {
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
           </label>
           <label>Phone:
-            <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+            <input type="text" name="phone" minLength={10}
+                maxLength={10} value={formData.phone} onChange={handleChange} />
           </label>
 
           {/* Nested address fields */}

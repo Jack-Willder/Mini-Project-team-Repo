@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";  
@@ -9,7 +9,15 @@ function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, user, logout } = useAuth();
+
+  // Check if a normal user is logged in
+  useEffect(() => {
+    if (user && user.role !== "admin") {
+      alert("You are logged in as a user. Please logout to login as admin.");
+      navigate("/"); // Redirect to home or any other page
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,7 +49,6 @@ function AdminLogin() {
   return (
     <div className="admin-loginpage">
       <div className="header-wrapper">
-        {/* Header */}
         <h1 className="header funky-text">
           <span className="circle-bg">&nbsp;Furniture</span>One
         </h1>
@@ -80,7 +87,6 @@ function AdminLogin() {
               minLength={8}
               maxLength={16}
             />
-            {/* Toggle Button */}
             <span 
               onClick={() => setShowPassword(!showPassword)}
               style={{

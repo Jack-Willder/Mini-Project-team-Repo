@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa";  
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState("");
+
+  // 🔹 Show alert only when error changes
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,11 +29,7 @@ function Login() {
       });
 
       const { token, user } = response.data;
-
-      login(
-        user,
-        token
-      );
+      login(user, token);
 
       const from = location.state?.from || "/products";
       navigate(from);
@@ -70,18 +75,28 @@ function Login() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ position: "relative" }}>
             <label>Password:</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-group-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <span 
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "35px",
+                cursor: "pointer",
+                marginTop: "10px"
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
-
-          {error && <p style={{ color: "red" }}>{error}</p>}
 
           <button type="submit" className="login-button">Login</button>
         </form>
