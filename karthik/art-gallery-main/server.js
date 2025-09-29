@@ -1,9 +1,14 @@
+const bodyParser = require("body-parser");
+const path = require("path");
+const registerRoute = require("./src/routes/register");
+
+
 // ################ dont change anything below this line ################
 const express = require('express');
 const app = express();
-const path = require("path");
+
 const usersRouter = require('./src/routes/users');
-const routesRouter = require('./src/routes/auth');
+// const routesRouter = require('./src/routes/auth');
 const chalk = require('chalk');
 const color = new chalk.Instance({ level: 1 });
 const livereload = require("livereload");
@@ -14,7 +19,7 @@ const open = require('open');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', usersRouter);
-app.use('/routes', routesRouter);
+// app.use('/routes', routesRouter);
 
 const PORT = process.env.PORT || 5000;
 
@@ -45,11 +50,28 @@ app.listen(PORT, () => {
   console.log(color.bold.yellow(`Static files served from ${projectRoot}`));
   console.log(color.bold.blue(`http://localhost:${PORT}/home`));
   // open.default(`http://localhost:${PORT}/home`);
-  
+
   // Basic route to check server status
-  
+
   app.get('/', (req, res) => {
     res.send('Welcome to the Art Gallery API!');
   });
 
 });
+
+// middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// serve frontend files
+app.use(express.static(path.join(__dirname, "public")));
+
+// routes
+app.use("/routes/register", registerRoute);
+
+// server start
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+
