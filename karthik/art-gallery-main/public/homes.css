@@ -1,0 +1,264 @@
+ body {
+      background: linear-gradient(to right, #e56fe9, #9753be, #c269e6);
+      height: 100%;
+  }
+
+  @font-face {
+      font-family: 'MemphisRiver';
+      src: url(Memphis-River/Memphis\ River.otf);
+  }
+
+  * {
+      margin: 0px;
+      padding: 0px;
+  }
+
+  .title {
+      margin-top: 20px;
+      margin-left: 20px;
+      height: 40px;
+      font-size: 20px;
+      font-family: 'MemphisRiver';
+  }
+
+  #art {
+      color: rgb(36, 0, 78);
+      display: inline;
+      margin-right: 10px;
+  }
+
+  #gallery {
+      color: rgb(36, 0, 78);
+      display: inline;
+  }
+
+  .header {
+      background-color: rgb(36, 0, 78);
+      display: flex;
+      margin-top: 50px;
+      padding: 10px;
+  }
+
+  .header ul {
+      float: right;
+  }
+
+  .header ul li {
+      display: inline-flex;
+      font-family: 'Segoe UI', sans-serif;
+      list-style: none;
+      padding-left: 10px;
+      margin-right: 10px;
+  }
+
+  .header ul li a {
+      text-decoration: none;
+      color: #d2aaff;
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+  }
+
+  .header ul li a:hover {
+      color: rgb(255, 255, 255);
+      transform: scale(1.10);
+  }
+
+  .dropdown {
+      position: relative;
+  }
+
+  .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: rgb(36, 0, 78);
+      border-radius: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      top: 100%;
+      left: 0;
+      min-width: 150px;
+      min-height: 100px;
+      z-index: 999;
+  }
+
+  .dropdown-menu li a {
+      display: block;
+      padding: 60px;
+      color: rgb(36, 0, 78);
+      text-decoration: none;
+      white-space: nowrap;
+  }
+
+  .dropdown-menu li a:hover {
+      display: block;
+      width: 110%;
+      color: rgb(36, 0, 78);
+      border-radius: 8px;
+      transform: scale(1.02);
+  }
+
+
+  .dropdown:focus-within .dropdown-menu {
+      display: block;
+  }
+
+  .header input {
+      border-radius: 15px;
+      border: none;
+      margin: 5px;
+      margin-left: 500px;
+      width: 180px;
+      height: 28px;
+       padding: 0px;
+      text-align: center;
+      margin-right: 10px;
+    
+  }
+  input #search-btn
+  {
+      display: inline-flex;
+  }
+   #search-btn{
+    margin-top: 5px;
+   }
+
+  .header #search-btn {
+      border: none;
+      outline: none;
+      height: 30px;
+      width: 37px;
+      padding: 5px;
+      border-radius: 25px;
+      background-color: #d2aaff;
+      margin-right: 40px;
+      cursor: pointer;
+  }
+
+  #search-btn:hover {
+      background-color: #a963d1;
+  }
+
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 70px;
+  padding: 60px 150px;
+}
+
+.art-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 6px 5px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 10px;
+  width:350px;
+  height:400px;
+  transition: transform 0.3s ease;
+}
+
+.art-card:hover {
+  transform: translateY(-8px);
+}
+
+.art-card img {
+  width: 300px;
+  height: 350px;
+  border-radius: 15px;
+}
+
+.art-card h3 {
+  margin: 15px 0;
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: rgb(36, 0, 78);
+}
+
+.view-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgb(36, 0, 78);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s;
+}
+
+.view-btn:hover {
+  background: rgb(27, 0, 56);
+}
+
+  
+  .footer {
+      background: linear-gradient(to right, rgb(36, 0, 78), rgb(1, 0, 41));
+      height: 130px;
+      color: rgb(255, 255, 255);
+  }
+
+  .footer .call {
+      display: flex;
+      padding-top: 50px;
+      background-color: rgb(36, 0, 78);
+      margin-left: 30px;
+  }
+
+  #call-img {
+      margin-right: 10px;
+      background-color: #11d864;
+      border-radius: 25px;
+  }
+
+  #contact {
+      font-family: 'Segoe UI';
+      font-size: 20px;
+      margin-right: 10px;
+      margin-right: 700px;
+  }
+
+  #insta-img {
+      margin-right: 100px;
+  }
+
+  #fb-img {
+      margin-right: 100px;
+  }
+
+  #X-img {
+      margin-right: 50px;
+      background-color: white;
+      border-radius: 4px;
+  }
+
+  .mailid {
+      font-family: 'Segoe UI';
+      font-size: 20px;
+      display: flex;
+      background-color: rgb(36, 0, 78);
+      padding-top: 20px;
+      margin-left: 0px;
+  }
+
+  .footer .copyright {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 30px;
+      background-color: rgb(36, 0, 78);
+  }
+
+  #gmail-img {
+      margin-left: 30px;
+      margin-right: 10px;
+  }
+
+  #cp-img {
+      background-color: rgb(196, 187, 187);
+      display: block;
+      margin-top: 4px;
+      border-radius: 25px;
+      margin-right: 10px;
+  }
