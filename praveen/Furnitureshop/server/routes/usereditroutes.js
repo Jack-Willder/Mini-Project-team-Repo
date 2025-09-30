@@ -9,11 +9,8 @@ import {
 } from "../controllers/usereditController.js";
 
 router.get("/users", getUsers);
-
 router.get("/users/:id", getUserById);
-
 router.put("/users/:id", updateUser);
-
 router.delete("/users/:id", deleteUser);
 
 export default router;

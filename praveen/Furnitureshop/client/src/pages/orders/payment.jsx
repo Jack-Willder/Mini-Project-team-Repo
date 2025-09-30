@@ -18,35 +18,41 @@ function Payment() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id || storedUser?._id || storedUser?.id;
 
-  useEffect(() => {
-    if (!userId) {
-      navigate("/login");
-      return;
-    }
+ useEffect(() => {
+  if (!userId) {
+    navigate("/login");
+    return;
+  }
 
-    const fetchData = async () => {
-      try {
-        // Fetch cart
-        const cartRes = await axios.get(`http://localhost:5000/api/cart/${userId}`);
-        setCart(cartRes.data);
+  const objectIdRegex = /^[0-9a-fA-F]{24}$/;
+  if (!objectIdRegex.test(userId)) {
+    setMessage("Invalid user ID. Please login again.");
+    setLoading(false);
+    return;
+  }
 
-        // Fetch user address
-        const userRes = await axios.get(`http://localhost:5000/api/userman/users/${userId}`);
-        if (userRes.data.address) {
-          setUserAddress(userRes.data.address);
-        } else {
-          setMessage("Please update your address before placing an order.");
-        }
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setMessage("Failed to fetch cart or address.");
-      } finally {
-        setLoading(false);
+  const fetchData = async () => {
+    try {
+      const cartRes = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      setCart(cartRes.data);
+
+      const userRes = await axios.get(`http://localhost:5000/api/userman/users/${userId}`);
+      if (userRes.data.address) {
+        setUserAddress(userRes.data.address);
+      } else {
+        setMessage("Please update your address before placing an order.");
       }
-    };
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      setMessage("Failed to fetch cart or address.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, [userId, navigate]);
+  fetchData();
+}, [userId, navigate]);
+
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -73,6 +79,8 @@ function Payment() {
       });
 
       alert("Order placed successfully!");
+      await axios.post("http://localhost:5000/api/cart/checkout", { userId });
+
       setCart({ items: [], totalAmount: 0 });
       setTimeout(() => navigate("/"), 2000);
     } catch (err) {

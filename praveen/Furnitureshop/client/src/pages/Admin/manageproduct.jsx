@@ -307,13 +307,10 @@ function ManageProduct() {
   style={{
     display: "flex",
     flexDirection: "column",
-    minHeight: "100vh" // full height of viewport
+    minHeight: "100vh" 
   }}
 >
-  {/* Main page content */}
-  <div style={{ flex: 1 }}>
-    {/* All your page content goes here */}
-  </div>
+ 
 
   {/* Footer */}
   <footer
@@ -321,13 +318,12 @@ function ManageProduct() {
       background: "#f1f1f1",
       textAlign: "center",
       padding: "10px 0",
-      marginTop: "auto" // pushes footer to bottom if content is short
+      marginTop: "auto"
     }}
   >
     Copyright © 2025 | Designed by Praveen
   </footer>
 </div>
-
     </div>
   );
 }

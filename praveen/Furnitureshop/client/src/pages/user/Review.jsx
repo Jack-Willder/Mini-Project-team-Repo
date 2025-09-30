@@ -72,7 +72,8 @@ function Review() {
 
   return (
     <div>
-      <h2>Review Your Products</h2>
+      <h2 style={{fontWeight:"bold",justifyContent:"center", alignItems:"center"}}>Review Your Products</h2>
+      <br/>
       <form onSubmit={handleSubmit}>
         <table>
           <thead>
@@ -106,15 +107,45 @@ function Review() {
                     value={item.comment}
                     onChange={(e) => handleComment(item.productId, e.target.value)}
                     rows="2"
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", border:"1px solid black",borderRadius:"10px"}}
                   />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={() => navigate("/userorders")}>Cancel</button>
+       <button 
+  type="submit" 
+  style={{
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "16px",
+    marginRight: "10px"
+  }}
+  >
+  Submit
+</button>
+
+<button 
+  type="button" 
+  onClick={() => navigate("/userorders")}
+  style={{
+    backgroundColor: "#f44336",
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "16px"
+  }}
+  >
+  Cancel
+</button>
+
       </form>
     </div>
   );

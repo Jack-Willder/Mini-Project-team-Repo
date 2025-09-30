@@ -22,7 +22,6 @@ function DeliveryAddress() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id || storedUser?._id || storedUser?.id;
 
-  // Fetch user's current address
   useEffect(() => {
     if (!userId) {
       console.error("No logged-in user");
@@ -44,13 +43,11 @@ function DeliveryAddress() {
     fetchAddress();
   }, [userId]);
 
-  // Handle input change
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setAddress((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Update address
   const handleUpdate = async () => {
     try {
       await axios.put(`http://localhost:5000/api/userman/users/${userId}`, {

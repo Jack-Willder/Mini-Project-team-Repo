@@ -37,7 +37,7 @@ export const createReview = async (req, res) => {
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await Review.find()
-      .populate("productId", "name category size desc variants") // works with your items schema
+      .populate("productId", "name category size desc variants") 
       .populate("userId", "name email")
       .populate("orderId", "_id orderDate")
       .sort({ reviewDate: -1 });

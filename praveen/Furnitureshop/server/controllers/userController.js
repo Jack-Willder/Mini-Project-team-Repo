@@ -1,4 +1,3 @@
-// controllers/userController.js
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -14,7 +13,7 @@ export const userRegister = async (req, res) => {
       return res.status(400).json({ message: "Email already registered" });
     }
 
-    if (!address || !address.city || !address.doorNo || !address.postalCode) {
+    if (!address || !address.city || !address.doorNo || !address.postalCode || !address.street ||!address.state || !address.country) {
       return res.status(400).json({ message: "Incomplete address details" });
     }
 

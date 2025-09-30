@@ -51,7 +51,10 @@ function AppContent() {
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/userorders" element={<UserOrders />} />
-      <Route path="/review/:orderId" element={<Review />} />
+      <Route path="/review/:orderId" element={
+       <Review />
+        
+        } />
       <Route path="/managereview" element={<ManageReview />}/>
       
       {/* Admin Protected Routes */}

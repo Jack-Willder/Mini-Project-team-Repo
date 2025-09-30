@@ -1185,11 +1185,10 @@ table tr:hover {
   margin-bottom: 15px;
 }
 
-/* Flex container for buttons */
 .variant-actions {
   display: flex;
   justify-content: space-around;
-  gap: 10px;   /* space between buttons */
+  gap: 10px;   
   margin-top: 8px;
 }
 
@@ -1233,8 +1232,8 @@ table tr:hover {
 }
 .form-button {
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center;     /* vertical center */
+  justify-content: center; 
+  align-items: center;     
 }
 
 .manage-product-container table {
@@ -1509,10 +1508,9 @@ table tr:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f9fafb; /* very light gray background */
+  background: #f9fafb; 
 }
 
-/* Card box */
 .userdashboard-box {
   background: #ffffff;
   padding: 2rem;
@@ -1522,7 +1520,6 @@ table tr:hover {
   text-align: center;
 }
 
-/* Welcome message */
 .userdashboard-welcome {
   font-size: 1.6rem;
   font-weight: bold;
@@ -1530,14 +1527,12 @@ table tr:hover {
   color: #333;
 }
 
-/* Button container */
 .userdashboard-buttons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Common button style */
 .userdashboard-btn {
   padding: 0.9rem;
   border: none;
@@ -1551,7 +1546,6 @@ table tr:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Profile button */
 .userdashboard-profile-btn {
   background: linear-gradient(to right, #ffffff, #dbeafe); /* white + light blue */
 }
@@ -1559,7 +1553,6 @@ table tr:hover {
   background: linear-gradient(to right, #dbeafe, #bfdbfe);
 }
 
-/* Orders button */
 .userdashboard-orders-btn {
   background: linear-gradient(to right, #ffffff, #dcfce7); /* white + light green */
 }
@@ -1567,7 +1560,6 @@ table tr:hover {
   background: linear-gradient(to right, #bbf7d0, #86efac);
 }
 
-/* Container */
 .userprofile-container {
   max-width: 500px;
   margin: 40px auto;
@@ -1578,21 +1570,18 @@ table tr:hover {
   font-family: Arial, sans-serif;
 }
 
-/* Title */
 .userprofile-title {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Form */
 .userprofile-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Labels */
 .userprofile-form label {
   display: flex;
   flex-direction: column;
@@ -1601,7 +1590,6 @@ table tr:hover {
   color: #444;
 }
 
-/* Input fields */
 .userprofile-form input[type="text"],
 .userprofile-form input[type="email"] {
   padding: 10px;
@@ -1617,7 +1605,6 @@ table tr:hover {
   outline: none;
 }
 
-/* Address section title */
 .userprofile-form h3 {
   margin-top: 15px;
   font-size: 16px;
@@ -1626,7 +1613,6 @@ table tr:hover {
   padding-bottom: 5px;
 }
 
-/* Update button */
 .userprofile-update-btn {
   background: #007bff;
   color: #fff;
@@ -1643,7 +1629,6 @@ table tr:hover {
   background: #0056b3;
 }
 
-/* Message */
 .userprofile-message {
   margin-top: 15px;
   margin-bottom:10px;
@@ -1653,21 +1638,18 @@ table tr:hover {
   font-weight: bold;
 }
 
-/* AdminLogin.css */
 
-/* Center the login card */
 .admin-login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f2f5; /* soft background */
+  background-color: #f0f2f5; 
   font-family: 'Arial', sans-serif;
 }
 
-/* The login card */
 .admin-login-form {
-  background-color: #ffffff; /* white card */
+  background-color: #ffffff; 
   padding: 40px 30px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -1680,7 +1662,6 @@ table tr:hover {
   transform: translateY(-3px);
 }
 
-/* Title */
 .admin-login-title {
   text-align: center;
   font-size: 28px;
@@ -1689,12 +1670,10 @@ table tr:hover {
   margin-bottom: 30px;
 }
 
-/* Form group */
 .form-group {
   margin-bottom: 20px;
 }
 
-/* Labels */
 .form-label {
   display: block;
   margin-bottom: 6px;
@@ -1703,7 +1682,6 @@ table tr:hover {
   font-size: 14px;
 }
 
-/* Inputs */
 .form-input {
   width: 100%;
   padding: 12px 15px;
@@ -1733,9 +1711,6 @@ table tr:hover {
   padding:10px;
 }
 
-/* Cart.css - External CSS with unique class names */
-
-/* Wrapper */
 .cart-wrapper-unique {
   width: 95%;
   max-width: 1200px;
@@ -1747,7 +1722,6 @@ table tr:hover {
   font-family: 'Arial', sans-serif;
 }
 
-/* Title */
 .cart-title-unique {
   font-size: 2rem;
   color: #222;
@@ -1755,7 +1729,6 @@ table tr:hover {
   text-align: center;
 }
 
-/* Table */
 .cart-table-unique {
   width: 100%;
   border-collapse: collapse;
@@ -1779,7 +1752,6 @@ table tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Quantity buttons */
 .cart-qty-btn-unique {
   background-color: #007bff;
   border: none;
@@ -1801,14 +1773,12 @@ table tr:hover {
   background-color: #0056b3;
 }
 
-/* Quantity display */
 .cart-qty-display-unique {
   font-weight: 600;
   font-size: 1rem;
   padding: 0 8px;
 }
 
-/* Remove button */
 .cart-remove-btn-unique {
   background-color: #dc3545;
   color: #fff;
@@ -1823,7 +1793,6 @@ table tr:hover {
   background-color: #a71d2a;
 }
 
-/* Total */
 .cart-total-unique {
   font-size: 1.8rem;
   text-align: right;
@@ -1831,7 +1800,6 @@ table tr:hover {
   color: #222;
 }
 
-/* Checkout button */
 .cart-checkout-btn-unique {
   background-color: #28a745;
   color: #fff;
@@ -1849,7 +1817,6 @@ table tr:hover {
   background-color: #1e7e34;
 }
 
-/* Add more items button */
 .cart-add-more-btn-unique {
   background-color: #ffc107;
   color: #212529;
@@ -1866,7 +1833,7 @@ table tr:hover {
   background-color: #e0a800;
 }
 
-/* Empty cart message */
+
 .cart-empty-msg-unique,
 .cart-loading-msg-unique {
   font-size: 1.5rem;
@@ -1875,7 +1842,6 @@ table tr:hover {
   color: #555;
 }
 
-/* Login button for empty cart */
 .cart-login-btn-unique {
   display: block;
   margin: 1rem auto;
@@ -2083,7 +2049,6 @@ table tr:hover {
   color: #555;
 }
 
-/* Reviews Section Container */
 .reviews-section {
   margin-top: 40px;
   padding: 20px;
@@ -2091,7 +2056,6 @@ table tr:hover {
   border-radius: 8px;
 }
 
-/* Individual Review Card */
 .review-card {
   border: 1px solid #ddd;
   padding: 15px;
@@ -2101,25 +2065,21 @@ table tr:hover {
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* Stars for rating */
 .review-card .stars {
-  color: #ffc107; /* gold color */
+  color: #ffc107; 
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
 
-/* User name styling */
 .review-card p strong {
   color: #333;
 }
 
-/* Comment styling */
 .review-card .comment {
   font-style: italic;
   margin: 8px 0;
 }
 
-/* Review date styling */
 .review-card small {
   color: #777;
 }
@@ -2135,7 +2095,6 @@ table tr:hover {
   transition: background-color 0.3s ease;
 }
 
-/* Default (Review button = green) */
 .review-btn {
   background-color: #4CAF50;
 }
@@ -2143,7 +2102,6 @@ table tr:hover {
   background-color: #45a049;
 }
 
-/* Cancel button = red */
 .cancel-btn {
   background-color: #f44336;
 }
@@ -2151,7 +2109,6 @@ table tr:hover {
   background-color: #d32f2f;
 }
 
-/* Repurchase button = blue */
 .repurchase-btn {
   background-color: #2196F3;
 }
@@ -2159,7 +2116,6 @@ table tr:hover {
   background-color: #1976d2;
 }
 
-/* Flex container for multiple buttons */
 .action-group {
   display: flex;
   gap: 8px;

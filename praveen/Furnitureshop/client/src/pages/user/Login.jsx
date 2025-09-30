@@ -13,7 +13,6 @@ function Login() {
   const location = useLocation();
   const [error, setError] = useState("");
 
-  // 🔹 Show alert only when error changes
   useEffect(() => {
     if (error) {
       alert(error);
