@@ -1,35 +1,50 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import PageHeader from "../../components/PageHeader";
+import Footer from "../../components/Footer";
 
 function UpdateCar() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const carFromState = location.state?.car;
 
-  // Example initial car data
   const [carData, setCarData] = useState({
-    name: "Toyota Camry",
-    numberPlate: "TN-01-AB-1234",
-    acFarePerKm: 15,
-    nonAcFarePerKm: 10,
-    acFarePerDay: 1200,
-    nonAcFarePerDay: 900,
+    carName: "",
+    vehicleNumber: "",
+    acFarePerKm: "",
+    nonAcFarePerKm: "",
+    acFarePerDay: "",
+    nonAcFarePerDay: "",
   });
+
+  useEffect(() => {
+    if (carFromState) {
+      setCarData({ ...carFromState });
+    } else {
+      navigate("/managecars");
+    }
+  }, [carFromState, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCarData({ ...carData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Updated car data:", carData);
-    // Add API call for update here
+    try {
+      await axios.put(`http://localhost:5000/api/cars/${carData._id}`, carData);
+      alert("Car updated successfully!");
+      navigate("/managecars");
+    } catch (err) {
+      console.error(err);
+      alert("Error updating car");
+    }
   };
 
-  const handleGoBack = () => {
-    navigate(-1); // go back to previous page
-  };
-
-  return (
+  return (<>
+  <PageHeader/>
     <div className="update-car-container">
       <h1 className="header">Update Car Details</h1>
 
@@ -37,8 +52,8 @@ function UpdateCar() {
         <label>Car Name:</label>
         <input
           type="text"
-          name="name"
-          value={carData.name}
+          name="carName"
+          value={carData.carName}
           onChange={handleChange}
           required
         />
@@ -46,8 +61,8 @@ function UpdateCar() {
         <label>Car Number Plate:</label>
         <input
           type="text"
-          name="numberPlate"
-          value={carData.numberPlate}
+          name="vehicleNumber"
+          value={carData.vehicleNumber}
           onChange={handleChange}
           required
         />
@@ -90,10 +105,12 @@ function UpdateCar() {
 
         <div className="form-buttons">
           <button type="submit" className="update-btn">Update Car</button>
-          <button type="button" className="back-btn" onClick={handleGoBack}>Go Back</button>
+          <button type="button" className="back-btn" onClick={() => navigate(-1)}>Go Back</button>
         </div>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 }
 

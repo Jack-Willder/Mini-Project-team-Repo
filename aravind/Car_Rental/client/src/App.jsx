@@ -35,16 +35,16 @@ function App() {
         <Route path="/custregister" element={<CustRegister/>}/>
         <Route path='/bookingcars' element={<BoookingCars/>}/>
         <Route path='/customer-dashboard' element={<CustomerDashboard/>}/>
-        <Route path='/addcar' element={<AddCar/>}/>
+        <Route path='/addcars' element={<AddCar/>}/>
         <Route path='/returncar' element={<ReturnCar/>}/>
         <Route path='/invoice' element={<Invoice/>}/>
         <Route path='/managecars' element={<ManageCars/>}/>
-        <Route path='updatecars' element={<UpdateCar/>}/>
+        <Route path='/updatecars' element={<UpdateCar/>}/>
         <Route path='/adddriver' element={<AddDriver/>}/>
         <Route path='/managedrivers' element={<ManageDrivers/>}/>
         <Route path='/updatedriver' element={<UpdateDriver/>}/>
-        <Route path='viewbookings' element={<ViewBookings/>}/>
-        <Route path='viewreports' element={<ViewReports/>}/>
+        <Route path='/viewbookings' element={<ViewBookings/>}/>
+        <Route path='/viewreports' element={<ViewReports/>}/>
       </Routes>
     </>
   );

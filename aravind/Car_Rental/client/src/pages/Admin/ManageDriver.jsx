@@ -1,86 +1,123 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import PageHeader from "../../components/PageHeader";
+import Footer from "../../components/Footer";
 
 function ManageDrivers() {
-  const drivers = [
-    {
-      id: 1,
-      name: "John Doe",
-      gender: "Male",
-      licenseNo: "DL-1234567890",
-      contact: "9876543210",
-      address: "123, Main Street, City",
-      availability: "Available",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      gender: "Female",
-      licenseNo: "DL-0987654321",
-      contact: "9123456780",
-      address: "456, Park Avenue, City",
-      availability: "On Duty",
-    },
-  ];
+  const navigate = useNavigate();
+  const [drivers, setDrivers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleUpdate = (id) => {
-    console.log("Update driver id:", id);
+  // Fetch drivers from backend
+  useEffect(() => {
+    const fetchDrivers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/drivers");
+        if (response.data.success) {
+          setDrivers(response.data.drivers);
+        } else {
+          alert("Failed to fetch drivers");
+        }
+      } catch (error) {
+        console.error("Error fetching drivers:", error.response?.data || error.message);
+        alert("Failed to fetch drivers");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDrivers();
+  }, []);
+
+  // Handle delete driver
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this driver?")) {
+      try {
+        const response = await axios.delete(`http://localhost:5000/api/drivers/${id}`);
+        if (response.data.success) {
+          alert("Driver deleted successfully");
+          setDrivers(drivers.filter((d) => d._id !== id));
+        } else {
+          alert("Failed to delete driver");
+        }
+      } catch (error) {
+        console.error("Error deleting driver:", error.response?.data || error.message);
+        alert("Failed to delete driver");
+      }
+    }
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete driver id:", id);
+  // Handle update driver
+  const handleUpdate = (driver) => {
+    // Pass driver object via state to UpdateDriver page
+    navigate(`/updatedriver`, { state: { driver } });
   };
+
+  if (loading) return <p>Loading drivers...</p>;
 
   return (
-    <div className="page-background">
-      <div className="manage-drivers-container">
-        <h1 className="header">My Drivers</h1>
-        <div className="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>License No</th>
-                <th>Contact</th>
-                <th>Address</th>
-                <th>Availability</th>
-                <th>Operation</th>
-              </tr>
-            </thead>
-            <tbody>
-              {drivers.map((driver, index) => (
-                <tr key={driver.id}>
-                  <td>{index + 1}</td>
-                  <td>{driver.name}</td>
-                  <td>{driver.gender}</td>
-                  <td>{driver.licenseNo}</td>
-                  <td>{driver.contact}</td>
-                  <td>{driver.address}</td>
-                  <td>{driver.availability}</td>
-                  <td>
-                    <div className="operation-buttons">
-                      <button
-                        className="update-btn"
-                        onClick={() => handleUpdate(driver.id)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDelete(driver.id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+    <>
+      <PageHeader />
+      <div className="page-background">
+        <div className="manage-drivers-container">
+          <h1 className="header">My Drivers</h1>
+          <div className="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>License No</th>
+                  <th>Contact</th>
+                  <th>Address</th>
+                  <th>Availability</th>
+                  <th>Operation</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {drivers.length > 0 ? (
+                  drivers.map((driver, index) => (
+                    <tr key={driver._id}>
+                      <td>{index + 1}</td>
+                      <td>{driver.name}</td>
+                      <td>{driver.gender}</td>
+                      <td>{driver.licenseNumber}</td>
+                      <td>{driver.contact}</td>
+                      <td>{driver.address}</td>
+                      <td>{driver.availability || "Available"}</td>
+                      <td>
+                        <div className="operation-buttons">
+                          <button
+                            className="update-btn"
+                            onClick={() => handleUpdate(driver)}
+                          >
+                            Update
+                          </button>
+                          <button
+                            className="delete-btn"
+                            onClick={() => handleDelete(driver._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" style={{ textAlign: "center" }}>
+                      No drivers found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
