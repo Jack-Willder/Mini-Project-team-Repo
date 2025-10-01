@@ -388,36 +388,6 @@ strong {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }
-
-/* EMPLOYEE LOGIN , CUSTOMER LOGIN PAGES , EMPLOYEE REGISTER , CUSTOMER REGISTER PAGES*/
-/* .login-form-container{
-  width: 530px;
-  margin-left: 500px;
-  padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.1);
-}
-.login-form-container h3{
-  background-color: blue;
-  color: white;
-  padding: 8px;
-  text-align: center;
-  margin:0;
-}
-.login-form-container form{
-  width: 500px;
-  border: 1px solid gray;
-  padding: 10px;
-}
-.login-form-container button{
-  background-color: blue;
-  margin-top: 10px;
-  outline: none;
-  border-radius: 8px;
-  padding: 10px;
-  color: white;
-  padding: 10px 32px;
-} */
-
                             /* Booking Page */
 code {
   font-family: Consolas, Monaco, monospace;
@@ -619,4 +589,433 @@ code {
   font-weight: 500;
   text-align: center;
   margin-bottom: 10px;
+}
+                                          /* Customer Register */
+/* --- CustRegister.css --- */
+
+.loginpanel {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #ffffff;
+  color: #333;
+}
+
+/* top banner */
+.header-panel {
+  width: 100%;
+  background: #f7f7f7;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.header-panel h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #222;
+}
+
+.header-panel p {
+  margin-top: 8px;
+  color: #555;
+  font-size: 16px;
+}
+
+/* form wrapper */
+.login-form-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 80px;
+}
+
+/* bigger card */
+.login-card {
+  width: 440px;                 /* wider than before */
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* blue header bar */
+.login-card-header {
+  background: #1e88c9;
+  color: #fff;
+  padding: 14px 16px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: left;
+}
+
+/* form content */
+.login-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card-body label {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.required {
+  color: #d32f2f;
+  margin-right: 4px;
+}
+
+.login-card-body input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+}
+
+.login-card-body input:focus {
+  border-color: #1e88c9;
+  box-shadow: 0 0 0 3px rgba(30,136,201,0.15);
+}
+
+/* submit button */
+.submit-btn {
+  margin-top: 18px;
+  background: #1e88c9;
+  color: #fff;
+  font-size: 13px;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  width: auto;                 /* small button like screenshot */
+}
+
+.submit-btn:hover {
+  background: #166b99;
+}
+
+/* login link */
+.alt {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #555;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.alt a {
+  color: #1e88c9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.alt a:hover {
+  text-decoration: underline;
+}
+/* --- CustLogin.css --- */
+
+.loginpanel {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #ffffff;
+  color: #333;
+}
+
+/* top gray box */
+.header-panel {
+  width: 90%;
+  margin: 20px auto;
+  background: #f7f7f7;
+  border: 1px solid #e5e5e5;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.header-panel h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  color: #555;
+}
+
+.header-panel p {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #777;
+  font-weight: 500;
+}
+
+/* form wrapper */
+.login-form-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+/* card */
+.login-card {
+  width: 360px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* blue top header */
+.login-card-header {
+  background: #1e88c9;
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* form area */
+.login-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card-body label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-card-body input {
+  width: 100%;
+  height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+}
+
+.login-card-body input:focus {
+  border-color: #1e88c9;
+  box-shadow: 0 0 0 3px rgba(30,136,201,0.15);
+}
+
+/* submit button */
+.submit-btn {
+  margin-top: 16px;
+  background: #1e88c9;
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 90px;
+}
+
+.submit-btn:hover {
+  background: #166b99;
+}
+
+/* alt text below */
+.alt {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #555;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.alt a {
+  color: #1e88c9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.alt a:hover {
+  text-decoration: underline;
+}
+/* booking cars */
+/* BookingCars.css - tuned + radio alignment fixes */
+
+.booking-page {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* page title left-aligned, similar to screenshot */
+.page-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 18px 0 6px 18px;
+}
+
+/* center the card horizontally, keep it near top as in screenshot */
+.booking-card {
+  width: 500px;
+  margin: 16px auto 60px;
+  padding: 20px 22px;
+  border: 1px solid #dcdcdc;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: left;
+  color: #333;
+  font-size: 14px;
+}
+
+/* general line rows */
+.line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+/* labels & values */
+.label {
+  width: 140px;               /* keep labels aligned vertically */
+  color: #444;
+  font-size: 13px;
+}
+
+.value {
+  font-weight: 700;
+  color: #111;
+  font-size: 13px;
+}
+
+/* small inline labels (dates & inside driver list) */
+.small-label {
+  color: #666;
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+/* INLINE CONTROLS (radio groups) - fixed alignment */
+.inline-controls {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;        /* vertically center radio + text */
+}
+
+/* make each radio label a small flex unit so input and text align */
+.radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                   /* space between radio and label text */
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+  line-height: 1;             /* keep label text vertically centered */
+}
+
+/* normalize radio input sizing & remove weird default margins */
+.radio-label input[type="radio"] {
+  margin: 0;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  appearance: auto;
+  -webkit-appearance: radio;
+  outline: none;
+}
+
+/* date inputs - compact and inline */
+.dates-line input[type="date"] {
+  height: 30px;
+  padding: 4px 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  font-size: 13px;
+  margin-right: 12px;
+  background: #fff;
+}
+
+/* fare section */
+.fare-block {
+  margin: 10px 0 6px 0;
+  padding-left: 2px;
+}
+
+.fare-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.fare-line {
+  font-size: 13px;
+  color: #333;
+  margin: 2px 0;
+}
+
+/* select driver */
+.driver-select {
+  height: 32px;
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  padding: 4px 8px;
+  background: #fff;
+  font-size: 13px;
+}
+
+/* driver list block - small spacing and subtle top border */
+.driver-list {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+/* each driver item */
+.driver-item {
+  margin: 8px 0;
+  line-height: 1.2;
+  font-size: 13px;
+  color: #333;
+}
+
+/* action button aligned to bottom-right inside card */
+.actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rent-btn {
+  background: #ff8c1a;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+
+.rent-btn:hover {
+  background: #e07a09;
+}
+
+/* responsive: reduce card width on very small screens */
+@media (max-width: 480px) {
+  .booking-card { width: calc(100% - 36px); margin: 12px auto; padding: 16px; }
+  .label { display: none; }            /* stack for mobile */
+  .line { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .dates-line input[type="date"] { margin-right: 0; }
+  .actions { justify-content: center; }
 }

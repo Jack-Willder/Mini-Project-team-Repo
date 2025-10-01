@@ -1,109 +1,73 @@
 import React, { useState } from "react";
+
 function BookingCars({ selectedCar }) {
-  // Default values from props
   const [formData, setFormData] = useState({
-    carName: selectedCar?.name || "",
-    numberPlate: selectedCar?.numberPlate || "",
-    startDate: selectedCar?.startDate || "",
-    endDate: selectedCar?.endDate || "",
-    carType: "",
-    chargeType: "",
-    driver: "",
-    gender: "",
-    contact: "",
+    carName: selectedCar?.name || "Octavia",
+    numberPlate: selectedCar?.numberPlate || "TN12L2425",
+    startDate: selectedCar?.startDate || "2024-03-15",
+    endDate: selectedCar?.endDate || "2024-03-22",
+    carType: "With AC",
+    chargeType: "Per Day",
+    driver: "Sakthi",
   });
 
-  // Handle input change
+  const drivers = [
+    { name: "Sakthi", gender: "Male", contact: "7845298540" },
+    { name: "Mydeen", gender: "Male", contact: "7744213908" },
+    { name: "Darwin", gender: "Male", contact: "9427909864" },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((p) => ({ ...p, [name]: value }));
   };
 
-  // Handle submit
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // Replace with real submit logic
     console.log("Booking Submitted:", formData);
-
-    try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert(" Booking Successful!");
-        setFormData({
-          ...formData,
-          carType: "",
-          chargeType: "",
-          driver: "",
-          gender: "",
-          contact: "",
-        });
-      } else {
-        alert("Failed to book car");
-      }
-    } catch (error) {
-      console.error("Error submitting booking:", error);
-      alert("Server error");
-    }
+    alert("Booking submitted (demo)");
   };
 
   return (
-    <div className="booking-container">
-      <h2 className="booking-title">Book Your Car</h2>
+    <div className="booking-page">
+      <h1 className="page-title">Car Booking</h1>
 
-      <div className="booking-form">
+      <div className="booking-card">
         <form onSubmit={handleSubmit}>
-          {/* Selected Car */}
-          <div className="form-group">
-            <label htmlFor="carName">Selected Car</label>
-            <input
-              type="text"
-              name="carName"
-              value={formData.carName}
-              disabled
-            />
+          <div className="line">
+            <span className="label">Selected Car:</span>
+            <span className="value">{formData.carName}</span>
           </div>
 
-          {/* Number Plate */}
-          <div className="form-group">
-            <label htmlFor="numberPlate">Number Plate</label>
-            <input
-              type="text"
-              name="numberPlate"
-              value={formData.numberPlate}
-              disabled
-            />
+          <div className="line">
+            <span className="label">Number Plate:</span>
+            <span className="value">{formData.numberPlate}</span>
           </div>
 
-          {/* Dates */}
-          <div className="form-group">
-            <label htmlFor="startDate">Start Date</label>
+          <div className="line dates-line">
+            <label className="small-label">Start Date:</label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
+              onChange={handleChange}
               disabled
             />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="endDate">End Date</label>
+            <label className="small-label">End Date:</label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
+              onChange={handleChange}
               disabled
             />
           </div>
 
-          {/* Car Type */}
-          <div className="form-group">
-            <label>Choose Car Type</label>
-            <div className="radio-group">
-              <label>
+          <div className="line">
+            <span className="label">Choose your car type:</span>
+            <div className="inline-controls">
+              <label className="radio-label">
                 <input
                   type="radio"
                   name="carType"
@@ -113,7 +77,7 @@ function BookingCars({ selectedCar }) {
                 />{" "}
                 With AC
               </label>
-              <label>
+              <label className="radio-label">
                 <input
                   type="radio"
                   name="carType"
@@ -121,16 +85,25 @@ function BookingCars({ selectedCar }) {
                   checked={formData.carType === "Without AC"}
                   onChange={handleChange}
                 />{" "}
-                Without AC
+                With-Out AC
               </label>
             </div>
           </div>
 
-          {/* Charge Type */}
-          <div className="form-group">
-            <label>Charge Type</label>
-            <div className="radio-group">
-              <label>
+          <div className="fare-block">
+            <div className="fare-title">Fare:</div>
+            <div className="fare-line">
+              <strong>AC:</strong> Rs. 35/km and Rs. 7000/day
+            </div>
+            <div className="fare-line">
+              <strong>NON-AC:</strong> Rs. 27/km and Rs. 6500/day
+            </div>
+          </div>
+
+          <div className="line">
+            <span className="label">Charge type:</span>
+            <div className="inline-controls">
+              <label className="radio-label">
                 <input
                   type="radio"
                   name="chargeType"
@@ -138,9 +111,9 @@ function BookingCars({ selectedCar }) {
                   checked={formData.chargeType === "Per KM"}
                   onChange={handleChange}
                 />{" "}
-                Per KM
+                per KM
               </label>
-              <label>
+              <label className="radio-label">
                 <input
                   type="radio"
                   name="chargeType"
@@ -148,53 +121,48 @@ function BookingCars({ selectedCar }) {
                   checked={formData.chargeType === "Per Day"}
                   onChange={handleChange}
                 />{" "}
-                Per Day
+                per day
               </label>
             </div>
           </div>
 
-          {/* Driver */}
-          <div className="form-group">
-            <label htmlFor="driver">Select Driver</label>
+          <div className="line">
+            <label className="label">Select a driver:</label>
             <select
               name="driver"
               value={formData.driver}
               onChange={handleChange}
+              className="driver-select"
             >
-              <option value="">Choose Driver</option>
-              <option value="Driver1">Driver 1</option>
-              <option value="Driver2">Driver 2</option>
+              {drivers.map((d) => (
+                <option key={d.name} value={d.name}>
+                  {d.name}
+                </option>
+              ))}
             </select>
           </div>
 
-          {/* Gender */}
-          <div className="form-group">
-            <label htmlFor="gender">Gender</label>
-            <input
-              type="text"
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              placeholder="Enter Gender"
-            />
+          <div className="driver-list">
+            {drivers.map((d) => (
+              <div className="driver-item" key={d.name}>
+                <div>
+                  <span className="small-label">Driver Name:</span>{" "}
+                  <span className="value">{d.name}</span>
+                </div>
+                <div>
+                  <span className="small-label">Gender:</span> {d.gender}
+                </div>
+                <div>
+                  <span className="small-label">Contact:</span>{" "}
+                  <strong>{d.contact}</strong>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Contact */}
-          <div className="form-group">
-            <label htmlFor="contact">Contact</label>
-            <input
-              type="number"
-              name="contact"
-              value={formData.contact}
-              onChange={handleChange}
-              placeholder="Enter Contact Number"
-            />
-          </div>
-
-          {/* Submit */}
-          <div className="form-actions">
-            <button type="submit" className="submit-btn">
-              Confirm Booking
+          <div className="actions">
+            <button type="submit" className="rent-btn">
+              RENT NOW
             </button>
           </div>
         </form>

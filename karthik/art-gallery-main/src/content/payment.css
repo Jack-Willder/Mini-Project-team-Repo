@@ -87,6 +87,7 @@ h1 {
 .payment-form {
     display: flex;
     flex-direction: column;
+    height:500px;
 }
 
 .payment-form label {

@@ -1,0 +1,133 @@
+ @font-face {
+     font-family: 'MemphisRiver';
+     src: url(Memphis-River/Memphis\ River.otf);
+ }
+
+ body {
+     margin: 0;
+     padding: 0;
+     font-family: 'Segoe UI', sans-serif;
+     background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
+ }
+
+ .title {
+     margin: 0px;
+     background-color: rgb(36, 0, 78);
+     color: #ffffff;
+     text-align: center;
+     font-size: 30px;
+     margin-bottom: 20px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+ }
+
+ .title h1 {
+     margin: 0;
+     flex-grow: 1;
+     text-align: center;
+ }
+
+ .back-btn {
+   position: absolute;
+   left: 20px;
+   top: 20px;
+   padding: 8px 15px;
+   font-size: 18px;
+   color: white;
+   text-decoration: none;
+   background-color: #903ecb;
+   border-radius: 15px;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover {
+  background-color: #6f2c9c;
+  transform: scale(1.05);
+}
+
+ .container {
+     color: rgb(36, 0, 78);
+     margin: auto;
+     padding: 40px 20px;
+ }
+
+ .images {
+     text-align: left;
+ }
+
+ .img1,
+ .img2,
+ .img3,
+ .img4 {
+     width: 600px;
+     height: 500px;
+     margin-right: 40px;
+     margin-bottom: 50px;
+
+ }
+
+ .intro {
+     text-align: center;
+     font-size: 50px;
+     margin-bottom: 40px;
+ }
+
+ #Font {
+     font-family: 'MemphisRiver';
+     font-size: 80px;
+ }
+
+ .main-about {
+     margin-top: 40px;
+     margin-bottom: 40px;
+ }
+
+ .main-about h1 {
+     color: rgb(36, 0, 78);
+ }
+
+ .theme {
+     font-size: 25px;
+ }
+
+ .vision-text {
+     font-size: 20px;
+ }
+
+ .dev-section {
+     margin-bottom: 500px;
+ }
+
+ .team {
+     display: flex;
+     gap: 20px;
+     flex-wrap: wrap;
+     justify-content: center;
+     height: 100px;
+ }
+
+ .member {
+     background-color: #ffffff;
+     border-radius: 15px;
+     padding-left: 60px;
+     padding: 20px;
+     width: 400px;
+     height: 400px;
+     text-align: center;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .member:hover {
+     transform: scale(1.02);
+ }
+
+ .photo img {
+     border-radius: 50%;
+     margin: 0 auto 15px;
+ }
+
+ .end {
+     margin-top: 200px;
+     font-size: 40px;
+     text-align: center;
+ }

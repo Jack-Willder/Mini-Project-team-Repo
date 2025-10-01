@@ -69,18 +69,3 @@ button:hover {
     background-color: #218838;
 }
 
-.reg-link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    color: white;
-}
-.reg-link a{
-    color:white;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.reg-link a:hover{
-    color:#d2aaff;
-}

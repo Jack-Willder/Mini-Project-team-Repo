@@ -3,6 +3,7 @@ const db = require("../config/db"); // import connection
 const app = express();
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/api/register", (req, res) => {
@@ -22,4 +23,5 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+// app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+module.exports = router;
