@@ -259,7 +259,6 @@ strong {
   background-color: #e5e7eb;
   padding: 20px;
 }
-
 .dashboard-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -268,20 +267,17 @@ strong {
   padding: 30px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
-
 .dashboard-header h2 {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 8px;
   color: #111827;
 }
-
 .dashboard-header p {
   font-size: 16px;
   color: #374151;
   margin-bottom: 20px;
 }
-
 .dashboard-nav {
   background-color: #fef3c7;
   padding: 15px 20px;
@@ -292,7 +288,6 @@ strong {
   justify-content: space-between;
   margin-bottom: 30px;
 }
-
 .dashboard-nav ul {
   list-style: none;
   display: flex;
@@ -301,18 +296,15 @@ strong {
   padding: 0;
   margin: 0;
 }
-
 .dashboard-nav ul li a {
   text-decoration: none;
   color: #374151;
   font-weight: 500;
   transition: color 0.3s;
 }
-
 .dashboard-nav ul li a:hover {
   color: #10b981;
 }
-
 .logout-button {
   background-color: #ef4444;
   color: #ffffff;
@@ -323,23 +315,19 @@ strong {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .logout-button:hover {
   background-color: #dc2626;
 }
-
 .dashboard-main {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
-
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 20px;
 }
-
 .card {
   background-color: #f3f4f6;
   padding: 20px;
@@ -350,40 +338,33 @@ strong {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-
 .recent-activity, .notifications {
   background-color: #f9fafb;
   padding: 20px;
   border-radius: 8px;
 }
-
 .recent-activity h3, .notifications h3 {
   margin-bottom: 12px;
   font-size: 20px;
   font-weight: 600;
 }
-
 .recent-activity ul, .notifications ul {
   list-style: disc;
   padding-left: 20px;
   color: #374151;
 }
-
 .recent-activity ul li, .notifications ul li {
   margin-bottom: 8px;
 }
-
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-nav ul {
     gap: 12px;
   }
-
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
@@ -396,7 +377,6 @@ code {
   white-space: pre-wrap;
   line-height: 1.6;
 }
-
 /* Page Container */
 .booking-container {
   max-width: 600px;
@@ -406,7 +386,6 @@ code {
   border-radius: 12px;
   box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
 }
-
 /* Title */
 .booking-title {
   text-align: center;
@@ -415,25 +394,21 @@ code {
   color: #2c3e50;
   font-weight: bold;
 }
-
 /* Form Styling */
 .booking-form {
   width: 100%;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 18px;
 }
-
 .form-group label {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 6px;
   color: #34495e;
 }
-
 .form-group input,
 .form-group select {
   padding: 10px;
@@ -443,31 +418,26 @@ code {
   outline: none;
   transition: border 0.2s ease;
 }
-
 .form-group input:focus,
 .form-group select:focus {
   border: 1px solid #007bff;
 }
-
 /* Radio buttons */
 .radio-group {
   display: flex;
   gap: 15px;
   margin-top: 5px;
 }
-
 .radio-group label {
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
 }
-
 /* Submit Button */
 .form-actions {
   text-align: center;
   margin-top: 25px;
 }
-
 .submit-btn {
   background: #007bff;
   color: white;
@@ -479,22 +449,18 @@ code {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .submit-btn:hover {
   background: #0056b3;
 }
-
 /* Responsive */
 @media (max-width: 600px) {
   .booking-container {
     padding: 20px;
   }
-
   .booking-title {
     font-size: 22px;
   }
 }
-
 /* Driver Login */
 .loginpanel {
   min-height: 80vh;
@@ -505,7 +471,6 @@ code {
   padding: 20px;
   box-sizing: border-box;
 }
-
 .header-panel {
   width: 100%;
   padding: 40px 20px;
@@ -514,19 +479,16 @@ code {
   border-radius: 8px;
   margin-bottom: 30px;
 }
-
 .header-panel h1 {
   font-size: 3rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 10px;
 }
-
 .header-panel p {
   font-size: 1.5rem;
   color: #ffffff;
 }
-
 .login-form-container {
   width: 400px;
   background-color: #ffffff;
@@ -537,17 +499,14 @@ code {
   flex-direction: column;
   gap: 15px;
 }
-
 .login-form-container h3 {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 15px;
 }
-
 .login-form-container label {
   font-weight: 500;
 }
-
 .login-form-container input {
   padding: 10px;
   border: 1px solid #d1d5db;
@@ -556,7 +515,6 @@ code {
   margin-bottom: 10px;
   box-sizing: border-box;
 }
-
 .login-form-container button {
   padding: 10px;
   background-color: #2563eb;
@@ -567,11 +525,9 @@ code {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .login-form-container button:hover {
   background-color: #1d4ed8;
 }
-
 .login-form-container a {
   display: block;
   text-align: center;
@@ -579,11 +535,9 @@ code {
   color: #2563eb;
   text-decoration: none;
 }
-
 .login-form-container a:hover {
   text-decoration: underline;
 }
-
 .login-error {
   color: #ef4444; /* red */
   font-weight: 500;
@@ -591,14 +545,11 @@ code {
   margin-bottom: 10px;
 }
                                           /* Customer Register */
-/* --- CustRegister.css --- */
-
 .loginpanel {
   font-family: "Segoe UI", Arial, sans-serif;
   background: #ffffff;
   color: #333;
 }
-
 /* top banner */
 .header-panel {
   width: 100%;
@@ -607,27 +558,23 @@ code {
   text-align: center;
   border-bottom: 1px solid #e6e6e6;
 }
-
 .header-panel h1 {
   margin: 0;
   font-size: 28px;
   font-weight: 600;
   color: #222;
 }
-
 .header-panel p {
   margin-top: 8px;
   color: #555;
   font-size: 16px;
 }
-
 /* form wrapper */
 .login-form-wrap {
   display: flex;
   justify-content: center;
   padding: 40px 20px 80px;
 }
-
 /* bigger card */
 .login-card {
   width: 440px;                 /* wider than before */
@@ -637,7 +584,6 @@ code {
   border-radius: 3px;
   overflow: hidden;
 }
-
 /* blue header bar */
 .login-card-header {
   background: #1e88c9;
@@ -647,26 +593,22 @@ code {
   font-size: 15px;
   text-align: left;
 }
-
 /* form content */
 .login-card-body {
   padding: 22px;
   display: flex;
   flex-direction: column;
 }
-
 .login-card-body label {
   margin-top: 14px;
   margin-bottom: 6px;
   font-size: 14px;
   color: #333;
 }
-
 .required {
   color: #d32f2f;
   margin-right: 4px;
 }
-
 .login-card-body input {
   width: 100%;
   height: 40px;
@@ -677,12 +619,10 @@ code {
   background: #fff;
   outline: none;
 }
-
 .login-card-body input:focus {
   border-color: #1e88c9;
   box-shadow: 0 0 0 3px rgba(30,136,201,0.15);
 }
-
 /* submit button */
 .submit-btn {
   margin-top: 18px;
@@ -696,11 +636,9 @@ code {
   font-weight: bold;
   width: auto;                 /* small button like screenshot */
 }
-
 .submit-btn:hover {
   background: #166b99;
 }
-
 /* login link */
 .alt {
   margin-top: 14px;
@@ -709,24 +647,19 @@ code {
   text-align: left;
   line-height: 1.4;
 }
-
 .alt a {
   color: #1e88c9;
   text-decoration: none;
   font-weight: 600;
 }
-
 .alt a:hover {
   text-decoration: underline;
 }
-/* --- CustLogin.css --- */
-
 .loginpanel {
   font-family: "Segoe UI", Arial, sans-serif;
   background: #ffffff;
   color: #333;
 }
-
 /* top gray box */
 .header-panel {
   width: 90%;
@@ -737,21 +670,18 @@ code {
   text-align: center;
   border-radius: 4px;
 }
-
 .header-panel h1 {
   margin: 0;
   font-size: 30px;
   font-weight: 500;
   color: #555;
 }
-
 .header-panel p {
   margin-top: 12px;
   font-size: 15px;
   color: #777;
   font-weight: 500;
 }
-
 /* form wrapper */
 .login-form-wrap {
   display: flex;
@@ -759,7 +689,6 @@ code {
   margin-top: 20px;
   margin-bottom: 60px;
 }
-
 /* card */
 .login-card {
   width: 360px;
@@ -769,7 +698,6 @@ code {
   border-radius: 3px;
   overflow: hidden;
 }
-
 /* blue top header */
 .login-card-header {
   background: #1e88c9;
@@ -779,21 +707,18 @@ code {
   font-size: 14px;
   text-align: left;
 }
-
 /* form area */
 .login-card-body {
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
-
 .login-card-body label {
   margin-top: 12px;
   margin-bottom: 6px;
   font-size: 14px;
   color: #333;
 }
-
 .login-card-body input {
   width: 100%;
   height: 38px;
@@ -804,12 +729,10 @@ code {
   background: #fff;
   outline: none;
 }
-
 .login-card-body input:focus {
   border-color: #1e88c9;
   box-shadow: 0 0 0 3px rgba(30,136,201,0.15);
 }
-
 /* submit button */
 .submit-btn {
   margin-top: 16px;
@@ -823,11 +746,9 @@ code {
   font-weight: bold;
   width: 90px;
 }
-
 .submit-btn:hover {
   background: #166b99;
 }
-
 /* alt text below */
 .alt {
   margin-top: 14px;
@@ -836,35 +757,26 @@ code {
   text-align: left;
   line-height: 1.4;
 }
-
 .alt a {
   color: #1e88c9;
   text-decoration: none;
   font-weight: 600;
 }
-
 .alt a:hover {
   text-decoration: underline;
 }
-/* booking cars */
-/* BookingCars.css - tuned + radio alignment fixes */
-
 .booking-page {
   font-family: Arial, Helvetica, sans-serif;
   color: #222;
   min-height: 100vh;
   background: #fff;
 }
-
-/* page title left-aligned, similar to screenshot */
 .page-title {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 20px;
   font-weight: 700;
   margin: 18px 0 6px 18px;
 }
-
-/* center the card horizontally, keep it near top as in screenshot */
 .booking-card {
   width: 500px;
   margin: 16px auto 60px;
@@ -877,7 +789,6 @@ code {
   color: #333;
   font-size: 14px;
 }
-
 /* general line rows */
 .line {
   display: flex;
@@ -885,35 +796,26 @@ code {
   gap: 8px;
   margin: 8px 0;
 }
-
-/* labels & values */
 .label {
   width: 140px;               /* keep labels aligned vertically */
   color: #444;
   font-size: 13px;
 }
-
 .value {
   font-weight: 700;
   color: #111;
   font-size: 13px;
 }
-
-/* small inline labels (dates & inside driver list) */
 .small-label {
   color: #666;
   font-size: 13px;
   margin-right: 6px;
 }
-
-/* INLINE CONTROLS (radio groups) - fixed alignment */
 .inline-controls {
   display: inline-flex;
   gap: 18px;
   align-items: center;        /* vertically center radio + text */
 }
-
-/* make each radio label a small flex unit so input and text align */
 .radio-label {
   display: inline-flex;
   align-items: center;
@@ -923,8 +825,6 @@ code {
   white-space: nowrap;
   line-height: 1;             /* keep label text vertically centered */
 }
-
-/* normalize radio input sizing & remove weird default margins */
 .radio-label input[type="radio"] {
   margin: 0;
   width: 15px;
@@ -934,8 +834,6 @@ code {
   -webkit-appearance: radio;
   outline: none;
 }
-
-/* date inputs - compact and inline */
 .dates-line input[type="date"] {
   height: 30px;
   padding: 4px 8px;
@@ -945,25 +843,19 @@ code {
   margin-right: 12px;
   background: #fff;
 }
-
-/* fare section */
 .fare-block {
   margin: 10px 0 6px 0;
   padding-left: 2px;
 }
-
 .fare-title {
   font-weight: 600;
   margin-bottom: 6px;
 }
-
 .fare-line {
   font-size: 13px;
   color: #333;
   margin: 2px 0;
 }
-
-/* select driver */
 .driver-select {
   height: 32px;
   border: 1px solid #cfcfcf;
@@ -972,29 +864,22 @@ code {
   background: #fff;
   font-size: 13px;
 }
-
-/* driver list block - small spacing and subtle top border */
 .driver-list {
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid #eee;
 }
-
-/* each driver item */
 .driver-item {
   margin: 8px 0;
   line-height: 1.2;
   font-size: 13px;
   color: #333;
 }
-
-/* action button aligned to bottom-right inside card */
 .actions {
   margin-top: 14px;
   display: flex;
   justify-content: flex-end;
 }
-
 .rent-btn {
   background: #ff8c1a;
   color: #fff;
@@ -1006,12 +891,9 @@ code {
   cursor: pointer;
   box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 }
-
 .rent-btn:hover {
   background: #e07a09;
 }
-
-/* responsive: reduce card width on very small screens */
 @media (max-width: 480px) {
   .booking-card { width: calc(100% - 36px); margin: 12px auto; padding: 16px; }
   .label { display: none; }            /* stack for mobile */
@@ -1019,3 +901,740 @@ code {
   .dates-line input[type="date"] { margin-right: 0; }
   .actions { justify-content: center; }
 }
+                                              /* CUSTOMER DASHBOARD */
+code {
+  font-family: Consolas, Monaco, monospace;
+  color: #e62929;
+  font-size: 14px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+.dashboard-container {
+  display: flex;
+  min-height: 100vh; /* full height */
+  width: 100vw;      /* full width */
+  background: #f4f7f9;
+  overflow: hidden;  /* prevent scroll on sidebar */
+}
+.sidebar {
+  width: 250px;
+  height: 100vh;     /* full viewport height */
+  background: #1e1e2f;
+  color: #fff;
+  padding: 20px;
+  position: fixed;   /* fix sidebar on the left */
+  top: 0;
+  left: 0;
+}
+.sidebar-header h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+.sidebar-menu li {
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.sidebar-menu li:hover {
+  background: #3a3a5c;
+}
+.main-content {
+  margin-left: 250px; /* leave space for sidebar */
+  flex: 1;
+  padding: 30px;
+  height: 100vh;      /* full viewport height */
+  overflow-y: auto;   /* scroll if content overflows */
+}
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+.dashboard-header p {
+  color: #555;
+}
+.cards {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.card {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.card h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+.recent-bookings {
+  margin-top: 30px;
+}
+.recent-bookings table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.recent-bookings th, .recent-bookings td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.recent-bookings th {
+  background: #1e1e2f;
+  color: #fff;
+}
+                                      /* ADD CAR */
+.add-car-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f0f0f0; /* light gray */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.add-car-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+.add-car-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+.add-car-form input[type="text"],
+.add-car-form input[type="number"],
+.add-car-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.radio-group {
+  margin-top: 15px;
+  display: flex;
+  gap: 20px; /* space between radio buttons */
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* space between radio circle and text */
+  font-weight: normal;
+}
+.submit-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  background-color: skyblue;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+.submit-btn:hover {
+  background-color: deepskyblue;
+}
+                                                /* Return Car */
+.return-car-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.return-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.return-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.return-header p {
+  font-size: 16px;
+  color: #555;
+}
+.return-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.return-table th,
+.return-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.return-table th {
+  background-color: #e0e0e0;
+  font-weight: 600;
+}
+.return-table tr:hover {
+  background-color: #f0f0f0;
+}
+.return-link {
+  padding: 6px 12px;
+  background-color: skyblue;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.return-link:hover {
+  background-color: deepskyblue;
+}
+
+                                          /* INVOICE */
+.invoice-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.invoice-header {
+  text-align: center;
+  color: orange;
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+.field {
+  font-weight: 600;
+  color: #333;
+}
+.value {
+  color: #555;
+}
+.invoice-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 15px;
+}
+.btn {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.print-btn {
+  background-color: orange;
+  color: #fff;
+}
+.print-btn:hover {
+  background-color: darkorange;
+}
+.back-btn {
+  background-color: #ccc;
+}
+.back-btn:hover {
+  background-color: #999;
+}
+@media print {
+  .invoice-buttons {
+    display: none;
+  }
+}
+
+                                            /* Manage Cars */
+.manage-cars-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead th {
+  background-color: #e0e0e0;
+  padding: 12px 10px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+tbody td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+.operation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* space between buttons */
+}
+.update-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.update-btn {
+  background-color: skyblue;
+  color: #fff;
+}
+.update-btn:hover {
+  background-color: deepskyblue;
+}
+.delete-btn {
+  background-color: #f44336; /* red */
+  color: #fff;
+}
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+                                          /* UPDATE CARS */
+.update-car-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+}
+.update-car-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.update-car-form label {
+  font-weight: 600;
+  color: #333;
+}
+.update-car-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.update-btn {
+  flex: 1;
+  margin-right: 10px;
+  padding: 12px;
+  background-color: skyblue;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.update-btn:hover {
+  background-color: deepskyblue;
+}
+.back-btn {
+  flex: 1;
+  margin-left: 10px;
+  padding: 12px;
+  background-color: lightgreen;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background-color: #32cd32;
+}
+
+                                                    /* ADD DRIVER */
+.add-driver-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+}
+.driver-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.driver-form label {
+  font-weight: 600;
+  color: #333;
+}
+.driver-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+}
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.add-driver-btn {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: skyblue;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.add-driver-btn:hover {
+  background-color: deepskyblue;
+}
+                                            /* MANAGE DRIVERS */
+.page-background {
+  min-height: 100vh;
+  background-color: #f5f5f5; /* light gray */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+.manage-drivers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  background-color: #ffffff; /* white container for table contrast */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #333;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead th {
+  background-color: #e0e0e0;
+  padding: 12px 10px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+tbody td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+.operation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.update-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.update-btn {
+  background-color: skyblue;
+  color: #fff;
+}
+.update-btn:hover {
+  background-color: deepskyblue;
+}
+.delete-btn {
+  background-color: #f44336; /* red */
+  color: #fff;
+}
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+                                            /* UPDATE DRIVER */
+.update-driver-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f5f5f5; /* light gray */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+}
+.update-driver-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.update-driver-form label {
+  font-weight: 600;
+  color: #333;
+}
+.update-driver-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.update-btn {
+  flex: 1;
+  margin-right: 10px;
+  padding: 12px;
+  background-color: skyblue;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.update-btn:hover {
+  background-color: deepskyblue;
+}
+.back-btn {
+  flex: 1;
+  margin-left: 10px;
+  padding: 12px;
+  background-color: lightgreen;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background-color: #32cd32;
+}
+                                            /* View Bookings */
+/* Full page light gray background */
+.page-background {
+  min-height: 100vh;
+  background-color: #f5f5f5; /* light gray */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+/* Inner container */
+.view-bookings-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  background-color: #ffffff; /* white for table contrast */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+.header {
+  text-align: center;
+  font-size: 36px; /* bigger header */
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead th {
+  background-color: #e0e0e0;
+  padding: 14px 12px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+tbody td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+                                                /* View Reports */
+/* Full page light gray background */
+.page-background {
+  min-height: 100vh;
+  background-color: #f5f5f5; /* light gray */
+  padding: 40px 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+/* Inner container */
+.view-reports-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  background-color: #ffffff; /* white for contrast */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+.header {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+.form-group input[type="date"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.generate-btn {
+  flex: 1;
+  padding: 12px;
+  background-color: skyblue;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.generate-btn:hover {
+  background-color: deepskyblue;
+}
+.clear-btn {
+  flex: 1;
+  padding: 12px;
+  background-color: lightgreen;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.clear-btn:hover {
+  background-color: #32cd32;
+}
+
+                                                  /* View Feedbacks */

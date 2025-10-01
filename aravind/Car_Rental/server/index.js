@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const adminRoutes = require("./routes/adminRoutes");
 const driverRoutes = require("./routes/driverRoutes");
+const customerRoutes= require ("./routes/customerRoutes.js");
 
 const app = express();
 const PORT = 5000;
@@ -16,6 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/Carrental")
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/driver", driverRoutes);
+app.use("/api/customers", customerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
