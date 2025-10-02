@@ -31,7 +31,8 @@ const registerCustomer = async (req, res) => {
 
     res.status(201).json({
       message: "Customer registered successfully",
-      customerId: newCustomer._id,
+      id: newCustomer._id,
+      username: newCustomer.userName,
     });
   } catch (err) {
     console.error("Error in registerCustomer:", err);
@@ -64,7 +65,12 @@ const loginCustomer = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ message: "Login successful", token, username: customer.userName });
+    res.json({
+      message: "Login successful",
+      token,
+      id: customer._id,      // send customer id
+      username: customer.userName,
+    });
   } catch (err) {
     console.error("Error in loginCustomer:", err);
     res.status(500).json({ message: "Server error" });

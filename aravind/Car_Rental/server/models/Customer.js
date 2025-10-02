@@ -9,7 +9,6 @@ const customerSchema = new mongoose.Schema({
   password: { type: String, required: true }
 }, { timestamps: true });
 
-// export default mongoose.model("Customer", customerSchema);
 
 const Customer = mongoose.model("Customer", customerSchema, "Customer");
 module.exports = Customer;

@@ -10,9 +10,16 @@ exports.getBookingsByDateRange = async (req, res) => {
     }
 
     const bookings = await Booking.find({
-      startDate: { $gte: new Date(fromDate) },
-      endDate: { $lte: new Date(endDate) },
-    }).sort({ startDate: 1 });
+      $or: [
+        { startDate: { $gte: new Date(fromDate), $lte: new Date(endDate) } },
+        { endDate: { $gte: new Date(fromDate), $lte: new Date(endDate) } },
+        { startDate: { $lte: new Date(fromDate) }, endDate: { $gte: new Date(endDate) } }
+      ]
+    })
+    .sort({ startDate: 1 })
+    .populate("car", "carName")        // populate car name
+    .populate("customer", "fullName")  // populate customer name
+    .lean();
 
     res.json({ success: true, bookings });
   } catch (err) {

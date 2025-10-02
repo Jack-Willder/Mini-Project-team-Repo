@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Footer from '../../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function CustRegister() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fname: "",
     uname: "",
@@ -31,10 +32,12 @@ function CustRegister() {
         password: formData.pwd
       });
 
+      // Save token and username in localStorage
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
-      navigate("/customer-dashboard")
-      alert(res.data.message);
+
+      alert(res.data.message || "Registration Success");
+      navigate("/custlogin");
     } catch (err) {
       alert(err.response?.data?.message || "Registration failed");
     }
@@ -45,7 +48,7 @@ function CustRegister() {
       <PageHeader />
       <section className="loginpanel">
         <div className="header-panel">
-          <h1>Car Rentals  -  Registration</h1>
+          <h1>Car Rentals - Registration</h1>
           <p>Get Started By Creating Customer Account</p>
         </div>
 
