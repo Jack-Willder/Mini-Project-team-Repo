@@ -29,7 +29,6 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 
-
 app.get("/", (req, res) => {
   res.send("Furniture Shop API is running ");
 });

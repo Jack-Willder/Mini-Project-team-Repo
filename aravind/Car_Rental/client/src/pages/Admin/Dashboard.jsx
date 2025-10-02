@@ -1,9 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function AdminDashboard() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchBookings = async () => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      if (!token) return;
+
+      const res = await axios.get("http://localhost:5000/api/bookings", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Assuming backend returns populated car and customer objects
+      setBookings(res.data.bookings || []);
+      setLoading(false);
+    } catch (err) {
+      console.error("Failed to fetch bookings:", err);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
@@ -13,6 +34,7 @@ function AdminDashboard() {
       navigate("/adminlogin");
     } else {
       setUsername(storedUsername || "Admin");
+      fetchBookings();
     }
   }, [navigate]);
 
@@ -23,72 +45,76 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="dashboard-page">
-      <div className="dashboard-container">
-        {/* Header */}
-        <header className="dashboard-header">
-          <h2>Welcome, {username}!</h2>
-          <p>Here is the summary of your admin activities.</p>
-        </header>
-
-        {/* Navigation */}
-        <nav className="dashboard-nav">
+    <div className="admin-dashboard-page">
+      <div className="admin-dashboard-layout">
+        {/* Sidebar */}
+        <aside className="admin-dashboard-sidebar">
+          <h2 className="admin-sidebar-title">Admin Panel</h2>
           <ul>
-            <li><Link to="#">Home</Link></li>
-            <li><Link to="#">Charts</Link></li>
-            <li><Link to="#">Contact Us</Link></li>
-            <li><Link to="#">About Us</Link></li>
-            <li><Link to="#">Manage Cars</Link></li>
-            <li><Link to="#">Feedbacks</Link></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/addcars">Add Cars</Link></li>
+            <li><Link to="/managecars">Manage Cars</Link></li>
+            <li><Link to="/updatecars">Update Cars</Link></li>
+            <li><Link to="/adddriver">Add Drivers</Link></li>
+            <li><Link to="/managedrivers">Manage Drivers</Link></li>
+            <li><Link to="/updatedriver">Update Drivers</Link></li>
+            <li><Link to="/viewbookings">View Bookings</Link></li>
+            <li><Link to="/viewreports">View Reports</Link></li>
+            <li><Link to="/viewfeedback">View Feedbacks</Link></li>
           </ul>
-          <button onClick={handleLogout} className="logout-button">
-            Logout
-          </button>
-        </nav>
+          <button onClick={handleLogout} className="admin-logout-button">Logout</button>
+        </aside>
 
-        {/* Main Dashboard */}
-        <main className="dashboard-main">
-          {/* Cards */}
-          <div className="cards-container">
-            <div className="card">
-              <h3>Total Users</h3>
-              <p>150</p>
-            </div>
-            <div className="card">
-              <h3>Total Cars</h3>
-              <p>320</p>
-            </div>
-            <div className="card">
-              <h3>Feedbacks</h3>
-              <p>45</p>
-            </div>
-            <div className="card">
-              <h3>Revenue</h3>
-              <p>$12,450</p>
-            </div>
-          </div>
+        {/* Main Content */}
+        <div className="admin-dashboard-container">
+          <header className="admin-dashboard-header">
+            <h2>Welcome, {username}!</h2>
+            <p>Here is the list of all bookings.</p>
+          </header>
 
-          {/* Recent Activities */}
-          <section className="recent-activity">
-            <h3>Recent Activities</h3>
-            <ul>
-              <li>User John Doe registered a new account.</li>
-              <li>Car "Tesla Model 3" was added by Admin.</li>
-              <li>Feedback received from user Jane Smith.</li>
-              <li>Revenue report updated for September.</li>
-            </ul>
-          </section>
-
-          {/* Notifications */}
-          <section className="notifications">
-            <h3>Notifications</h3>
-            <ul>
-              <li>System maintenance scheduled for 28th Sep.</li>
-              <li>New feedback needs your review.</li>
-              <li>Weekly report is ready to download.</li>
-            </ul>
-          </section>
-        </main>
+          <main className="admin-dashboard-main">
+            {loading ? (
+              <p>Loading bookings...</p>
+            ) : bookings.length === 0 ? (
+              <p>No bookings available</p>
+            ) : (
+              
+              <div className="table-wrapper">
+                <h1 className="text-center text-5xl font-bold mb-5">All Bookings</h1>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Car Name</th>
+                      <th>Vehicle Number</th>
+                      <th>Customer Name</th>
+                      <th>Customer Number</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Total Amount</th>
+                      <th>Status</th>
+                      <th>Payment Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((b) => (
+                      <tr key={b._id}>
+                        <td>{b.car?.carName || "N/A"}</td>
+                        <td>{b.car?.vehicleNumber || "N/A"}</td>
+                        <td>{b.customer?.fullName || "N/A"}</td>
+                        <td>{b.customerNumber}</td>
+                        <td>{new Date(b.startDate).toLocaleDateString()}</td>
+                        <td>{new Date(b.endDate).toLocaleDateString()}</td>
+                        <td>${b.totalAmount}</td>
+                        <td>{b.status}</td>
+                        <td>{b.paymentStatus}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </main>
+        </div>
       </div>
     </div>
   );

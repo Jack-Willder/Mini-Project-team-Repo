@@ -1,11 +1,10 @@
-// models/user.js
 import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
   doorNo: { type: String, required: true, trim: true },
-  street: { type: String, trim: true },
+  street: { type: String,required: true, trim: true },
   city: { type: String, required: true, trim: true },
-  state: { type: String, trim: true },
+  state: { type: String,required: true, trim: true },
   postalCode: { type: String, required: true, trim: true },
   country: { type: String, required: true, trim: true },
   landmark: { type: String, trim: true },

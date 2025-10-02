@@ -25,8 +25,6 @@ function ManageOrder() {
     try {
       const ordersRes = await axios.get("http://localhost:5000/api/orders");
       const usersRes = await axios.get("http://localhost:5000/api/userman/users");
-
-      
       const usersMap = {};
       usersRes.data.forEach((user) => {
         usersMap[user._id] = user;
@@ -38,13 +36,12 @@ function ManageOrder() {
       console.error("Error fetching orders or users:", err);
     }
   };
-
-  
   const handleStatusChange = async (orderId, field, value) => {
     try {
       await axios.put(`http://localhost:5000/api/orders/${orderId}`, {
-        [field]: value
-      });
+  paymentStatus: "Paid",
+  orderStatus: "Delivered"
+});
       setMessage(`Order ${field} updated successfully `);
       fetchOrdersAndUsers(); 
     } catch (err) {
@@ -53,7 +50,6 @@ function ManageOrder() {
     }
   };
 
-  
   const handleCancelOrder = async (orderId) => {
     if (window.confirm("Are you sure you want to cancel this order?")) {
       try {
@@ -156,7 +152,6 @@ function ManageOrder() {
 >
   Cancel Order
 </button>
-
               </td>
             </tr>
           ))}
@@ -168,13 +163,10 @@ function ManageOrder() {
   style={{
     display: "flex",
     flexDirection: "column",
-    minHeight: "100vh" // full height of viewport
+    minHeight: "100vh" 
   }}
 >
-  {/* Main page content */}
-  <div style={{ flex: 1 }}>
-    {/* All your page content goes here */}
-  </div>
+  
 
   {/* Footer */}
   <footer
@@ -182,7 +174,7 @@ function ManageOrder() {
       background: "#f1f1f1",
       textAlign: "center",
       padding: "10px 0",
-      marginTop: "auto" // pushes footer to bottom if content is short
+      marginTop: "auto" 
     }}
   >
     Copyright © 2025 | Designed by Praveen

@@ -1,14 +1,18 @@
 const express = require("express");
+const { addDriver, getDrivers, updateDriver, deleteDriver } = require("../controllers/driverController");
+
 const router = express.Router();
-const {
-  logindriver,
-  registerdriver,
-} = require("../controllers/driverController");
 
-// POST: Login
-router.post("/login", logindriver);
+// Add new driver
+router.post("/add", addDriver);
 
-// POST: Register
-router.post("/register", registerdriver);
+// Get all drivers
+router.get("/", getDrivers);
+
+// Update driver
+router.put("/:id", updateDriver);
+
+// Delete driver
+router.delete("/:id", deleteDriver);
 
 module.exports = router;

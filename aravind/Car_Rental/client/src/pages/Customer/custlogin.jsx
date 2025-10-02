@@ -13,25 +13,25 @@ function CustLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/customer/login", {
+      const res = await axios.post("http://localhost:5000/api/customers/login", {
         username: uname,
         password: pwd,
       });
 
-      // store token in localStorage
+      // store token, username, and customerId
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
+      localStorage.setItem("customerId", res.data.id);
 
       navigate("/customer-dashboard"); // redirect to dashboard
     } catch (err) {
-      setError(err.response?.data?.msg || "Login failed");
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
   return (
     <>
       <PageHeader />
-
       <section className="loginpanel">
         <div className="header-panel">
           <h1>Car Rentals - Customer Panel</h1>
@@ -41,7 +41,6 @@ function CustLogin() {
         <div className="login-form-wrap">
           <div className="login-card">
             <div className="login-card-header">Login</div>
-
             <form className="login-card-body" onSubmit={handleSubmit}>
               {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -66,7 +65,9 @@ function CustLogin() {
               />
 
               <div className="actions-row">
-                <button type="submit" className="submit-btn">SUBMIT</button>
+                <button type="submit" className="submit-btn">
+                  SUBMIT
+                </button>
               </div>
 
               <p className="alt">
@@ -77,7 +78,6 @@ function CustLogin() {
           </div>
         </div>
       </section>
-
       <Footer />
     </>
   );

@@ -8,14 +8,13 @@ function AdminLogin() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const { login, user, logout } = useAuth();
 
-  // Check if a normal user is logged in
   useEffect(() => {
     if (user && user.role !== "admin") {
       alert("You are logged in as a user. Please logout to login as admin.");
-      navigate("/"); // Redirect to home or any other page
+      navigate("/"); 
     }
   }, [user, navigate]);
 
@@ -64,7 +63,6 @@ function AdminLogin() {
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
           {error && <p className="error" style={{justifyContent:"center"}}>{error}</p>}
-
           <div className="form-group">
             <label>Email</label>
             <input 

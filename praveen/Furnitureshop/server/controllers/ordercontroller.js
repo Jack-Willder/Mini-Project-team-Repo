@@ -68,12 +68,36 @@ export const updateOrderStatus = async (req, res) => {
     if (shippingStatus) order.shippingStatus = shippingStatus;
 
     await order.save();
+
+   
+    if (order.paymentStatus === "Paid" &&
+        order.orderStatus === "Delivered" &&
+        !order.stockReduced) {
+
+      for (const cartItem of order.items) {
+        const item = await Item.findById(cartItem.productId);
+        if (item) {
+          const variant = item.variants.find(v => v.woodType === cartItem.variant);
+          if (variant) {
+            variant.stock -= cartItem.quantity;
+            if (variant.stock < 0) variant.stock = 0;
+            await item.save();
+          }
+        }
+      }
+
+      order.stockReduced = true;
+      await order.save();
+    }
+
     res.status(200).json({ message: "Order updated successfully", order });
   } catch (err) {
     console.error("Error in updateOrderStatus:", err);
     res.status(500).json({ message: "Failed to update order", error: err.message });
   }
 };
+
+
 
 export const getOrderById = async (req, res) => {
   try {

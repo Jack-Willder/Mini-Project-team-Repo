@@ -24,7 +24,6 @@ function PageHeader() {
         <ul className="flex gap-6 text-sm font-medium">
           <li><Link to="/" className="hover:text-yellow-500 transition-colors duration-200">Home</Link></li>
           <li><Link to="/cars" className="hover:text-yellow-500 transition-colors duration-200">Cars</Link></li>
-          <li><Link to="/driverlogin" className="hover:text-yellow-500 transition-colors duration-200">Drivers</Link></li>
           <li><Link to="/custlogin" className="hover:text-yellow-500 transition-colors duration-200">Customer</Link></li>
           <li><Link to="/about" className="hover:text-yellow-500 transition-colors duration-200">About</Link></li>
           <li><Link to="/contact" className="hover:text-yellow-500 transition-colors duration-200">Contact</Link></li>

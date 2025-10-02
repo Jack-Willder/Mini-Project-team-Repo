@@ -64,7 +64,7 @@ function Dashboard() {
 
         if (lowStock.length > 0) {
           setLowStockItems(lowStock);
-          alert(`⚠️ Low Stock Alert:\n${lowStock.join(", ")} (below 3 left!)`);
+          alert(` Low Stock Alert:\n${lowStock.join(", ")} (below 3 left!)`);
         }
       } catch (err) {
         console.error("Error fetching product stock:", err.response?.data || err.message);
@@ -95,7 +95,6 @@ function Dashboard() {
       <div className="dashboard-content">
         <h2>Welcome Admin...!</h2>
 
-        {/* ✅ Warning Box in UI */}
         {lowStockItems.length > 0 && (
           <div className="low-stock-warning" style={{ 
             backgroundColor: "#ffe6e6", 
@@ -104,7 +103,7 @@ function Dashboard() {
             borderRadius: "8px", 
             margin: "15px 0" 
           }}>
-            <strong>⚠️ Low Stock Alert:</strong>
+            <strong>Low Stock Alert:</strong>
             <ul>
               {lowStockItems.map((item, index) => (
                 <li key={index}>{item} (below 3 left!)</li>

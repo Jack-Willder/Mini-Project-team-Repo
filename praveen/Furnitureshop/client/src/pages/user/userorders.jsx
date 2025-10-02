@@ -194,7 +194,7 @@ function UserOrders() {
                   <td>
                     {order.items.map((item, i) => (
                       <div key={i}>
-                        {item.name} ({item.variant}) × {item.quantity}
+                        {item.name} ({item.woodType}) × {item.quantity}
                       </div>
                     ))}
                   </td>

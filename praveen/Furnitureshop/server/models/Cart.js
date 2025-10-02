@@ -4,7 +4,7 @@ const cartSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   items: [
     {
-      productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
+      productId: { type: mongoose.Schema.Types.ObjectId, ref: "Item", required: true },
       name: { type: String },
       woodType: { type: String },
       price: { type: Number },
@@ -14,7 +14,7 @@ const cartSchema = new mongoose.Schema({
   totalAmount: { type: Number, default: 0 },
   status: {
     type: String,
-    enum: ["active", "ordered", "cleared", "abandoned"],
+    enum: ["active", "ordered", "cleared"],
     default: "active"
   }
 }, { timestamps: true });

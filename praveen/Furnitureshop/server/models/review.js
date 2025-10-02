@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
-  productId: { type: mongoose.Schema.Types.ObjectId, ref: "items", required: true }, // <-- ref matches items model
+  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Item", required: true }, 
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   orderId: { type: mongoose.Schema.Types.ObjectId, ref: "Order", required: true },
   rating: { type: Number, min: 1, max: 5, required: true },

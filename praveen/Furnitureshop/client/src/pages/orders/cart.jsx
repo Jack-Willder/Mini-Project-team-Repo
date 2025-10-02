@@ -14,7 +14,7 @@ function Cart() {
     setLoading(true);
     try {
       const res = await axios.get(`http://localhost:5000/api/cart/${user.id}`);
-      setCart(res.data);
+      setCart(res.data); 
     } catch (err) {
       console.error(err);
       setCart({ items: [], totalAmount: 0, status: "empty" });
@@ -29,13 +29,13 @@ function Cart() {
 
   const handleUpdateQuantity = async (item, change) => {
     try {
-      const res = await axios.put("http://localhost:5000/api/cart/update", {
+      await axios.put("http://localhost:5000/api/cart/update", {
         userId: user.id,
         productId: item.productId,
         woodType: item.woodType,
         quantity: change,
       });
-      setCart(res.data);
+      await fetchCart(); 
     } catch (err) {
       alert(err.response?.data?.message || "Failed to update quantity");
     }
@@ -43,14 +43,14 @@ function Cart() {
 
   const handleRemoveItem = async (item) => {
     try {
-      const res = await axios.delete("http://localhost:5000/api/cart/remove", {
+      await axios.delete("http://localhost:5000/api/cart/remove", {
         data: {
           userId: user.id,
           productId: item.productId,
           woodType: item.woodType,
         },
       });
-      setCart(res.data);
+      await fetchCart(); 
     } catch (err) {
       alert(err.response?.data?.message || "Failed to remove item");
     }
@@ -136,28 +136,26 @@ function Cart() {
         </tbody>
       </table>
 
+      {/* Backend totalAmount */}
       <h2 className="cart-total-unique">Total: ₹{cart.totalAmount}</h2>
 
       {cart.status === "active" && (
         <button
-  onClick={handleNext}
-  style={{
-    backgroundColor: "#4CAF50",   
-    color: "white",               
-    padding: "10px 20px",        
-    border: "none", 
-    justifyContent:"space-between",
-    gap:"10px",              
-    borderRadius: "5px",          
-    cursor: "pointer",            
-    fontSize: "16px",             
-    fontWeight: "bold",           
-    margin: "20px"             
-  }}
->
-  Next
-</button>
-
+          onClick={handleNext}
+          style={{
+            backgroundColor: "#4CAF50",
+            color: "white",
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px",
+            fontWeight: "bold",
+            margin: "20px",
+          }}
+        >
+          Next
+        </button>
       )}
 
       <Link to="/products">

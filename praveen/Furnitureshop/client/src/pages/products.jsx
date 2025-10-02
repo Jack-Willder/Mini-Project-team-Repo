@@ -41,7 +41,6 @@ function Products() {
     }));
   };
 
-  // 🔥 Filter products by category
   const filteredProducts = selectedCategory === "All"
     ? products
     : products.filter((item) => item.category === selectedCategory);
@@ -83,7 +82,7 @@ function Products() {
       <section className="home-gallery">
         <h1 className="gallery-heading"><span>OUR</span> PRODUCTS</h1>
 
-        {/* 🔥 Category Filter */}
+        {/*  Category Filter */}
         <div style={{ textAlign: "center", margin: "20px 0" }}>
           <select
             value={selectedCategory}
@@ -102,10 +101,7 @@ function Products() {
             <option value="COT">COT</option>
             <option value="STORAGE UNIT">STORAGE UNIT</option>
             <option value="SEATER">SEATER</option>
-
-
-            {/* 👉 You can make this dynamic later */}
-          </select>
+         </select>
         </div>
 
         {/* Gallery */}
