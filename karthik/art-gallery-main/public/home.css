@@ -36,7 +36,12 @@
       background-color: rgb(36, 0, 78);
       display: flex;
       margin-top: 50px;
-      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgb(36, 0, 78);
+      margin-top: 50px;
+      padding: 10px 20px;
   }
 
   .header ul {
@@ -111,33 +116,56 @@
       margin-left: 500px;
       width: 180px;
       height: 28px;
-       padding: 0px;
+      padding: 0px;
       text-align: center;
       margin-right: 10px;
-    
+
   }
-  input #search-btn
-  {
+
+  input #search-btn {
       display: inline-flex;
   }
-   #search-btn{
-    margin-top: 5px;
-   }
+  .header div {
+      display: flex;
+      align-items: center;
+      /* vertical alignment of search bar and button */
+  }
+
+  #search-btn {
+      margin-top: 2px;
+  }
 
   .header #search-btn {
       border: none;
       outline: none;
-      height: 30px;
-      width: 37px;
+      height: 28px;
+      width: 35px;
       padding: 5px;
       border-radius: 25px;
-      background-color: #d2aaff;
-      margin-right: 40px;
+      background-color: #a963d1;
+      margin-right: 90px;
       cursor: pointer;
   }
 
   #search-btn:hover {
-      background-color: #a963d1;
+      background-color: #ce75d1;
+      transform: scale(1.10);
+  }
+
+  .logout-btn {
+      font-family: 'Segoe UI', sans-serif;
+      display: inline-block;
+      padding: 8px 15px;
+      background: #a963d1;
+      color: rgb(36, 0, 78);
+      text-decoration: none;
+      border-radius: 10px;
+      margin-right: 30px;
+  }
+
+  .logout-btn:hover {
+      background:#ce75d1 ;
+    transform: scale(1.10);
   }
 
   .content {
@@ -155,7 +183,7 @@
   .row7 {
       padding-top: 150px;
       padding-left: 48px;
-      margin-left: 150px;
+      margin-left: 225px;
   }
 
   .img1,
@@ -170,8 +198,7 @@
   .img10,
   .img11,
   .img12,
-  .img13,
-  .img14 {
+  .img13 {
       height: 350px;
       width: 300px;
       background-color: rgb(255, 255, 255);
@@ -180,7 +207,22 @@
       display: inline-block;
       padding: 30px;
       border-radius: 30px;
+        flex-direction: column;
+        align-items: center;
   }
+   .img14{
+        height: 350px;
+        width: 300px;
+        background-color: rgb(255, 255, 255);
+        margin-right: 200px;
+        margin-bottom: 300px;
+        box-shadow: 6px 5px 20px 0px;
+        display: inline-block;
+        padding: 30px;
+        border-radius: 30px;
+        flex-direction: column;
+        align-items: center;
+   }
 
   .img1 h3,
   .img2 h3,
@@ -196,79 +238,34 @@
   .img12 h3,
   .img13 h3,
   .img14 h3 {
-      padding-top: 15px;
+      padding-top: 8px;
       text-align: center;
       font-size: 25px;
       font-family: 'Segoe UI', sans-serif;
   }
-  
 
-  .view01,
-  .view03,
-  .view05,
-  .view07,
-  .view09,
-  .view11,
-  .view13 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      margin-left: 200px;
-      margin-right: 195px;
-      border-radius: 18px;
-      border: none;
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: Arial, Helvetica, sans-serif;
-  }
 
-  .view02,
-  .view04,
-  .view06,
-  .view08,
-  .view10,
-  .view12 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      border-radius: 18px;
-      border-color: rgb(1, 0, 78);
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .view14 {
-      display: inline-block;
-      width: 335px;
-      padding: 15px;
-      background-color: rgb(36, 0, 78);
-      margin-top: 50px;
-      border-radius: 18px;
-      border-color: rgb(1, 0, 78);
-      color: rgb(255, 255, 255);
-      cursor: pointer;
-      margin-bottom: 200px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .view14 :hover {
-      background-color: rgb(27, 0, 56);
-  }
+.view-btn {
+    display: inline-block;
+    width: 250px;
+    padding: 15px;
+    background-color: #24004e;
+    margin-top: 60px;
+    margin-left: 10px;
+    border-radius: 18px;
+    border: none;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+}
+.view-btn:hover {
+    background-color: #6f2c9c;
+    transform: scale(1.02);
+}
 
   .footer {
       background: linear-gradient(to right, rgb(36, 0, 78), rgb(1, 0, 41));

@@ -1,13 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const { auth, requireAdmin } = require('../middleware/auth');
-const userCtrl = require('../controllers/userController');
+const userController = require('../controllers/userController');
+const { ensureUser } = require('../middleware/authMiddleware');
 
-router.get('/me', auth, userCtrl.getMyProfile);
-router.put('/me', auth, userCtrl.updateMyProfile);
-router.delete('/me', auth, userCtrl.deleteMyAccount);
+// ------------------------
+// User registration
+router.post('/register', userController.register);
 
-// Admin-only to list all users
-router.get('/', auth, requireAdmin, userCtrl.listUsers);
+// User login
+router.post('/login', userController.login);
+// User dashboard (protected)
+router.get('/home', ensureUser, (req, res) => {
+    // Load the real home.html instead of inline HTML
+    res.sendFile(path.join(__dirname, '../../public/home.html'));
+});
+
+
+// User logout
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error(err);
+            return res.send("❌ Logout error.");
+        }
+        res.redirect('/home.html'); 
+    });
+});
 
 module.exports = router;

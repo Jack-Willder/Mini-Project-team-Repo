@@ -1,36 +1,75 @@
-const pool = require('../config/db');
-const bcrypt = require('bcryptjs');
+// src/controllers/userController.js
+const User = require('../models/userModel');
+const bcrypt = require('bcryptjs');  // using bcryptjs
 
-exports.getMyProfile = async (req, res) => {
-  const [rows] = await pool.query('SELECT id, name, email, created_at FROM users WHERE id = ?', [req.user.id]);
-  if (!rows.length) return res.status(404).json({ message: 'User not found' });
-  res.json(rows[0]);
+const userController = {
+    register: async (req, res) => {
+        const { username, email, password, confirmPassword } = req.body;
+
+        if (!username || !email || !password || !confirmPassword) {
+            return res.send('⚠️ All fields are required!');
+        }
+
+        if (password !== confirmPassword) {
+            return res.send('⚠️ Passwords do not match!');
+        }
+
+        try {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            User.create(username, email, hashedPassword, (err) => {
+                if (err) {
+                    if (err.code === 'ER_DUP_ENTRY') {
+                        return res.send('⚠️ Email already registered!');
+                    }
+                    console.error(err);
+                    return res.send('❌ Error inserting user into database.');
+                }
+                // Redirect to login page after successful registration
+                res.redirect('/');
+            });
+        } catch (err) {
+            console.error(err);
+            res.send('❌ Error while registering user.');
+        }
+    },
+
+
+
+    login: async (req, res) => {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.send('⚠️ Email and password are required!');
+        }
+
+        User.findByEmail(email, async (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.send('❌ Error finding user.');
+            }
+
+            if (results.length === 0) {
+                return res.send('⚠️ No user found with that email.');
+            }
+
+            const user = results[0];
+            const match = await bcrypt.compare(password, user.password);
+
+            if (!match) {
+                return res.send('⚠️ Invalid password.');
+            }
+            req.session.user = {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role: user.role
+            };
+
+            res.redirect('/home');
+
+        });
+    }
+
 };
 
-exports.updateMyProfile = async (req, res) => {
-  const { name, password } = req.body;
-  const updates = [];
-  const params = [];
-
-  if (name) { updates.push('name = ?'); params.push(name); }
-  if (password) {
-    const hashed = await bcrypt.hash(password, 10);
-    updates.push('password = ?'); params.push(hashed);
-  }
-  if (!updates.length) return res.status(400).json({ message: 'Nothing to update' });
-
-  params.push(req.user.id);
-  const sql = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
-  await pool.query(sql, params);
-  res.json({ message: 'Profile updated' });
-};
-
-exports.deleteMyAccount = async (req, res) => {
-  await pool.query('DELETE FROM users WHERE id = ?', [req.user.id]);
-  res.json({ message: 'Account deleted' });
-};
-
-exports.listUsers = async (req, res) => {
-  const [rows] = await pool.query('SELECT id, name, email, created_at FROM users ORDER BY created_at DESC');
-  res.json(rows);
-};
+module.exports = userController;

@@ -1,5 +1,4 @@
-<html>
-
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="user_login.css">
     <title>Login page</title>
@@ -15,7 +14,7 @@
         <form method="POST" action="/users/login">
             <div class="input-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" autocomplete="off" placeholder="Enter password" required>
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
@@ -23,7 +22,7 @@
             </div>
             <button type="submit">Login</button>
             <p class="reg-link">
-                New User? <a href="register.html">Register here</a>
+                New User? <a href="user_register.html">Register here</a>
             </p>
         </form>
     </div>
