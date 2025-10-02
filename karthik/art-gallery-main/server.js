@@ -8,6 +8,8 @@ const session = require('express-session');
 const userRoutes = require('./src/routes/users');
 const adminRoutes = require('./src/routes/admin');
 const artistRoutes = require('./src/routes/artists');
+const artsRoutes = require('./src/routes/arts');
+
 
 // Middleware
 const { ensureUser, ensureAdmin } = require('./src/middleware/authMiddleware');
@@ -69,6 +71,9 @@ app.get('/admin/logout', (req, res) => {
 });
 
 // Artist dashboard
+app.use('/uploads', express.static('uploads'));
+app.use('/arts', artsRoutes);
+
 app.get('/artist_dashboard.html', ensureArtist, (req, res) => {
   res.sendFile(path.join(__dirname, 'public/artist_dashboard.html'));
 });

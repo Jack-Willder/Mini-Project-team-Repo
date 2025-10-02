@@ -69,9 +69,11 @@ body {
 .header h1 {
   font-size: 24px;
 }
+
 .header p {
   font-family: 'MemphisRiver';
-  font-size: 40px;
+  font-size: 35px;
+  letter-spacing: 2px;
 }
 
 .cards {

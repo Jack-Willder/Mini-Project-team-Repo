@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Art</title>
+    <link rel="stylesheet" href="add_art.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Artist Panel</h2>
+        <a href="artist_dashboard.html">Dashboard</a>
+        <a href="#">My Profile</a>
+        <a href="artist_dashboard.html#my-arts">My Arts</a>
+        <a href="#">Upload Art</a>
+        <a href="#">Messages</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Upload New Artwork</h1>
+            <p>Add your artwork to the gallery</p>
+        </div>
+
+        <div class="form-container">
+          <form action="/arts/upload" method="POST" enctype="multipart/form-data">
+ 
+                <label for="title">Art Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter artwork title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Describe your artwork" required></textarea>
+
+                <label for="price">Price (₹)</label>
+                <input type="number" id="price" name="price" placeholder="Enter price of artwork" required>
+
+
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+
+                <button type="submit" class="btn">Upload Art</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -84,7 +84,7 @@ body {
 }
 
 .category-card:hover .overlay {
-  background: rgba(0,0,0,0.6);
+  background: none;
 }
 
 /* Text */
