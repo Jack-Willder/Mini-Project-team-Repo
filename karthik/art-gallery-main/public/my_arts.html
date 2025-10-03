@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Arts</title>
+    <link rel="stylesheet" href="my_arts.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Artist Panel</h2>
+        <a href="artist_dashboard.html">Dashboard</a>
+        <a href="add_art.html">Upload Art</a>
+        <a href="my_arts.html" class="active">My Arts</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <div class="main">
+        <h1>My Uploaded Arts</h1>
+        <div class="content" id="arts-container">
+            <!-- Arts will load here dynamically -->
+        </div>
+    </div>
+
+     <script>
+    fetch('/arts/my')
+        .then(res => res.json())
+        .then(arts => {
+            const container = document.getElementById('arts-container');
+
+            if (arts.length === 0) {
+                container.innerHTML = "<p class='empty-msg'>No arts uploaded yet.</p>";
+                return;
+            }
+
+            arts.forEach((art) => {
+                const artCard = document.createElement('div');
+                artCard.className = 'art-card';
+                artCard.innerHTML = `
+                    <img src="/uploads/${art.image}" alt="${art.title}">
+                    <h3>${art.title}</h3>
+                    <p>${art.description || ''}</p>
+                    <p class="price">₹${art.price}</p>
+                    <button class="delete-btn" data-id="${art.id}">Delete</button>
+                `;
+                container.appendChild(artCard);
+            });
+
+            // ✅ Attach delete event
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const artId = btn.getAttribute('data-id');
+
+                    if (!confirm('Are you sure you want to delete this art?')) return;
+
+                    fetch(`/arts/${artId}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => {
+                            if (res.ok) {
+                                alert('Art deleted successfully');
+                                btn.parentElement.remove(); // remove card from UI
+                            } else {
+                                alert('Failed to delete art');
+                            }
+                        })
+                        .catch(err => console.error(err));
+                });
+            });
+        })
+        .catch(err => console.error(err));
+</script>
+
+</body>
+
+</html>

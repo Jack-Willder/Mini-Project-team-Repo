@@ -11,11 +11,9 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 // User dashboard (protected)
 router.get('/home', ensureUser, (req, res) => {
-    // Load the real home.html instead of inline HTML
+    // Load the  home.html 
     res.sendFile(path.join(__dirname, '../../public/home.html'));
 });
-
-
 // User logout
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {

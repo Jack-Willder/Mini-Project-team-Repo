@@ -1,0 +1,29 @@
+<script>
+    fetch('/arts/all')
+        .then(res => res.json())
+        .then(arts => {
+            const content = document.querySelector('.content');
+
+            arts.forEach((art, index) => {
+                // Calculate row (2 arts per row)
+                const rowIndex = Math.floor(index / 2) + 1;
+                let row = content.querySelector('.row' + rowIndex);
+                if (!row) {
+                    row = document.createElement('div');
+                    row.classList.add('row' + rowIndex);
+                    content.appendChild(row);
+                }
+
+                // Create art card
+                const artDiv = document.createElement('div');
+                artDiv.className = 'img' + (index + 1);
+                artDiv.innerHTML = `
+            <img src="/uploads/${art.image}" height="300px" width="300px">
+            <h3>Artist : ${art.artist_name}</h3>
+            <a href="view_art${art.id}.html" class="view-btn">View</a>
+          `;
+                row.appendChild(artDiv);
+            });
+        })
+        .catch(err => console.error(err));
+</script>

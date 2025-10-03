@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Artist Profile</title>
+    <link rel="stylesheet" href="edit_profile.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Edit Your Profile</h1>
+
+        <div class="card">
+            <form id="editProfileForm" enctype="multipart/form-data">
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Write something about yourself"></textarea>
+
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" name="profile_image" accept="image/*">
+
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('editProfileForm');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('/artists/update', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => {
+                    if (res.ok) alert('Profile updated successfully!');
+                    else alert('Failed to update profile');
+                })
+                .catch(err => console.error(err));
+        });
+    </script>
+
+</body>
+
+</html>

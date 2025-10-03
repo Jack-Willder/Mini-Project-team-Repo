@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="artist_profile.css">
+</head>
+
+<body>
+    <div class="profile-container">
+        <div class="artist-info">
+            <img id="profileImage" src="default.jpg" alt="Profile Image">
+            <h2 id="artistName">Artist Name</h2>
+            <p id="artistBio">Artist bio will appear here...</p>
+        </div>
+
+        <h3>My Artworks</h3>
+        <div class="artworks" id="artworksContainer"></div>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            const response = await fetch("/artists/me"); // ✅ fetch current artist info
+            if (!response.ok) {
+                alert("❌ Failed to load profile");
+                return;
+            }
+            const data = await response.json();
+
+            document.getElementById("profileImage").src = data.artist.profile_image || "default.jpg";
+            document.getElementById("artistName").textContent = data.artist.name || data.artist.username;
+            document.getElementById("artistBio").textContent = data.artist.bio || "No bio yet.";
+
+            const artworksContainer = document.getElementById("artworksContainer");
+            artworksContainer.innerHTML = "";
+            data.artworks.forEach(art => {
+                artworksContainer.innerHTML += `
+          <div class="art-card">
+            <img src="${art.image}" alt="${art.title}">
+            <h4>${art.title}</h4>
+            <p>${art.description}</p>
+            <p><strong>₹${art.price}</strong></p>
+          </div>
+        `;
+            });
+        }
+
+        loadProfile();
+    </script>
+</body>
+
+</html>

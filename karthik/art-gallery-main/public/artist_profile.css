@@ -1,0 +1,102 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 30px;
+    color: #333;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Profile Card */
+.artist-info {
+    background: white;
+    width: 350px;
+    /* square-shaped card */
+    margin: 0 auto 40px;
+    /* center it */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artist-info img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* circle image */
+    object-fit: cover;
+    border: 4px solid #24004e;
+    /* theme border */
+    margin-bottom: 15px;
+}
+
+.artist-info h2 {
+    font-size: 24px;
+    color: #24004e;
+    margin: 10px 0;
+}
+
+.artist-info p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Heading for artworks */
+h3 {
+    font-size: 22px;
+    color: #24004e;
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* Artworks Grid */
+.artworks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Each Artwork Card */
+.art-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.art-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.art-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.art-card h4 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+    color: #24004e;
+}
+
+.art-card p {
+    font-size: 14px;
+    margin: 5px 10px;
+    color: #555;
+}
