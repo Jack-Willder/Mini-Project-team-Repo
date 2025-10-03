@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const multer = require('multer');
+const fs = require('fs');
 
 const artsController = require('../controllers/artsController');
-const { ensureArtist } = require('../middleware/artistAuth');
+const ensureArtist = require('../middleware/artistAuth'); // ✅ FIXED
 
 // Create uploads folder if it doesn't exist
-const fs = require('fs');
 const uploadDir = path.join(__dirname, '../../uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
@@ -17,13 +17,8 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
 });
 const upload = multer({ storage });
-// POST route to upload art
+
+// ✅ Upload route
 router.post('/upload', ensureArtist, upload.single('image'), artsController.uploadArt);
-
-// Debug logs to confirm everything is a function
-console.log('ensureArtist:', ensureArtist);
-console.log('artsController.uploadArt:', artsController.uploadArt);
-console.log('upload.single:', typeof upload.single('image'));
-
 
 module.exports = router;
