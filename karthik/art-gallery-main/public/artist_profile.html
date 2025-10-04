@@ -21,37 +21,48 @@
         </div>
 
         <h3>My Artworks</h3>
-        <div class="gallery" id="artworksContainer"></div>
+        <div class="gallery" id="artworksContainer">
+
+        </div>
     </div>
 
     <script>
         async function loadProfile() {
-            const response = await fetch("/artists/me");
+            const urlParams = new URLSearchParams(window.location.search);
+            const artistId = urlParams.get("id");
+
+            // If artistId exists → show public profile, else show logged-in artist
+            const endpoint = artistId ? `/artists/${artistId}` : `/artists/me`;
+
+            const response = await fetch(endpoint);
             if (!response.ok) {
                 alert("❌ Failed to load profile");
                 return;
             }
 
             const data = await response.json();
-            document.getElementById("profileImage").src = data.artist.profile_image || "default.jpg";
-            document.getElementById("artistName").textContent = data.artist.name || data.artist.username;
-            document.getElementById("artistBio").textContent = data.artist.bio || "No bio yet.";
+            const artist = data.artist;
+
+            document.getElementById("profileImage").src = artist.profile_image || "default.jpg";
+            document.getElementById("artistName").textContent = artist.name || artist.username;
+            document.getElementById("artistBio").textContent = artist.bio || "No bio yet.";
 
             const artworksContainer = document.getElementById("artworksContainer");
             artworksContainer.innerHTML = "";
 
             data.artworks.forEach(art => {
                 artworksContainer.innerHTML += `
-          <div class="card">
-          <img src="/uploads/${art.image}" alt="${art.title}">
-            <h3>${art.title}</h3>
-          </div>
-        `;
+                    <div class="card">
+                        <img src="/uploads/${art.image}" alt="${art.title}">
+                        <h3>${art.title}</h3>
+                    </div>
+                `;
             });
         }
 
         loadProfile();
     </script>
+
 </body>
 
 </html>

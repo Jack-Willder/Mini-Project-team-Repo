@@ -121,4 +121,37 @@ router.get('/me', ensureArtist, (req, res) => {
     });
 });
 
+// ------------------
+// Get Artist Profile by ID (Public view)
+// ------------------
+router.get('/:id', (req, res) => {
+    const artistId = req.params.id;
+
+    const artistQuery = 'SELECT id, username, name, bio, profile_image FROM artists WHERE id = ?';
+    const artsQuery = 'SELECT id, title, description, price, image FROM arts WHERE artist_id = ?';
+
+    db.query(artistQuery, [artistId], (err, artistResult) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (!artistResult.length) return res.status(404).json({ message: 'Artist not found' });
+
+        db.query(artsQuery, [artistId], (err, artsResult) => {
+            if (err) return res.status(500).json({ error: err.message });
+
+            res.json({
+                artist: artistResult[0],
+                artworks: artsResult
+            });
+        });
+    });
+});
+// adds artist card after register
+router.get('/all', (req, res) => {
+    const query = 'SELECT id, username, name, profile_image FROM artists ORDER BY id ASC';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+
 module.exports = router;
