@@ -8,6 +8,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
      background: linear-gradient(to right, #e56fe9, #9753be, #c269e6);
+     height: 100%;
 }
 
 /* Sidebar */

@@ -12,7 +12,7 @@ router.post('/login', userController.login);
 // User dashboard (protected)
 router.get('/home', ensureUser, (req, res) => {
     // Load the  home.html 
-    res.sendFile(path.join(__dirname, '../../public/home.html'));
+    res.sendFile(path.join(__dirname, '../../public/home_login.html'));
 });
 // User logout
 router.get('/logout', (req, res) => {

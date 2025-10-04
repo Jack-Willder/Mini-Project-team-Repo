@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 // User dashboard (protected)
 app.get('/home', ensureUser, (req, res) => {
   // Load the real home.html instead of inline HTML
-  res.sendFile(path.join(__dirname, 'public/home.html'));
+  res.sendFile(path.join(__dirname, 'public/home_login.html'));
 });
 
 

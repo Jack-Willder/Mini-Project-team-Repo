@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 // Protected Home page for Users (session-based)
 app.get('/home', ensureAuth, (req, res) => {
     // Load the real home.html instead of inline HTML
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, '../public/home_login.html'));
 });
 
 

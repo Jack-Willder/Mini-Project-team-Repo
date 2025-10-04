@@ -31,7 +31,7 @@
             <button id="search-btn" type="submit"><img src="images/magnifying-glass.png" height="20px"
                     width="20px"></button>
         </div>
-        <a href="/users/logout" class="logout-btn">Logout</a>
+        
     </div>
     <div class="content">
         <div class="gallery">
@@ -71,17 +71,12 @@
                 <a href="view_art7.html" class="view-btn">View</a>
             </div>
             <div class="card">
-                <img src="images/sky.jpg" alt="Art 8">
-                <h3>Artist: Vincent van Gogh</h3>
-                <a href="view_art8.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
                 <img src="images/Y kusama03.jpg" alt="Art 8">
                 <h3>Artist: Y Kusama</h3>
                 <a href="view_art9.html" class="view-btn">View</a>
             </div>
             <div class="card">
-                <img src="images/M.F Hussain01.jpg" alt="Art 8">
+                <img src="images/M.F Hussain01.jpg" alt="Art 9">
                 <h3>Artist: M F Hussain</h3>
                 <a href="view_art10.html" class="view-btn">View</a>
             </div>
@@ -107,26 +102,28 @@
             </div>
         </div>
 
-    <script>
-        fetch('/arts/all')
-            .then(res => res.json())
-            .then(arts => {
-                const artGrid = document.querySelector('.gallery'); // Use the grid container
+<script>
+    fetch('/arts/all')
+        .then(res => res.json())
+        .then(arts => {
+            const artGrid = document.querySelector('.gallery');
+            artGrid.innerHTML = ''; // clear old data if any
 
-                arts.forEach((art) => {
-                    // Create art card
-                    const artDiv = document.createElement('div');
-                    artDiv.className = 'card'; // Matches your CSS for grid layout
-                    artDiv.innerHTML = `
-                    <img src="/uploads/${art.image}" alt="${art.artist_name}">
-                    <h3>Artist: ${art.artist_name}</h3>
-                    <a href="view_art${art.id}.html" class="view-btn">View</a>
-                `;
-                    artGrid.appendChild(artDiv);
-                });
-            })
-            .catch(err => console.error(err));
-    </script>
+            arts.forEach(art => {
+                const artDiv = document.createElement('div');
+                artDiv.className = 'card';
+                artDiv.innerHTML = `
+          <img src="/uploads/${art.image}" alt="${art.artist_name}">
+          <h3>Artist: ${art.artist_name}</h3>
+          <!-- Send the art id in the URL -->
+          <a href="view_art.html?id=${art.id}" class="view-btn">View</a>
+        `;
+                artGrid.appendChild(artDiv);
+            });
+        })
+        .catch(err => console.error(err));
+</script>
+
 </body>
 
 </html>

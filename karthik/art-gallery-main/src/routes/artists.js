@@ -35,8 +35,11 @@ router.post('/register', async (req, res) => {
         "INSERT INTO artists (username, email, password) VALUES (?, ?, ?)",
         [username, email, hashedPassword],
         (err, result) => {
-            if (err) return res.status(500).send("❌ Database error");
-            res.redirect('/artist_login.html'); // redirect after register
+            if (err) {
+                console.error("❌ Database error:", err); // <--- add this
+                return res.status(500).send("❌ Database error");
+            }
+            res.redirect('/artist_login.html');
         }
     );
 });
@@ -48,7 +51,10 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body;
 
     db.query("SELECT * FROM artists WHERE email = ?", [email], async (err, results) => {
-        if (err) return res.status(500).send("❌ Database error");
+        if (err) {
+            console.error("Database error:", err); // <-- detailed error
+            return res.status(500).send("❌ Database error");
+        }
         if (results.length === 0) return res.status(401).send("❌ Invalid email or password");
 
         const artist = results[0];

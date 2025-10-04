@@ -169,7 +169,7 @@
       transform: scale(1.10);
   }
 
- /* Gallery container using CSS Grid */
+/* Gallery container using CSS Grid */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -183,8 +183,9 @@
 /* Card styling */
 .card {
     background-color: white;
-    border-radius: 20px;
-    box-shadow: 6px 5px 20px 0px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -196,17 +197,20 @@
     padding: 0 25px;
     padding-top: 20px;
     padding-bottom: 15px;
+
+}
+
+.card:hover {
     transform: scale(1.03);
 }
 
 .card img {
-    width:350px;
+    width: 350px;
     height: 350px;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 6px 5px 20px 0px;
 }
-
 .card h3 {
     font-family: 'Segoe UI', sans-serif;
     font-size: 20px;

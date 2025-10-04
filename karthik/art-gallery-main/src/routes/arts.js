@@ -38,4 +38,8 @@ router.get('/my', ensureArtist, artsController.getMyArts);
 // ------------------
 router.delete('/:id', ensureArtist, artsController.deleteArt);
 
+// Show single artwork by ID (for view page)
+router.get('/:id', artsController.getArtById);
+
+
 module.exports = router;

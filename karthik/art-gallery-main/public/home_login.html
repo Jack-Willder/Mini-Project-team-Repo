@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="home_login.css" />
+    <title>Art Gallery</title>
+</head>
+
+<body>
+    <div class="title">
+        <h1 id="art">ART</h1>
+        <h1 id="wave">WAVE</h1>
+    </div>
+    <div class="header">
+        <ul id="menus">
+            <li><a href="home_login.html"> Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="artists.html"> Artist</a></li>
+            <li><a href="categories.html"> Categories</a></li>
+            <li class="dropdown">
+                <a href="#" tabindex="0">Login</a>
+                <ul class="dropdown-menu">
+                    <li><a href="user_login.html">User Login</a></li>
+                    <li><a href="artist_login.html">Artist Login</a></li>
+                    <li><a href="admin_login.html">Admin Login</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div>
+            <input type="text" placeholder="Search">
+            <button id="search-btn" type="submit"><img src="images/magnifying-glass.png" height="20px"
+                    width="20px"></button>
+        </div>
+        <a href="/users/logout" class="logout-btn">Logout</a>
+    </div>
+    <div class="content">
+        <div class="gallery">
+            <div class="card">
+                <img src="images/Deers.jpg" alt="Art 1" width="300px" height="300px">
+                <h3>Artist: Ravi Kumar</h3>
+                <a href="view_art1.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/houses.png" alt="Art 2" width="300px" height="300px">
+                <h3>Artist: Charles</h3>
+                <a href="view_art2.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/Monalisa.jpg" alt="Art 3">
+                <h3>Artist: Leonardo Da Vinci</h3>
+                <a href="view_art3.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/Rachel01.png" alt="Art 4">
+                <h3>Artist: Rachel</h3>
+                <a href="view_art4.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/M.F Hussain02.jpg" alt="Art 5">
+                <h3>Artist: M.F Hussain</h3>
+                <a href="view_art5.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/Y kusama01.jpg" alt="Art 6">
+                <h3>Artist: Y Kusama</h3>
+                <a href="view_art6.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/Dance.jpg" alt="Art 7">
+                <h3>Artist: Chandra</h3>
+                <a href="view_art7.html" class="view-btn">View</a>
+            </div>
+    
+            <div class="card">
+                <img src="images/Y kusama03.jpg" alt="Art 9">
+                <h3>Artist: Y Kusama</h3>
+                <a href="view_art9.html" class="view-btn">View</a>
+            </div>
+            <div class="card">
+                <img src="images/M.F Hussain01.jpg" alt="Art 10">
+                <h3>Artist: M F Hussain</h3>
+                <a href="view_art10.html" class="view-btn">View</a>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="call">
+                <img id="call-img" src="images/phone-call.png" width="30px" height="30px">
+                <h3 id="contact">Contact - 8015575048</h3>
+
+                <img id="insta-img" src="images/instagram.png" width="30px" height="30px">
+                <img id="fb-img" src="images/facebook.png" width="30px" height="30px">
+                <img id="X-img" src="images/twitter.png" width="30px" height="30px">
+
+            </div>
+            <div class="mailid">
+                <img id="gmail-img" src="images/gmail.png" width="30px" height="30px">
+                <h3>artwave@gmail.com</h3>
+            </div>
+            <div class="copyright">
+                <img id="cp-img" src="images/copyright.png" width="30px" height="30px">
+                <h3 id="cp">Copyrights 2025 </h3>
+            </div>
+        </div>
+
+    <script>
+        fetch('/arts/all')
+            .then(res => res.json())
+            .then(arts => {
+                const artGrid = document.querySelector('.gallery'); // Use the grid container
+
+                arts.forEach((art) => {
+                    // Create art card
+                    const artDiv = document.createElement('div');
+                    artDiv.className = 'card'; // Matches your CSS for grid layout
+                    artDiv.innerHTML = `
+                    <img src="/uploads/${art.image}" alt="${art.artist_name}">
+                    <h3>Artist: ${art.artist_name}</h3>
+                    <a href="view_art${art.id}.html" class="view-btn">View</a>
+                `;
+                    artGrid.appendChild(artDiv);
+                });
+            })
+            .catch(err => console.error(err));
+    </script>
+</body>
+
+</html>

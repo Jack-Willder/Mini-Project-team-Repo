@@ -1,10 +1,13 @@
 const db = require('../config/db');
+const path = require('path');
+const fs = require('fs');
 
 // Function to handle uploading new art
 exports.uploadArt = (req, res) => {
     const { title, description, price } = req.body;
     const artist = req.session.artist; // ✅ we stored whole artist object in session
-    const image = req.file ? req.file.filename : null;
+    const image = req.file ? `artworks/${req.file.filename}` : null;
+
 
     if (!title || !description || !price || !image) {
         return res.status(400).send('All fields are required.');
@@ -48,8 +51,7 @@ exports.getMyArts = (req, res) => {
     });
 };
 
-const path = require('path');
-const fs = require('fs');
+
 
 // Delete Art
 exports.deleteArt = (req, res) => {
@@ -74,6 +76,7 @@ exports.deleteArt = (req, res) => {
         const art = results[0];
         const imagePath = path.join(__dirname, '../../uploads', art.image);
 
+
         // 2. Delete the record from DB
         db.query('DELETE FROM arts WHERE id = ? AND artist_id = ?', [artId, artistId], (err2, result) => {
             if (err2) {
@@ -92,3 +95,23 @@ exports.deleteArt = (req, res) => {
         });
     });
 };
+
+
+//view each arts through homepage
+// Get single art by ID
+exports.getArtById = (req, res) => {
+    const artId = req.params.id;
+    const sql = `
+    SELECT arts.*, artists.profile_image AS artist_image, artists.name AS artist_name
+    FROM arts
+    JOIN artists ON arts.artist_id = artists.id
+    WHERE arts.id = ?`;
+
+    db.query(sql, [artId], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (result.length === 0) return res.status(404).json({ error: 'Art not found' });
+        res.json(result[0]);
+    });
+};
+
+

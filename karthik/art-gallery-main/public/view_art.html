@@ -1,23 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Art</title>
-  <link rel="stylesheet" href="view_art.css" />
+  <link rel="stylesheet" href="view_art.css">
 </head>
+
 <body>
+  <a href="home.html" class="back-btn">Back</a>
 
   <div class="container">
+    <!-- Artwork Display -->
     <div class="art-display">
-      <img class="deer" src="images/Deers.jpg" width="500px" height="500px"/>
+      <img src="images/default_art.jpg" alt="Artwork" id="art-image">
+      <div class="art-purchase">
+        <h2 class="price" id="art-price">Price: ₹0</h2>
+        <a href="payment.html" class="buy-btn" id="buy-btn">Buy Now</a>
+      </div>
     </div>
-    
+
+    <!-- Art Details -->
     <div class="art-details">
-      <h2>Art Name: </h2>
-      <p><strong>Artist:</strong> Priya Ramesh</p>
-      <p><strong>Description:</strong> This artwork captures the serenity of a sunset over a lush valley. It's a blend of oil and watercolor painting.</p>
-      <a href="home.html" class="back-btn">← Back to Gallery</a>
+      <div class="profile">
+        <img src="images/default_profile.jpg"  id="artist-profile" width="200" height="200">
+        <h1 id="artist-name">Artist Name</h1>
+      </div>
+
+      <div class="art-name">
+        <strong>
+          <h2 style="color:#c269e6;">Art Name :</h2>
+        </strong>
+        <h2 id="art-title">Art Title</h2>
+      </div>
+
+      <div class="Art-info">
+        <strong>
+          <h2 class="desc">Description :</h2>
+        </strong>
+        <p id="art-description">Art description will appear here.</p>
+      </div>
     </div>
   </div>
 
+  <script>
+    // Get art ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const artId = params.get('id');
+
+    if (!artId) {
+      console.error('No art ID found in URL');
+    } else {
+      fetch(`/arts/${artId}`)
+        .then(res => res.json())
+        .then(art => {
+          if (!art) return console.error('Art not found');
+
+          // Artwork image
+          document.getElementById('art-image').src = `/uploads/${art.image}`;
+
+          // Price
+          document.getElementById('art-price').textContent = `Price: ₹${art.price}`;
+
+          // Artist profile image
+          document.getElementById('artist-profile').src = `/uploads/artists/${art.artist_image || 'default_profile.jpg'}`;
+
+          // Artist name
+          document.getElementById('artist-name').textContent = art.artist_name;
+
+          // Art title
+          document.getElementById('art-title').textContent = art.title;
+
+          // Description
+          document.getElementById('art-description').textContent = art.description;
+
+          // Update Buy Now link
+          document.getElementById('buy-btn').href = `/payment.html?artId=${art.id}`;
+        })
+        .catch(err => console.error(err));
+    }
+  </script>
 </body>
+
 </html>
