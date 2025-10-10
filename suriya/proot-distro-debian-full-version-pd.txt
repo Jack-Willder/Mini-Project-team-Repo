@@ -1,0 +1,2 @@
+export PD_OVERRIDE_TARBALL_URL="https://cloud.debian.org/images/cloud/bookworm/20230531-1397/debian-12-generic-arm64-20230531-1397.tar.xz"
+export PD_OVERRIDE_TARBALL_SHA256="72990e831a4aa9af14a8e403c65a56872c624048f0db27f0ffc0ee9434223326ff0709b2662267cba4689346b95adbbcd99453d699a63ebf2d375a02a44189d8"

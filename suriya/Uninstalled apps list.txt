@@ -1,0 +1,22 @@
+coretemp
+lightshot
+winareotweaker
+7zip
+putty
+crystaldiskmark
+teracopy
+wiztree
+bulkrenameutility
+winmerge
+totalcommander
+freefilesync
+localsend
+audacity
+dupeguru
+powertoys
+unlocker
+exploerpatcher
+
+Microsoft PowerBi Desktop
+TableAU
+Microsoft Office

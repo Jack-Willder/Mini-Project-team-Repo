@@ -1,0 +1,33 @@
+22-04-2025 23:45:17    * * * * *  WARNING!!! * * * * * 
+22-04-2025 23:45:17   DURING THE LOW LEVEL FORMAT PROCESS 
+22-04-2025 23:45:17   ALL DATA WILL BE FULLY and IRREVERSIBLY ERASED! 
+22-04-2025 23:46:17    
+22-04-2025 23:46:17   =================================================
+22-04-2025 23:46:17   HDD Low Level Format Tool 4.50; http://hddguru.com
+22-04-2025 23:46:17   Low level format: [2]  General UDisk    5.00    [62.91 GB]    (122880000 512-byte sectors)
+22-04-2025 23:46:17   Device capacity: 122,880,000 sectors
+22-04-2025 23:46:17   Locking device... 
+22-04-2025 23:46:17   Formatting... 
+22-04-2025 23:47:49   Format Error occurred at offset 4,128,768:   433
+22-04-2025 23:47:49   Format Error occurred at offset 4,390,912:   433
+22-04-2025 23:47:49   Format Error occurred at offset 4,653,056:   433
+22-04-2025 23:47:49   Format Error occurred at offset 4,915,200:   433
+22-04-2025 23:47:49   Format Error occurred at offset 5,177,344:   433
+22-04-2025 23:47:49   Format Error occurred at offset 5,439,488:   433
+22-04-2025 23:47:49   Format Error occurred at offset 5,701,632:   433
+22-04-2025 23:47:49   Format Error occurred at offset 5,963,776:   433
+22-04-2025 23:47:49   Format Error occurred at offset 6,225,920:   433
+22-04-2025 23:47:49   Format Error occurred at offset 6,488,064:   433
+22-04-2025 23:47:49   Format Error occurred at offset 6,750,208:   433
+22-04-2025 23:47:49   Format Error occurred at offset 7,012,352:   433
+22-04-2025 23:47:49   Format Error occurred at offset 7,274,496:   433
+22-04-2025 23:47:49   Format Error occurred at offset 7,536,640:   433
+22-04-2025 23:47:49   Format Error occurred at offset 7,798,784:   433
+22-04-2025 23:47:49   Format Error occurred at offset 8,323,072:   433
+22-04-2025 23:47:49   Format Error occurred at offset 8,847,360:   433
+22-04-2025 23:47:49   Format Error occurred at offset 9,371,648:   433
+22-04-2025 23:47:49   Format Error occurred at offset 9,895,936:   433
+22-04-2025 23:47:49   Average speed: 0.1 MB/s
+22-04-2025 23:47:49   Low-level format is complete.
+22-04-2025 23:47:49   
+22-04-2025 23:47:49   Remember to create new partitions.
