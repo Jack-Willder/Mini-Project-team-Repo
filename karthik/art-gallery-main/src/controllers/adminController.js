@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs');
 const Admin = require('../models/AdminModel');
 
-// Handle admin login POST
 exports.adminLogin = (req, res) => {
     const { email, password } = req.body;
 
@@ -17,16 +16,28 @@ exports.adminLogin = (req, res) => {
         }
 
         const admin = results[0];
-
-        // Use bcrypt to compare plain password with hashed password
         const match = await bcrypt.compare(password, admin.password);
 
         if (!match) {
             return res.status(401).send("❌ Invalid email or password");
         }
 
-        // Store admin session
-        req.session.admin = { id: admin.admin_id, email: admin.email, username: admin.username || '' };
-        res.redirect("/admin_dashboard.html"); // Redirect after successful login
+        // ✅ Store admin in session
+        req.session.admin = {
+            id: admin.admin_id,
+            email: admin.email,
+            username: admin.username || ''
+        };
+
+        // ✅ Save session before redirect
+        req.session.save(err => {
+            if (err) {
+                console.error("Session save error:", err);
+                return res.status(500).send("Session error");
+            }
+
+            console.log("✅ Admin logged in, session stored:", req.session.admin);
+            res.redirect('/admin_dashboard.html');
+        });
     });
 };

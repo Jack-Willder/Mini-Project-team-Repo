@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@font-face {
+    font-family: 'MemphisRiver';
+    src: url('Memphis-River/Memphis River.otf');
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: rgb(36, 0, 78);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: #7f44d4;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    color: rgb(36, 0, 78);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.header p {
+    font-family: 'MemphisRiver';
+    font-size: 35px;
+}
+
+/* Table Section */
+.table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+}
+
+th {
+    background: rgb(36, 0, 78);
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f5ff;
+}
+
+tr:hover {
+    background-color: #f0e8ff;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #d63669;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #b01b50;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    table th,
+    table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

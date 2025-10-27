@@ -55,47 +55,55 @@ exports.getMyArts = (req, res) => {
 
 // Delete Art
 exports.deleteArt = (req, res) => {
-    if (!req.session.artist) {
+    const artId = req.params.id;
+
+    // Check if user is admin or artist
+    const isAdmin = req.session.admin;
+    const artist = req.session.artist;
+
+    if (!isAdmin && !artist) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const artId = req.params.id;
-    const artistId = req.session.artist.id; // ✅ FIXED: use artist.id from session
+    // If admin, delete directly
+    if (isAdmin) {
+        db.query('SELECT * FROM arts WHERE id = ?', [artId], (err, results) => {
+            if (err) return res.status(500).json({ message: 'Database error' });
+            if (results.length === 0) return res.status(404).json({ message: 'Art not found' });
 
-    // 1. Check if the art belongs to this artist
-    db.query('SELECT * FROM arts WHERE id = ? AND artist_id = ?', [artId, artistId], (err, results) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ message: 'Database error' });
-        }
+            const imagePath = path.join(__dirname, '../../uploads', results[0].image);
 
-        if (results.length === 0) {
-            return res.status(403).json({ message: 'Not authorized to delete this art' });
-        }
+            db.query('DELETE FROM arts WHERE id = ?', [artId], (err2) => {
+                if (err2) return res.status(500).json({ message: 'Failed to delete art' });
 
-        const art = results[0];
-        const imagePath = path.join(__dirname, '../../uploads', art.image);
+                fs.unlink(imagePath, (unlinkErr) => {
+                    if (unlinkErr && unlinkErr.code !== 'ENOENT') console.error(unlinkErr);
+                });
 
+                return res.json({ success: true, message: 'Art deleted successfully' });
+            });
+        });
+        return;
+    }
 
-        // 2. Delete the record from DB
-        db.query('DELETE FROM arts WHERE id = ? AND artist_id = ?', [artId, artistId], (err2, result) => {
-            if (err2) {
-                console.error(err2);
-                return res.status(500).json({ message: 'Failed to delete art' });
-            }
+    // If artist, check ownership
+    db.query('SELECT * FROM arts WHERE id = ? AND artist_id = ?', [artId, artist.id], (err, results) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        if (results.length === 0) return res.status(403).json({ message: 'Not authorized to delete this art' });
 
-            // 3. Delete the image file if it exists
+        const imagePath = path.join(__dirname, '../../uploads', results[0].image);
+
+        db.query('DELETE FROM arts WHERE id = ? AND artist_id = ?', [artId, artist.id], (err2) => {
+            if (err2) return res.status(500).json({ message: 'Failed to delete art' });
+
             fs.unlink(imagePath, (unlinkErr) => {
-                if (unlinkErr && unlinkErr.code !== 'ENOENT') {
-                    console.error('Failed to delete image file:', unlinkErr);
-                }
+                if (unlinkErr && unlinkErr.code !== 'ENOENT') console.error(unlinkErr);
             });
 
             return res.json({ success: true, message: 'Art deleted successfully' });
         });
     });
 };
-
 
 //view each arts through homepage
 // Get single art by ID

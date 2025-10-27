@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const artistController = require('../controllers/artistController');
+const { ensureAdmin } = require('../middleware/authMiddleware');
 const ensureArtist = require('../middleware/artistAuth'); // middleware to check login
 
 // ------------------
@@ -18,6 +20,12 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
 });
 const upload = multer({ storage });
+
+
+router.get('/', ensureAdmin, artistController.getAllArtists); // list all artists
+router.delete('/:id', ensureAdmin, artistController.deleteArtist); // delete artist
+
+
 
 // ------------------
 // Register Artist
@@ -36,7 +44,7 @@ router.post('/register', async (req, res) => {
         [username, email, hashedPassword],
         (err, result) => {
             if (err) {
-                console.error("❌ Database error:", err); // <--- add this
+                console.error("❌ Database error:", err);
                 return res.status(500).send("❌ Database error");
             }
             res.redirect('/artist_login.html');
@@ -52,7 +60,7 @@ router.post('/login', (req, res) => {
 
     db.query("SELECT * FROM artists WHERE email = ?", [email], async (err, results) => {
         if (err) {
-            console.error("Database error:", err); // <-- detailed error
+            console.error("Database error:", err);
             return res.status(500).send("❌ Database error");
         }
         if (results.length === 0) return res.status(401).send("❌ Invalid email or password");
@@ -62,9 +70,10 @@ router.post('/login', (req, res) => {
         if (!isMatch) return res.status(401).send("❌ Invalid email or password");
 
         req.session.artist = { id: artist.id, username: artist.username, email: artist.email };
-        res.redirect('/artist_dashboard.html'); // after login
+        res.redirect('/artist_dashboard.html');
     });
 });
+
 
 // ------------------
 // Logout
@@ -94,7 +103,18 @@ router.post('/update', ensureArtist, upload.single('profile_image'), (req, res) 
 
     db.query(query, params, (err, result) => {
         if (err) return res.status(500).send("❌ Database error");
-        res.redirect('/artist_profile.html'); // redirect after update
+        res.redirect('/artist_profile.html');
+    });
+});
+
+// ------------------
+// Get all Artists (Public list for artists.html)
+// ------------------
+router.get('/all', (req, res) => {
+    const query = 'SELECT id, username, name, profile_image FROM artists ORDER BY id ASC';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
     });
 });
 
@@ -122,7 +142,7 @@ router.get('/me', ensureArtist, (req, res) => {
 });
 
 // ------------------
-// Get Artist Profile by ID (Public view)
+// Get Artist Profile by ID (Public View Page)
 // ------------------
 router.get('/:id', (req, res) => {
     const artistId = req.params.id;
@@ -144,14 +164,5 @@ router.get('/:id', (req, res) => {
         });
     });
 });
-// adds artist card after register
-router.get('/all', (req, res) => {
-    const query = 'SELECT id, username, name, profile_image FROM artists ORDER BY id ASC';
-    db.query(query, (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
-    });
-});
-
 
 module.exports = router;

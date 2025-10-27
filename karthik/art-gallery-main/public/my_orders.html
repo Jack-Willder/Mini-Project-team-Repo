@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - User Dashboard</title>
+    <link rel="stylesheet" href="my_orders.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>User Panel</h2>
+            <a href="user_dashboard.html">Dashboard</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="my_orders.html" class="active">My Orders</a>
+            <a href="order_status.html">Order Status</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>My Orders</h1>
+            <div class="orders-container" id="ordersContainer">
+                <p class="loading">Loading your orders...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch user orders dynamically
+        async function loadOrders() {
+            try {
+                const res = await fetch('/users/dashboard', { credentials: 'include' });
+                if (res.status === 401) {
+                    alert('Please log in to view your orders.');
+                    window.location.href = '/user_login.html';
+                    return;
+                }
+
+                const data = await res.json();
+                const container = document.getElementById('ordersContainer');
+                container.innerHTML = '';
+
+                if (!data.orders || data.orders.length === 0) {
+                    container.innerHTML = '<p class="no-orders">No orders found.</p>';
+                    return;
+                }
+
+                data.orders.forEach(order => {
+                    const card = document.createElement('div');
+                    card.classList.add('order-card');
+                    card.innerHTML = `
+                        <h3>Order ID: ${order.id}</h3>
+                        <p><strong>Artwork:</strong> ${order.artTitle}</p>
+                        <p><strong>Status:</strong> ${order.status}</p>
+                        <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading orders:', error);
+            }
+        }
+
+        // Logout
+        async function handleLogout() {
+            try {
+                const res = await fetch('/users/logout', { method: 'POST' });
+                if (res.ok) {
+                    sessionStorage.clear();
+                    localStorage.clear();
+                    window.location.replace('/home.html?logout=' + new Date().getTime());
+                } else {
+                    alert('Logout failed. Try again.');
+                }
+            } catch (err) {
+                console.error('Logout error:', err);
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        window.addEventListener('DOMContentLoaded', loadOrders);
+    </script>
+</body>
+
+</html>

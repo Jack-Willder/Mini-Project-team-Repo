@@ -1,19 +1,17 @@
 // src/middleware/authMiddleware.js
-
-// Middleware to protect user routes
-function ensureUser(req, res, next) {
-    if (req.session.user) {
-        return next(); // user logged in → continue
+function ensureAdmin(req, res, next) {
+    if (req.session && req.session.admin) {
+        return next(); // ✅ admin logged in
     }
-    res.redirect('/user/login'); // not logged in → go to user login
+    // ❌ Not logged in as admin
+    return res.status(401).json({ message: 'Access denied. Admins only.' });
 }
 
-// Middleware to protect admin routes
-function ensureAdmin(req, res, next) {
-    if (req.session.admin) {
-        return next(); // admin logged in → continue
+function ensureUser(req, res, next) {
+    if (req.session && req.session.user) {
+        return next();
     }
-    res.redirect('/admin/login'); // not logged in → go to admin login
+    return res.status(401).json({ message: 'Not logged in' });
 }
 
 module.exports = { ensureUser, ensureAdmin };

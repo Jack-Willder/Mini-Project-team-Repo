@@ -13,27 +13,24 @@
         <a href="home.html" class="back-btn">Back</a>
         <h1>Payment</h1>
     </div>
+
     <div class="payment-container">
-        <h1>Secure Payment</h1>
 
         <!-- Order Summary -->
-        <div class="order-summary">
+        <div class="order-summary" id="order-summary">
             <h2>Order Summary</h2>
-            <p><strong>Artwork:</strong> The Starry Night</p>
-            <p><strong>Artist:</strong> Vincent van Gogh</p>
-            <p class="price"><strong>Total:</strong> ₹15,000</p>
         </div>
 
         <!-- Payment Form -->
-        <form class="payment-form">
+        <form class="payment-form" id="paymentForm">
             <label>Full Name</label>
-            <input type="text" placeholder="Enter your name" required>
+            <input type="text" id="name" placeholder="Enter your name" autocomplete="off"  required>
 
             <label>Email</label>
-            <input type="email" placeholder="Enter your email" required>
+            <input type="email" id="email" placeholder="Enter your email" autocomplete="off" required>
 
             <label>Payment Method</label>
-            <select required>
+            <select id="paymentMethod" required>
                 <option value="">-- Select --</option>
                 <option value="card">Credit / Debit Card</option>
                 <option value="upi">UPI</option>
@@ -41,14 +38,110 @@
             </select>
 
             <label>Card / UPI ID</label>
-            <input type="text" placeholder="Card number or UPI ID" required>
+            <input type="text" id="paymentId" placeholder="Card number or UPI ID" autocomplete="off" required>
 
             <label>Billing Address</label>
-            <textarea rows="3" placeholder="Enter your address" required></textarea>
+            <textarea id="billingAddress" rows="3" placeholder="Enter your address" autocomplete="off"  required></textarea>
 
             <button type="submit" class="pay-btn">Pay Now</button>
         </form>
     </div>
+
+    <script>
+        // Get artId from query params: payment.html?artId=9
+        const params = new URLSearchParams(window.location.search);
+        const artId = params.get('artId');
+        const userId = 1; // Replace with logged-in user id
+
+        const orderSummary = document.getElementById('order-summary');
+
+        // Fetch art details from backend
+        async function fetchArtDetails() {
+            try {
+                const res = await fetch(`/arts/${artId}`);
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const art = await res.json();
+                console.log("Fetched art data:", art);
+
+                // Clear any previous content
+                orderSummary.innerHTML = `<h2>Order Summary</h2>`;
+
+                // Artwork image
+                if (art.image) {
+                    const artImg = document.createElement('img');
+                    artImg.src = '/uploads/' + art.image;
+                    artImg.style.maxWidth = "350px";
+                    artImg.style.maxHeight = "175px";
+                    artImg.style.display = "block";
+                    artImg.style.marginBottom = "10px";
+                    orderSummary.appendChild(artImg);
+                }
+
+                // Artwork title
+                const titleEl = document.createElement('p');
+                titleEl.innerHTML = `<strong>Artwork:</strong> ${art.title || "Unknown"}`;
+                orderSummary.appendChild(titleEl);
+
+                // Artist name + profile image
+                const artistEl = document.createElement('p');
+                const artistImage = art.artist_image
+                    ? `<img src="${art.artist_image}" alt="${art.artist_name}" style="width:30px;height:30px;border-radius:50%;vertical-align:middle;margin-right:5px;">`
+                    : "";
+                artistEl.innerHTML = `<strong>Artist:</strong> ${artistImage}${art.artist_name || "Unknown Artist"}`;
+                orderSummary.appendChild(artistEl);
+
+                // Total price
+                const priceEl = document.createElement('p');
+                priceEl.innerHTML = `<strong>Total:</strong> ₹<span id="art-price">${art.price || 0}</span>`;
+                orderSummary.appendChild(priceEl);
+
+            } catch (err) {
+                console.error("Error fetching art details:", err);
+                alert('Failed to load art details');
+            }
+        }
+
+        fetchArtDetails();
+
+        // Handle payment form submission
+        const form = document.getElementById('paymentForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const payment_method = document.getElementById('paymentMethod').value;
+            const price = parseFloat(document.getElementById('art-price').textContent);
+
+            if (!userId || !artId || !price) {
+                alert('⚠️ Missing required data');
+                return;
+            }
+
+            try {
+                console.log('Submitting payment:', { userId, artId, price, payment_method });
+
+                const response = await fetch('/purchases/buy', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        art_id: artId,
+                        price: price,
+                        payment_method: payment_method
+                    })
+                });
+
+                const result = await response.text();
+                alert(result);
+
+                // Optional: redirect to success page
+                // window.location.href = 'success.html';
+            } catch (err) {
+                console.error('Payment error:', err);
+                alert('Payment failed!');
+            }
+        });
+    </script>
 </body>
 
 </html>

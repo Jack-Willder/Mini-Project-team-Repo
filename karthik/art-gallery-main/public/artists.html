@@ -12,10 +12,35 @@
         <h1>Artists</h1>
         <a href="home.html" class="back-btn"> Back</a>
     </div>
+
     <div class="content">
-        <div id="artist-container">
-        </div>
+        <div id="artistsContainer"></div>
     </div>
+
+    <script>
+        async function loadArtists() {
+            const response = await fetch('/artists/all');
+            if (!response.ok) {
+                alert("❌ Failed to load artists");
+                return;
+            }
+            const artists = await response.json();
+            const container = document.getElementById("artistsContainer");
+
+            container.innerHTML = "";
+            artists.forEach(a => {
+                container.innerHTML += `
+                    <div class="artist-card">
+                        <img src="${a.profile_image || 'default.jpg'}" alt="${a.name}" width="200" height="200">
+                        <h2>${a.name || a.username}</h2>
+                        <a href="artist_profile.html?id=${a.id}" class="view-btn">View Profile</a>
+                    </div>
+                `;
+            });
+        }
+
+        loadArtists();
+    </script>
 </body>
 
 </html>

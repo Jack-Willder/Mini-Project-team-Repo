@@ -12,47 +12,125 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>User Panel</h2>
-        <a href="#">Dashboard</a>
-        <a href="purchased_arts.html">Purchased Artworks</a>
-        <a href="orders.html">Orders</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
+        <a href="user_dashboard.html">Dashboard</a>
+        <a href="user_profile.html">My Profile</a>
+        <a href="my_orders.html">My Orders</a>
+        <a href="order_status.html">Order Status</a>
+        <a href="home.html" id="logoutBtn">Logout</a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
         <div class="header">
-            <h1>Welcome, Karthikeyan</h1>
+            <h1>Welcome, <span id="username">User</span></h1>
             <p>ART WAVE</p>
         </div>
 
-        <!-- User Details Card -->
-        <div class="card profile-card">
-            <h3>User Details</h3>
-            <p><strong>Name:</strong> Karthikeyan</p>
-            <p><strong>Username:</strong> @karthi_keyan</p>
-            <p><strong>Email:</strong> karthi@example.com</p>
-            <p><strong>Phone:</strong> +91 98XXXXXXXX</p>
-            <p><strong>Location:</strong> Chennai, India</p>
-            <a href="#" class="btn">Edit Profile</a>
+        <!-- Cards Section -->
+        <div class="cards">
+            <div class="card">
+                <h3>My Profile</h3>
+                <p>View your profile and email details.</p>
+                <a href="user_profile.html" class="btn">View Profile</a>
+            </div>
+
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>You have placed <span id="orderCount">0</span> orders so far.</p>
+                <a href="my_orders.html" class="btn">View Orders</a>
+            </div>
+
+            <div class="card">
+                <h3>Current Orders</h3>
+                <p>Track your ongoing and pending art purchases.</p>
+                <a href="order_status.html" class="btn">Track Now</a>
+            </div>
+
+            <div class="card">
+                <h3>Logout</h3>
+                <p>End your current session securely.</p>
+                <a href="home.html" id="logoutBtn2" class="btn">Logout</a>
+            </div>
         </div>
 
-        <!-- Menu Cards -->
-        <div class="cards">
-            <div class="card menu-card">
-                <h3>Purchased Artworks</h3>
-                <p>View all your purchased artworks.</p>
-                <a href="purchased_arts.html" class="btn">Go</a>
-            </div>
-
-            <div class="card menu-card">
-                <h3>Orders</h3>
-                <p>Check pending or completed orders.</p>
-                <a href="orders.html" class="btn">Go</a>
-            </div>
+        <!-- Order Status Table -->
+        <div class="order-section">
+            <h2>Recent Orders</h2>
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Artwork</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="orderList">
+                    <tr>
+                        <td colspan="4" style="text-align:center;">Loading orders...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+
+  <script>
+    // Logout functionality (✅ Corrected)
+   window.addEventListener('DOMContentLoaded', () => {
+
+        // Logout buttons
+        document.querySelectorAll('.logoutBtn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    const res = await fetch('/users/logout', { method: 'POST', credentials: 'include' });
+                    if (res.ok) {
+                        sessionStorage.clear();
+                        localStorage.clear();
+                        window.location.replace('/home.html?logout=' + new Date().getTime());
+                    } else {
+                        alert('Logout failed. Try again.');
+                    }
+                } catch (err) {
+                    console.error('Logout error:', err);
+                }
+            });
+        });
+
+        // Load dashboard
+        async function loadUserDashboard() {
+            const res = await fetch('/users/dashboard', { credentials: 'include' });
+            if (res.status === 401) {
+                alert('Please log in first.');
+                window.location.href = '/user_login.html';
+                return;
+            }
+
+            const data = await res.json();
+            document.getElementById('username').textContent = data.user.username;
+            document.getElementById('orderCount').textContent = data.totalOrders;
+
+            const tableBody = document.getElementById('orderList');
+            tableBody.innerHTML = '';
+            if (data.orders.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No recent orders</td></tr>';
+            } else {
+                data.orders.forEach(order => {
+                    tableBody.innerHTML += `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.artTitle}</td>
+                    <td>${order.status}</td>
+                    <td>${order.created_at ? new Date(order.created_at).toLocaleDateString() : '-'}</td>
+                </tr>`;
+                });
+            }
+        }
+
+        loadUserDashboard();
+    });
+</script>
 </body>
 
 </html>

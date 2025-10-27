@@ -2,8 +2,53 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="home.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Art Gallery</title>
+    <link rel="stylesheet" href="home.css" />
+
+    <style>
+        /* --- Header & User Button Styles --- */
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-btn {
+            display: none;
+            /* hidden until logged in */
+            align-items: center;
+            margin-left: 10px;
+            background-color: #a963d1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .user-btn:hover {
+            background-color: #8a43ba;
+        }
+
+        .user-btn img.user-icon {
+            margin-right: 5px;
+            height: 20px;
+            width: 20px;
+        }
+
+        /* Optional: small spacing for search box */
+        .header-actions input {
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        .header-actions button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -11,13 +56,15 @@
         <h1 id="art">ART</h1>
         <h1 id="wave">WAVE</h1>
     </div>
+
+    <!-- Header -->
     <div class="header">
         <ul id="menus">
-            <li><a href="home.html"> Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="aboutus.html">About us</a></li>
-            <li><a href="artists.html"> Artist</a></li>
-            <li><a href="categories.html"> Categories</a></li>
-            <li class="dropdown">
+            <li><a href="artists.html">Artist</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li class="dropdown" id="loginMenu">
                 <a href="#" tabindex="0">Login</a>
                 <ul class="dropdown-menu">
                     <li><a href="user_login.html">User Login</a></li>
@@ -26,104 +73,125 @@
                 </ul>
             </li>
         </ul>
-        <div>
-            <input type="text" placeholder="Search">
-            <button id="search-btn" type="submit"><img src="images/magnifying-glass.png" height="20px"
-                    width="20px"></button>
+
+        <div class="header-actions">
+            <input type="text" placeholder="Search" />
+            <button id="search-btn" type="submit">
+                <img src="images/magnifying-glass.png" height="20" width="20" />
+            </button>
+
+            <!-- 👇 User Dashboard Button (shown only after login) -->
+            <a href="user_dashboard.html" class="user-btn" id="userDashboardBtn">
+                <img src="images/user (1).png" alt="User Icon" class="user-icon" />
+                <span id="userNameText">You</span>
+            </a>
         </div>
-        
     </div>
+
+    <!-- Gallery Content -->
     <div class="content">
         <div class="gallery">
-            <div class="card">
-                <img src="images/Deers.jpg" alt="Art 1" width="300px" height="300px">
-                <h3>Artist: Ravi Kumar</h3>
-                <a href="view_art1.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/houses.png" alt="Art 2" width="300px" height="300px">
-                <h3>Artist: Charles</h3>
-                <a href="view_art2.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/Monalisa.jpg" alt="Art 3">
-                <h3>Artist: Leonardo Da Vinci</h3>
-                <a href="view_art3.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/Rachel01.png" alt="Art 4">
-                <h3>Artist: Rachel</h3>
-                <a href="view_art4.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/M.F Hussain02.jpg" alt="Art 5">
-                <h3>Artist: M.F Hussain</h3>
-                <a href="view_art5.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/Y kusama01.jpg" alt="Art 6">
-                <h3>Artist: Y Kusama</h3>
-                <a href="view_art6.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/Dance.jpg" alt="Art 7">
-                <h3>Artist: Chandra</h3>
-                <a href="view_art7.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/Y kusama03.jpg" alt="Art 8">
-                <h3>Artist: Y Kusama</h3>
-                <a href="view_art9.html" class="view-btn">View</a>
-            </div>
-            <div class="card">
-                <img src="images/M.F Hussain01.jpg" alt="Art 9">
-                <h3>Artist: M F Hussain</h3>
-                <a href="view_art10.html" class="view-btn">View</a>
-            </div>
-
+            <!-- Gallery cards will be loaded here -->
         </div>
-        <div class="footer">
-            <div class="call">
-                <img id="call-img" src="images/phone-call.png" width="30px" height="30px">
-                <h3 id="contact">Contact - 8015575048</h3>
+    </div>
 
-                <img id="insta-img" src="images/instagram.png" width="30px" height="30px">
-                <img id="fb-img" src="images/facebook.png" width="30px" height="30px">
-                <img id="X-img" src="images/twitter.png" width="30px" height="30px">
+    <!-- Footer -->
+    <div class="footer">
+        <div class="call">
+            <img id="call-img" src="images/phone-call.png" width="30px" height="30px" />
+            <h3 id="contact">Contact - 8015575048</h3>
 
-            </div>
-            <div class="mailid">
-                <img id="gmail-img" src="images/gmail.png" width="30px" height="30px">
-                <h3>artwave@gmail.com</h3>
-            </div>
-            <div class="copyright">
-                <img id="cp-img" src="images/copyright.png" width="30px" height="30px">
-                <h3 id="cp">Copyrights 2025 </h3>
-            </div>
+            <img id="insta-img" src="images/instagram.png" width="30px" height="30px" />
+            <img id="fb-img" src="images/facebook.png" width="30px" height="30px" />
+            <img id="X-img" src="images/twitter.png" width="30px" height="30px" />
         </div>
 
-<script>
-    fetch('/arts/all')
-        .then(res => res.json())
-        .then(arts => {
-            const artGrid = document.querySelector('.gallery');
-            artGrid.innerHTML = ''; // clear old data if any
+        <div class="mailid">
+            <img id="gmail-img" src="images/gmail.png" width="30px" height="30px" />
+            <h3>artwave@gmail.com</h3>
+        </div>
 
-            arts.forEach(art => {
-                const artDiv = document.createElement('div');
-                artDiv.className = 'card';
-                artDiv.innerHTML = `
-          <img src="/uploads/${art.image}" alt="${art.artist_name}">
-          <h3>Artist: ${art.artist_name}</h3>
-          <!-- Send the art id in the URL -->
-          <a href="view_art.html?id=${art.id}" class="view-btn">View</a>
-        `;
-                artGrid.appendChild(artDiv);
-            });
-        })
-        .catch(err => console.error(err));
-</script>
+        <div class="copyright">
+            <h2 id="font">Art Wave</h2>
+            <h4>© Copyrights 2025</h4>
+        </div>
+    </div>
 
+    <script>
+        const BASE_URL = "http://localhost:3000"; // ✅ backend URL
+
+        // 🔹 Clear cache on logout (optional safety)
+        if (window.location.search.includes("logout")) {
+            sessionStorage.clear();
+            localStorage.clear();
+            console.log("✅ Cache cleared after logout");
+        }
+
+        // 🖼️ Load all arts
+        async function loadGallery() {
+            try {
+                const res = await fetch(`${BASE_URL}/arts/all`);
+                const arts = await res.json();
+
+                const artGrid = document.querySelector(".gallery");
+                artGrid.innerHTML = "";
+
+                arts.forEach((art) => {
+                    const artDiv = document.createElement("div");
+                    artDiv.className = "card";
+                    artDiv.innerHTML = `
+            <img src="${BASE_URL}/uploads/${art.image}" alt="${art.artist_name}">
+            <h3>Artist: ${art.artist_name}</h3>
+            <a href="view_art.html?id=${art.id}" class="view-btn">View</a>
+          `;
+                    artGrid.appendChild(artDiv);
+                });
+            } catch (err) {
+                console.error("Error loading gallery:", err);
+            }
+        }
+
+        // 👤 Check if user logged in and update header
+        async function updateHeader() {
+            const loginMenu = document.getElementById("loginMenu");
+            const userBtn = document.getElementById("userDashboardBtn");
+            const nameSpan = document.getElementById("userNameText");
+
+            try {
+                const res = await fetch(`${BASE_URL}/users/dashboard`, {
+                    method: "GET",
+                    credentials: "include", // ✅ allow session cookies
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                console.log("Dashboard status:", res.status);
+
+                const data = await res.json().catch(() => null);
+                console.log("Dashboard data:", data);
+
+                if (res.ok && data && data.user) {
+                    loginMenu.style.display = "none";
+                    userBtn.style.display = "inline-flex";
+                    nameSpan.textContent = `Hi, ${data.user.username}`;
+                } else {
+                    loginMenu.style.display = "inline-flex";
+                    userBtn.style.display = "none";
+                }
+            } catch (err) {
+                console.error("Error checking login status:", err);
+                loginMenu.style.display = "inline-flex";
+                userBtn.style.display = "none";
+            }
+        }
+
+        // 🟢 Run on page load
+        window.addEventListener("DOMContentLoaded", () => {
+            loadGallery();
+            updateHeader();
+        });
+    </script>
 </body>
 
 </html>

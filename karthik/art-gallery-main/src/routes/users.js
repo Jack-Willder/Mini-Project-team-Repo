@@ -2,27 +2,67 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const { ensureUser } = require('../middleware/authMiddleware');
+const { ensureAdmin } = require('../middleware/authMiddleware');
 
-// ------------------------
-// User registration
+
+// 🟢----------------------------🟢
+// 🔓 USER AUTHENTICATION ROUTES
+// 🟢----------------------------🟢
+
+// ✅ User Registration
 router.post('/register', userController.register);
 
-// User login
+// ✅ User Login
 router.post('/login', userController.login);
-// User dashboard (protected)
-router.get('/home', ensureUser, (req, res) => {
-    // Load the  home.html 
-    res.sendFile(path.join(__dirname, '../../public/home_login.html'));
+
+
+// ✅ Check if user is logged in (used in frontend)
+router.get('/check-session', (req, res) => {
+    if (req.session && req.session.user) {
+        return res.json({
+            loggedIn: true,
+            user: req.session.user
+        });
+    }
+    res.json({ loggedIn: false });
 });
-// User logout
-router.get('/logout', (req, res) => {
+
+// ✅ User Dashboard Data
+router.get('/dashboard', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
+    res.json({ message: "User logged in", user: req.session.user });
+    userController.getDashboard(req, res);
+});
+
+// ✅ Existing routes…
+router.get('/dashboard', ensureUser, userController.getDashboard);
+
+// ✅ New route for user orders
+router.get('/orders', ensureUser, userController.getUserOrders);
+
+// ✅ Logout Route
+router.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
-            console.error(err);
-            return res.send("❌ Logout error.");
+            console.error('Logout error:', err);
+            return res.status(500).json({ success: false, message: 'Error logging out' });
         }
-        res.redirect('/home.html'); 
+        res.clearCookie('connect.sid');
+        res.status(200).json({ success: true, message: 'Logged out successfully' });
     });
 });
 
+// 🟢----------------------------🟢
+// 🔐 ADMIN FEATURES
+// 🟢----------------------------🟢
+
+// ✅ Get All Users (Admin only)
+router.get('/all', ensureAdmin, userController.getAllUsers);
+
+// ✅ Delete User by ID (Admin only)
+router.delete('/:id', ensureAdmin, userController.deleteUser);
+
+// ✅ Export router
 module.exports = router;

@@ -1,10 +1,12 @@
+/* General Body */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
   color: rgb(36, 0, 78);
 }
 
+/* Back Button */
 .back-btn {
   display: inline-block;
   margin: 10px 0 0 20px;
@@ -20,6 +22,7 @@ body {
   background-color: rgb(60, 0, 128);
 }
 
+/* Main Container */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +32,7 @@ body {
   gap: 30px;
 }
 
+/* Artwork Display */
 .art-display {
   perspective: 600px;
   flex: 1 1 300px;
@@ -36,7 +40,7 @@ body {
 }
 
 .art-display img {
-    width:550px;
+  width: 550px;
   height: 500px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -46,90 +50,6 @@ body {
 
 .art-display img:hover {
   transform: rotateY(20deg) rotateX(10deg);
-}
-
-.art-details {
-  background-color: rgb(36, 0, 78);
-  color: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  flex: 1 1 300px;
-}
-
-.profile {
-  border-radius: 8px;
-  margin: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile h1 {
-  margin-top: 5px;
-  font-size: 30px;
-  text-align: center;
-}
-
-.profile:hover {
-  transform: scale(1.02);
-}
-
-.profile img {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  margin-left: 100px;
-}
-
-.art-name {
-  margin-top: 30px;
-}
-
-.art-name h2,
-.Art-info h2 {
-  font-family: 'Courier New', Courier, monospace;
-  display: inline-block;
-}
-
-.Art-info {
-  margin-top: 10px;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.desc {
-  color: #c269e6;
-}
-
-p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* ✅ Responsive Design */
-@media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    gap: 20px;
-  }
-
-  .art-display img {
-    max-width: 90vw;
-  }
-
-  .art-details {
-    width: 90vw;
-  }
-
-  .art-name h2,
-  .Art-info h2 {
-    font-size: 18px;
-  }
-
-  p {
-    font-size: 16px;
-  }
 }
 
 /* Purchase Section */
@@ -146,7 +66,7 @@ p {
 
 .buy-btn {
   display: inline-block;
-  background:rgb(36, 0, 78);
+  background: rgb(36, 0, 78);
   color: white;
   padding: 12px 25px;
   border-radius: 25px;
@@ -156,7 +76,150 @@ p {
 }
 
 .buy-btn:hover {
-  background:rgb(60, 0, 128);
+  background: rgb(60, 0, 128);
   transform: scale(1.05);
 }
 
+/* Redesigned Art Details Card */
+.art-details {
+  background: whitesmoke;
+  color: #24004e;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  max-width: 420px;
+  flex: 1 1 300px;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.art-details:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile Section */
+.profile {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile h1 {
+  margin-top: 12px;
+  font-size: 26px;
+  color: rgb(36, 0, 78);
+  font-weight: 600;
+}
+
+/* Art Name Section */
+.art-name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  border-top: 2px solid #c269e6;
+  padding-top: 15px;
+  margin-bottom: 25px;
+}
+
+.art-name .heading {
+  color: #24004e;
+  font-weight: 400;
+  font-size: 15px;
+  margin: 0;
+}
+
+#art-title {
+  color: #24004e;
+  font-weight: 500;
+  font-size: 25px;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* Description Section */
+.Art-info {
+  border-top: 2px solid #c269e6;
+  padding-top: 15px;
+}
+
+.Art-info h2 {
+  color: #c269e6;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.Art-info p {
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #2d006e;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .art-display img {
+    width: 90%;
+    height: auto;
+  }
+
+  .art-details {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile h1 {
+    font-size: 22px;
+  }
+
+  .art-name {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  #art-title {
+    font-size: 20px;
+  }
+
+  .Art-info p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .buy-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .art-details {
+    padding: 20px;
+  }
+}

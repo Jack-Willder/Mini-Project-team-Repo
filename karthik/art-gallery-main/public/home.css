@@ -153,22 +153,40 @@
       transform: scale(1.10);
   }
 
-  .logout-btn {
-      font-family: 'Segoe UI', sans-serif;
-      display: inline-block;
-      padding: 8px 15px;
-      background: #a963d1;
-      color: rgb(36, 0, 78);
+  .header-actions {
+      display: flex;
+      align-items: center;
+  }
+  
+
+  /* User Dashboard button */
+  .user-btn {
+      display: inline-flex;
+      align-items: center;
+      gap:1px;
       text-decoration: none;
-      border-radius: 10px;
-      margin-right: 30px;
+      
+      background-color: #a963d1;
+      padding: 6px 12px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+  }
+  #userDashboardBtn {
+      border-radius: 25px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .logout-btn:hover {
-      background: #ce75d1;
-      transform: scale(1.10);
+  .user-btn:hover {
+      background-color:#8900bb;
+      transform: scale(1.05);
+  }
+  .user-icon {
+      width: 30px;
+      height: 30px;
   }
 
+ 
 /* Gallery container using CSS Grid */
 .gallery {
     display: grid;
@@ -256,75 +274,168 @@
     }
 }
 
+.footer {
+    margin-top: 175px;
+    background: linear-gradient(to right, rgb(36, 0, 78), rgb(3, 0, 189));
+    color: #fff;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', sans-serif;
+}
 
-  .footer {
-      margin-top: 175px;
-      background: linear-gradient(to right, rgb(36, 0, 78), rgb(1, 0, 41));
-      height: 130px;
-      color: rgb(255, 255, 255);
-  }
+/* --- Contact Row --- */
+.footer .call {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 30px;
+    background-color: rgb(36, 0, 78);
+    flex-wrap: wrap;
+}
 
-  .footer .call {
-      display: flex;
-      padding-top: 50px;
-      background-color: rgb(36, 0, 78);
-      margin-left: 30px;
-  }
+#call-img {
+    margin-right: 10px;
+    background-color: #11d864;
+    border-radius: 25px;
+    padding: 5px;
+}
 
-  #call-img {
-      margin-right: 10px;
-      background-color: #11d864;
-      border-radius: 25px;
-  }
+#contact {
+    font-size: 20px;
+    flex: 1;
+    min-width: 200px;
+    margin-right: 10px;
+}
 
-  #contact {
-      font-family: 'Segoe UI';
-      font-size: 20px;
-      margin-right: 10px;
-      margin-right: 700px;
-  }
+/* --- Social Icons --- */
+#insta-img,
+#fb-img,
+#X-img {
+    height: 30px;
+    width: 30px;
+    margin-right: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-  #insta-img {
-      margin-right: 100px;
-  }
+#X-img {
+    background-color: white;
+    border-radius: 4px;
+}
 
-  #fb-img {
-      margin-right: 100px;
-  }
+#insta-img:hover,
+#fb-img:hover,
+#X-img:hover {
+    transform: scale(1.1);
+}
 
-  #X-img {
-      margin-right: 50px;
-      background-color: white;
-      border-radius: 4px;
-  }
+/* --- Mail Row --- */
+.mailid {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: rgb(36, 0, 78);
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-  .mailid {
-      font-family: 'Segoe UI';
-      font-size: 20px;
-      display: flex;
-      background-color: rgb(36, 0, 78);
-      padding-top: 20px;
-      margin-left: 0px;
-  }
+#gmail-img {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-  .footer .copyright {
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 20px;
-      display: flex;
-      justify-content: center;
-      padding-bottom: 30px;
-      background-color: rgb(36, 0, 78);
-  }
+.mailid span {
+    font-size: 20px;
+}
 
-  #gmail-img {
-      margin-left: 30px;
-      margin-right: 10px;
-  }
+/* --- Copyright --- */
+.footer .copyright {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px 30px;
+    background-color: rgb(36, 0, 78);
+}
+.copyright h4 {
+    letter-spacing: 2px;
+    word-spacing: 3px;
+}
+.copyright #font{
+    word-spacing: 4px;
+    font-family: 'MemphisRiver';
+    font-size: 40px;
+    margin-right: 20px;
+}
 
-  #cp-img {
-      background-color: rgb(196, 187, 187);
-      display: block;
-      margin-top: 4px;
-      border-radius: 25px;
-      margin-right: 10px;
-  }
+/* =======================
+   📱 RESPONSIVE DESIGN
+   ======================= */
+
+/* For tablets and below (≤ 992px) */
+@media (max-width: 992px) {
+    .footer .call {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #contact {
+        margin: 10px 0;
+    }
+
+    #insta-img,
+    #fb-img,
+    #X-img {
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    .mailid {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    .mailid span {
+        font-size: 18px;
+    }
+
+    .footer .copyright {
+        font-size: 16px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+}
+
+/* For phones (≤ 600px) */
+@media (max-width: 600px) {
+    .footer {
+        margin-top: 100px;
+    }
+
+    .footer .call {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #contact {
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .mailid {
+        text-align: center;
+        align-items: center;
+    }
+
+    .mailid span {
+        font-size: 16px;
+    }
+
+    .footer .copyright {
+        font-size: 14px;
+        flex-direction: column;
+    }
+}

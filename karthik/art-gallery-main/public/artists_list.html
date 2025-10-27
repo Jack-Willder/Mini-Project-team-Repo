@@ -1,25 +1,11 @@
-<script>
-    async function loadArtists() {
-        const response = await fetch('/artists/all');
-        if (!response.ok) {
-            alert("❌ Failed to load artists");
-            return;
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
 
-        const artists = await response.json();
-        const container = document.getElementById("artistsContainer");
-
-        container.innerHTML = "";
-        artists.forEach(a => {
-            container.innerHTML += `
-        <div class="artist-card">
-          <img src="${a.profile_image || 'default.jpg'}" alt="${a.name}" width="200" height="200">
-          <h2>${a.name || a.username}</h2>
-          <a href="artist_profile.html?id=${a.id}" class="view-btn">View Profile</a>
-        </div>
-      `;
-        });
-    }
-
-    loadArtists();
-</script>
+</body>
+</html>

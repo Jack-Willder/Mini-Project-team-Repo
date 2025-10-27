@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <a href="home.html" class="back-btn">Back</a>
+  <a href="home_login.html" class="back-btn">Back</a>
 
   <div class="container">
     <!-- Artwork Display -->
@@ -24,14 +24,14 @@
     <!-- Art Details -->
     <div class="art-details">
       <div class="profile">
-        <img src="images/default_profile.jpg"  id="artist-profile" width="200" height="200">
+        <img src="images/default_profile.jpg"  id="artist-profile" width="200px" height="200px">
         <h1 id="artist-name">Artist Name</h1>
       </div>
 
       <div class="art-name">
-        <strong>
-          <h2 style="color:#c269e6;">Art Name :</h2>
-        </strong>
+        <div class="heading">
+          <h2 >Art Name :</h2>
+        </div>
         <h2 id="art-title">Art Title</h2>
       </div>
 
@@ -64,7 +64,7 @@
           document.getElementById('art-price').textContent = `Price: ₹${art.price}`;
 
           // Artist profile image
-          document.getElementById('artist-profile').src = `/${art.artist_image}`;
+          document.getElementById('artist-profile').src = `${art.artist_image}`;
 
           // Artist name
           document.getElementById('artist-name').textContent = art.artist_name;

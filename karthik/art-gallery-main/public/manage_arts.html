@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Arts</title>
+    <link rel="stylesheet" href="manage_arts.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="manage_users.html">Manage Users</a>
+        <a href="manage_artists.html">Manage Artists</a>
+        <a href="#" class="active">Manage Arts</a>
+        <a href="#">Categories</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Manage Arts</h1>
+            <p>ART WAVE</p>
+        </div>
+
+        <div class="table-container">
+            <table id="artsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadArts() {
+            try {
+                const res = await fetch('http://localhost:3000/arts', { credentials: 'include' });
+                const data = await res.json();
+
+                const tbody = document.querySelector('#artsTable tbody');
+                tbody.innerHTML = '';
+
+                data.forEach(art => {
+                    const row = `
+                        <tr>
+                            <td>${art.id}</td>
+                            <td>${art.title}</td>
+                            <td>${art.artist_name}</td>
+                            <td>₹${art.price}</td>
+                            <td><img src="/uploads/${art.image}" alt="${art.title}" class="art-img"></td>
+                            <td>
+                                <button class="delete-btn" onclick="deleteArt(${art.id})">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            } catch (err) {
+                console.error(err);
+                alert('❌ Failed to load artworks');
+            }
+        }
+
+        async function deleteArt(id) {
+            if (!confirm('Are you sure you want to delete this artwork?')) return;
+
+            try {
+                const res = await fetch(`http://localhost:3000/arts/${id}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                const msg = await res.json();
+
+                if (msg.message) alert(msg.message);
+                else if (msg.error) alert('❌ Error: ' + msg.error);
+                else alert('❌ Unknown response from server');
+
+                loadArts();
+            } catch (err) {
+                console.error(err);
+                alert('❌ Network or server error');
+            }
+        }
+
+        loadArts();
+    </script>
+</body>
+
+</html>

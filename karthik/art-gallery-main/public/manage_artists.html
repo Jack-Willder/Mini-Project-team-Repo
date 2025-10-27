@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Artists</title>
+    <link rel="stylesheet" href="manage_artists.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Admin </h2>
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="manage_users.html">Manage Users</a>
+        <a href="manage_artists.html">Manage Artists</a>
+        <a href="manage_arts.html">Manage Arts</a>
+        <a href="#">Categories</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Manage Artists</h1>
+            <p>ART WAVE</p>
+        </div>
+
+        <div class="table-container">
+            <table id="artistTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Artist Name</th>
+                        <th>Email</th>
+                        <th>Artist Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadArtists() {
+            const res = await fetch('http://localhost:3000/artists', { credentials: 'include' });
+            const data = await res.json();
+
+            const tbody = document.querySelector('#artistTable tbody');
+            tbody.innerHTML = '';
+
+          data.forEach(artist => {
+                const row = `
+        <tr>
+            <td>${artist.id}</td>
+            <td>${artist.name}</td>
+            <td>${artist.email}</td>
+            <td><img src="${artist.profile_image}" alt="${artist.name}" class="artist-img"></td>
+            <td>
+                <button class="delete-btn" onclick="deleteArtist(${artist.id})">Delete</button>
+            </td>
+        </tr>
+    `;
+            
+
+                tbody.innerHTML += row;
+            });
+        }
+
+        async function deleteArtist(id) {
+            if (!confirm('Are you sure you want to delete this artist?')) return;
+
+            try {
+                const res = await fetch(`http://localhost:3000/artists/${id}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+
+                const msg = await res.json();
+                if (msg.message) alert(msg.message);
+                else if (msg.error) alert('❌ Error: ' + msg.error);
+                else alert('❌ Unknown response from server');
+
+                loadArtists();
+            } catch (err) {
+                console.error(err);
+                alert('❌ Network or server error');
+            }
+        }
+
+        loadArtists();
+    </script>
+</body>
+
+</html>

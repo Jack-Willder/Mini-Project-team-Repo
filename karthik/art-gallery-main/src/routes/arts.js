@@ -5,6 +5,7 @@ const multer = require('multer');
 const fs = require('fs');
 const artsController = require('../controllers/artsController');
 const ensureArtist = require('../middleware/artistAuth'); // middleware
+const { ensureAdmin } = require('../middleware/authMiddleware');
 
 // ------------------
 // Multer setup for artworks
@@ -17,6 +18,12 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
 });
 const upload = multer({ storage });
+
+router.get('/', ensureAdmin, artsController.getAllArts);
+
+// Delete artwork by ID
+router.delete('/:id', ensureAdmin, artsController.deleteArt);
+
 
 // ------------------
 // Upload new artwork
