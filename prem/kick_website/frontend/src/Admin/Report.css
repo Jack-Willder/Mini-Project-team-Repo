@@ -1,0 +1,46 @@
+.report-page {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.report-controls {
+  margin-bottom: 1.5rem;
+}
+
+.report-controls button {
+  margin: 0 8px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.report-controls button.active {
+  background-color: #6c63ff;
+  color: white;
+  font-weight: bold;
+}
+
+.report-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.report-table th {
+  background-color: #f2f2f2;
+}
+
+.chart-container {
+  margin-top: 2rem;
+}

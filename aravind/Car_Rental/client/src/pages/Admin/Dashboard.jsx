@@ -60,7 +60,7 @@ function AdminDashboard() {
             <li><Link to="/updatedriver">Update Drivers</Link></li>
             <li><Link to="/viewbookings">View Bookings</Link></li>
             <li><Link to="/viewreports">View Reports</Link></li>
-            <li><Link to="/viewfeedback">View Feedbacks</Link></li>
+            {/* <li><Link to="/viewfeedback">View Feedbacks</Link></li> */}
           </ul>
           <button onClick={handleLogout} className="admin-logout-button">Logout</button>
         </aside>
