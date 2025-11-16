@@ -165,16 +165,15 @@
       align-items: center;
       gap:1px;
       text-decoration: none;
-      
       background-color: #a963d1;
       padding: 6px 12px;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI',  sans-serif;
       font-size: 16px;
       transition: background 0.3s, transform 0.2s;
   }
   #userDashboardBtn {
       border-radius: 25px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
   }
 
   .user-btn:hover {

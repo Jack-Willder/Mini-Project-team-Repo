@@ -14,8 +14,6 @@
         <a href="manage_users.html">Manage Users</a>
         <a href="manage_artists.html">Manage Artists</a>
         <a href="manage_arts.html">Manage Arts</a>
-        <a href="#">Categories</a>
-        <a href="#">Logout</a>
     </div>
 
     <div class="main-content">
@@ -31,7 +29,6 @@
                         <th>ID</th>
                         <th>Artist Name</th>
                         <th>Email</th>
-                        <th>Artist Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -54,7 +51,6 @@
             <td>${artist.id}</td>
             <td>${artist.name}</td>
             <td>${artist.email}</td>
-            <td><img src="${artist.profile_image}" alt="${artist.name}" class="artist-img"></td>
             <td>
                 <button class="delete-btn" onclick="deleteArtist(${artist.id})">Delete</button>
             </td>

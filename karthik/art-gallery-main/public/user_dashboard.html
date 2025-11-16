@@ -24,15 +24,22 @@
         <!-- Header -->
         <div class="header">
             <h1>Welcome, <span id="username">User</span></h1>
-            <p>ART WAVE</p>
-        </div>
 
+            <div class="header-right">
+                <!-- 🛒 Cart Button -->
+                <a href="cart_list.html" class="cart-btn">
+                    <img src="images/shopping-cart.png" alt="Cart" class="cart-icon" />
+                </a>
+
+                <p>ART WAVE</p>
+            </div>
+        </div>
         <!-- Cards Section -->
         <div class="cards">
             <div class="card">
-                <h3>My Profile</h3>
-                <p>View your profile and email details.</p>
-                <a href="user_profile.html" class="btn">View Profile</a>
+                <h3>Your Carts</h3>
+                <p>View your artworks added to the cart.</p>
+                <a href="cart_list.html" class="btn">View Cart</a>
             </div>
 
             <div class="card">
@@ -40,17 +47,10 @@
                 <p>You have placed <span id="orderCount">0</span> orders so far.</p>
                 <a href="my_orders.html" class="btn">View Orders</a>
             </div>
-
-            <div class="card">
-                <h3>Current Orders</h3>
-                <p>Track your ongoing and pending art purchases.</p>
-                <a href="order_status.html" class="btn">Track Now</a>
-            </div>
-
             <div class="card">
                 <h3>Logout</h3>
                 <p>End your current session securely.</p>
-                <a href="home.html" id="logoutBtn2" class="btn">Logout</a>
+                <a href="home.html" id="logoutBtn" class="btn">Logout</a>
             </div>
         </div>
 
@@ -75,32 +75,38 @@
         </div>
     </div>
 
-  <script>
-    // Logout functionality (✅ Corrected)
-   window.addEventListener('DOMContentLoaded', () => {
+   <script>
+    window.addEventListener('DOMContentLoaded', () => {
 
-        // Logout buttons
-        document.querySelectorAll('.logoutBtn').forEach(btn => {
+        // ✅ LOGOUT HANDLER
+        document.querySelectorAll('#logoutBtn').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
-                    const res = await fetch('/users/logout', { method: 'POST', credentials: 'include' });
-                    if (res.ok) {
+                    const res = await fetch('/users/logout', {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+
+                    const data = await res.json();
+                    if (res.ok && data.success) {
                         sessionStorage.clear();
                         localStorage.clear();
-                        window.location.replace('/home.html?logout=' + new Date().getTime());
+                        window.location.href = '/home.html?logout=' + Date.now();
                     } else {
                         alert('Logout failed. Try again.');
                     }
                 } catch (err) {
                     console.error('Logout error:', err);
+                    alert('Something went wrong. Please try again.');
                 }
             });
         });
 
-        // Load dashboard
+        // ✅ DASHBOARD LOAD
         async function loadUserDashboard() {
             const res = await fetch('/users/dashboard', { credentials: 'include' });
+
             if (res.status === 401) {
                 alert('Please log in first.');
                 window.location.href = '/user_login.html';
@@ -113,24 +119,37 @@
 
             const tableBody = document.getElementById('orderList');
             tableBody.innerHTML = '';
+
             if (data.orders.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No recent orders</td></tr>';
             } else {
                 data.orders.forEach(order => {
                     tableBody.innerHTML += `
-                <tr>
-                    <td>${order.id}</td>
-                    <td>${order.artTitle}</td>
-                    <td>${order.status}</td>
-                    <td>${order.created_at ? new Date(order.created_at).toLocaleDateString() : '-'}</td>
-                </tr>`;
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${order.artTitle}</td>
+                        <td>${order.status}</td>
+                        <td>${order.purchase_date ? new Date(order.purchase_date).toLocaleDateString() : '-'}</td>
+                    </tr>`;
                 });
             }
         }
 
-        loadUserDashboard();
+        // ✅ CART COUNT FUNCTION
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // ✅ INITIAL LOAD
+        updateCartCount();
+        if (document.getElementById('orderList')) loadUserDashboard();
+
+        // ✅ UPDATE WHEN CART CHANGES (from other pages)
+        window.addEventListener('storage', updateCartCount);
     });
 </script>
+
 </body>
 
 </html>

@@ -2,146 +2,243 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Art Gallery</title>
-    <link rel="stylesheet" href="payment.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="payment.css">
 </head>
 
 <body>
-    <div class="title">
-        <a href="home.html" class="back-btn">Back</a>
-        <h1>Payment</h1>
+  <div class="title">
+    <a href="home.html" class="back-btn">Back</a>
+    <h1>Payment</h1>
+  </div>
+
+  <div class="payment-container">
+    <!-- Order Summary -->
+    <div class="order-summary" id="order-summary">
+      <h2>Order Summary</h2>
     </div>
 
-    <div class="payment-container">
+    <!-- Payment Form -->
+    <form class="payment-form" id="paymentForm">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
 
-        <!-- Order Summary -->
-        <div class="order-summary" id="order-summary">
-            <h2>Order Summary</h2>
-        </div>
+      <label>Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
 
-        <!-- Payment Form -->
-        <form class="payment-form" id="paymentForm">
-            <label>Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name" autocomplete="off"  required>
+      <label>Payment Method</label>
+      <select id="paymentMethod" required>
+        <option value="">-- Select --</option>
+        <option value="card">Credit / Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="netbanking">Net Banking</option>
+      </select>
 
-            <label>Email</label>
-            <input type="email" id="email" placeholder="Enter your email" autocomplete="off" required>
+      <label id="paymentIdLabel">Card / UPI ID</label>
+      <input type="text" id="paymentId" placeholder="Card number or UPI ID" required>
 
-            <label>Payment Method</label>
-            <select id="paymentMethod" required>
-                <option value="">-- Select --</option>
-                <option value="card">Credit / Debit Card</option>
-                <option value="upi">UPI</option>
-                <option value="netbanking">Net Banking</option>
-            </select>
+      <label>Billing Address</label>
+      <textarea id="billingAddress" rows="3" placeholder="Enter your address" required></textarea>
 
-            <label>Card / UPI ID</label>
-            <input type="text" id="paymentId" placeholder="Card number or UPI ID" autocomplete="off" required>
+      <button type="submit" class="pay-btn">Pay Now</button>
+    </form>
+  </div>
 
-            <label>Billing Address</label>
-            <textarea id="billingAddress" rows="3" placeholder="Enter your address" autocomplete="off"  required></textarea>
+  <script>
+    const BASE_URL = "http://localhost:3000";
+    let currentUser = null;
+    let cartKey = "";
 
-            <button type="submit" class="pay-btn">Pay Now</button>
-        </form>
-    </div>
+    // 🟩 Step 1: Check session and get correct user cart key
+    window.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/api/session`, {
+          method: "GET",
+          credentials: "include"
+        });
+        const data = await res.json();
 
-    <script>
-        // Get artId from query params: payment.html?artId=9
-        const params = new URLSearchParams(window.location.search);
-        const artId = params.get('artId');
-        const userId = 1; // Replace with logged-in user id
-
-        const orderSummary = document.getElementById('order-summary');
-
-        // Fetch art details from backend
-        async function fetchArtDetails() {
-            try {
-                const res = await fetch(`/arts/${artId}`);
-                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-
-                const art = await res.json();
-                console.log("Fetched art data:", art);
-
-                // Clear any previous content
-                orderSummary.innerHTML = `<h2>Order Summary</h2>`;
-
-                // Artwork image
-                if (art.image) {
-                    const artImg = document.createElement('img');
-                    artImg.src = '/uploads/' + art.image;
-                    artImg.style.maxWidth = "350px";
-                    artImg.style.maxHeight = "175px";
-                    artImg.style.display = "block";
-                    artImg.style.marginBottom = "10px";
-                    orderSummary.appendChild(artImg);
-                }
-
-                // Artwork title
-                const titleEl = document.createElement('p');
-                titleEl.innerHTML = `<strong>Artwork:</strong> ${art.title || "Unknown"}`;
-                orderSummary.appendChild(titleEl);
-
-                // Artist name + profile image
-                const artistEl = document.createElement('p');
-                const artistImage = art.artist_image
-                    ? `<img src="${art.artist_image}" alt="${art.artist_name}" style="width:30px;height:30px;border-radius:50%;vertical-align:middle;margin-right:5px;">`
-                    : "";
-                artistEl.innerHTML = `<strong>Artist:</strong> ${artistImage}${art.artist_name || "Unknown Artist"}`;
-                orderSummary.appendChild(artistEl);
-
-                // Total price
-                const priceEl = document.createElement('p');
-                priceEl.innerHTML = `<strong>Total:</strong> ₹<span id="art-price">${art.price || 0}</span>`;
-                orderSummary.appendChild(priceEl);
-
-            } catch (err) {
-                console.error("Error fetching art details:", err);
-                alert('Failed to load art details');
-            }
+        if (!data.loggedIn) {
+          alert("⚠️ Please log in to continue!");
+          window.location.href = "user_login.html";
+          return;
         }
 
-        fetchArtDetails();
+        currentUser = data.user;
+        cartKey = `cart_${currentUser.id}`;
+        fetchOrderSummary();
+      } catch (err) {
+        console.error("Session check failed:", err);
+        alert("Error checking session. Please try again.");
+        window.location.href = "user_login.html";
+      }
+    });
 
-        // Handle payment form submission
-        const form = document.getElementById('paymentForm');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    // 🧾 Step 2: Display the correct order summary
+    function fetchOrderSummary() {
+      const orderSummary = document.getElementById("order-summary");
+      orderSummary.innerHTML = "<h2>Order Summary</h2>";
 
-            const payment_method = document.getElementById('paymentMethod').value;
-            const price = parseFloat(document.getElementById('art-price').textContent);
+      const singleArt = JSON.parse(localStorage.getItem("buyNowArt"));
+      const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
-            if (!userId || !artId || !price) {
-                alert('⚠️ Missing required data');
-                return;
-            }
+      if (singleArt) {
+        displaySingleArt(singleArt, orderSummary);
+      } else if (cart.length > 0) {
+        displayCart(cart, orderSummary);
+      } else {
+        orderSummary.innerHTML += "<p>Your cart is empty.</p>";
+      }
+    }
 
-            try {
-                console.log('Submitting payment:', { userId, artId, price, payment_method });
+    // 🖼️ Display single artwork (Buy Now)
+    function displaySingleArt(art, container) {
+      const img = document.createElement("img");
+      img.src = `${BASE_URL}/uploads/${art.image}`;
+      img.style.maxWidth = "150px";
+      img.style.borderRadius = "10px";
+      container.appendChild(img);
 
-                const response = await fetch('/purchases/buy', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        user_id: userId,
-                        art_id: artId,
-                        price: price,
-                        payment_method: payment_method
-                    })
-                });
+      const info = document.createElement("p");
+      info.innerHTML = `<strong>${art.title}</strong> - ₹${art.price}`;
+      container.appendChild(info);
 
-                const result = await response.text();
-                alert(result);
+      const total = document.createElement("p");
+      total.innerHTML = `<strong>Total:</strong> ₹<span id="total-price">${art.price}</span>`;
+      container.appendChild(total);
+    }
 
-                // Optional: redirect to success page
-                // window.location.href = 'success.html';
-            } catch (err) {
-                console.error('Payment error:', err);
-                alert('Payment failed!');
-            }
+    // 🖼️ Display multiple artworks (from cart)
+    function displayCart(cart, container) {
+      let total = 0;
+      cart.forEach(art => {
+        if (!art || !art.image || !art.price) return;
+
+        const img = document.createElement("img");
+        img.src = `${BASE_URL}/uploads/${art.image}`;
+        img.style.maxWidth = "150px";
+        img.style.borderRadius = "10px";
+        img.style.marginBottom = "10px";
+        container.appendChild(img);
+
+        const info = document.createElement("p");
+        info.innerHTML = `<strong>${art.title}</strong> - ₹${art.price}`;
+        container.appendChild(info);
+
+        total += parseFloat(art.price);
+      });
+
+      const totalEl = document.createElement("p");
+      totalEl.innerHTML = `<strong>Total:</strong> ₹<span id="total-price">${total.toFixed(2)}</span>`;
+      container.appendChild(totalEl);
+    }
+
+    // 🧠 Step 3: Dynamic Placeholder Change
+    const paymentMethod = document.getElementById("paymentMethod");
+    const paymentId = document.getElementById("paymentId");
+    const paymentIdLabel = document.getElementById("paymentIdLabel");
+
+    paymentMethod.addEventListener("change", () => {
+      if (paymentMethod.value === "card") {
+        paymentId.placeholder = "Enter 16-digit card number";
+        paymentIdLabel.textContent = "Card Number";
+      } else if (paymentMethod.value === "upi") {
+        paymentId.placeholder = "Enter UPI ID (e.g. karthi@oksbi)";
+        paymentIdLabel.textContent = "UPI ID";
+      } else if (paymentMethod.value === "netbanking") {
+        paymentId.placeholder = "Enter Net Banking ID";
+        paymentIdLabel.textContent = "Net Banking ID";
+      } else {
+        paymentId.placeholder = "Card number or UPI ID";
+        paymentIdLabel.textContent = "Card / UPI ID";
+      }
+    });
+
+    // ✅ Validation Function
+    function validatePayment() {
+      const method = document.getElementById("paymentMethod").value;
+      const paymentId = document.getElementById("paymentId").value.trim();
+
+      if (!method) {
+        alert("Please select a payment method!");
+        return false;
+      }
+
+      if (method === "card") {
+        const cardRegex = /^(?:\d{4}[- ]?){3}\d{4}$/;
+        if (!cardRegex.test(paymentId)) {
+          alert("Please enter a valid 16-digit Credit/Debit Card number!");
+          return false;
+        }
+      }
+
+      if (method === "upi") {
+        const upiRegex = /^[\w.\-]{2,}@[\w]{3,}$/;
+        if (!upiRegex.test(paymentId)) {
+          alert("Please enter a valid UPI ID (example: karthi@oksbi)");
+          return false;
+        }
+      }
+
+      if (method === "netbanking") {
+        if (paymentId.length < 4) {
+          alert("Enter valid Net Banking ID or reference number!");
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // 💳 Step 4: Handle payment form submission
+    document.getElementById("paymentForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // ✅ Validate before submission
+      if (!validatePayment()) return;
+
+      const singleArt = JSON.parse(localStorage.getItem("buyNowArt"));
+      const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+      const payment_method = document.getElementById("paymentMethod").value;
+      const total_price = parseFloat(document.getElementById("total-price").textContent);
+      let art_ids = [];
+
+      if (singleArt) {
+        art_ids = [singleArt.id];
+      } else if (cart.length > 0) {
+        art_ids = cart.map(item => item.id);
+      } else {
+        alert("No items to pay for!");
+        return;
+      }
+
+      try {
+        const res = await fetch(`${BASE_URL}/purchases/buy-multiple`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ art_ids, payment_method, total_price })
         });
-    </script>
+
+        const result = await res.text();
+        alert(result);
+
+        if (singleArt) {
+          localStorage.removeItem("buyNowArt");
+        } else {
+          localStorage.removeItem(cartKey);
+        }
+
+        window.location.href = "payment.html";
+      } catch (err) {
+        console.error(err);
+        alert("Payment failed!");
+      }
+    });
+  </script>
 </body>
 
 </html>

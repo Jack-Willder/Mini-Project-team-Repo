@@ -1,0 +1,184 @@
+/* ✅ Body Background */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #e56fe9, #a963d1, #c269e6);
+}
+
+/* ✅ Header Section - same style as paintings.css */
+.title {
+    height: 85px;
+    background-color: rgb(36, 0, 78);
+    color: white;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title h1 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* ✅ Back Button (from paintings.css) */
+.back-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 8px 15px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    background-color: #903ecb;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+    background-color: #6f2c9c;
+    transform: scale(1.05);
+}
+
+/* ✅ Gallery / Content */
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.gallery {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+    width: fit-content;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+/* ✅ Card Outer Only (match paintings.css border & shadow) */
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 6px 5px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    transition: transform 0.2s ease;
+    width: 300px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ✅ Keep your existing image, title, and buttons */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 10px 0;
+    color: #6d2ea6;
+}
+
+.card p {
+    color: #555;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.view-btn,
+.remove-btn {
+    background-color: rgb(36, 0, 78);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.view-btn:hover,
+.remove-btn:hover {
+    background-color: #8a43ba;
+}
+
+/* ✅ Empty Cart Message */
+.empty {
+    text-align: center;
+    font-size: 18px;
+    color: #6d2ea6;
+    width: 100%;
+}
+
+/* ✅ Footer Section - Proper Layout */
+.cart-footer {
+    background-color: #f7f1fc;
+    border-top: 3px solid #a963d1;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+}
+
+/* ✅ Total text styling */
+.cart-footer h3 {
+    font-size: 24px;
+    color: #6d2ea6;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* ✅ Proceed button design */
+.proceed-btn {
+    background-color: rgb(36, 0, 78);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.proceed-btn:hover {
+    background-color: #8a43ba;
+    transform: scale(1.05);
+}
+
+/* ✅ Responsive alignment */
+@media (max-width: 600px) {
+    .cart-footer {
+        padding: 30px 10px;
+    }
+
+    .cart-footer h3 {
+        font-size: 20px;
+    }
+
+    .proceed-btn {
+        font-size: 16px;
+        padding: 12px 30px;
+    }
+}

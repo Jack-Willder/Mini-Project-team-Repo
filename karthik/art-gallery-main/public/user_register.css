@@ -79,6 +79,7 @@ body {
     margin-right: 10px;
     color: rgb(36, 0, 78);
     font-size: 15px;
+    font-weight: 600;
 }
 
 .input-group input {

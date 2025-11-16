@@ -123,7 +123,7 @@ tr:hover {
 }
 
 /* Delete button */
-.delete-btn {
+.ship-btn {
     background-color: #d63669;
     color: white;
     border: none;
@@ -133,7 +133,7 @@ tr:hover {
     transition: background 0.3s, transform 0.2s;
 }
 
-.delete-btn:hover {
+.ship-btn:hover {
     background-color: #b01b50;
     transform: scale(1.05);
 }

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <a href="home_login.html" class="back-btn">Back</a>
+  <a href="home.html" class="back-btn">Back</a>
 
   <div class="container">
     <!-- Artwork Display -->
@@ -17,70 +17,166 @@
       <img src="images/default_art.jpg" alt="Artwork" id="art-image">
       <div class="art-purchase">
         <h2 class="price" id="art-price">Price: ₹0</h2>
-        <a href="payment.html" class="buy-btn" id="buy-btn">Buy Now</a>
+        <div class="button-row">
+          <button class="buy-btn" id="buy-btn">Buy Now</button>
+          <button class="cart-btn" id="cart-btn">Add to Cart</button>
+        </div>
       </div>
     </div>
 
     <!-- Art Details -->
     <div class="art-details">
       <div class="profile">
-        <img src="images/default_profile.jpg"  id="artist-profile" width="200px" height="200px">
+        <img src="images/default_profile.jpg" id="artist-profile" width="200px" height="200px">
         <h1 id="artist-name">Artist Name</h1>
       </div>
 
       <div class="art-name">
         <div class="heading">
-          <h2 >Art Name :</h2>
+          <h2>Art Name :</h2>
         </div>
         <h2 id="art-title">Art Title</h2>
       </div>
 
       <div class="Art-info">
         <strong>
+          <h2 class="size">Artwork Size:</h2>
+        </strong>
+        <p id="art-size">Art size</p>
+        <strong>
           <h2 class="desc">Description :</h2>
         </strong>
+        
         <p id="art-description">Art description will appear here.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Get art ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const artId = params.get('id');
+    const BASE_URL = "http://localhost:3000";
+    let currentUser = null;
+    let cartKey = "";
+    let currentArt = null; // store fetched art for buy/add actions
 
-    if (!artId) {
-      console.error('No art ID found in URL');
-    } else {
-      fetch(`/arts/${artId}`)
-        .then(res => res.json())
-        .then(art => {
-          if (!art) return console.error('Art not found');
+    // ✅ Step 1: Get user info
+    window.addEventListener("DOMContentLoaded", async () => {
+      await checkSession();
+      loadArtDetails();
+    });
 
-          // Artwork image
-          document.getElementById('art-image').src = `/uploads/${art.image}`;
+    async function checkSession() {
+      try {
+        const res = await fetch(`${BASE_URL}/api/session`, {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await res.json();
 
-          // Price
-          document.getElementById('art-price').textContent = `Price: ₹${art.price}`;
+        if (data.loggedIn) {
+          currentUser = data.user;
+          cartKey = `cart_${currentUser.id}`;
+        } else {
+          cartKey = "cart_guest";
+        }
+      } catch (err) {
+        console.error("Error checking session:", err);
+      }
+    }
 
-          // Artist profile image
-          document.getElementById('artist-profile').src = `${art.artist_image}`;
+    // ✅ Step 2: Load art details from backend using ID in URL
+    async function loadArtDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const artId = urlParams.get("id");
 
-          // Artist name
-          document.getElementById('artist-name').textContent = art.artist_name;
+        if (!artId) {
+          alert("No artwork selected!");
+          window.location.href = "home.html";
+          return;
+        }
 
-          // Art title
-          document.getElementById('art-title').textContent = art.title;
+        try {
+          const res = await fetch(`${BASE_URL}/arts/${artId}`);
+          const art = await res.json();
+          console.log("🎨 Artwork data:", art);
+          currentArt = art;
 
-          // Description
-          document.getElementById('art-description').textContent = art.description;
+          // 🖼️ Update DOM
+          document.getElementById("art-image").src = `${BASE_URL}/uploads/${art.image}`;
+          document.getElementById("art-title").textContent = art.title;
+          document.getElementById("art-description").textContent = art.description;
+          document.getElementById("art-price").textContent = `Price: ₹${art.price}`;
+           document.getElementById("art-size").textContent = art.art_size || "Not specified";
+          document.getElementById("artist-name").textContent = art.artist_name || "Unknown Artist";
 
-          // Update Buy Now link
-          document.getElementById('buy-btn').href = `/payment.html?artId=${art.id}`;
-        })
-        .catch(err => console.error(err));
+          // ✅ Fixed logic for artist profile image
+          if (art.artist_image) {
+            // If path already includes '/uploads', use it directly
+            if (art.artist_image.startsWith("/uploads")) {
+              document.getElementById("artist-profile").src = `${BASE_URL}${art.artist_image}`;
+            } else {
+              document.getElementById("artist-profile").src = `${BASE_URL}/uploads/profile/${art.artist_image}`;
+            }
+          } else {
+            document.getElementById("artist-profile").src = "images/default_profile.jpg";
+          }
+
+        } catch (err) {
+          console.error("Error loading artwork:", err);
+          alert("Unable to load artwork details.");
+        }
+      }
+
+
+    // ✅ Step 3: Add to Cart
+    document.getElementById("cart-btn").addEventListener("click", () => {
+      if (!currentArt) {
+        alert("Artwork not loaded yet!");
+        return;
+      }
+      addToCart(currentArt);
+    });
+
+    async function addToCart(art) {
+      if (!currentUser) {
+        alert("Please log in to add items to your cart.");
+        window.location.href = "user_login.html";
+        return;
+      }
+
+      let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+      if (cart.some(item => item.id === art.id)) {
+        alert("This artwork is already in your cart.");
+        return;
+      }
+
+      cart.push(art);
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+      alert("✅ Artwork added to your cart!");
+    }
+
+    // ✅ Step 4: Buy Now
+    document.getElementById("buy-btn").addEventListener("click", () => {
+      if (!currentArt) {
+        alert("Artwork not loaded yet!");
+        return;
+      }
+      buyNow(currentArt);
+    });
+
+    function buyNow(art) {
+      if (!currentUser) {
+        alert("Please log in to continue!");
+        window.location.href = "user_login.html";
+        return;
+      }
+
+      localStorage.removeItem("buyNowArt");
+      localStorage.setItem("buyNowArt", JSON.stringify(art));
+      window.location.href = "payment.html";
     }
   </script>
+
 </body>
 
 </html>

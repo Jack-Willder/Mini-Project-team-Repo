@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart - Art Gallery</title>
+  <link rel="stylesheet" href="cart_list.css" />
+</head>
+
+<body>
+  <!-- 🔹 Header -->
+  <div class="title">
+    <h1>Your Cart</h1>
+  </div>
+
+  <div class="header">
+    <a href="user_dashboard.html" class="back-btn">Back</a>
+  </div>
+
+  <!-- 🖼️ Cart Gallery -->
+  <div class="content">
+    <div class="gallery" id="cartGallery"></div>
+  </div>
+
+  <!-- 🧾 Cart Footer -->
+  <div class="cart-footer">
+    <h3>Total: ₹<span id="totalPrice">0</span></h3>
+    <button id="proceedBtn" class="proceed-btn">Proceed to Payment</button>
+  </div>
+
+  <script>
+    const BASE_URL = "http://localhost:3000";
+    let currentUser = null; // Store logged-in user details
+    let cartKey = ""; // Unique key for each user's cart
+
+    // ✅ Check login before showing cart
+    window.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/api/session`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        const data = await res.json();
+
+        if (!data.loggedIn) {
+          alert("⚠️ Please log in to view your cart!");
+          window.location.href = "user_login.html";
+          return;
+        }
+
+        // ✅ Save current user info and create unique cart key
+        currentUser = data.user;
+        cartKey = `cart_${currentUser.id}`;
+
+        // ✅ Load the user-specific cart
+        loadCartItems();
+
+      } catch (err) {
+        console.error("Session check failed:", err);
+        alert("Error checking session. Please try again.");
+        window.location.href = "user_login.html";
+      }
+    });
+
+    // 🔹 Load user-specific cart
+    function loadCartItems() {
+      let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+      // 🧹 Remove invalid entries
+      cart = cart.filter(item => item && item.id && item.title && item.image);
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+
+      const cartGallery = document.getElementById("cartGallery");
+      const totalPriceEl = document.getElementById("totalPrice");
+
+      cartGallery.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartGallery.innerHTML = "<p class='empty'>Your cart is empty.</p>";
+        document.getElementById("proceedBtn").disabled = true;
+        return;
+      }
+
+      document.getElementById("proceedBtn").disabled = false;
+
+      cart.forEach((art) => {
+        const imagePath = `${BASE_URL}/uploads/${art.image}`;
+
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <div class="img-container">
+            <img src="${imagePath}" alt="${art.title}" class="art-img">
+          </div>
+          <h3>${art.title}</h3>
+          <p>Artist: ${art.artist_name}</p>
+          <p>Price: ₹${art.price}</p>
+          <div class="btn-group">
+            <a href="view_art.html?id=${art.id}" class="view-btn">View</a>
+            <button class="remove-btn" data-id="${art.id}">Remove</button>
+          </div>
+        `;
+        cartGallery.appendChild(card);
+        total += parseFloat(art.price);
+      });
+
+      totalPriceEl.textContent = total.toFixed(2);
+    }
+
+    // 🗑 Remove item from this user's cart
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-btn")) {
+        const artId = e.target.getAttribute("data-id");
+        let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+        cart = cart.filter(item => item.id != artId);
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        loadCartItems();
+      }
+    });
+
+    // 💳 Proceed to payment
+    document.getElementById("proceedBtn").addEventListener("click", () => {
+      localStorage.removeItem("buyNowArt");
+      window.location.href = "payment.html";
+    });
+  </script>
+
+</body>
+
+</html>

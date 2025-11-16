@@ -49,8 +49,6 @@ router.get('/check-session', (req, res) => {
 });
 
 
-
-
 // Admin logout
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {

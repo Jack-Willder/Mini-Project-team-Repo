@@ -14,7 +14,6 @@
         <a href="#" class="active">Manage Users</a>
         <a href="manage_artists.html">Manage Artists</a>
         <a href="manage_arts.html">Manage Arts</a>
-        
     </div>
 
     <div class="main-content">
@@ -42,9 +41,16 @@
         // Load all users
         async function loadUsers() {
             try {
-                const res = await fetch('http://localhost:3000/users', {
+                const res = await fetch('http://localhost:3000/users/all', {
                     credentials: 'include'
                 });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    alert('❌ Access denied or session expired');
+                    window.location.href = '/admin_login.html';
+                    return;
+                }
                 const data = await res.json();
 
                 const tbody = document.querySelector('#userTable tbody');

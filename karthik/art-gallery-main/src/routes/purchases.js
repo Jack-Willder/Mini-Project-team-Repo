@@ -7,9 +7,10 @@ const purchaseController = require('../controllers/purchaseController');
 router.post('/buy', purchaseController.buyArt);
 
 
-
-
 // ✅ Route to get all purchases of a user
 router.get('/my-purchases/:userId', purchaseController.getMyPurchases);
+
+router.post('/buy-multiple', purchaseController.buyMultipleArts);
+
 
 module.exports = router;

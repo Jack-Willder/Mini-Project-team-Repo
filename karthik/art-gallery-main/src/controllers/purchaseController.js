@@ -67,7 +67,65 @@ const purchaseController = {
             }
             res.json(results);
         });
+    },
+
+    buyMultipleArts: (req, res) => {
+        if (!req.session.user) {
+            return res.status(401).send('⚠️ Please log in to make a purchase.');
+        }
+
+        const userId = req.session.user.id;
+        const { art_ids, payment_method } = req.body;
+
+        if (!Array.isArray(art_ids) || art_ids.length === 0 || !payment_method) {
+            return res.status(400).send('⚠️ Missing purchase details.');
+        }
+
+        // Step 1: Get prices for all selected artworks
+        const priceQuery = `SELECT id, price FROM arts WHERE id IN (?)`;
+        db.query(priceQuery, [art_ids], (err, priceResults) => {
+            if (err) {
+                console.error('Error fetching art prices:', err);
+                return res.status(500).send('❌ Error fetching art prices.');
+            }
+
+            // Step 2: Build values with price included
+            const values = priceResults.map(art => [
+                userId,
+                art.id,
+                art.price,
+                payment_method,
+                'Completed'
+            ]);
+
+            if (values.length === 0) {
+                return res.status(400).send('⚠️ No valid artworks found for purchase.');
+            }
+
+            // Step 3: Insert all purchases with price
+            const sql = `
+            INSERT INTO purchases (user_id, art_id, price, payment_method, status)
+            VALUES ?
+        `;
+
+            db.query(sql, [values], (err2) => {
+                if (err2) {
+                    console.error('Error inserting purchases:', err2);
+                    return res.status(500).send('❌ Error processing purchases.');
+                }
+
+                // Step 4: Mark all artworks as Sold
+                const updateQuery = `UPDATE arts SET status = 'Sold' WHERE id IN (?)`;
+                db.query(updateQuery, [art_ids], (err3) => {
+                    if (err3) console.error('Error updating art status:', err3);
+                });
+
+                res.send('✅ All artworks purchased successfully!');
+            });
+        });
     }
+
+
 };
 
 module.exports = purchaseController;

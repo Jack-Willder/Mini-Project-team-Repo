@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Reports - Art Gallery</title>
+    <link rel="stylesheet" href="admin_reports.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Admin </h2>
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="manage_users.html">Manage Users</a>
+        <a href="manage_artists.html">Manage Artists</a>
+        <a href="manage_arts.html">Manage Arts</a>
+        <a href="home.html">Logout</a>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Admin Reports</h1>
+            <p>ART WAVE</p>
+        </div>
+        <!-- 🔹 Buttons -->
+        <div class="button-container">
+            <button class="report-btn" onclick="loadReport('weekly')">Weekly Report</button>
+            <button class="report-btn" onclick="loadReport('monthly')">Monthly Report</button>
+            <button class="report-btn" onclick="loadReport('yearly')">Yearly Report</button>
+            <button class="report-btn" onclick="loadReport('daily')"> Shipping Report</button>
+        </div>
+
+        <!-- 🔹 Report Section -->
+        <div id="report-section">
+            <h2 id="report-title">Select a report to view sales data</h2>
+            <table id="report-table" class="hidden">
+                <thead>
+                    <tr id="table-header"></tr>
+                </thead>
+                <tbody id="report-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadReport(type) {
+            const title = document.getElementById("report-title");
+            const table = document.getElementById("report-table");
+            const tbody = document.getElementById("report-body");
+            const headerRow = document.getElementById("table-header");
+
+            title.textContent = `Loading ${type} report...`;
+            tbody.innerHTML = "";
+
+            try {
+                console.log("🟢 Fetching:", `/admin/reports/${type}`);
+                const response = await fetch(`/admin/reports/${type}`, { credentials: "include" });
+                if (!response.ok) throw new Error("Failed to fetch report");
+
+                const data = await response.json();
+                console.log("✅ Data received:", data);
+
+                if (data.length === 0) {
+                    title.textContent = `No ${type} data found.`;
+                    table.classList.add("hidden");
+                    return;
+                }
+
+                title.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)} Sales Report`;
+                table.classList.remove("hidden");
+
+                // 🔹 Dynamic header
+                if (type === "weekly") {
+                    headerRow.innerHTML = `
+                        <th>Artwork Title</th>
+                        <th>Week Range</th>
+                        <th>Year</th>
+                        <th>Total Sales</th>
+                        <th>Revenue (₹)</th>
+                    `;
+                } else if (type === "monthly") {
+                    headerRow.innerHTML = `
+                        <th>Artwork Title</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Total Sales</th>
+                        <th>Revenue (₹)</th>
+                    `;}
+
+                    else if (type === "daily") {
+                        headerRow.innerHTML = `
+                        <th>Artwork Title</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Total Sales</th>
+                        <th>Revenue (₹)</th>
+                    `;
+                } else {
+                    headerRow.innerHTML = `
+                        <th>Artwork Title</th>
+                        <th>Year</th>
+                        <th>Total Sales</th>
+                        <th>Revenue (₹)</th>
+                    `;
+                }
+
+                // 🔹 Fill table rows
+                data.forEach(row => {
+                    const tr = document.createElement("tr");
+
+                    if (type === "weekly") {
+                        tr.innerHTML = `
+                            <td>${row.artwork_title || "Untitled"}</td>
+                            <td>${row.week_range || "-"}</td>
+                            <td>${row.year || "-"}</td>
+                            <td>${row.total_sales || 0}</td>
+                            <td>₹${row.total_revenue || 0}</td>
+                        `;
+                    } else if (type === "monthly") {
+                        tr.innerHTML = `
+                            <td>${row.artwork_title || "Untitled"}</td>
+                            <td>${row.month || "-"}</td>
+                            <td>${row.year || "-"}</td>
+                            <td>${row.total_sales || 0}</td>
+                            <td>₹${row.total_revenue || 0}</td>
+                        `;
+                    }
+                    else if (type === "daily") {
+                        tr.innerHTML = `
+                            <td>${row.artwork_title || "Untitled"}</td>
+                            <td>${row.day || "-"}</td>
+                            <td>${row.year || "-"}</td>
+                            <td>${row.total_sales || 0}</td>
+                            <td>₹${row.total_revenue || 0}</td>
+                        `;
+                    }
+                    
+                    
+                    else {
+                        tr.innerHTML = `
+                            <td>${row.artwork_title || "Untitled"}</td>
+                            <td>${row.year || "-"}</td>
+                            <td>${row.total_sales || 0}</td>
+                            <td>₹${row.total_revenue || 0}</td>
+                        `;
+                    }
+
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error("⚠️ Error loading report:", error);
+                title.textContent = "Error loading data.";
+            }
+        }
+    </script>
+</body>
+
+</html>

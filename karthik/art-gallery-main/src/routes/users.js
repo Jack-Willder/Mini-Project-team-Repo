@@ -27,14 +27,6 @@ router.get('/check-session', (req, res) => {
     res.json({ loggedIn: false });
 });
 
-// ✅ User Dashboard Data
-router.get('/dashboard', (req, res) => {
-    if (!req.session.user) {
-        return res.status(401).json({ error: 'Not logged in' });
-    }
-    res.json({ message: "User logged in", user: req.session.user });
-    userController.getDashboard(req, res);
-});
 
 // ✅ Existing routes…
 router.get('/dashboard', ensureUser, userController.getDashboard);
@@ -44,14 +36,18 @@ router.get('/orders', ensureUser, userController.getUserOrders);
 
 // ✅ Logout Route
 router.post('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.error('Logout error:', err);
-            return res.status(500).json({ success: false, message: 'Error logging out' });
-        }
-        res.clearCookie('connect.sid');
-        res.status(200).json({ success: true, message: 'Logged out successfully' });
-    });
+    if (req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                console.error('Logout error:', err);
+                return res.status(500).json({ success: false, message: 'Error logging out' });
+            }
+            res.clearCookie('connect.sid', { path: '/' });
+            return res.status(200).json({ success: true, message: 'Logged out successfully' });
+        });
+    } else {
+        return res.status(200).json({ success: true, message: 'No active session' });
+    }
 });
 
 // 🟢----------------------------🟢

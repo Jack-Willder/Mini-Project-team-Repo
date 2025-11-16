@@ -79,6 +79,29 @@ body {
   background: rgb(60, 0, 128);
   transform: scale(1.05);
 }
+/* Button Row */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Add to Cart Button */
+.cart-btn {
+  background: rgb(36, 0, 78);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cart-btn:hover {
+  background: rgb(60, 0, 128);
+  transform: scale(1.05);
+}
 
 /* Redesigned Art Details Card */
 .art-details {
@@ -151,7 +174,7 @@ body {
   padding-top: 15px;
 }
 
-.Art-info h2 {
+.desc {
   color: #c269e6;
   font-size: 20px;
   margin-bottom: 8px;
@@ -163,6 +186,8 @@ body {
   text-align: justify;
   color: #2d006e;
 }
+ 
+
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {

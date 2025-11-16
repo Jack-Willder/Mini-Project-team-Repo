@@ -1,0 +1,82 @@
+/* General page setup */
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Login container */
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+    width: 300px;
+    height: 400px;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: black;
+}
+
+/* Labels and inputs */
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Button style */
+button {
+    margin-top: 50px;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff7300;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e68900;
+}
+
+/* Signup text */
+.signup-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}

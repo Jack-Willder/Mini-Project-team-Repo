@@ -12,18 +12,7 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ✅ CORS setup (important for Live Server frontend)
-app.use(cors({
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'], // add both!
-  methods: ['GET', 'POST', 'DELETE'],
-  credentials: true
-}));
-
-// ✅ Body Parser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// ✅ Session setup
+// ✅ Session MUST come BEFORE cors, bodyparser, and routes
 app.use(session({
   secret: 'Karthikeyan8888',
   resave: false,
@@ -36,7 +25,18 @@ app.use(session({
   }
 }));
 
-// Prevent browser from caching old sessions
+// ✅ CORS setup (after session)
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500','http://localhost:3000'],
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  credentials: true
+}));
+
+// ✅ Body Parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// ✅ Prevent browser from caching old sessions
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store');
   next();
@@ -52,6 +52,11 @@ const adminRoutes = require('./src/routes/admin');
 const artistRoutes = require('./src/routes/artists');
 const artsRoutes = require('./src/routes/arts');
 const purchaseRoutes = require('./src/routes/purchases');
+const categoryRoutes = require('./src/routes/categories');
+const adminReports = require('./src/routes/adminReports');
+const cartRoutes = require("./src/routes/cart");
+
+
 
 // ✅ Use routes
 app.use('/users', userRoutes);
@@ -59,6 +64,11 @@ app.use('/admin', adminRoutes);
 app.use('/artists', artistRoutes);
 app.use('/arts', artsRoutes);
 app.use('/purchases', purchaseRoutes);
+app.use('/categories', categoryRoutes);
+app.use('/admin', adminReports);
+app.use('/api/cart', cartRoutes);
+
+
 
 // ✅ Default route → homepage
 app.get('/', (req, res) => {

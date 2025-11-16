@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Art Gallery</title>
     <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="cart-icon.css" /> <!-- 🎨 new css only for cart feature -->
 
     <style>
         /* --- Header & User Button Styles --- */
@@ -16,7 +17,6 @@
 
         .user-btn {
             display: none;
-            /* hidden until logged in */
             align-items: center;
             margin-left: 10px;
             background-color: #a963d1;
@@ -37,7 +37,6 @@
             width: 20px;
         }
 
-        /* Optional: small spacing for search box */
         .header-actions input {
             padding: 5px;
             margin-right: 5px;
@@ -47,6 +46,52 @@
             border: none;
             background: none;
             cursor: pointer;
+        }
+
+        /* ===============================
+   Cart Icon Button Styles
+   =============================== */
+
+        .cart-icon-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .cart-icon-btn img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(74%) saturate(360%) hue-rotate(220deg) brightness(20%) contrast(95%);
+        }
+
+        /* Hover effect */
+        .cart-icon-btn:hover {
+            background: #a963d1;
+        }
+
+        .cart-icon-btn:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* When added to cart */
+        .cart-icon-btn.added {
+            background: #a963d1;
+        }
+
+        .cart-icon-btn.added img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* To ensure image container is positioned properly */
+        .img-container {
+            position: relative;
+            display: inline-block;
         }
     </style>
 </head>
@@ -74,13 +119,7 @@
             </li>
         </ul>
 
-        <div class="header-actions">
-            <input type="text" placeholder="Search" />
-            <button id="search-btn" type="submit">
-                <img src="images/magnifying-glass.png" height="20" width="20" />
-            </button>
-
-            <!-- 👇 User Dashboard Button (shown only after login) -->
+      
             <a href="user_dashboard.html" class="user-btn" id="userDashboardBtn">
                 <img src="images/user (1).png" alt="User Icon" class="user-icon" />
                 <span id="userNameText">You</span>
@@ -90,9 +129,7 @@
 
     <!-- Gallery Content -->
     <div class="content">
-        <div class="gallery">
-            <!-- Gallery cards will be loaded here -->
-        </div>
+        <div class="gallery"></div>
     </div>
 
     <!-- Footer -->
@@ -118,9 +155,8 @@
     </div>
 
     <script>
-        const BASE_URL = "http://localhost:3000"; // ✅ backend URL
+        const BASE_URL = "http://localhost:3000";
 
-        // 🔹 Clear cache on logout (optional safety)
         if (window.location.search.includes("logout")) {
             sessionStorage.clear();
             localStorage.clear();
@@ -140,7 +176,9 @@
                     const artDiv = document.createElement("div");
                     artDiv.className = "card";
                     artDiv.innerHTML = `
-            <img src="${BASE_URL}/uploads/${art.image}" alt="${art.artist_name}">
+            <div class="img-container">
+              <img src="${BASE_URL}/uploads/${art.image}" alt="${art.artist_name}">
+            </div>
             <h3>Artist: ${art.artist_name}</h3>
             <a href="view_art.html?id=${art.id}" class="view-btn">View</a>
           `;
@@ -151,7 +189,7 @@
             }
         }
 
-        // 👤 Check if user logged in and update header
+        // 👤 Update header login state
         async function updateHeader() {
             const loginMenu = document.getElementById("loginMenu");
             const userBtn = document.getElementById("userDashboardBtn");
@@ -160,17 +198,11 @@
             try {
                 const res = await fetch(`${BASE_URL}/users/dashboard`, {
                     method: "GET",
-                    credentials: "include", // ✅ allow session cookies
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" }
                 });
 
-                console.log("Dashboard status:", res.status);
-
                 const data = await res.json().catch(() => null);
-                console.log("Dashboard data:", data);
-
                 if (res.ok && data && data.user) {
                     loginMenu.style.display = "none";
                     userBtn.style.display = "inline-flex";
@@ -186,7 +218,6 @@
             }
         }
 
-        // 🟢 Run on page load
         window.addEventListener("DOMContentLoaded", () => {
             loadGallery();
             updateHeader();

@@ -29,11 +29,14 @@
         </div>
     </div>
 
+  
     <script>
-        // Fetch user orders dynamically
         async function loadOrders() {
             try {
+                console.log("🔄 Fetching user orders...");
                 const res = await fetch('/users/dashboard', { credentials: 'include' });
+                console.log("📡 Response status:", res.status);
+
                 if (res.status === 401) {
                     alert('Please log in to view your orders.');
                     window.location.href = '/user_login.html';
@@ -41,31 +44,37 @@
                 }
 
                 const data = await res.json();
+                console.log("✅ Dashboard data received:", data);
+
                 const container = document.getElementById('ordersContainer');
                 container.innerHTML = '';
 
+                // ✅ If no orders found
                 if (!data.orders || data.orders.length === 0) {
                     container.innerHTML = '<p class="no-orders">No orders found.</p>';
                     return;
                 }
 
+                // ✅ Display orders
                 data.orders.forEach(order => {
                     const card = document.createElement('div');
                     card.classList.add('order-card');
                     card.innerHTML = `
-                        <h3>Order ID: ${order.id}</h3>
-                        <p><strong>Artwork:</strong> ${order.artTitle}</p>
-                        <p><strong>Status:</strong> ${order.status}</p>
-                        <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
-                    `;
+            <h3>Order ID: ${order.id}</h3>
+            <p><strong>Artwork:</strong> ${order.artTitle}</p>
+            <p><strong>Status:</strong> ${order.status}</p>
+            <p><strong>Date:</strong> ${new Date(order.purchase_date).toLocaleDateString()}</p>
+          `;
                     container.appendChild(card);
                 });
+
             } catch (error) {
-                console.error('Error loading orders:', error);
+                console.error('❌ Error loading orders:', error);
+                const container = document.getElementById('ordersContainer');
+                container.innerHTML = '<p class="error">Failed to load your orders. Please try again later.</p>';
             }
         }
 
-        // Logout
         async function handleLogout() {
             try {
                 const res = await fetch('/users/logout', { method: 'POST' });

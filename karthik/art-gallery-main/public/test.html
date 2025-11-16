@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h3>Admin Report Test</h3>
+    <button onclick="getReport()">Get Weekly Report</button>
+    <pre id="output"></pre>
+
+    <script>
+        function getReport() {
+            fetch('http://localhost:5000/admin/reports/weekly', {
+                method: 'GET',
+                credentials: 'include'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+
+</html>

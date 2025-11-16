@@ -14,8 +14,6 @@
         <a href="manage_users.html">Manage Users</a>
         <a href="manage_artists.html">Manage Artists</a>
         <a href="#" class="active">Manage Arts</a>
-        <a href="#">Categories</a>
-        <a href="#">Logout</a>
     </div>
 
     <div class="main-content">
@@ -33,7 +31,7 @@
                         <th>Artist</th>
                         <th>Price</th>
                         <th>Image</th>
-                        <th>Actions</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -59,7 +57,7 @@
                             <td>₹${art.price}</td>
                             <td><img src="/uploads/${art.image}" alt="${art.title}" class="art-img"></td>
                             <td>
-                                <button class="delete-btn" onclick="deleteArt(${art.id})">Delete</button>
+                                <button class="ship-btn" onclick="ShippedArt(${art.id})">Ship art</button>
                             </td>
                         </tr>
                     `;
@@ -71,8 +69,16 @@
             }
         }
 
-        async function deleteArt(id) {
-            if (!confirm('Are you sure you want to delete this artwork?')) return;
+
+        async function ShippedArt(id) {
+
+            document.querySelectorAll(".ship-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    alert(" Note: This artwork Starts Ship");
+                });
+            });
+            
+            if (!confirm('Are you sure you want to remove this artwork ?')) return;
 
             try {
                 const res = await fetch(`http://localhost:3000/arts/${id}`, {

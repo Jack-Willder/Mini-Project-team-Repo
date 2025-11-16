@@ -8,30 +8,35 @@ const userController = {
         const { username, email, password, confirmPassword } = req.body;
 
         if (!username || !email || !password || !confirmPassword) {
-            return res.status(400).json({ success: false, message: 'All fields are required!' });
+            return res.send(`<script>alert('All fields are required!'); window.history.back();</script>`);
         }
 
         if (password !== confirmPassword) {
-            return res.status(400).json({ success: false, message: 'Passwords do not match!' });
+            return res.send(`<script>alert('Passwords do not match!'); window.history.back();</script>`);
         }
 
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
+
             User.create(username, email, hashedPassword, (err) => {
                 if (err) {
                     if (err.code === 'ER_DUP_ENTRY') {
-                        return res.status(400).json({ success: false, message: 'Email already registered!' });
+                        return res.send(`<script>alert('Email already registered!'); window.history.back();</script>`);
                     }
                     console.error('❌ DB Insert Error:', err);
-                    return res.status(500).json({ success: false, message: 'Error inserting user into database.' });
+                    return res.send(`<script>alert('Error inserting user into database.'); window.history.back();</script>`);
                 }
-                return res.status(200).json({ success: true, message: 'User registered successfully' });
+
+                // ✅ Success message + redirect
+                return res.send(`<script>alert('Registration successful!'); window.location.href='/user_login.html';</script>`);
             });
+
         } catch (err) {
             console.error('❌ Register error:', err);
-            return res.status(500).json({ success: false, message: 'Server error during registration.' });
+            return res.send(`<script>alert('Server error during registration.'); window.history.back();</script>`);
         }
     },
+
 
     // 🟢 User login
     login: async (req, res) => {
@@ -94,49 +99,45 @@ const userController = {
             }
 
             const userId = req.session.user.id;
-            console.log("✅ Dashboard request for user:", userId);
-            console.log("🎯 Session user:", req.session.user);
 
-            const queryAsync = (sql, params = []) => {
-                return new Promise((resolve, reject) => {
-                    db.query(sql, params, (err, results) => {
-                        if (err) reject(err);
-                        else resolve(results);
-                    });
-                });
-            };
+            const queryAsync = (sql, params = []) => new Promise((resolve, reject) => {
+                db.query(sql, params, (err, results) => err ? reject(err) : resolve(results));
+            });
 
             const [userResult, orderCountResult, orderStatusResult] = await Promise.all([
                 queryAsync('SELECT username, email FROM users WHERE id = ?', [userId]),
                 queryAsync('SELECT COUNT(*) AS totalOrders FROM purchases WHERE user_id = ?', [userId]),
                 queryAsync(`
-                    SELECT 
-                        p.id, 
-                        a.title AS artTitle, 
-                        p.status, 
-                        p.purchase_date 
-                    FROM purchases p
-                    JOIN arts a ON p.art_id = a.id
-                    WHERE p.user_id = ?
-                    ORDER BY p.purchase_date DESC
-                `, [userId])
+                SELECT 
+                    p.id, 
+                    a.title AS artTitle, 
+                    p.status, 
+                    p.purchase_date 
+                FROM purchases p
+                JOIN arts a ON p.art_id = a.id
+                WHERE p.user_id = ?
+                ORDER BY p.purchase_date DESC
+            `, [userId])
             ]);
 
-            console.log("✅ Dashboard data fetched successfully.");
 
-            return res.status(200).json({
-                user: userResult[0] || {},
-                totalOrders: orderCountResult[0]?.totalOrders || 0,
-                orders: orderStatusResult || []
-            });
+            if (!res.headersSent) {
+                res.status(200).json({
+                    message: 'User dashboard data fetched successfully',
+                    user: userResult[0] || {},
+                    totalOrders: orderCountResult[0]?.totalOrders || 0,
+                    orders: orderStatusResult || []
+                });
+            }
 
         } catch (err) {
-            console.error("❌ Dashboard Error (Catch Block):", err.message);
-            if (!res.headersSent) {
+            console.error("❌ Dashboard Error:", err.message);
+            if (!res.headersSent)
                 return res.status(500).json({ error: 'Error fetching dashboard data' });
-            }
         }
     },
+
+
 
     // 🟢 New API — Get user's own orders (used by my_orders.html)
     getUserOrders: async (req, res) => {
